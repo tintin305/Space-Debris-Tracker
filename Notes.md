@@ -39,6 +39,8 @@ The runaway chain reaction of the space debris is known as a [Kessler syndrome](
 
 The [Space Debris](https://en.wikipedia.org/wiki/Space_debris) wiki contains a lot of information relating to the detection of this space junk.
 
+The maximum speed of objects that have currently been detected: [16 km/s](https://en.wikipedia.org/wiki/Space_debris). [Other site](https://www.nasa.gov/mission_pages/station/news/orbital_debris.html)
+
 # AMISR
 
 The current [website](http://amisr.com/amisr/about/amisr-overview/) holds a wealth of information on the one antenna used by LEOLABS. It appears that there are actually three different "faces" of the AMISR: "the first AMISR face was deployed in Poker Flat, Alaske in 2006 (the Poker Flas IST, or PFISR), and the remaining two faces were deployed in Resolute Bay, Nunavut, Canada (RISR-N and RISR-C). 
@@ -77,3 +79,74 @@ Universities involved: MIT Millstone Hill, Standord University, University of Al
 # Explanation of ISR
 
 https://www.haystack.mit.edu/atm/mho/instruments/isr/isTutorial.html
+
+Commonly, these systems are used to measure characteristics of the ionosphere which ranges from approximately 100 km through to 1000 km, this is perfect for detecting the space junk which lies within this region.
+
+# Detecting Space Debris with Antenna Arrays (a Google)
+
+It was important to google this exact thing to have a look at other alternatives, even though the brief asked for a solution similar to what Leolabs uses. 
+
+
+
+# Meeting with Derek
+
+Radiation after the big bang (4 Kelvin). 
+Noise floor. 
+
+Specify a minimum size of objects: approx 10 cm (RCS (radio cross section))
+
+Choose a receiver sensitivity: randomly: -120 dBm
+
+The gain of the system needs to be determined as well as the transmitting power as you are required to receive at least -120 dBm of power back from an object of 10 cm
+
+How narrow must your beam be in order to pick out individual elements floating around (this is a resolution issue)
+
+Trade off between power and gain
+
+Specify a frequency this can be because of monetary reasons as well as physical reasons.
+
+Building an amp is a big mission. Lower frequency amps are easier to design/purchase.
+
+Broadcast dipoles and how to make low VSWR versions
+
+Degradation in the gain as you swing your major direction
+
+Where will all of the side lobes go!?!?!? Will they affect other systems? Will they affect the readings and pick up objects that you dnot want?
+
+Using the binomial you will reduce your sidelobes however you will reduce your overall gain.
+
+What kind of beam sweep will you be looking for?
+
+When it hits the object it will change polarization. We must check how many times if flips polarization and how it does this.
+
+Maximum ratio combining (to do with the polarization things) This must be thought of, in how you combine these signals together. 
+
+You need to provide time for "switches" to work, this is to give "dead time" for the system to set itself up.
+
+How do you swap between the receiver and the transmitter.
+This may be a case where a "[circulator](https://en.wikipedia.org/wiki/Circulator)" can be used.
+
+Wilkinson splitter (for feeding the antenna)
+
+The feeding network is different to how the antenna is connected together (Wilkinson splitter)
+
+Hartebeespoort visit.
+
+Where is the processing done? SHould the data be transmitted elsewhere and then processed? Then you won't need a server farm in the karoo and you can use the cloud.
+
+
+# Costing
+
+Derek recommends going to see the Hartebeespoort array to ask about costings and stuff like that. 
+He also recommends [this](https://www.minicircuits.com) site.
+The other thing would be to ask Alaris folks about this and get quotes from Poynting.
+
+
+
+
+
+
+
+
+
+
