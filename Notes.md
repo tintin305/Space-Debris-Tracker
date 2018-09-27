@@ -141,12 +141,276 @@ Derek recommends going to see the Hartebeespoort array to ask about costings and
 He also recommends [this](https://www.minicircuits.com) site.
 The other thing would be to ask Alaris folks about this and get quotes from Poynting.
 
+In the Design document, they structure each element with a description, then they provide advantages and disadvantages followed by a cost estimate.
 
 
 
 
 
+# Design (Paper)
+
+
+
+# Optimal Frequency
+
+[This](http://www.met.nps.edu/~psguest/EMEO_online/module3/module_3_2b.html) seems useful
+
+When determining the frequency, specify an opimal frequency, then provide optional operational frequency ranges (if possible). A discussion on how well the components work at these other frequencies and how the ionosphere handles these other frequencies, as well as the frequency bands that are available.
+Speak about how the returned frequency will be different than the transmitted.
+
+In choosing the frequency, it is highly advantageous to decide on a frequency where there is a decent amount of experience in the design and operation as well as it should be easy to find and purchase "off the shelf components". This implies that the frequency should lie near the EISCAT frequencies (224 and 931 MHz) or lie in the 400-500 MHz band which has been used by other incoherent scatter radars.
+
+Higher frequency choices:
+
+    * Lower system noise, this is highly dependent on the temperature above the site, these temperatures are different at different frequencies.
+    * Smaller antenna size for a given beamwidth, apparently this makes it easier to achieve full steerability and a high scanning rate
+    * Less clutter form coherent echoes which are mainly due to field-aligned irregulatities. The strength of these echoes will be about 12 times stronger at 430 MHz than at 931 MHz, and about 50 times stronger at 224 MHz.
+
+Lower Frequency choices:
+
+    * Smaller Debye ratio for a given electron concentraion so that measurements can be extended to greater heights
+    * Greater cross-section for MST work
+
+One final factor points to an intermediate frequency:
+
+    * At higher frequencies the bandwidth of the scattered signal is greater. This widens the bandwidth over which noise is received and if the system noise temperature is approximately constant (i.e. for frequencies > 400 MHz) this increases the total noise power in proportion. However, with a broader bandwidth the maximum lag which must be measured in the autocorrelation function is reduced. This allows the envelope of the transmitted signal to be shorter and hence allows observations to begin at shorter range.
+
+When using lower frequencies, the system noise limits the sensitivity massively, this also makes a narrow beamwidth which limits the E region (especially for observations near the zenith)
 
 
 
 
+# Environmental Considerations
+
+## Weather Dependence
+
+Maximum and minimum temperatures. Average temperatures, temperature swings and their gradients. 
+Wind.
+Fog
+Sun angles
+
+Light intensities
+
+Air quality
+Humidity
+Icing of instruments
+Snow
+
+
+Light polution
+
+
+
+## Land
+
+The lay of the land
+Mountains?
+Flat land?
+How difficult will it be to lay foundations
+Shipping material
+Construction side of things
+Altitude? Height above sea level?
+Nearby roads?
+Quality of these roads? Will they need upgrading? 
+Power distribution? 
+Communications?
+Water?
+Sewage?
+Disturbances of power lines and transformers to the system?
+Frequency of the power?
+
+Nearby electromagnetic interference? 
+
+Possible impact from telecommunication in the area. Do radio links exist? 
+One must look at the sidelobes and the distribution of power in the various harmonics
+
+Air traffic interference?
+Airports? planes overhead?
+Mostly planes? Helicopters? They pose different interferences as they fly at different altitudes and use different communication systems.
+
+In the design paper, they say that helicopters frequent the area, however, on days of good visibility they fly low and follow the valleys where they will be shielded against the radar beam.
+
+It may be worth installing a separate small surveillance radar that is capable of detecting aircraft and then switch off the main radar (depending on the situation)
+
+Is it worth contacting the air ports and the control towers for some of this? Get real time tracking of planes?
+
+Beacons in the area?
+
+Displacement of plants and animals?
+
+Elevation of the horizon? Does it change in different directions? Does this affect the system?
+
+# Orbits
+
+Orbits: use [this](https://www.iadc-online.org/Documents/IADC-2012-06,%20IADC%20Annual%20Report%20for%202011.pdf) to define some info about the orbits.
+
+# Modelling the Debris
+
+There are a number of equations that allow for exact modelling of the space debris. This has to do with the electron density, ion composition, electron drift velocity, and a number of other parameters which allows for in depth analysis of space debris. However, in order to simplify the calculation, a number of simplifying assumptions are made about the space debris. There are hard and soft radar target, and they each react differently to the electromagnetic wave they they encounter. This assumes that the target is a solid piece of matter (eg. your standard space debris that is assumed to be in the ionosphere). The soft radar targets are not covered in this paper as this is commonly highly distrubuted material which is distinctly more diffiult to determine and falls out of scope of this project.
+
+Once the debris has been modelled, one can make use of the radar equations in order to determine a number of required parameters:
+
+P_{inc} = P_t * \frac{G_{t}}{4 * pi * R^2} [W/m^2] - Power incident on the target
+
+P_{scat} = P_{inc} * sigma_{radar cross section} [W] - scattered power
+
+P_{rec} = P_{scat} * \frac{A_{eff}}{4 * pi * R^2} [W] - Received power
+
+P_{rec} = \frac{P_t * G_{t} * A_{eff} * sigma_{radar cross section}}{16 * pi^2 * R^4} [W] - radar equation
+
+A_{eff} = \frac{lambda^2 * G}{4 * pi}
+
+It is important to note that the minimum detectable power/signal should be defined, here it is denoted by S. When the received power is equal to this value, it is possible to define this range as the maximum range that can be detected. This is defined as R_{max}
+
+Manipulating the P_{rec} equation above and combining the S parameter allows for the following equation to be defined:
+
+R_{max}^4 = \frac{(P_t * A_{eff} * G_t * sigma_{radio cross section}}{(4 * pi)^2} * 1/S
+
+Based on this equation, the peak power of the system, as well as the antenna aperture affect the range at which the system can detect objects. This implies that if the detecting range is required to be increased, then one or both of the parameters should be increased.
+
+The size of these objects should be defined and the reasoning behind this decision originates from a number of sources. 
+Firstly, the Whipple shield is deployed on satellites and space craft, this shield is used to protect the systems and crew from collision of the space debris, as well as micrometroroids.
+Use [this](https://www.iadc-online.org/Documents/IADC-2012-06,%20IADC%20Annual%20Report%20for%202011.pdf) site to provide some explanation on the choice of the debris size. 
+
+The equations determined thus far do not consider a number of other characteristics and this forms a rough calculation of the systems performance at a specified range. A number of the parameters in these equations are still unknown and are required to be determined.
+The range in the above equation is optimistic as it does not include the losses within the radar, and it also does not consider the fact that the objects' cross section and minimum detectable signal are statistical variables.
+
+The S parameter defined in the above equation is defined as the minimum detectable signal; it is important to note that this is a statistical quantity that means that it has the ability to provide a false alarm. 
+In order to deal with this characteristic, it is assumed that in order to reliably detect a signal, it must be at least greater than noise (usually 10 - 20 dB) on the receivers side.
+This minimum signal magnitude is expressed as a signal-to-noise ratio (S/N) required for reliable detection times the receiver noise.
+SNR * Noise_{receiver} = S_{min}
+
+The noise of the receiver is defined to be relative to the thermal noise produced by an idea receiver
+The thermal noise is equal to kTB
+The receiver noise is the thermal noise multiplied by the factor F_n, the receiver noise figure.
+The receiver noise figure is measured relative to a reference temperature T_0 = 290 K (approx room temp), and the factor kT_0 becomes 4 * 1-^-21 W/Hz. 
+
+S_{min} = kT_0 * B * F_n * \frac{S}{N}
+
+
+
+# Antenna
+
+The radar equation forms the initial stage for the design process.
+
+
+
+# Array Structure
+
+Create each antenna element independently, talk about IoT and how each element can be connected so that large feeding networks are not required.
+
+Beamwidth
+Gain (main lobe)
+Sidelobes (near)
+Sidelobes (far)
+
+Beam directions
+
+Noise temperature
+
+Bandwidth (-1.5 dB): transmit and receive
+
+Polarization:
+    accuracy: < ? dB 
+    transmit:
+    receive: 
+
+VSWR: 
+    transmit:
+    receive:
+
+Power capability:
+    peak:
+    average:
+    pulse lengths:
+
+Highest operating frequency in receive mode
+
+Antenna mechanical specifications
+
+Feed system:
+    elements:
+
+Foc.len./diam:
+
+Diameter of array (m):
+
+Slewing velocity (deg/s):
+
+Slewing range (deg):
+    elevation:
+    azimuth:
+
+Surface accuracy (cm_(rms)):
+
+Pointint/tracking accuracy (deg):
+
+Windspeed (km/h):
+    operational:
+    survival:
+
+Temperature (deg C):
+    operational:
+    survival:
+
+Rotary joints:
+
+Equipment on azimuth platform:
+    weight (kg):
+    volume (m^3):
+
+Icing: 
+
+Transmitter:
+    Frequency:
+        operation:
+        optional:
+
+        bandwidth (-1.5 dB)
+
+    Transmitter modules: 
+
+    Total Power:
+        peak:
+        average
+        pulse length:
+
+    interpulse period:
+
+    VSWR:
+
+    Duplexer:
+        isolation:
+        recovery:
+        insertion loss:
+
+        Operation:
+
+Receiver:
+
+    Input bandwidth:
+    Baseband-width:
+
+    Noise temperature:
+
+    Dynamic range:
+
+    Higher order inter modulation products:
+
+    Phase noise of oscillators (incl. transmitter exciter with respect to the carrier frequency)
+
+## Simple Array Explanation
+
+A phased array is a group of antennas whose effective (summed) radiation pattern can be altered by phasing the signals of the individual elements.
+
+By varying the phasing of the different elements, the radiation pattern can be modified to be maximized/suppressed in given directions, within limits determined by:
+    * the radiation pattern of the elements
+    * the size of the array, and
+    * the configuration of the array
+
+# Why ISR?
+
+According to the theory of incoherent scattering first presented by Gordon in 1958 ([Incoherent Scattering of Radio Waves by Free Electrons with Applications to Space Exploration by Radar](https://ieeexplore.ieee.org/document/4065300)).
+ISR is the only equipment which has such ability. The measured area can be covered from 60 to 2000 km, and ISR has become the most powerful ground-based tool currently for the study of ionospheric structures and kinetic processes[ref](https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/2007JA012250)
+
+The system is capable of measuring space debris ([Space Debris Measurements using the Advanced Modular Incoherent Scatter Radar](https://amostech.com/TechnicalPapers/2015/Poster/Nicolls.pdf))
