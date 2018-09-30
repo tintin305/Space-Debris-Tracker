@@ -30,7 +30,6 @@ On the LEOLABS site, they make use of phased array radars in order to track the 
 Based on an [article](https://www.dailymail.co.uk/sciencetech/article-4267014/Firm-raises-4-million-build-space-junk-radar-tracker.html), they say that the company created a site in Alaske that uses Advanced Modular Incoherent Scatter Radar (AMISR). Which is a "modular, transportable radar system which can observe small-scale and temporary phenomena. 
 The system was originally designed to observe phenomena like the aurora and space weather storms. 
 
-
 # Space Debris
 
 Commonly, space craft make use of [Whipple shields](https://en.wikipedia.org/wiki/Whipple_shield) to shield craft from some of the objects in space.
@@ -150,7 +149,9 @@ In the Design document, they structure each element with a description, then the
 
 
 
+# Introduction
 
+It will be pertinent to reference [this](https://www.reddit.com/r/space/comments/9h57ui/removedebris_satellite_performs_worlds_first/)
 
 # Design (Paper)
 
@@ -236,7 +237,8 @@ Sewage?
 Disturbances of power lines and transformers to the system?
 Frequency of the power?
 
-Nearby electromagnetic interference? 
+Nearby electromagnetic interference?
+Can this interference be removed? Must it be quantified and then subtracted from the overall signal? Is this sufficient?
 
 Possible impact from telecommunication in the area. Do radio links exist? 
 One must look at the sidelobes and the distribution of power in the various harmonics
@@ -313,6 +315,18 @@ The facto rT_0 F_n can be replaced with T_s, the system noise temperature.
 
 The radar equation forms the initial stage for the design process.
 
+Primary functions:
+
+    * Impedance transformation (free-space fields to guided waves)
+    * Propagation-mode adapter (free-space to guided waves)
+    * Spatial filter (radiation pattern - direction-dependent sensitivity)
+    * Polariation filter (polarization-dependent sensitivity)
+
+The antenna is used to fix the mismatch between free-space and the rest of the system.
+Intrinsic impedance of free-space: n_0 = E/H
+n_0 = sqrt(u_0 / e_0) = 120 * pi ~= 376.7 omega
+
+Characteristic impedance of tx line, Z_0 = V/I (typically 50 omega)
 
 
 # Array Structure
@@ -419,6 +433,10 @@ Receiver:
 
     Phase noise of oscillators (incl. transmitter exciter with respect to the carrier frequency)
 
+## Transmitting Technique
+
+When using the bistatic system, with continuous wave (CW), it is possible to perform ranging of the object, however, the transmission signal must be modulated with pulse compression waveforms, and the tx and rx must be synchronized and the signal processing systems should account for this. [Ref](https://core.ac.uk/download/pdf/30784809.pdf)
+
 ## Simple Array Explanation
 
 A phased array is a group of antennas whose effective (summed) radiation pattern can be altered by phasing the signals of the individual elements.
@@ -427,6 +445,12 @@ By varying the phasing of the different elements, the radiation pattern can be m
     * the radiation pattern of the elements
     * the size of the array, and
     * the configuration of the array
+
+## Array Direction of Pointing
+
+[This](https://core.ac.uk/download/pdf/11141258.pdf) paper describes the fact that if the array is perpindicular to earth, there is a reduced observable beam area, this reducing detection probability. However, when the angle is no longer 90 degrees, then there is increased signal attenuation due to free space even though the detecting area is increased. These two should be considered.
+
+
 
 # Why ISR?
 
@@ -440,3 +464,9 @@ The system is capable of measuring space debris ([Space Debris Measurements usin
 
 RoHS standards
 lead free components
+
+# Detection Systems
+
+[This](https://core.ac.uk/download/pdf/30784809.pdf), [this](http://epubs.surrey.ac.uk/813039/1/Orbit%20determination%20of%20space%20debris%20using%20a%20Bi%20static%20radar%20configuration%20with%20a%20multiple%20beam%20receiver.pdf) implementation makes use of Tailored Orbit Determination (OD) algorithms. 
+
+Transmit uniformally. Then, receive the signal, and using signal processing, combine the signals to create the "phasing"
