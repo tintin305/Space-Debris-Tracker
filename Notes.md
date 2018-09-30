@@ -135,6 +135,11 @@ Hartebeespoort visit.
 Where is the processing done? SHould the data be transmitted elsewhere and then processed? Then you won't need a server farm in the karoo and you can use the cloud.
 
 
+Corporate feed
+
+Determine the power that is present in the side lobes. 
+I do not believe that it is worth using a binomial array, even though it reduces the side lobes, you still have to consider how the power system is structured. How do you distribute the amplifiers? Do you then have a case where you have a multitude of differently sized amplifiers in order to reduce the cost? 
+
 # Costing
 
 Derek recommends going to see the Hartebeespoort array to ask about costings and stuff like that. 
@@ -177,8 +182,20 @@ One final factor points to an intermediate frequency:
 
 When using lower frequencies, the system noise limits the sensitivity massively, this also makes a narrow beamwidth which limits the E region (especially for observations near the zenith)
 
+Another factor that affects the frequency band choice is that available by the systems regulator. A [document](https://www.icasa.org.za/uploads/files/ITU-Reference-Review-the-Radio-Frequency-Band-Plan-31264.pdf) provides the info for these bands.
 
+ISM band (freely available, however everyone also is allowed to use it)
 
+## Getting through the ionosphere
+
+Info from [here](http://www.met.nps.edu/~psguest/EMEO_online/module3/module_3_2b.html)
+
+There are limits to the frequencies that can be transmitted through the atmosphere+ionosphere. Below 5 MHz the radio waves are not transmitted because they are reflected by the ionosphere; above 30 GHz, the electromagnetic waves are absorbed by water vapour and carbon dioxide in the atmosphere.
+[This](http://www.sws.bom.gov.au/Category/Educational/Other%20Topics/Radio%20Communication/Intro%20to%20HF%20Radio.pdf) document goes through a number of calculations and information providing about the ionosphere and how the different frequencies are affected by it.
+Speak about critical frequencies.
+Docs: http://www.rfwireless-world.com/Terminology/Critical-Frequency-and-Maximum-Usable-Frequency.html
+http://www.sws.bom.gov.au/Category/Educational/Other%20Topics/Radio%20Communication/Intro%20to%20HF%20Radio.pdf
+https://radiojove.gsfc.nasa.gov/education/educ/radio/tran-rec/exerc/iono.htm
 
 # Environmental Considerations
 
@@ -246,6 +263,8 @@ Orbits: use [this](https://www.iadc-online.org/Documents/IADC-2012-06,%20IADC%20
 
 # Modelling the Debris
 
+The specification needs to be able to determine if there are multiple objects in the view, or are you going to bundle them together. This has to do with the resolution of the system.
+
 There are a number of equations that allow for exact modelling of the space debris. This has to do with the electron density, ion composition, electron drift velocity, and a number of other parameters which allows for in depth analysis of space debris. However, in order to simplify the calculation, a number of simplifying assumptions are made about the space debris. There are hard and soft radar target, and they each react differently to the electromagnetic wave they they encounter. This assumes that the target is a solid piece of matter (eg. your standard space debris that is assumed to be in the ionosphere). The soft radar targets are not covered in this paper as this is commonly highly distrubuted material which is distinctly more diffiult to determine and falls out of scope of this project.
 
 Once the debris has been modelled, one can make use of the radar equations in order to determine a number of required parameters:
@@ -287,6 +306,7 @@ The receiver noise figure is measured relative to a reference temperature T_0 = 
 
 S_{min} = kT_0 * B * F_n * \frac{S}{N}
 
+The facto rT_0 F_n can be replaced with T_s, the system noise temperature.
 
 
 # Antenna
@@ -414,3 +434,9 @@ According to the theory of incoherent scattering first presented by Gordon in 19
 ISR is the only equipment which has such ability. The measured area can be covered from 60 to 2000 km, and ISR has become the most powerful ground-based tool currently for the study of ionospheric structures and kinetic processes[ref](https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/2007JA012250)
 
 The system is capable of measuring space debris ([Space Debris Measurements using the Advanced Modular Incoherent Scatter Radar](https://amostech.com/TechnicalPapers/2015/Poster/Nicolls.pdf))
+
+
+# Electronics
+
+RoHS standards
+lead free components
