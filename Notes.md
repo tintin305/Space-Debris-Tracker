@@ -40,6 +40,11 @@ The [Space Debris](https://en.wikipedia.org/wiki/Space_debris) wiki contains a l
 
 The maximum speed of objects that have currently been detected: [16 km/s](https://en.wikipedia.org/wiki/Space_debris). [Other site](https://www.nasa.gov/mission_pages/station/news/orbital_debris.html)
 
+## Debris Speed
+
+Max speed of objects in orbits are determined by their altitude and this means that their speeds are defined by those orbits. Each orbit has a specified period. Equations and notes can be found [here](https://www.quora.com/How-fast-does-an-object-move-in-outer-space), and [here](https://www.quora.com/How-fast-at-the-maximum-speed-can-you-orbit-in-LEO). 
+
+
 # AMISR
 
 The current [website](http://amisr.com/amisr/about/amisr-overview/) holds a wealth of information on the one antenna used by LEOLABS. It appears that there are actually three different "faces" of the AMISR: "the first AMISR face was deployed in Poker Flat, Alaske in 2006 (the Poker Flas IST, or PFISR), and the remaining two faces were deployed in Resolute Bay, Nunavut, Canada (RISR-N and RISR-C). 
@@ -198,6 +203,17 @@ Docs: http://www.rfwireless-world.com/Terminology/Critical-Frequency-and-Maximum
 http://www.sws.bom.gov.au/Category/Educational/Other%20Topics/Radio%20Communication/Intro%20to%20HF%20Radio.pdf
 https://radiojove.gsfc.nasa.gov/education/educ/radio/tran-rec/exerc/iono.htm
 
+Lower frequencies (< 1GHz) result in reduced atmospheric losses, this is a major reason to choose this.
+
+# ICASA
+
+It appears as if the last frequency allocation happened in 2013.
+The next one is up for approval and is in draft stage. There are a number of bands which appear to be moving and this can affect things.
+
+[Thils](https://www.icasa.org.za/legislation-and-regulations/national-radio-frequency-plan-2013) appears to contain the 2013 allocation.
+
+Frequency allocation by [SKA](https://www.ska.ac.za/about/astronomy-geographic-advantage-act/)
+
 # Environmental Considerations
 
 ## Weather Dependence
@@ -221,6 +237,8 @@ Light polution
 
 ## Land
 
+[This](https://www.icasa.org.za/legislation-and-regulations/protection-of-karoo-central-astronomy-advantage-areas-regulations-2017) will be useful for talking about how the area will be protected.
+Land can be given by the [SKA](https://www.ska.ac.za/about/astronomy-geographic-advantage-act/). One can argue that the system will not be used all the time, as such, the SKA may be able to make use of the system for research purposes.
 The lay of the land
 Mountains?
 Flat land?
@@ -470,3 +488,8 @@ lead free components
 [This](https://core.ac.uk/download/pdf/30784809.pdf), [this](http://epubs.surrey.ac.uk/813039/1/Orbit%20determination%20of%20space%20debris%20using%20a%20Bi%20static%20radar%20configuration%20with%20a%20multiple%20beam%20receiver.pdf) implementation makes use of Tailored Orbit Determination (OD) algorithms. 
 
 Transmit uniformally. Then, receive the signal, and using signal processing, combine the signals to create the "phasing"
+
+A typical radar system will operate with a detection probability of 0.9 and a probability of false alarm of 10^-6. The required signal to noise ratio can then be read directly off the graph as 13.2 dB. Note that this is for a single pulse of a steady sinusoidal signal in Gaussian noise with no detection losses.
+
+## Multiple Pulses
+

@@ -15,6 +15,8 @@ minRCS = math.pi * minObjectRadius**2
 kB = 1.38064852e-23
 
 
+# Atmospheric Loss
+
 # receiverTemp = 10
 # antennaTemp = 10
 # sysTemp = receiverTemp + antennaTemp
