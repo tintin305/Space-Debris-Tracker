@@ -144,6 +144,11 @@ Corporate feed
 Determine the power that is present in the side lobes. 
 I do not believe that it is worth using a binomial array, even though it reduces the side lobes, you still have to consider how the power system is structured. How do you distribute the amplifiers? Do you then have a case where you have a multitude of differently sized amplifiers in order to reduce the cost? 
 
+Apply some form of taper for the amplitude over the area of the array.
+In order to reduce the sidelobes, you must find a happy medium between gaussian distribution and a standard distribution.
+
+Determine an acceptable dB level for the biggest sidelobes. Check for the power in the lobes and their direction (if they are pointing in dangerous areas or not). Another way to specify the first sidelobe level is to assume a maximum object size at the lowest altitude and then determine the gain for this sidelobe at which the signal is below acceptable levels.
+
 # Costing
 
 Derek recommends going to see the Hartebeespoort array to ask about costings and stuff like that. 
@@ -203,7 +208,11 @@ Docs: http://www.rfwireless-world.com/Terminology/Critical-Frequency-and-Maximum
 http://www.sws.bom.gov.au/Category/Educational/Other%20Topics/Radio%20Communication/Intro%20to%20HF%20Radio.pdf
 https://radiojove.gsfc.nasa.gov/education/educ/radio/tran-rec/exerc/iono.htm
 
-Lower frequencies (< 1GHz) result in reduced atmospheric losses, this is a major reason to choose this.
+Lower frequencies (< 1GHz) result in reduced atmospheric losses, this is a major reason to choose this. Based on the textbook (Mark A. Richards, James A. Scheer, William A. Holm - Principles of Modern Radar_ Basic Principles, page 124, and 15), it is apparent that frequencies below the 1 GHz mark will have less than 10^-2 dB of attenuation per kilometer.
+
+It is also stated that attenuation will decrease with an increasing elevation angle, and can also be neglected when the angle of elevation exceeds 10 degrees (textbook: Radar Essentials: A concise handbook for Radar Design and Performance Analysis G. Richard Curry, https://m.eet.com/media/1121840/912radar_essentials_pt1.pdf). 
+The book also has some useful graphs which indicate the two way attenuation for 425 MHz at differing angles.
+At the 10 degrees line, the two way attenuation does not exceed 0.25 dB depending on the range.
 
 # ICASA
 
