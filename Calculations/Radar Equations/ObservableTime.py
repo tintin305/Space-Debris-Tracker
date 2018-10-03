@@ -2,11 +2,12 @@
 
 import math
 
+speedOfLight = 3*10**8
 minDistance = 160 * 10**3
 maxDistance = 2000 * 10**3
 
 # Tangential velocity
-maxObjectSpeed = 7.795 * 10**3
+maxObjectSpeed = 7.795 * 10**6
 
 
 
@@ -19,3 +20,6 @@ minObjectObservableTime = minArcDistance / maxObjectSpeed
 maxObjectObservableTime = maxArcDistance / maxObjectSpeed
 
 # Max doppler shift
+centerFrequency = 610*10**6
+dopplerFrequencyShift = 2*((maxObjectSpeed)/(speedOfLight))*centerFrequency 
+print(dopplerFrequencyShift)

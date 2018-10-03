@@ -199,6 +199,8 @@ ISM band (freely available, however everyone also is allowed to use it)
 
 ## Getting through the ionosphere
 
+It will be useful to take some info from [here](https://elib.dlr.de/110661/1/Initial%20Detection%20and%20Tracking%20of%20Objects%20in%20Low%20Earth%20Orbit.pdf), on page 9 and before it talks about the right frequency windows that allow for transmission of EM waves.
+
 Info from [here](http://www.met.nps.edu/~psguest/EMEO_online/module3/module_3_2b.html)
 
 There are limits to the frequencies that can be transmitted through the atmosphere+ionosphere. Below 5 MHz the radio waves are not transmitted because they are reflected by the ionosphere; above 30 GHz, the electromagnetic waves are absorbed by water vapour and carbon dioxide in the atmosphere.
@@ -214,7 +216,7 @@ It is also stated that attenuation will decrease with an increasing elevation an
 The book also has some useful graphs which indicate the two way attenuation for 425 MHz at differing angles.
 At the 10 degrees line, the two way attenuation does not exceed 0.25 dB depending on the range.
 
-# ICASA
+## ICASA
 
 It appears as if the last frequency allocation happened in 2013.
 The next one is up for approval and is in draft stage. There are a number of bands which appear to be moving and this can affect things.
@@ -223,11 +225,19 @@ The next one is up for approval and is in draft stage. There are a number of ban
 
 Frequency allocation by [SKA](https://www.ska.ac.za/about/astronomy-geographic-advantage-act/)
 
+The chosen frequency at this point is: 610 MHz.
+The frequency on either side of the band is 4 MHz.
+Wavelength: 0.4918 m
+3/4 wavelength: 0.3689 m
+1/2 wavelength: 0.2459 m
+1/4 wavelength: 0.12295 m
+
+
 # Environmental Considerations
 
 ## Weather Dependence
 
-Maximum and minimum temperatures. Average temperatures, temperature swings and their gradients. 
+Maximum and minimum temperatures. Average temperatures, temperature swings and their gradients.
 Wind.
 Fog
 Sun angles
@@ -335,8 +345,16 @@ The receiver noise figure is measured relative to a reference temperature T_0 = 
 
 S_{min} = kT_0 * B * F_n * \frac{S}{N}
 
-The facto rT_0 F_n can be replaced with T_s, the system noise temperature.
+The factor T_0 F_n can be replaced with T_s, the system noise temperature.
 
+## Space debris distribution
+
+[Lots](https://elib.dlr.de/110661/1/Initial%20Detection%20and%20Tracking%20of%20Objects%20in%20Low%20Earth%20Orbit.pdf) of info on space debris and how it is defined
+
+
+## Debris Speeds
+
+Objects in LEO normally have angular velocities of at least 0.5 degrees per second when viewed from the ground.
 
 # Antenna
 
@@ -477,7 +495,9 @@ By varying the phasing of the different elements, the radiation pattern can be m
 
 [This](https://core.ac.uk/download/pdf/11141258.pdf) paper describes the fact that if the array is perpindicular to earth, there is a reduced observable beam area, this reducing detection probability. However, when the angle is no longer 90 degrees, then there is increased signal attenuation due to free space even though the detecting area is increased. These two should be considered.
 
+### Maximum scanning directions
 
+The maximum scanning angles that antenna arrays can achieve is -60 degrees to 60 degrees, this is referenced [here](https://arxiv.org/ftp/arxiv/papers/1408/1408.0977.pdf)
 
 # Why ISR?
 
