@@ -163,9 +163,21 @@ In the Design document, they structure each element with a description, then the
 
 It will be pertinent to reference [this](https://www.reddit.com/r/space/comments/9h57ui/removedebris_satellite_performs_worlds_first/)
 
-# Design (Paper)
+## System
 
+The system can be illustrated with the use of the design slides. This illustrates the entirety of the system.
+The elements which make up the system include:
+    * Transmitter
+    * T/R Device
+    * Antenna
+    * Receiver
+    * Signal Processor
 
+Each of these items will have their own section.
+However, there will be sections which discuss other components/characteristics of the system.
+
+Section on EM waves and how they are created, influenced, propagated, polarized, phase shifted, their spectrums, superpositioned, 
+Introduce the simple kinds of polarization and then reference later parts in the report that the waves will be affected by the structure of the antenna and the array as well as the atmosphere. 
 
 # Optimal Frequency
 
@@ -373,6 +385,9 @@ n_0 = sqrt(u_0 / e_0) = 120 * pi ~= 376.7 omega
 
 Characteristic impedance of tx line, Z_0 = V/I (typically 50 omega)
 
+## Polarization
+
+Make use of [this](https://etd.ohiolink.edu/!etd.send_file?accession=ohiou1345227397&disposition=inline) to speak about the axial ratio and how polarization is done.
 
 # Array Structure
 
