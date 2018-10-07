@@ -167,6 +167,7 @@ It will be pertinent to reference [this](https://www.reddit.com/r/space/comments
 
 The system can be illustrated with the use of the design slides. This illustrates the entirety of the system.
 The elements which make up the system include:
+
     * Transmitter
     * T/R Device
     * Antenna
@@ -177,7 +178,7 @@ Each of these items will have their own section.
 However, there will be sections which discuss other components/characteristics of the system.
 
 Section on EM waves and how they are created, influenced, propagated, polarized, phase shifted, their spectrums, superpositioned, 
-Introduce the simple kinds of polarization and then reference later parts in the report that the waves will be affected by the structure of the antenna and the array as well as the atmosphere. 
+Introduce the simple kinds of polarization and then reference later parts in the report that the waves will be affected by the structure of the antenna and the array as well as the atmosphere.
 
 # Optimal Frequency
 
@@ -351,7 +352,7 @@ Based on this equation, the peak power of the system, as well as the antenna ape
 
 The size of these objects should be defined and the reasoning behind this decision originates from a number of sources. 
 Firstly, the Whipple shield is deployed on satellites and space craft, this shield is used to protect the systems and crew from collision of the space debris, as well as micrometroroids.
-Use [this](https://www.iadc-online.org/Documents/IADC-2012-06,%20IADC%20Annual%20Report%20for%202011.pdf) site to provide some explanation on the choice of the debris size. 
+Use [this](https://www.iadc-online.org/Documents/IADC-2012-06,%20IADC%20Annual%20Report%20for%202011.pdf) site to provide some explanation on the choice of the debris size.
 
 The equations determined thus far do not consider a number of other characteristics and this forms a rough calculation of the systems performance at a specified range. A number of the parameters in these equations are still unknown and are required to be determined.
 The range in the above equation is optimistic as it does not include the losses within the radar, and it also does not consider the fact that the objects' cross section and minimum detectable signal are statistical variables.
@@ -376,7 +377,11 @@ The factor T_0 F_n can be replaced with T_s, the system noise temperature.
 
 ## Debris Speeds
 
-Objects in LEO normally have angular velocities of at least 0.5 degrees per second when viewed from the ground.
+Objects in LEO normally have angular velocities of at least 0.5 degrees per second when viewed from the ground.[This](http://www.castor2.ca/08_Papers/Zenith_Ranging.pdf) shows the entire calculation for how the objects speed changes depending on altitude and how it is observed from the ground
+
+Lower altitude objects exceed angular speeds of 1 degree per second relative to the ground observer, when it is viewed at high elevation angles (close to 90 degrees). However, when viewed at around 30 degrees elevation, the speed is observed to be around 0.25 degrees per second.
+
+Figure 7 in [this](http://www.dtic.mil/dtic/tr/fulltext/u2/a531931.pdf) indicates how the angle of the object changes when it is viewed from different elevations. Fig 10 shows how the "detectability" increases with increasing elevation angle.
 
 # Antenna
 
@@ -433,7 +438,17 @@ A unique characteristic of the continuous wave system is that it is unable to de
 ### Pulsed Waveform Transmission
 
 The second mehtod of EM wave transmission makes use of pulses, these occur periodically and their duration is commonly over a short period of time. This system is commonly used in tandem with a monostatic configuration and this provides the isolation between the transmitter and receiver circuitry, the circuitry to isolate these signals is still used.
-Following the EM wave pulse, the receiver is set to record the resulting EM waves that are returned in the form of echoes after it has reflected from the objects in question. The determination of the pulse length and the period between pulses (the interpulse period (IPP))is discussed further in the report ***.
+Following the EM wave pulse, the receiver is set to record the resulting EM waves that are returned in the form of echoes after it has reflected from the objects in question. The determination of the pulse length and the period between pulses (the interpulse period (IPP))is discussed further in the report ***. The pulse repitition is also highly pertinent to the observable time window of debris, this will be discussed in section ***.
+
+Need image here which describes how the pulses are placed with respect to time.
+
+The pulse repetition frequency is related to the maximum distance that the system is able to detect objects, this is related to the observable area of the system and the furthest distance that the system can detect an object. This is discussed in section *** and section ***.
+
+The following image represents a case where a pulse is sent outwards and is then followed by, a period of time later, a corresponding echo pulse.
+The period between the pulse and the echo can be used to determine the altitude that the object has.
+In order to detect the pulse, the time between each sample should be no less than the pulse width of the transmitter (this should be elaborated on... get the info from: \cite[p.~21]{radarHandbook})
+
+Think about echoes that come back after the next pulse is fired, this can be from targets that are past the 2000 km range. These need to be dealt with. One way is to define a SNR that will rule out these cases. Another case is to throw out any echoes that happen before one is expected to have returned (based on the minimum altitude required to be detected).
 
 ## Standard Parameters
 
