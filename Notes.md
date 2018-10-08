@@ -448,7 +448,55 @@ The following image represents a case where a pulse is sent outwards and is then
 The period between the pulse and the echo can be used to determine the altitude that the object has.
 In order to detect the pulse, the time between each sample should be no less than the pulse width of the transmitter (this should be elaborated on... get the info from: \cite[p.~21]{radarHandbook})
 
-Think about echoes that come back after the next pulse is fired, this can be from targets that are past the 2000 km range. These need to be dealt with. One way is to define a SNR that will rule out these cases. Another case is to throw out any echoes that happen before one is expected to have returned (based on the minimum altitude required to be detected).
+Think about echoes that come back after the next pulse is fired, this can be from targets that are past the 2000 km range. These need to be dealt with. One way is to define a SNR that will rule out these cases. Another case is to throw out any echoes that happen before one is expected to have returned (based on the minimum altitude required to be detected). 
+This issue is known as a range ambituite (\cite[p~.22]{radarHandbook})
+
+## Threshold Detection
+
+In order to detect a signal, the received signals' power is required to be above a specific threshold. This threshold is defined as the level at which all sources of noise are incorporated. When an object is detected, the signal level is required to rise above this threshold and this is then considered a successful detection.
+
+There are cases, based on the fact that noise is inherently a random variable, that the noise level can exceed the threshold set by the system. This is observed as a false alarm.
+This implies that there are cases where the targets echo in addition to the noise are capable of being below the threshold, this is when the noise in the system is low, so the addition of the echo is not large enough for the system to detect the object.
+These two cases are highly unlikely, however, cannot be ignored as they are based on the probabilities of the entire system.
+
+These probabilities are given as two variables: the probability of detection (P_{D}), and the probability of false alarm (P_{FA}). The probability of detection is the probability that an object-plus-noise exceeds the threshold applied to the system. The probability of false alarm is the probability that the noise (from all components of the system) will exceed the threshold.
+The best case scenario for these two variables are: 
+P_{D} = 1
+and
+P_{FA} = 0
+
+These values are idealistic and so the correct threshold value is required to be set such that the system can operate as close to these values as possible.
+When the threshold is increased the probability of false alarm will decrease, however, so will the probability of detection. When the threshold is decreased, the probabilities of both variables increase. A trade-off is required here to determine the optimum threshold level.
+
+There is one way in which to increase the probability of detection while lowering the probability of false alarm, this is achieved by increasing the targets signal power (it should be noted that the signal power should be increased relative to the noise power). 
+<!-- If the noise power increases in ratio with the overall power, then this will not work -->
+
+The importance of Doppler should not be underestimated. Doppler shift is important as it can be used to reduce the effects of clutter in the viewing area, it is also able to perform measurements to detect if there is more than one object in the viewing area (in the same range). The removal of clutter from view of the system is achieved with Doppler by the fact that clutter is not moving and thus will have a no frequency shift.
+
+## Resolution
+
+The resolution of the system has three components: the ability to distinguish between objects that are different distances away from the system, have differing angles with respecto the the system, and have differing Doppler frequencies.
+
+The first of these, the range resolution, determines if you are able to discren two objects that are in eachothers vacinity.
+The range resolution is defined by:
+\delta R = \frac{c \tau}{2}
+
+This implies that if the pulse width of the signal is 1us, then the range resolution of the system is 150 m. This implies that if the pulse width is decreased, then the range resolution increases.
+It must be noted that, if the pulse width is decreased, then the energy that is transmitted will decrease, and therefore it becomes increasingly difficult to detect an object.
+
+<!-- The doppler resolution is determined by:
+3 dB width = \frac{0.89}{dwell time} -->
+
+## Radar Functions
+
+### Search/Detect
+
+### Track
+
+### Image
+
+
+
 
 ## Standard Parameters
 
