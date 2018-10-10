@@ -580,6 +580,9 @@ SNR = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi)^3 R^4 k T_0 F B}
 
 This equation applies to discreet targets, which applies to this circumstance.
 
+## Multi-Pulsing 
+
+Need to talk about how the SNR can be improved with the use of multiple pulses.
 
 ## Standard Parameters
 
