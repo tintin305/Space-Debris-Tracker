@@ -149,6 +149,11 @@ In order to reduce the sidelobes, you must find a happy medium between gaussian 
 
 Determine an acceptable dB level for the biggest sidelobes. Check for the power in the lobes and their direction (if they are pointing in dangerous areas or not). Another way to specify the first sidelobe level is to assume a maximum object size at the lowest altitude and then determine the gain for this sidelobe at which the signal is below acceptable levels.
 
+Think about build up of static electricity within the system and consider how to protect circuitry from this (the receiver is commonly the most sensitive device)
+
+It may make sense to apply a modulation to the signal as this can tell you if it is indeed your signal which you are detecting.
+
+
 # Costing
 
 Derek recommends going to see the Hartebeespoort array to ask about costings and stuff like that. 
@@ -298,6 +303,8 @@ Sewage?
 Disturbances of power lines and transformers to the system?
 Frequency of the power?
 
+Lightning?
+
 Nearby electromagnetic interference?
 Can this interference be removed? Must it be quantified and then subtracted from the overall signal? Is this sufficient?
 
@@ -320,6 +327,14 @@ Displacement of plants and animals?
 
 Elevation of the horizon? Does it change in different directions? Does this affect the system?
 
+
+# Construction
+
+How things fit together, how the cables are placed
+What kind of cables
+What communications medium is used between modules
+
+
 # Orbits
 
 Orbits: use [this](https://www.iadc-online.org/Documents/IADC-2012-06,%20IADC%20Annual%20Report%20for%202011.pdf) to define some info about the orbits.
@@ -330,25 +345,7 @@ The specification needs to be able to determine if there are multiple objects in
 
 There are a number of equations that allow for exact modelling of the space debris. This has to do with the electron density, ion composition, electron drift velocity, and a number of other parameters which allows for in depth analysis of space debris. However, in order to simplify the calculation, a number of simplifying assumptions are made about the space debris. There are hard and soft radar target, and they each react differently to the electromagnetic wave they they encounter. This assumes that the target is a solid piece of matter (eg. your standard space debris that is assumed to be in the ionosphere). The soft radar targets are not covered in this paper as this is commonly highly distrubuted material which is distinctly more diffiult to determine and falls out of scope of this project.
 
-Once the debris has been modelled, one can make use of the radar equations in order to determine a number of required parameters:
-
-P_{inc} = P_t * \frac{G_{t}}{4 * pi * R^2} [W/m^2] - Power incident on the target
-
-P_{scat} = P_{inc} * sigma_{radar cross section} [W] - scattered power
-
-P_{rec} = P_{scat} * \frac{A_{eff}}{4 * pi * R^2} [W] - Received power
-
-P_{rec} = \frac{P_t * G_{t} * A_{eff} * sigma_{radar cross section}}{16 * pi^2 * R^4} [W] - radar equation
-
-A_{eff} = \frac{lambda^2 * G}{4 * pi}
-
-It is important to note that the minimum detectable power/signal should be defined, here it is denoted by S. When the received power is equal to this value, it is possible to define this range as the maximum range that can be detected. This is defined as R_{max}
-
-Manipulating the P_{rec} equation above and combining the S parameter allows for the following equation to be defined:
-
-R_{max}^4 = \frac{(P_t * A_{eff} * G_t * sigma_{radio cross section}}{(4 * pi)^2} * 1/S
-
-Based on this equation, the peak power of the system, as well as the antenna aperture affect the range at which the system can detect objects. This implies that if the detecting range is required to be increased, then one or both of the parameters should be increased.
+Once the debris has been modelled, one can make use of the radar equations in order to determine a number of required parameters, these are found in section ***
 
 The size of these objects should be defined and the reasoning behind this decision originates from a number of sources. 
 Firstly, the Whipple shield is deployed on satellites and space craft, this shield is used to protect the systems and crew from collision of the space debris, as well as micrometroroids.
@@ -451,6 +448,8 @@ In order to detect the pulse, the time between each sample should be no less tha
 Think about echoes that come back after the next pulse is fired, this can be from targets that are past the 2000 km range. These need to be dealt with. One way is to define a SNR that will rule out these cases. Another case is to throw out any echoes that happen before one is expected to have returned (based on the minimum altitude required to be detected). 
 This issue is known as a range ambituite (\cite[p~.22]{radarHandbook})
 
+*** Include calculation of the pulse width and the corresponding bandwidth if requires. Stuffies for this can be found on page 65
+
 ## Threshold Detection
 
 In order to detect a signal, the received signals' power is required to be above a specific threshold. This threshold is defined as the level at which all sources of noise are incorporated. When an object is detected, the signal level is required to rise above this threshold and this is then considered a successful detection.
@@ -495,7 +494,91 @@ It must be noted that, if the pulse width is decreased, then the energy that is 
 
 ### Image
 
+# SNR
 
+The resulting SNR of the calculation performed is the targets signal power divided by the sum of the noises in the system, this includes the receiver thermal noise and jammer noise.
+
+The set of equations that are used to determine a number of these parameters are known as the radar range equations (RRE), these equations allow for the determination of the received power from the systems EM waves' reflections and also to determine the levels of the interfering power within the system, this allows for the calculation of the SNR.
+
+This section begins with introducing the RRE and how it is applied to the system and how to determine the simplistic performance of the system. This first step estimates the performance of the systems power density at a distance R away. This is followed by estimating the thermal noise present in the receiver of the system, this then allows for the first estimate of the SNR. 
+
+## Power Density
+
+The first equation defines the power that is incident on the target, this is given by equation ***
+
+P_{inc} = P_t * \frac{G_{t}}{4 * pi * R^2} [W/m^2]
+
+Where:
+P_{inc} is the power incident on the target
+P_t is the power transmitted from the system
+G_t is the gain of the system
+R is the distance from the system to the target
+
+This equation assumes the use of a directional antenna (not isotropic) which has a corresponding gain. This allows for the concentration of the beam in a specific direction.
+
+The next stage is to determine the magnitude of energy that is reflected by the target, as assumed in section ***, the radar cross section of the target is defined and known. 
+In depth analysis of the targets is provided in section ***.
+Equation *** indicates the magnitude of power reflected by this object.
+
+P_{refl} = \frac{P_{t} G_{t} \sigma}{4 pi R^2}
+
+Where:
+P_{refl} is the reflected power from the target
+\sigma is the radar cross section (RCS) of the target measured in square meters (m^2)
+
+This reflected power from the target is then received by the system and this is defined by equation ***
+
+P_{r} = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi )^3 R^4}
+
+Where:
+P_{r} is the received power at the system
+A_{e} is the effective aperture of the system
+\lambda is the wavelength of the system
+G_{r} is the gain of the receive antenna
+
+It is assumed that the gain is determined with equation ***.
+
+G = \frac{4 pi n_{a} A}{\lambda^2} = \frac{4 pi A_{e}}{\lambda^2}
+
+Where:
+n_{a} is the efficiency of the antenna created (this is commonly between 0.5 and 0.8 \cite[p.~64]{radarHandbook})
+
+In the case of the monostatic antenna array, the transmitting and receiving gain are the same as it is the same array. This implies that for bistatic systems, it is possible to have two different ranges for receiving and transmitting.
+
+
+## Receiver Noise
+
+### Thermal Noise
+
+The noise from the environment is mostly made up by solar effects. This case deals specifically with the noise generated by the sun. This can contribute to large amounts of noise within the signal if the antenna array is pointed in the direction of the sun, however, great care should be taken to avoid pointing the antenna array directly at the sun. There will still be a small contribution of the suns noise from the sidelobes of the antenna array, however, this is greatly reduced.
+
+The second source of noise, the largest component within the system, is that generated by the receiver electronics.
+Thermal noise power, being uniform over the frequency spectrum contributes to the noise power over the bandwidth of the system. This implies that the thermal noise power is directly proportional to the receivers bandwidth. This power is determined with the use of equation ***.
+
+P_{n} = k T_{s} B = k T_{0} F B
+
+Where:
+k is Boltzmann's constant (1.38 * 10^{-23} watt-sec/K)
+T_{0} is the standard temperature (normally 290 K)
+T_{s} is the system noise temperature (T_{s} = T{0} F)
+B is the receivers bandwidth (Hz)
+F is the noise figure of the receiver subsystem.
+
+The noise figure defined here should be given in real amplitude (convert from dB as this is what it is usually specified in).
+The bandwidth defined here is a calculated value and is dependent on two factors of the system.
+The first of these can be defined with the use of the largest doppler frequency shift detectable by the system. This is defined in *** with the introduction of the debris' characteristics.
+The second of these is defined by the minimum pulse width of the signal. This is calculated in section ***. 
+This second case is highly important because if the bandwidth of the receiver is made smaller than the bandwidth required for the pulse width, then the power on the target will be reduced and this will cause inconsistencies and will reduce the range resolution of the system \cite[p.~65]{radarHandbook}. If the bandwidth of the receiver is created to be larger than the reciprocal of the pulse width, then the SNR of the system will decrease. This implies that the bandwidth of the receiver can occupy a small frequency band which is set by the pulse width. This implies that if the pulse width of the system is set to 1us, then the bandwidth of the system is 1 MHz.
+The approximation of using 1/\tau is often used in monostatic systems \cite[p.~65]{radarHandbook}.
+
+## SNR and the RRE
+
+At this point it is possible to evaluate the SNR of the system with the use of the noise figure that is attained above.
+The SNR is defined by equation ***.
+
+SNR = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi)^3 R^4 k T_0 F B}
+
+This equation applies to discreet targets, which applies to this circumstance.
 
 
 ## Standard Parameters
