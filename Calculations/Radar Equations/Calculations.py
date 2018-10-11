@@ -45,8 +45,10 @@ minRoundTripTime = 2 * (minDistance/speedOfLight)
 maxRoundTripTime = 2 * (maxTargetDistance/speedOfLight)
 
 # Pulse Width and Range Resolution Limits
-maxBandwidth = 4 * 10**6
+maxBandwidth = 8 * 10**6
 pulseWidthMin = 1/maxBandwidth
+pulseWidthMax = minRoundTripTime
+print(pulseWidthMin)
 rangeResolutionMin = (speedOfLight * pulseWidthMin)/(2)
 
 

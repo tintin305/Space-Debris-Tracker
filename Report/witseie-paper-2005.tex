@@ -93,7 +93,41 @@ As discussed in section~\ref{sec:INTRODUCTION}, space debris in Earths orbit has
 The majority of space debris currently is made up of man made air craft components, this includes objects such as: funcioning space craft, non-functional spacecraft, rocket bodies, exhaust products, objects created through deployment operations, and products of deteriorated space craft \cite{OrbitalDebrisTechnicalAssessment}.
 Consequently, a large amount of this debris is made up of metallic materials as these materials make up the majority of the space crafts' components.
 It has, in the past \cite{Spacex}, been difficult and costly to retrive the components which were used to get the space craft into orbit, this is a major contributer to the material.
+This debris can occupy a number of regions within the Earths orbits and this changes its characteristics.
+The current scope of the project is that it should be capable of tracking space debris that is within the Low Earth Orbit (LEO). This orbit is defined to be approximately $160 km$ to $2000 km$ altitude above the Earths mean sea level.
+The second definition of these orbits is baed on orbital mechanics, this states that if an object is within an orbit, then it will have a corresponding velocity.
+This is illustrated by equation~\ref{eqn:OrbitalVelocity}. 
 
+\begin{equation}
+    V_{Object} = \sqrt{\frac{G M_{Earth}}{r_{Earth} + r_{Altitude}}}
+\end{equation}
+Where:
+\begin{itemize}
+    \item $V_{Object}$ is the radial velocity of the object
+    \item $G$ is the gravitational constant ($6.67408 \cdot 10^{-11} m^3 kg^{-1} s^{-2}$)
+    \item $M_{earth}$ is the mass of the Earth ($5972 \cdot 10^{24} kg$)
+    \item $r_{Earth}$ is the mean radius of the Earth
+    \item $r_{Altitude}$ is the altitude of the object above the mean radius of the Earth
+\end{itemize}
+
+This allows for the simple calculation of the minimum and maximum orbital speeds expected from the objects which correspond to the maximum altitude and minimum altitude respectively. These are illustrated in table~\ref{tab:ObjectParameters}. The velocity in the table is stated as a tangential velocity as it is assumed that the radial velocity of the object is zero. If an object has a radial velocity componenet, then this implies that it is changing orbits (an object in a specified orbit will have zero radial velocity) and this is either taking place due to a force acting on the object (man made) or it is experiencing a force due to the Earths atmosphere.
+The objects orbiting within these ranges have corresponding periods (amount of time it takes for an object to orbit around the Earth once), this means that an object in the lower orbit has a higher period than that of the higher orbits. The periods for the two limits of the LEO objects are also found in table~\ref{tab:ObjectParameters}.
+
+
+
+\begin{table}
+    \label{tab:ObjectParameters}
+    \caption{Orbject Parameters}
+    \begin{center}
+        \begin{tabular}[cc]
+            \hline \\
+            Minimum Object Altitude & $m$ \\
+            Maximum Object Altitude & $m$ \\
+            Maximum Object Tangential Velocity & $m/s$ \\
+            Minimum Object Tangential Velocity & b
+        \end{tabular}
+    \end{center}
+\end{table}
 
 % What is an Antenna?
 % What is an array?
