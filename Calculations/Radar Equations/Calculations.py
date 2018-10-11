@@ -42,18 +42,27 @@ minRCS = math.pi * minObjectRadius**2
 
 # Signal Round trip times
 minRoundTripTime = 2 * (minDistance/speedOfLight)
-print(minRoundTripTime)
 maxRoundTripTime = 2 * (maxTargetDistance/speedOfLight)
-print(maxRoundTripTime)
 
+# Pulse Width and Range Resolution Limits
+maxBandwidth = 4 * 10**6
+pulseWidthMin = 1/maxBandwidth
+rangeResolutionMin = (speedOfLight * pulseWidthMin)/(2)
+
+
+
+# rangeResolution = 1
+# pulseWidth = (2*rangeResolution)/(speedOfLight)
+
+
+print(rangeResolutionMin)
 
 # Thermal Noise
-pulseWidth = 1 * 10 **(-6)
-noiseFigure = 1.778 # This should be calculated
-bandwidth = 1/pulseWidth
+noiseFigure = 7.94 # This should be calculated
+bandwidth = 1/pulseWidthMin
 thermalNoise = boltzmannsConstant * 290 * noiseFigure * bandwidth
-
-print(bandwidth/(1000000))
+print(thermalNoise)
+# print(bandwidth/(1000000))
 
 
 

@@ -23,7 +23,6 @@ What if it can be placed in the sea?
 The altitude that an ICBM reaches is in the order of [150 to 400 km](https://en.wikipedia.org/wiki/Intercontinental_ballistic_missile). This is part of the LEO to the GEO and so these can also be identified by this system.
 The US has [created such an antenna array](https://www.airspacemag.com/how-things-work/how-things-work-phased-array-radar-10766910/) (floating), that can detect these missiles. It makes use of a phased array system.
 
-
 # LEOLABS
 
 On the LEOLABS site, they make use of phased array radars in order to track the space debris. This does not provide much information. The next piece of information that they provide is that of the company which designed and constructed the antenna array (SRI).
@@ -580,9 +579,14 @@ SNR = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi)^3 R^4 k T_0 F B}
 
 This equation applies to discreet targets, which applies to this circumstance.
 
-## Multi-Pulsing 
+## Multi-Pulsing
 
 Need to talk about how the SNR can be improved with the use of multiple pulses.
+
+# Directions
+
+Discuss how the system cannot determine the direction of the object, it can only determine if the object is moving towards the antenna's boresight or away (with an increased doppler freq or a decreased doppler freq)
+
 
 ## Standard Parameters
 

@@ -8,7 +8,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[10pt,twocolumn]{witseiepaper}
+\documentclass[11pt]{witseiepaper}
 
 %
 % All KJN's macros and goodies (some shameless borrowing from SPL)
@@ -56,14 +56,44 @@ Abstract Here}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Do the calculations for an object that is moving with the maximum expected speed (approx 16 km/s) at the altitude that will create the shortest time for it to cross the antennas field of view and then make some assumptions and calculations for this.
 %
 
 
 
 
 \section{INTRODUCTION} \label{sec:INTRODUCTION}
+
+Over the last six decades, man has continuously propelled man made objects into space \cite{sputnik}. These objects have been said to exceed speed of $66 km/s$ \cite{fastestObject}, however, these extremely fast objects often leave the earths orbit and travel into outer space. Since the dawn of space exploration, many countries around the world have attemped, and in many cases, successfully deployed man made objects into the Earths upper atmosphere and into orbits around the Earth.
+
+The organisations running these missions, in the early years, did not have sets of guidelines on how the missions should be carried out. In addition to this, there were many decades, during the Cold War era, that countries and organisations took extreme measures to make these missions a success. Many of the missions involved leaving many parts of the space craft in the Earths orbit \cite{spaceDebrisGuide}. Consequently, the number of debris orbiting the Earth grew over the years.
+This was not thought to be an issue to the world at large as the belief was that space is immense and so there were no issues with using it as a dumping ground. It was not until the realisation by Kessler that the world began to worry \cite{Kessler}. This theory predicted that as the number of man made satellites (and other objects) in Earths orbit increases, so does the probability of collisions between them increase. When orbiting debris collide, the two objects can fragment (due to the excessive relative speeds with which the two objects travel at) and case multiple cascading collisions. This means that the debris orbiting the Earth would increase and result in greater difficulty for active space craft to undertake their missions.
+Protecting active missions from this space debris is highly difficult as it is difficult to predict the density of objects in the specific orbit that the missions device should be in.
+
+Guidelines were developed by NASA in the late 70's, however, this simply slowed the rate of introduction of debris and this did nothing to reduce the currently orbiting debris \cite{spaceDebrisGuide}. Recently, the United Nations General Assembly managed to get agreement between a number of countries to reduce the introduction of this debris \cite{debrisGuidelinesAgreement}.
+
+There have been a number of methods in which to deal with this issue. The first is to protect the current missions from this debris, the first of these is to make use of a Whipple shield, this is simply an outer coating of space craft that is able to protect the craft against high velocity impacts of objects in outer space \cite{Whipple}. This shield is built to protect the craft from impacts from micrometeoroids in space.
+This method falls short when the debris becomes large enough to penetrate the craft (and the Whipple shield), resulting in the destruction/damage of the craft.
+
+A recent system is capable of removing debris from the Earths orbit, however, this is still in its early stages and has yet to prove highly effective \cite{removalSpaceDebris}.
+The next method that systems currently make use of is object avoidance. This, however, is coupled with the fact that the location and trajectory of debris in orbit should be known and tracked. This forms the major task of this report.
+Current solutions make use of either optical sensors which makes use of advanced telescopes in order to visually detect the debris. This system has a major drawback based on the fact that it can only be used during dawn and dusk hours \cite{OrbitalDebrisTechnicalAssessment,telescope,ZenithRanging}.
+The second implementation makes use of radar techniques. This is the method which is implemented in this system.
+
+This report begins with explaining the background to the task given, this includes an explanation of how the radar system works (in principle) it is then followed up with a description of the different ways in which the radar system can be implemented.
+This is then followed up with a description of the space debris as well as a number of calculations on the characteristics of this debris.
+
+Once the debris has been characterised, current implementations used for this application are analysed and compared.  
+
+*** Need more here on the structure of the report.
+% in the document: a-technical-assessment there is an image which breaks down all of the types of space debris
+
+
+\subsection{Space Debris} \label{sec:SpaceDebris}
+As discussed in section~\ref{sec:INTRODUCTION}, space debris in Earths orbit has been increasing for many decades, this is mainly due to space missions with poor regulations on the material that is allowed to stay in Earths orbit.
+The majority of space debris currently is made up of man made air craft components, this includes objects such as: funcioning space craft, non-functional spacecraft, rocket bodies, exhaust products, objects created through deployment operations, and products of deteriorated space craft \cite{OrbitalDebrisTechnicalAssessment}.
+Consequently, a large amount of this debris is made up of metallic materials as these materials make up the majority of the space crafts' components.
+It has, in the past \cite{Spacex}, been difficult and costly to retrive the components which were used to get the space craft into orbit, this is a major contributer to the material.
+
 
 % What is an Antenna?
 % What is an array?
