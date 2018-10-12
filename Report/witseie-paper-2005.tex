@@ -19,6 +19,8 @@
 \usepackage{subcaption}
 \usepackage{caption}
 \usepackage{siunitx}
+\usepackage{graphicx}
+\graphicspath{{Images/}}
 %
 % PDF Info
 %
@@ -110,24 +112,103 @@ Where:
     \item $r_{Altitude}$ is the altitude of the object above the mean radius of the Earth
 \end{itemize}
 
-This allows for the simple calculation of the minimum and maximum orbital speeds expected from the objects which correspond to the maximum altitude and minimum altitude respectively. These are illustrated in table~\ref{tab:ObjectParameters}. The velocity in the table is stated as a tangential velocity as it is assumed that the radial velocity of the object is zero. If an object has a radial velocity componenet, then this implies that it is changing orbits (an object in a specified orbit will have zero radial velocity) and this is either taking place due to a force acting on the object (man made) or it is experiencing a force due to the Earths atmosphere.
+This allows for the simple calculation of the minimum and maximum orbital speeds expected from the objects which correspond to the maximum altitude and minimum altitude respectively. These are illustrated in table~\ref{tab:ObjectParameters}. The velocity in the table is stated as a tangential velocity as it is assumed that the radial velocity of the object is zero. If an object has a radial velocity componenet, then this implies that it is changing orbits (an object in a specified orbit will have zero radial velocity) and this is either taking place due to a force acting on the object (man made) or it is experiencing a force due to the Earths atmosphere. The vectors which explain this movement of an object is illustrated in figure~\ref{fig:ObjectVelocityVectors}. 
+
+\begin{center}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{Vectors.pdf}
+        \caption{Object Velocity Vectors}
+        \label{fig:ObjectVelocityVectors}    
+    \end{figure}
+\end{center}
+
 The objects orbiting within these ranges have corresponding periods (amount of time it takes for an object to orbit around the Earth once), this means that an object in the lower orbit has a higher period than that of the higher orbits. The periods for the two limits of the LEO objects are also found in table~\ref{tab:ObjectParameters}.
 
-Based on a number of physical limitations, the system implemented will only be capable of detecting the space debris once it appears within the field of view. The field of view is discussed in section~\ref{sec:FieldOfView}. Figure~\ref{fig:ObservableCharacteristics} illustrates the situation of the system.
+Based on a number of physical limitations, the system implemented will only be capable of detecting the space debris once it appears within the field of view (FOV). The FOV is discussed in section~\ref{sec:FieldOfView}. Figure~\ref{fig:ObservableCharacteristics} illustrates the system and how its relation to the Earth. 
+The inner circle represents the Earths surface and point P represents the position of the system on the Earths surface.  
+The outer circule represents the path of an object orbiting the Earth.
+The lenghts in this image are not to scale and do not represent the real situation, however, this is used for illustrative purposes.
+It is highly important to determine the amount of time it takes from when the object first enters the systems FOV, until the point where it exits the systems point of view.
+In this case it is assumed that the object travels directly over the boresite of the system and so it will take the maximum amount of time to travel over the field of fiew. In most cases, the objects do not travel directly over the FOV, and will therefore not be within the FOV for a reduced amount of time.
+This illustrates the system in order to create a few starting assumptions/criteria for the system.
+As can be seen in this image, the angle that is measured can be taken from two different reference points: the center of the Earth and the point P. Based on this, it can be seen that the angles that these two points create are different. This implies that if one were to calculate the maximum distance that an object can be detected (assuming a maximum FOV angle from point P), one cannot make use of the angle $\alpha$ and the distances of this arc as it would not represent the actual distances of the objects because the circle that the objects orbits around is different to the circle that is assumed the system makes use of.
+Numbers $1$ and $3$ represent the points at which the object enters and leaves the FOV, and point $2$ represents the position of the systems zenith.
 
-\begin{table}
-    \label{tab:ObjectParameters}
-    \caption{Orbject Parameters}
-    \begin{center}
-        \begin{tabular}[cc]
-            \hline \\
-            Minimum Object Altitude & $m$ \\
-            Maximum Object Altitude & $m$ \\
-            Maximum Object Tangential Velocity & $m/s$ \\
-            Minimum Object Tangential Velocity & b
-        \end{tabular}
-    \end{center}
-\end{table}
+\begin{center}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{ObservableCharacteristics.pdf}
+        \caption{Observable Characteristics}
+        \label{fig:ObservableCharacteristics}    
+    \end{figure}
+\end{center}
+
+
+Based on the movement of objects in differing orbits, it can be seen that objects in higher orbits move slower than those in lower orbits.
+The objects move with a specific velocity, as illustrated in table~\ref{tab:ObjectParameters}, this is measured in linear velocity, however, it is also important to represent the motion of these objects with the use of their angular velocity, the angular velocity is simply found with the use of equation~\ref{eqn:AngularVelocity}.
+
+\begin{equation} \label{eqn:AngularVelocity}
+\omega = \frac{v}{r}
+\end{equation}
+Where:
+\begin{itemize}
+    \item $\omega$ represents the angular velocity of the object (Radians per second)
+    \item $v$ represents the linear velocity of the object
+    \item $r$ represents the distance from the observer to the object
+\end{itemize}
+
+
+Once this has been estimated, it is important to evaluate the angle travelled by the object as seen from the observation point ($\alpha_{p}$). This is measured over a period of time ($\Delta T$) and the angular velocity calculated above ($\omega_{P}$) is used, this is found in equation~\ref{eqn:AngularVelocityP}
+
+\begin{equation} \label{eqn:AngularVelocityP}
+    \omega_{P} = \frac{\theta_{P}}{\Delta T}
+\end{equation}
+Where:
+\begin{itemize}
+    \item $\omega_{P}$ is the same as before
+    \item $\theta_{P}$ represents the angle of the object seen from the observation point
+    \item $\Delta T$ represents the amount of time that it takes the object to traverse the angle
+\end{itemize}
+
+This now allows for the calculation of the linear velocity of the object as seen from the observation point (it is the same if the center of the Earth is used as the reference point). This velocity is calculated with the use of equation~\ref{eqn:LinearVelocity}.
+
+\begin{equation} \label{eqn:LinearVelocity}
+    v = \omega_{P} h
+\end{equation}
+Where:
+\begin{itemize}
+    \item $v$ is the linear velocity of the object (m/s)
+    \item $\omega_{P}$ represents the apparent angular velocity of the satellite (Radians)
+    \item $h$ represents the altitude of the object
+\end{itemize}
+
+
+The use of the two equations above require the values for the amount of time that it takes for an object to enter the FOV of the system and exit it again. This is found with the use of equation~\ref{eqn:ObservableTime} \cite{ObservableTime}.
+
+% \begin{equation} \label{eqn:ObservableTime}
+%     v = \omega_{P} h
+% \end{equation}
+% Where:
+% \begin{itemize}
+%     \item $v$ is the linear velocity of the object (m/s)
+%     \item $\omega_{P}$ represents the apparent angular velocity of the satellite (Radians)
+%     \item $h$ represents the altitude of the object
+% \end{itemize}
+
+% \begin{table}
+%     \label{tab:ObjectParameters}
+%     \caption{Orbject Parameters}
+%     \begin{center}
+%         \begin{tabular}[cc]
+%             \hline \\
+%             Minimum Object Altitude & $m$ \\
+%             Maximum Object Altitude & $m$ \\
+%             Maximum Object Tangential Velocity & $m/s$ \\
+%             Minimum Object Tangential Velocity & b
+%             Maximum Angular Velocity & \\
+%             Minimum Angular Velocity & \\
+%         \end{tabular}
+%     \end{center}
+% \end{table}
 
 % What is an Antenna?
 % What is an array?
