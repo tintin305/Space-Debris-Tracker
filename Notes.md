@@ -89,8 +89,6 @@ Commonly, these systems are used to measure characteristics of the ionosphere wh
 
 It was important to google this exact thing to have a look at other alternatives, even though the brief asked for a solution similar to what Leolabs uses. 
 
-
-
 # Meeting with Derek
 
 Radiation after the big bang (4 Kelvin). 

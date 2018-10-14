@@ -223,9 +223,94 @@ The use of the two equations above require the values for the amount of time tha
 
 The nature of an Incoherent Scatter Radar system is such that it directs electromagnetic energy into the earths "surrounding area"(ionosphere?); it highlights irregular characteristics present in this space. The energy that is transmitted is then reflected off of these irregularities and returns back in the direction of the system.
 The system has the ability to create a narrow beam which transmits energy, this energy is then sterred (electronically) within the bounds of the system. Steering can be done in azimuth, elevation, and intensity. 
+
+
+\subsection{Current Implementations}
+
+\section{DEREK}
+
+Radiation after the big bang (4 Kelvin). 
+Noise floor. 
+
+Specify a minimum size of objects: approx 10 cm (RCS (radio cross section))
+
+Choose a receiver sensitivity: randomly: -120 dBm
+
+The gain of the system needs to be determined as well as the transmitting power as you are required to receive at least -120 dBm of power back from an object of 10 cm
+
+How narrow must your beam be in order to pick out individual elements floating around (this is a resolution issue)
+
+Trade off between power and gain
+
+Specify a frequency this can be because of monetary reasons as well as physical reasons.
+
+Building an amp is a big mission. Lower frequency amps are easier to design/purchase.
+
+Broadcast dipoles and how to make low VSWR versions
+
+Degradation in the gain as you swing your major direction
+
+Where will all of the side lobes go!?!?!? Will they affect other systems? Will they affect the readings and pick up objects that you dnot want?
+
+Using the binomial you will reduce your sidelobes however you will reduce your overall gain.
+
+What kind of beam sweep will you be looking for?
+
+When it hits the object it will change polarization. We must check how many times if flips polarization and how it does this.
+
+Maximum ratio combining (to do with the polarization things) This must be thought of, in how you combine these signals together. 
+
+You need to provide time for "switches" to work, this is to give "dead time" for the system to set itself up.
+
+How do you swap between the receiver and the transmitter.
+This may be a case where a "[circulator](https://en.wikipedia.org/wiki/Circulator)" can be used.
+
+Wilkinson splitter (for feeding the antenna)
+
+The feeding network is different to how the antenna is connected together (Wilkinson splitter)
+
+Hartebeespoort visit.
+
+Where is the processing done? SHould the data be transmitted elsewhere and then processed? Then you won't need a server farm in the karoo and you can use the cloud.
+
+
+Corporate feed
+
+Determine the power that is present in the side lobes. 
+I do not believe that it is worth using a binomial array, even though it reduces the side lobes, you still have to consider how the power system is structured. How do you distribute the amplifiers? Do you then have a case where you have a multitude of differently sized amplifiers in order to reduce the cost? 
+
+Apply some form of taper for the amplitude over the area of the array.
+In order to reduce the sidelobes, you must find a happy medium between gaussian distribution and a standard distribution.
+
+Determine an acceptable dB level for the biggest sidelobes. Check for the power in the lobes and their direction (if they are pointing in dangerous areas or not). Another way to specify the first sidelobe level is to assume a maximum object size at the lowest altitude and then determine the gain for this sidelobe at which the signal is below acceptable levels.
+
+Think about build up of static electricity within the system and consider how to protect circuitry from this (the receiver is commonly the most sensitive device)
+
+It may make sense to apply a modulation to the signal as this can tell you if it is indeed your signal which you are detecting.
+
+
+
 \section{CHOICE OF TECHNOLOGY}
 
 \section{INDIVIDUAL AND ARRAY SIMULATIONS}
+
+\subsection{System}
+The system can be illustrated with the use of the design slides. This illustrates the entirety of the system.
+The elements which make up the system include:
+
+    * Transmitter
+    * T/R Device
+    * Antenna
+    * Receiver
+    * Signal Processor
+
+Each of these items will have their own section.
+However, there will be sections which discuss other components/characteristics of the system.
+
+Section on EM waves and how they are created, influenced, propagated, polarized, phase shifted, their spectrums, superpositioned, 
+Introduce the simple kinds of polarization and then reference later parts in the report that the waves will be affected by the structure of the antenna and the array as well as the atmosphere.
+
+\subsection{Optimal Frequency}
 
 
 \subsection{Field of View} \label{sec:FieldOfView}
