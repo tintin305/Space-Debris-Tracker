@@ -14,8 +14,6 @@ Students will be required to do a theoretical design similar to LEOLABS phased a
 FEKO will be made available to the students in the DLAB to run simulations.
 A visit factory visit to Alaris antennas will be organised to ask questions of engineers in industry. (week 3 or 4)
 
-
-
 # Extra Notes
 
 What if it can be placed in the sea?
@@ -717,7 +715,6 @@ According to the theory of incoherent scattering first presented by Gordon in 19
 ISR is the only equipment which has such ability. The measured area can be covered from 60 to 2000 km, and ISR has become the most powerful ground-based tool currently for the study of ionospheric structures and kinetic processes[ref](https://agupubs.onlinelibrary.wiley.com/doi/epdf/10.1029/2007JA012250)
 
 The system is capable of measuring space debris ([Space Debris Measurements using the Advanced Modular Incoherent Scatter Radar](https://amostech.com/TechnicalPapers/2015/Poster/Nicolls.pdf))
-
 
 # Electronics
 

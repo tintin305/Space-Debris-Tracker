@@ -100,7 +100,7 @@ The current scope of the project is that it should be capable of tracking space 
 The second definition of these orbits is baed on orbital mechanics, this states that if an object is within an orbit, then it will have a corresponding velocity.
 This is illustrated by equation~\ref{eqn:OrbitalVelocity}. 
 
-\begin{equation}
+\begin{equation} \label{eqn:OrbitalVelocity}
     V_{Object} = \sqrt{\frac{G M_{Earth}}{r_{Earth} + r_{Altitude}}}
 \end{equation}
 Where:
@@ -112,7 +112,7 @@ Where:
     \item $r_{Altitude}$ is the altitude of the object above the mean radius of the Earth
 \end{itemize}
 
-This allows for the simple calculation of the minimum and maximum orbital speeds expected from the objects which correspond to the maximum altitude and minimum altitude respectively. These are illustrated in table~\ref{tab:ObjectParameters}. The velocity in the table is stated as a tangential velocity as it is assumed that the radial velocity of the object is zero. If an object has a radial velocity componenet, then this implies that it is changing orbits (an object in a specified orbit will have zero radial velocity) and this is either taking place due to a force acting on the object (man made) or it is experiencing a force due to the Earths atmosphere. The vectors which explain this movement of an object is illustrated in figure~\ref{fig:ObjectVelocityVectors}. 
+This allows for the simple calculation of the minimum and maximum orbital speeds expected from the objects which correspond to the maximum altitude and minimum altitude respectively. These are illustrated in table~\ref{tab:ObjectParameters}. The velocity in the table is stated as a tangential velocity as it is assumed that the radial velocity of the object is zero. If an object has a radial velocity componenet, then this implies that it is changing orbits (an object in a specified orbit will have zero radial velocity) and this is either taking place due to a force acting on the object (man made) or it is experiencing a force due to the Earths atmosphere. The vectors which explain this movement of an object is illustrated in figure~\ref{fig:ObjectVelocityVectors}.
 
 \begin{center}
     \begin{figure}
@@ -184,31 +184,64 @@ Where:
 
 The use of the two equations above require the values for the amount of time that it takes for an object to enter the FOV of the system and exit it again. This is found with the use of equation~\ref{eqn:ObservableTime} \cite{ObservableTime}.
 
-% \begin{equation} \label{eqn:ObservableTime}
-%     v = \omega_{P} h
-% \end{equation}
-% Where:
-% \begin{itemize}
-%     \item $v$ is the linear velocity of the object (m/s)
-%     \item $\omega_{P}$ represents the apparent angular velocity of the satellite (Radians)
-%     \item $h$ represents the altitude of the object
-% \end{itemize}
+\begin{equation} \label{eqn:ObservableTime}
+    t_{t} = \frac{r^{\frac{3}{2}}}{\sqrt{GM}} (\pi - 2E - 2 asin(\frac{R}{r} cos(E))))
+\end{equation}
+Where:
+\begin{itemize}
+    \item $t_{t}$ is the amount of time that an object is in the FOV of the system
+    \item $r$ is the geocentric distance of the object (distance of the object above mean sea level)
+    \item $G$ is the gravitational constant
+    \item $M$ is the mass of the earth
+    \item $E$ represents the elevation of the object above the horizon of the system
+\end{itemize}
 
-% \begin{table}
-%     \label{tab:ObjectParameters}
-%     \caption{Orbject Parameters}
-%     \begin{center}
-%         \begin{tabular}[cc]
-%             \hline \\
-%             Minimum Object Altitude & $m$ \\
-%             Maximum Object Altitude & $m$ \\
-%             Maximum Object Tangential Velocity & $m/s$ \\
-%             Minimum Object Tangential Velocity & b
-%             Maximum Angular Velocity & \\
-%             Minimum Angular Velocity & \\
-%         \end{tabular}
-%     \end{center}
-% \end{table}
+The elevation of the system is important as it relates to the FOV of the system. The two are interrelated by the fact that the elevation angle is the complementary angle of the maximum FOV of the system. This implies that if the elevation of the system is known, then the FOV of the system can be calculated.
+
+In table~\ref{tab:ObjectParameters}, the elevation angle is assumed to be approximately $60^{\circ}$, this is a first estimate of the FOV of the system, further analysis of the system FOV of the system can be found in \ref{sec:FieldOfView}. This elevation angle creates a maximum amount of time that the object is visible. This implies that the object travels directly over the boresight of the system. In most circumstances, the objects will not travel directly over the boresight and will therefore be within the FOV for less time than stated in this table.
+
+This creates the ability to calculate the observed velocity of the object as it passes over the FOV of the system, this is illustrated in figure~\ref{eqn:ObjectVelocity}.
+
+\begin{equation} \label{eqn:ObjectVelocity}
+    v = \omega_{P} h
+\end{equation}
+Where:
+\begin{itemize}
+    \item $v$ is the linear velocity of the object (m/s)
+    \item $\omega_{P}$ represents the apparent angular velocity of the satellite (Radians)
+    \item $h$ represents the altitude of the object
+\end{itemize}
+
+
+In addition to this, with an assumed elevation angle, the expected distances for the objects can be found, these are calculated making use of equation~\ref{eqn:ObjectDistances} \cite{ObservableTime}.
+
+
+\begin{equation} \label{eqn:ObjectVelocity}
+    \rho = R (\sqrt(\frac{r^2}{R^2} - (cos(E))^2) - sin(E))
+    \end{equation}
+Where:
+\begin{itemize}
+    \item $\rho$ is the slant distance from the system to the object
+\end{itemize}
+
+\begin{table}
+    \begin{center}
+        \begin{tabular}{ c c }
+            \hline 
+            Minimum Object Altitude & $m$ \\
+            Maximum Object Altitude & $m$ \\
+            Maximum Object Tangential Velocity & $m/s$ \\
+            Minimum Object Tangential Velocity & b \\
+            Maximum Angular Velocity & $m$ \\
+            Minimum Angular Velocity & $m$ \\
+            Elevation Angle (assumed for illustration) & $^{\circ}$ \\
+            Minimum Observable Time & $s$ \\
+            Maximum Observable Time & $s$ \\
+        \end{tabular}
+        \caption{Object Parameters}
+        \label{tab:ObjectParameters}
+    \end{center}
+\end{table}
 
 % What is an Antenna?
 % What is an array?
@@ -311,9 +344,376 @@ Section on EM waves and how they are created, influenced, propagated, polarized,
 Introduce the simple kinds of polarization and then reference later parts in the report that the waves will be affected by the structure of the antenna and the array as well as the atmosphere.
 
 \subsection{Optimal Frequency}
+[This](http://www.met.nps.edu/~psguest/EMEO\_online/module3/module\_3\_2b.html) seems useful
+
+When determining the frequency, specify an opimal frequency, then provide optional operational frequency ranges (if possible). A discussion on how well the components work at these other frequencies and how the ionosphere handles these other frequencies, as well as the frequency bands that are available.
+Speak about how the returned frequency will be different than the transmitted.
+
+In choosing the frequency, it is highly advantageous to decide on a frequency where there is a decent amount of experience in the design and operation as well as it should be easy to find and purchase "off the shelf components". This implies that the frequency should lie near the EISCAT frequencies (224 and 931 MHz) or lie in the 400-500 MHz band which has been used by other incoherent scatter radars.
+
+Higher frequency choices:
+
+    * Lower system noise, this is highly dependent on the temperature above the site, these temperatures are different at different frequencies.
+    * Smaller antenna size for a given beamwidth, apparently this makes it easier to achieve full steerability and a high scanning rate
+    * Less clutter form coherent echoes which are mainly due to field-aligned irregulatities. The strength of these echoes will be about 12 times stronger at 430 MHz than at 931 MHz, and about 50 times stronger at 224 MHz.
+
+Lower Frequency choices:
+
+    * Smaller Debye ratio for a given electron concentraion so that measurements can be extended to greater heights
+    * Greater cross-section for MST work
+
+One final factor points to an intermediate frequency:
+
+    * At higher frequencies the bandwidth of the scattered signal is greater. This widens the bandwidth over which noise is received and if the system noise temperature is approximately constant (i.e. for frequencies > 400 MHz) this increases the total noise power in proportion. However, with a broader bandwidth the maximum lag which must be measured in the autocorrelation function is reduced. This allows the envelope of the transmitted signal to be shorter and hence allows observations to begin at shorter range.
+
+When using lower frequencies, the system noise limits the sensitivity massively, this also makes a narrow beamwidth which limits the E region (especially for observations near the zenith)
+
+Another factor that affects the frequency band choice is that available by the systems regulator. A [document](https://www.icasa.org.za/uploads/files/ITU-Reference-Review-the-Radio-Frequency-Band-Plan-31264.pdf) provides the info for these bands.
+
+ISM band (freely available, however everyone also is allowed to use it)
+
+\subsubsection{Getting through the ionosphere}
+
+It will be useful to take some info from [here](https://elib.dlr.de/110661/1/Initial\%20Detection\%20and\%20Tracking\%20of\%20Objects\%20in\%20Low\%20Earth\%20Orbit.pdf), on page 9 and before it talks about the right frequency windows that allow for transmission of EM waves.
+
+Info from [here](http://www.met.nps.edu/~psguest/EMEO\_online/module3/module\_3\_2b.html)
+
+There are limits to the frequencies that can be transmitted through the atmosphere+ionosphere. Below 5 MHz the radio waves are not transmitted because they are reflected by the ionosphere; above 30 GHz, the electromagnetic waves are absorbed by water vapour and carbon dioxide in the atmosphere.
+[This](http://www.sws.bom.gov.au/Category/Educational/Other\%20Topics/Radio\%20Communication/Intro\%20to\%20HF\%20Radio.pdf) document goes through a number of calculations and information providing about the ionosphere and how the different frequencies are affected by it.
+Speak about critical frequencies.
+Docs: http://www.rfwireless-world.com/Terminology/Critical-Frequency-and-Maximum-Usable-Frequency.html
+http://www.sws.bom.gov.au/Category/Educational/Other\%20Topics/Radio\%20Communication/Intro\%20to\%20HF\%20Radio.pdf
+https://radiojove.gsfc.nasa.gov/education/educ/radio/tran-rec/exerc/iono.htm
+
+Lower frequencies (less than 1GHz) result in reduced atmospheric losses, this is a major reason to choose this. Based on the textbook (Mark A. Richards, James A. Scheer, William A. Holm - Principles of Modern Radar Basic Principles, page 124, and 15), it is apparent that frequencies below the 1 GHz mark will have less than $10^-2 dB$ of attenuation per kilometer.
+
+It is also stated that attenuation will decrease with an increasing elevation angle, and can also be neglected when the angle of elevation exceeds 10 degrees (textbook: Radar Essentials: A concise handbook for Radar Design and Performance Analysis G. Richard Curry, https://m.eet.com/media/1121840/912radar\_essentials\_pt1.pdf). 
+The book also has some useful graphs which indicate the two way attenuation for 425 MHz at differing angles.
+At the 10 degrees line, the two way attenuation does not exceed 0.25 dB depending on the range.
+
+\subsubsection{ICASA}
+
+It appears as if the last frequency allocation happened in 2013.
+The next one is up for approval and is in draft stage. There are a number of bands which appear to be moving and this can affect things.
+
+[This](https://www.icasa.org.za/legislation-and-regulations/national-radio-frequency-plan-2013) appears to contain the 2013 allocation.
+
+Frequency allocation by [SKA](https://www.ska.ac.za/about/astronomy-geographic-advantage-act/)
+
+The chosen frequency at this point is: 610 MHz.
+The frequency on either side of the band is 4 MHz.
+Wavelength: 0.4918 m
+3/4 wavelength: 0.3689 m
+1/2 wavelength: 0.2459 m
+1/4 wavelength: 0.12295 m
+
+subsubsection{Astronomy Geographic Advantage Act}
+
+The minister has the ability to declare any area or part of an area in the Province of the Northern Cape as an astronomy advantage area. This implies that an area, which is technically advantagous to the functioning of the system can be demarkated by this act.
+A number of proccesses are required to take place for these areas to be allocated to the system. These include a number of considerations for: local businesses, affected agricultural participants, environmental impacts, nearby electrical and radio interference.
+
+The act allows for specific frequencies to be used (regardless of the current frequency allocation by ICASA) as long as it is assessed by the procedures required by the SKA. Permits can be issued by the act and they are then allowed to operate within the permitted areas. These permits include exemptions for the frequency spectrum that is allowed to be used and the permitted transmission characteristics.
+
+The current situation with ICASA is such that there is a 50 mW maximum allowable broadcast power. However, with the use of the AGA, the TV transmission services are limited in the Northern Cape.
+
+The band chosen is currently allocated ot the radion astronomy service on a primary basis.
+
+
 
 
 \subsection{Field of View} \label{sec:FieldOfView}
+
+
+
+The radar equation forms the initial stage for the design process.
+
+Primary functions:
+
+    * Impedance transformation (free-space fields to guided waves)
+    * Propagation-mode adapter (free-space to guided waves)
+    * Spatial filter (radiation pattern - direction-dependent sensitivity)
+    * Polariation filter (polarization-dependent sensitivity)
+
+The antenna is used to fix the mismatch between free-space and the rest of the system.
+Intrinsic impedance of free-space: $n_0 = E/H$
+$n_0 = sqrt(u_0 / e_0) = 120 * pi ~= 376.7 \Omega$
+
+Characteristic impedance of tx line, $Z_0 = V/I$ (typically $50 \Omega$)
+
+\section{Polarization}
+
+Make use of [this](https://etd.ohiolink.edu/!etd.send\_file?accession=ohiou1345227397\&disposition=inline) to speak about the axial ratio and how polarization is done.
+
+\subsection{Array Structure}
+
+\subsubsection{Monostatic versus Bistatic}
+
+There are two major radar configurations that are used. 
+
+\subsubsection{Bistatic}
+
+The bistatic configuration makes use of a separate transmitter and receiver for the system. The two components are placed at differing locations and the separation between the components is required to be sufficiently large in terms of the angles or ranges that they present.
+This implies that the two systems, in the case of Earth-to-Space transmission, are required to be geographically (in the order of kilometers) far apart \cite{bistaticNato}.
+The transmitters in these systems generally transmit power in the range of kilowatts to megawatts, this is in order to increase the signal-to-noise (SNR) of the system as there is a significant amount of energy lost in the energy transfer process. The receiver on the other hand, works with milliwatts to nanowatts as it receives this greatly reduced power that is reflected from the objects in question. The bistatic system provides a concenient method of separating out the two systems such that it becomes increasingly difficult to damage the receivers equipment from the high power generated by the transmitter.
+
+\subsubsection{Monostatic}
+
+The other, more commonly used system, is the monostatic configuration. This bundles the transmitter and receiver together on the same antenna/antenna array. In this case, a system is required such that the transmitted and received signals are isolated from eachother when they interact with the system. The isolation can be carried out in different ways, a circulator or a switch commonly achieves this. These components are discussed in a later section ***. In the monostatic configuration, the transmitter and receiver do not operate at the same time which greatly simplifies the switching apparatus.
+
+\subsubsection{Comparison}
+
+The configuration implemented is the monostatic as it provides a lower cost alternative to the bistatic configuration. It has the added benefit of only requiring one piece of land for the system. The system cost is also reduced by the fact that only one set of antennas are required.
+The bistatic configuration is easier to implement with regards to the protection systems for the receiver, however, this benefit does not out weigh the monostatic systems advantages. The bistatic systems also require a significant amount of communication between the two systems and this can increase the cost of implementation, most notably when the distance between the two systems is large and communication mediums can become prohibitively expensive.
+
+\subsection{Continuous Wave and Pulsed Wave}
+
+The two commonly used transmission systems are the continuous wave and the pulsed wave, these two systems are also linked to the choice on the system configuration.
+This implies that if the monostatic configuration is used, then the continuous wave transmission system is not available.
+
+\subsubsection{Continuous Wave Transmission}
+
+The continuous wave transmission system, as the name indicates, has the transmitter functioning $100\%$ of the time, which implies that the receiver also functions all of the time. The continuous wave transmission system, as indicated above can only be used by the bistatic configuration. 
+A unique characteristic of the continuous wave system is that it is unable to determine the electromagnetic (EM) waves round-trip time as there is no set begin and end time of transmission. This can be solved with the use of modulation on the wave, this implies that the receiver is required to know all of the characteristics of the transmitters waveforms ahead of time if it is to determine round trip times \cite[p.~20]{radarHandbook}.
+
+\subsubsection{Pulsed Waveform Transmission}
+
+The second mehtod of EM wave transmission makes use of pulses, these occur periodically and their duration is commonly over a short period of time. This system is commonly used in tandem with a monostatic configuration and this provides the isolation between the transmitter and receiver circuitry, the circuitry to isolate these signals is still used.
+Following the EM wave pulse, the receiver is set to record the resulting EM waves that are returned in the form of echoes after it has reflected from the objects in question. The determination of the pulse length and the period between pulses (the interpulse period (IPP))is discussed further in the report ***. The pulse repitition is also highly pertinent to the observable time window of debris, this will be discussed in section ***.
+
+Need image here which describes how the pulses are placed with respect to time.
+
+The pulse repetition frequency is related to the maximum distance that the system is able to detect objects, this is related to the observable area of the system and the furthest distance that the system can detect an object. This is discussed in section *** and section ***.
+
+The following image represents a case where a pulse is sent outwards and is then followed by, a period of time later, a corresponding echo pulse.
+The period between the pulse and the echo can be used to determine the altitude that the object has.
+In order to detect the pulse, the time between each sample should be no less than the pulse width of the transmitter (this should be elaborated on... get the info from: \cite[p.~21]{radarHandbook})
+
+Think about echoes that come back after the next pulse is fired, this can be from targets that are past the 2000 km range. These need to be dealt with. One way is to define a SNR that will rule out these cases. Another case is to throw out any echoes that happen before one is expected to have returned (based on the minimum altitude required to be detected). 
+This issue is known as a range ambituite (\cite[p~.22]{radarHandbook})
+
+*** Include calculation of the pulse width and the corresponding bandwidth if requires. Stuffies for this can be found on page 65
+
+\subsection{Threshold Detection}
+
+In order to detect a signal, the received signals' power is required to be above a specific threshold. This threshold is defined as the level at which all sources of noise are incorporated. When an object is detected, the signal level is required to rise above this threshold and this is then considered a successful detection.
+
+There are cases, based on the fact that noise is inherently a random variable, that the noise level can exceed the threshold set by the system. This is observed as a false alarm.
+This implies that there are cases where the targets echo in addition to the noise are capable of being below the threshold, this is when the noise in the system is low, so the addition of the echo is not large enough for the system to detect the object.
+These two cases are highly unlikely, however, cannot be ignored as they are based on the probabilities of the entire system.
+
+These probabilities are given as two variables: the probability of detection ($P_{D}$), and the probability of false alarm ($P_{FA}$). The probability of detection is the probability that an object-plus-noise exceeds the threshold applied to the system. The probability of false alarm is the probability that the noise (from all components of the system) will exceed the threshold.
+The best case scenario for these two variables are: 
+$P_{D} = 1$
+and
+$P_{FA} = 0$
+
+These values are idealistic and so the correct threshold value is required to be set such that the system can operate as close to these values as possible.
+When the threshold is increased the probability of false alarm will decrease, however, so will the probability of detection. When the threshold is decreased, the probabilities of both variables increase. A trade-off is required here to determine the optimum threshold level.
+
+There is one way in which to increase the probability of detection while lowering the probability of false alarm, this is achieved by increasing the targets signal power (it should be noted that the signal power should be increased relative to the noise power). 
+<!-- If the noise power increases in ratio with the overall power, then this will not work -->
+
+The importance of Doppler should not be underestimated. Doppler shift is important as it can be used to reduce the effects of clutter in the viewing area, it is also able to perform measurements to detect if there is more than one object in the viewing area (in the same range). The removal of clutter from view of the system is achieved with Doppler by the fact that clutter is not moving and thus will have a no frequency shift.
+
+\subsection{Resolution}
+
+The resolution of the system has three components: the ability to distinguish between objects that are different distances away from the system, have differing angles with respecto the the system, and have differing Doppler frequencies.
+
+The first of these, the range resolution, determines if you are able to discren two objects that are in eachothers vacinity.
+The range resolution is defined by:
+$\delta R = \frac{c \tau}{2}$
+
+This implies that if the pulse width of the signal is 1us, then the range resolution of the system is $150 m$. This implies that if the pulse width is decreased, then the range resolution increases.
+It must be noted that, if the pulse width is decreased, then the energy that is transmitted will decrease, and therefore it becomes increasingly difficult to detect an object.
+
+% The doppler resolution is determined by: 3 dB width = \frac{0.89}{dwell time}
+
+\subsection{Radar Functions}
+
+\subsubsection{Search/Detect}
+
+\subsubsection{Track}
+
+\subsubsection{Image}
+
+\subsection{SNR}
+
+The resulting SNR of the calculation performed is the targets signal power divided by the sum of the noises in the system, this includes the receiver thermal noise and jammer noise.
+
+The set of equations that are used to determine a number of these parameters are known as the radar range equations (RRE), these equations allow for the determination of the received power from the systems EM waves' reflections and also to determine the levels of the interfering power within the system, this allows for the calculation of the SNR.
+
+This section begins with introducing the RRE and how it is applied to the system and how to determine the simplistic performance of the system. This first step estimates the performance of the systems power density at a distance R away. This is followed by estimating the thermal noise present in the receiver of the system, this then allows for the first estimate of the SNR. 
+
+\subsection{Power Density}
+
+The first equation defines the power that is incident on the target, this is given by equation ***
+
+$P_{inc} = P_t * \frac{G_{t}}{4 * pi * R^2} [W/m^2]$
+
+Where:
+\begin{itemize}
+    \item $P_{inc}$ is the power incident on the target
+    \item $P_t$ is the power transmitted from the system
+    \item $G_t$ is the gain of the system
+    \item $R$ is the distance from the system to the target
+\end{itemize}
+
+This equation assumes the use of a directional antenna (not isotropic) which has a corresponding gain. This allows for the concentration of the beam in a specific direction.
+
+The next stage is to determine the magnitude of energy that is reflected by the target, as assumed in section ***, the radar cross section of the target is defined and known. 
+In depth analysis of the targets is provided in section ***.
+Equation *** indicates the magnitude of power reflected by this object.
+
+$P_{refl} = \frac{P_{t} G_{t} \sigma}{4 pi R^2}$
+
+Where:
+\begin{itemize}
+    \item $P_{refl}$ is the reflected power from the target
+    \item $\sigma$ is the radar cross section (RCS) of the target measured in square meters ($m^2$)
+\end{itemize}
+
+This reflected power from the target is then received by the system and this is defined by equation ***
+
+$P_{r} = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi )^3 R^4}$
+
+Where:
+\begin{itemize}
+    \item $P_{r}$ is the received power at the system
+    \item $A_{e}$ is the effective aperture of the system
+    \item $\lambda$ is the wavelength of the system
+    \item $G_{r}$ is the gain of the receive antenna
+\end{itemize}
+
+It is assumed that the gain is determined with equation ***.
+
+$G = \frac{4 pi n_{a} A}{\lambda^2} = \frac{4 pi A_{e}}{\lambda^2}$
+
+Where:
+\begin{itemize}
+    \item $n_{a}$ is the efficiency of the antenna created (this is commonly between 0.5 and 0.8 \cite[p.~64]{radarHandbook})
+\end{itemize}
+
+In the case of the monostatic antenna array, the transmitting and receiving gain are the same as it is the same array. This implies that for bistatic systems, it is possible to have two different ranges for receiving and transmitting.
+
+
+\subsubsection{Receiver Noise}
+
+\subsubsection{Thermal Noise}
+
+The noise from the environment is mostly made up by solar effects. This case deals specifically with the noise generated by the sun. This can contribute to large amounts of noise within the signal if the antenna array is pointed in the direction of the sun, however, great care should be taken to avoid pointing the antenna array directly at the sun. There will still be a small contribution of the suns noise from the sidelobes of the antenna array, however, this is greatly reduced.
+
+The second source of noise, the largest component within the system, is that generated by the receiver electronics.
+Thermal noise power, being uniform over the frequency spectrum contributes to the noise power over the bandwidth of the system. This implies that the thermal noise power is directly proportional to the receivers bandwidth. This power is determined with the use of equation ***.
+
+$P_{n} = k T_{s} B = k T_{0} F B$
+
+Where:
+\begin{itemize}
+    \item $k$ is Boltzmann's constant ($1.38 \cdot 10^{-23} Watt-sec/K$)
+    \item $T_{0}$ is the standard temperature (normally $290 K$)
+    \item $T_{s}$ is the system noise temperature ($T_{s} = T{0} F$)
+    \item $B$ is the receivers bandwidth ($Hz$)
+    \item $F$ is the noise figure of the receiver subsystem.
+\end{itemize}
+
+The noise figure defined here should be given in real amplitude (convert from $dB$ as this is what it is usually specified in).
+The bandwidth defined here is a calculated value and is dependent on two factors of the system.
+The first of these can be defined with the use of the largest doppler frequency shift detectable by the system. This is defined in *** with the introduction of the debris' characteristics.
+The second of these is defined by the minimum pulse width of the signal. This is calculated in section ***. 
+This second case is highly important because if the bandwidth of the receiver is made smaller than the bandwidth required for the pulse width, then the power on the target will be reduced and this will cause inconsistencies and will reduce the range resolution of the system \cite[p.~65]{radarHandbook}. If the bandwidth of the receiver is created to be larger than the reciprocal of the pulse width, then the SNR of the system will decrease. This implies that the bandwidth of the receiver can occupy a small frequency band which is set by the pulse width. This implies that if the pulse width of the system is set to 1us, then the bandwidth of the system is 1 MHz.
+The approximation of using $1/\tau$ is often used in monostatic systems \cite[p.~65]{radarHandbook}.
+
+\subsection{SNR and the RRE}
+
+At this point it is possible to evaluate the SNR of the system with the use of the noise figure that is attained above.
+The SNR is defined by equation ***.
+
+$SNR = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi)^3 R^4 k T_0 F B}$
+
+This equation applies to discreet targets, which applies to this circumstance.
+
+\subsubsection{Multi-Pulsing}
+
+Need to talk about how the SNR can be improved with the use of multiple pulses.
+
+\subsection{Directions}
+
+Discuss how the system cannot determine the direction of the object, it can only determine if the object is moving towards the antenna's boresight or away (with an increased doppler freq or a decreased doppler freq)
+
+
+\section{Environmental Considerations}
+
+\subsection{Weather Dependence}
+
+Maximum and minimum temperatures. Average temperatures, temperature swings and their gradients.
+Wind.
+Fog
+Sun angles
+
+Light intensities
+
+Air quality
+Humidity
+Icing of instruments
+Snow
+
+
+Light polution
+
+
+
+\subsection{Land}
+
+[This](https://www.icasa.org.za/legislation-and-regulations/protection-of-karoo-central-astronomy-advantage-areas-regulations-2017) will be useful for talking about how the area will be protected.
+Land can be given by the [SKA](https://www.ska.ac.za/about/astronomy-geographic-advantage-act/). One can argue that the system will not be used all the time, as such, the SKA may be able to make use of the system for research purposes.
+The lay of the land
+Mountains?
+Flat land?
+How difficult will it be to lay foundations
+Shipping material
+Construction side of things
+Altitude? Height above sea level?
+Nearby roads?
+Quality of these roads? Will they need upgrading? 
+Power distribution? 
+Communications?
+Water?
+Sewage?
+Disturbances of power lines and transformers to the system?
+Frequency of the power?
+
+Lightning?
+
+Nearby electromagnetic interference?
+Can this interference be removed? Must it be quantified and then subtracted from the overall signal? Is this sufficient?
+
+Possible impact from telecommunication in the area. Do radio links exist? 
+One must look at the sidelobes and the distribution of power in the various harmonics
+
+Air traffic interference?
+Airports? planes overhead?
+Mostly planes? Helicopters? They pose different interferences as they fly at different altitudes and use different communication systems.
+
+In the design paper, they say that helicopters frequent the area, however, on days of good visibility they fly low and follow the valleys where they will be shielded against the radar beam.
+
+It may be worth installing a separate small surveillance radar that is capable of detecting aircraft and then switch off the main radar (depending on the situation)
+
+Is it worth contacting the air ports and the control towers for some of this? Get real time tracking of planes?
+
+Beacons in the area?
+
+Displacement of plants and animals?
+
+Elevation of the horizon? Does it change in different directions? Does this affect the system?
+
+
+\section{Construction}
+
+How things fit together, how the cables are placed
+What kind of cables
+What communications medium is used between modules
+
+
 
 \section{COST OPTIMISATION}
 
