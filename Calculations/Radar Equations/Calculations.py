@@ -64,6 +64,8 @@ minRCS = math.pi * minObjectRadius**2
 # Signal Round trip times
 minRoundTripTime = 2 * (minDistance/speedOfLight)
 maxRoundTripTime = 2 * (maxSlantDistance/speedOfLight)
+test = 2 * (maxDistance/speedOfLight)
+print(maxRoundTripTime*1000)
 
 # Pulse Width and Range Resolution Limits
 maxBandwidth = 8 * 10**6

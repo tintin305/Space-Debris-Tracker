@@ -451,33 +451,60 @@ Following the EM wave pulse, the receiver is set to record the resulting EM wave
 
 
 \subsection{Threshold Detection} \label{sec:ThresholdDetection}
-Once the system has transmitted an EM wave and the echo has been received, this energy recieved is then analysed to determine if an object was detected, and what its characteristics are.
-In order to detect a signal, the received signals' power is required to be above a specific threshold. This threshold is defined as the level at which all sources of noise are incorporated. When an object is detected, the signal level is required to rise above this threshold and this is then considered a successful detection.
+Once the system has transmitted an EM wave and the echo has been received, this energy recieved is analysed to determine if an object was detected, and what its characteristics are.
+In order to detect a signal, the received signals' power is required to be above a specific threshold. This threshold is defined as the level at which all sources of noise are incorporated and accounted for. When an object is detected, the signal level is required to rise above this threshold and this is then considered a successful detection.
 
-There are cases, based on the fact that noise is inherently a random variable, that the noise level can exceed the threshold set by the system. This is observed as a false alarm.
+There are cases, based on the fact that noise is inherently a random variable, that the noise level can exceed the threshold set by the system. This is observed as a false alarm \cite[Ch~.3]{radarHandbook}.
 This implies that there are cases where the targets echo in addition to the noise are capable of being below the threshold, this is when the noise in the system is low, so the addition of the echo is not large enough for the system to detect the object.
 These two cases are highly unlikely, however, cannot be ignored as they are based on the probabilities of the entire system.
 
 These probabilities are given as two variables: the probability of detection ($P_{D}$), and the probability of false alarm ($P_{FA}$). The probability of detection is the probability that an object-plus-noise exceeds the threshold applied to the system. The probability of false alarm is the probability that the noise (from all components of the system) will exceed the threshold.
 The best case scenario for these two variables are: 
-$P_{D} = 1$
-and
-$P_{FA} = 0$
+
+
+$P_{D} = 1$ and $P_{FA} = 0$
 
 These values are idealistic and so the correct threshold value is required to be set such that the system can operate as close to these values as possible.
 When the threshold is increased the probability of false alarm will decrease, however, so will the probability of detection. When the threshold is decreased, the probabilities of both variables increase. A trade-off is required here to determine the optimum threshold level.
 
-There is one way in which to increase the probability of detection while lowering the probability of false alarm, this is achieved by increasing the targets signal power (it should be noted that the signal power should be increased relative to the noise power). 
-<!-- If the noise power increases in ratio with the overall power, then this will not work -->
+There is one way in which to increase the probability of detection while lowering the probability of false alarm, this is achieved by increasing the targets signal power (it should be noted that the signal power should be increased relative to the noise power). The method in which this can be accomplished is to increase the overall Signal-to-Noise-Ratio (SNR) of the system, if the overall SNR is increased above a specified level, then the probabilities discussed above, reach levels that sufficiently adequately satisfy the criteria of the system. the SNR and how it is attained is discussed in section~\ref{sec:SNRRRE}. 
 
-The importance of Doppler should not be underestimated. Doppler shift is important as it can be used to reduce the effects of clutter in the viewing area, it is also able to perform measurements to detect if there is more than one object in the viewing area (in the same range). The removal of clutter from view of the system is achieved with Doppler by the fact that clutter is not moving and thus will have a no frequency shift.
 
+\subsection{Basic Operation} \label{sec:BasicOperation}
+The first important characteristic of a radar system is the ability to measure the distance of a target from the observation point. This is udertaken with the simple calculation of the amount of time that it takes a signal to travel from the transmitter to the target and back again, this is evaluated with the use of equation~\ref{eqn:RadarRangeEquation}. This equation evaluates the distance of the target ($R$) by making use of the speed of light (the speed that the EM wave travels, $c$), and the amount of time that it took the signal to travel to the target and back again ($\Delta$).
+
+\begin{equation} \label{eqn:RadarRangeEquation}
+    R = \frac{c \Delta T}{2}
+\end{equation}
+This allows for the calculation for the maximum and minimum round trip times for specific placements of objects from the observer. Table~\ref{tab:RadarRangeValues} illustrates the important round trip times which pertain to this system.
+
+\begin{table}
+    \begin{center}
+        \begin{tabular}{ c c }
+            \hline 
+            Round Trip Time Parameter & Time (ms) \\
+            Minimum Distance (Zenith direction) & $1.067$ \\
+            Maximum Distance  (Zenith direction & $13.34$ \\
+            Maximum Slant Distance & $14.83$ \\
+        \end{tabular}
+        \caption{Radar Range Round Trip Times}
+        \label{tab:RadarRangeValues}
+    \end{center}
+\end{table}
+These values take the assumption that the system is capable of steering up to $30^{\circ}$ from the zenith direction. If the system were to steer further, then the maximum slant distance would increase accordingly. The maximum steering ability of the system designed is capable of reaching approximately $50^{\circ}$, however, the maximum slant allowed is reduced in order to increase the reliability of the system. This is discussed in more detail in section~\ref{sec:ArrayStructure}***.
+
+Based on the maximum slant distance round trip time ($14.83 ms$), this places a number of limitations on the system which relate to the pulse repetition frequency, the minimum distance round trip time ($1.067 ms$), limits the pulse width that the system can transmit over. This also creates a limit on the bandwidth of the system, however the bandwidth of the system is related to a number of characteristics which are discussed in section~\ref{sec:SNR}***.
+
+
+The next step in the evaluation of the power that is required to be transmitted onto the object in order to reliably detect it. This begins with the radar range equation.
 
 \subsection{Power Density} \label{sec:PowerDensity}
 
-The first equation defines the power that is incident on the target, this is given by equation ***
+The first equation defines the power that is incident on the target, this is given by equation \ref{eqn:IncidentPower}. This power is generated with the use of the antenna array, the details of this array are discussed in section~\ref{sec:AntennaArray}, and the creation of the array requires the use of this equation. 
 
+\begin{equation} \label{eqn:IncidentPower}
 $P_{inc} = P_t * \frac{G_{t}}{4 * pi * R^2} [W/m^2]$
+\end{equation}
 
 Where:
 \begin{itemize}
@@ -527,7 +554,7 @@ In the case of the monostatic antenna array, the transmitting and receiving gain
 
 \section{Antenna}
 
-\section{Antenna Array}
+\section{Antenna Array} \label{sec:AntennaArray}
 
 
 \subsection{Resolution} \label{sec:Resolution}
