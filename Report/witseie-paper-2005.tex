@@ -316,23 +316,6 @@ These components perform the major tasks of the system, they are each discussed 
 The first highly important parameter of the system is the frequency at which it will operate as this is dependent on a number of factors. This is discussed in section~\ref{sec:OptimalFrequency}.
 
 
-
-% \subsection{System}
-% The system can be illustrated with the use of the design slides. This illustrates the entirety of the system.
-% The elements which make up the system include:
-
-%     * Transmitter
-%     * T/R Device
-%     * Antenna
-%     * Receiver
-%     * Signal Processor
-
-% Each of these items will have their own section.
-% However, there will be sections which discuss other components/characteristics of the system.
-
-% Section on EM waves and how they are created, influenced, propagated, polarized, phase shifted, their spectrums, superpositioned, 
-% Introduce the simple kinds of polarization and then reference later parts in the report that the waves will be affected by the structure of the antenna and the array as well as the atmosphere.
-
 \section{Optimal Frequency} \label{sec:OptimalFrequency}
 A number of constraints exist for the frequency of operation of the system, these range from economical, political, technical, and physical. These constraints and the reasons behind the final choice of frequency is discussed within this section.
 
@@ -365,7 +348,7 @@ This assumed Doppler shift implies that the frequency bandwidth should accomodat
 The Doppler frequency shift of the designed system is discussed in more detail in section~\ref{sec:RadarFunctions} where further analysis on the required bandwidth is also required: the bandwidth of the system is dependent on a number of components.
 
 
-The frequency choice is highly dependend on the locality of the system and the current frequency usage by other parties. ***
+The frequency choice is highly dependent on the locality of the system and the current frequency usage by other parties. ***
 
 
 \subsection{Political and Economical Limitations} \label{PoliticalandEconomicalLimitations}
@@ -377,112 +360,98 @@ The frequency allocation within a country is highly regulated, and as such it be
 The first criteria for the choice of a frequency band is the current usage of the frequency band, the request for in-use bands can expand the budget of the system greatly.
 
 The method used to determine the optimal frequency band is to first define the search range, this is given in the above section ($200 MHz$ to $1 GHz$), from this point, the frequency bands that are commonly allocated to astronomy research are narrowed down. The frequencies which lie within this area of interest are: $406.1 - 410 MHz$ and $606 - 614 MHz$. 
+Critically evaluating these two frequency bands results in the fact that the first option has a possible bandwidth of $4 MHz$, whereas the second has an $8 MHz$ bandwidth. This larger bandwidth is highly beneficial for the system as there are lower chances of bandwidth bleedover from other bands, the ability to make use of a larger bandwidth (if required) and, in addition to these two facts, this frequency band is used as a primary basis for radio astronomy.
+This gives a higher likelihood that the systems regulator will grant the frequency band for this usage, as it falls within its intended usage.
+The bandwidth that this allocation allows is unlikely to be completely used by the system designed, this is due to a number of constraints, namely, the Doppler effects, and the pulse width that the system will make use of.
+
+In the case that an entity wishes to make use of a frequency band within South Africa, a number of rules are applied to the entity as well as a number of costs for the use of the frequency band (depending on the selected one), these costs can become highly prohibitive as well as being highly difficult to find a band where there is little to no interference.
+As discussed in the previous section, interference is a massive concern for the choice of frequency, this is why the frequency choice, as well as the location of the system are inherently linked.
 
 
+The choice of location of the system is highly relevant as the interference from external sources can severely affect the ability of the system to function. The first major way in which to avoid these possible interferences is to locate the system in a low density area. An area with a low population density implies that there will be a lower saturation of power over the frequencies of interest. 
 
+The first part is to determine the area of South Africa with the largest area and the lowest population density. The province which satisfies this criteria is the Northern Cape \cite[p~.18]{statsSASurvey1}, as it has the lowest population of any province, it also has the largest land area \cite[p~.9,15]{statsSASurvey2}. This allows for an efficient placement of the system with regard to the frequency of interest.
 
-It appears as if the last frequency allocation happened in 2013.
-The next one is up for approval and is in draft stage. There are a number of bands which appear to be moving and this can affect things.
+In addition to the fact that placement in the Northern Cape is beneficial, the Square Kilometer Array (SKA) is also currently located in this province. The development of the SKA has required the implementation of a set of special by-laws which apply to the areas within the province. These by-laws are discussed below.
 
-[This](https://www.icasa.org.za/legislation-and-regulations/national-radio-frequency-plan-2013) appears to contain the 2013 allocation.
-
-Frequency allocation by [SKA](https://www.ska.ac.za/about/astronomy-geographic-advantage-act/)
-
-The chosen frequency at this point is: 610 MHz.
-The frequency on either side of the band is 4 MHz.
-Wavelength: 0.4918 m
-3/4 wavelength: 0.3689 m
-1/2 wavelength: 0.2459 m
-1/4 wavelength: 0.12295 m
 
 \subsubsection{Astronomy Geographic Advantage Act}
+Due to the fact that the SKA requires an extremely low noise environment in order to undertake its scientific research, it has permission to demarcate specified areas of land for scientific research \cite{SKAActDescription}. 
+The minister has the ability to declare any area or part of an area in the Province of the Northern Cape as an astronomy advantage area. This implies that an area, which is technically advantagous to the functioning of the system can be demarkated by this act. This implies that, within demarcated areas, the SKA is able to allocate specific frequency bands to particular projects/entities. 
+The act enables the purchasing process of land to be facilitated by the National Research Foundation (NRF) which can greatly simplify the process of deterining a location for the system. The act prohibits the use of specific frequencies within these area, this is highly beneficial for the system as it reduces the noise introduced from external factors.
 
-The minister has the ability to declare any area or part of an area in the Province of the Northern Cape as an astronomy advantage area. This implies that an area, which is technically advantagous to the functioning of the system can be demarkated by this act.
-A number of proccesses are required to take place for these areas to be allocated to the system. These include a number of considerations for: local businesses, affected agricultural participants, environmental impacts, nearby electrical and radio interference.
+Collaboration between the SKA and this system can be highly beneficial, the scientific research community will be given access to the system on a periodic basis. In order for the SKA to allow this system to be used within the Northern Cape, it should be created such that it does not interfere with their systems, however, still be of benefit to them. In addition to the requirements of the SKA, a number of other considerations are required to take place: local affected businesses, affected agricultural tenants/owners, environmental impacts, nearby electrical and radio interference.
+The act allows for the allocation of required frequencies (regardless of the frequency allocation of ICASA) \cite{SKAAct}. The permits provided by the act create exemptions for the frequency spectrum that is permitted.
 
-The act allows for specific frequencies to be used (regardless of the current frequency allocation by ICASA) as long as it is assessed by the procedures required by the SKA. Permits can be issued by the act and they are then allowed to operate within the permitted areas. These permits include exemptions for the frequency spectrum that is allowed to be used and the permitted transmission characteristics.
-
-The current situation with ICASA is such that there is a 50 mW maximum allowable broadcast power. However, with the use of the AGA, the TV transmission services are limited in the Northern Cape.
-
-The band chosen is currently allocated ot the radion astronomy service on a primary basis.
-
+This location of the system is discussed further in section~\ref{sec:EnvironmentalConsiderations} where a number of environmental factors are discussed.
 
 
+\subsection{Characteristics of Frequency}
+Based on the frequency choice discussed above, a number of parameters can now be calculated, these are illustrated in table~\ref{tab:FrequencyDetails}
+
+\begin{table}
+    \begin{center}
+        \begin{tabular}{ c c }
+            \hline 
+            Parameter & Value \\
+            Frequency Band & $606 - 614 MHz$ \\
+            Center Frequency & $ 610 MHz$ \\
+            Wavelength & $0.4918 m$ \\
+            $\lambda /4$ wavelength & $0.12295 m$ \\
+            $\lambda /2$ wavelength & $0.2459 m$ \\
+            $3 \lambda /4$ wavelength & $0.3689 m$ \\                
+        \end{tabular}
+        \caption{Frequency Details}
+        \label{tab:FrequencyDetails}
+    \end{center}
+\end{table}
+The wavelengths generated within this table are based on the centre frequency of the frequency band. This becomes the primary operating frequency of the system.
 
 
+\section{Radar Theory of Operation} \label{sec:ArrayStructure}
+This section details the different implementations of radars that are capable of detecting objects and the characteristics of those objects when detected (speed, direction, distance, etc.).
 
+Sections \ref{sec:MonostaticvsBistatic}, \ref{sec:ContinuousWaveandPulsedWave}, \ref{sec:ThresholdDetection} discuss the theory of operation of the system.
 
+\subsection{Monostatic versus Bistatic} \label{sec:MonostaticvsBistatic}
 
-The radar equation forms the initial stage for the design process.
-
-Primary functions:
-
-    * Impedance transformation (free-space fields to guided waves)
-    * Propagation-mode adapter (free-space to guided waves)
-    * Spatial filter (radiation pattern - direction-dependent sensitivity)
-    * Polariation filter (polarization-dependent sensitivity)
-
-The antenna is used to fix the mismatch between free-space and the rest of the system.
-Intrinsic impedance of free-space: $n_0 = E/H$
-$n_0 = sqrt(u_0 / e_0) = 120 * pi ~= 376.7 \Omega$
-
-Characteristic impedance of tx line, $Z_0 = V/I$ (typically $50 \Omega$)
-
-
-
-Make use of [this](https://etd.ohiolink.edu/!etd.send\_file?accession=ohiou1345227397\&disposition=inline) to speak about the axial ratio and how polarization is done.
-
-\subsection{Array Structure} \label{sec:ArrayStructure}
-
-\subsubsection{Monostatic versus Bistatic} \label{sec:MonostaticvsBistatic}
-
-There are two major radar configurations that are used. 
+There are two major radar configurations that are currently used, the two are discussed below and then compared.
 
 \subsubsection{Bistatic} \label{sec:Bistatic}
 
-The bistatic configuration makes use of a separate transmitter and receiver for the system. The two components are placed at differing locations and the separation between the components is required to be sufficiently large in terms of the angles or ranges that they present.
+The bistatic configuration makes use of a separate transmitter and receiver in order to implement the system. The two components are placed at differing locations and the separation between the components is required to be sufficiently large in terms of the angles or ranges that they present \cite{OrbitDetermination}, \cite[p~.5]{technicalReportSpaceDebris}, \cite[p~.3]{elevationLoss}. The separation between the transmit and receive systems allows for minimal interference between the two, while allowing for the use of more than one receiver.
 This implies that the two systems, in the case of Earth-to-Space transmission, are required to be geographically (in the order of kilometers) far apart \cite{bistaticNato}.
-The transmitters in these systems generally transmit power in the range of kilowatts to megawatts, this is in order to increase the signal-to-noise (SNR) of the system as there is a significant amount of energy lost in the energy transfer process. The receiver on the other hand, works with milliwatts to nanowatts as it receives this greatly reduced power that is reflected from the objects in question. The bistatic system provides a concenient method of separating out the two systems such that it becomes increasingly difficult to damage the receivers equipment from the high power generated by the transmitter.
+The transmitters in these systems generally transmit power in the range of kilowatts to megawatts, this is in order to increase the signal-to-noise (SNR) of the system as there is a significant amount of energy lost in the energy transfer process. The receiver on the other hand, works with milliwatts to nanowatts as it receives this greatly reduced power that is reflected from the objects in question. The bistatic system provides a convenient method of separating out the two systems such that it becomes increasingly difficult to damage the receivers' equipment from the high power generated by the transmitter.
+This mode of operation allows for the calculation of the distance of the target to the receiving antenna, however, the calculations involved for this are more complex than for the monostatic case, the same applies to the doppler shift measurable by the system.
 
 \subsubsection{Monostatic} \label{sec:Monostatic}
 
-The other, more commonly used system, is the monostatic configuration. This bundles the transmitter and receiver together on the same antenna/antenna array. In this case, a system is required such that the transmitted and received signals are isolated from eachother when they interact with the system. The isolation can be carried out in different ways, a circulator or a switch commonly achieves this. These components are discussed in a later section ***. In the monostatic configuration, the transmitter and receiver do not operate at the same time which greatly simplifies the switching apparatus.
+The other, more commonly used system, is the monostatic configuration. This bundles the transmitter and receiver together on the same antenna/antenna array. The nature of this system is such that the transmitter and receiver are required to be isolated while the two transmitting and receiving are taking place. The isolation can be carried out in different ways, a circulator or a switch commonly achieves this. These components are discussed in section~\ref{sec:FeedingNetworks}. In the monostatic configuration, the transmitter and receiver do not operate at the same time which greatly simplifies the switching apparatus.
+This mode of operation allows for direct measurement of distance of targets as well as the ability to measure the targets radial velocity (with respect to the observation point).
 
 \subsubsection{Comparison} \label{sec:Comparison}
 
-The configuration implemented is the monostatic as it provides a lower cost alternative to the bistatic configuration. It has the added benefit of only requiring one piece of land for the system. The system cost is also reduced by the fact that only one set of antennas are required.
-The bistatic configuration is easier to implement with regards to the protection systems for the receiver, however, this benefit does not out weigh the monostatic systems advantages. The bistatic systems also require a significant amount of communication between the two systems and this can increase the cost of implementation, most notably when the distance between the two systems is large and communication mediums can become prohibitively expensive.
+The configuration designed for this system is the monostatic as it provides a lower cost alternative to the bistatic configuration. It has the added benefit of only requiring one piece of land for the system. The system cost is lower than the bistatic case based on the fact that only one set of antennas are required. There are cases where the monostatic system can be set up with two sets of antennas (for transmitting and receiving), where the separation of the two installations creates a small angle.
+The bistatic configuration is easier to implement with regards to the protection systems for the receiver, however, this benefit does not out weigh the monostatic systems advantages. The bistatic systems also require a significant amount of communication between the two locations which increases the cost of implementation, most notably when the distance between the two systems is large and communication mediums can become prohibitively expensive.
 
 \subsection{Continuous Wave and Pulsed Wave} \label{sec:ContinuousWaveandPulsedWave}
 
-The two commonly used transmission systems are the continuous wave and the pulsed wave, these two systems are also linked to the choice on the system configuration.
+The two commonly used transmission methods are the continuous wave and the pulsed wave, these two systems are also linked to the choice on the system configuration.
 This implies that if the monostatic configuration is used, then the continuous wave transmission system is not available.
 
 \subsubsection{Continuous Wave Transmission} \label{sec:ContinuousWaveTransmission}
 
-The continuous wave transmission system, as the name indicates, has the transmitter functioning $100\%$ of the time, which implies that the receiver also functions all of the time. The continuous wave transmission system, as indicated above can only be used by the bistatic configuration. 
-A unique characteristic of the continuous wave system is that it is unable to determine the electromagnetic (EM) waves round-trip time as there is no set begin and end time of transmission. This can be solved with the use of modulation on the wave, this implies that the receiver is required to know all of the characteristics of the transmitters waveforms ahead of time if it is to determine round trip times \cite[p.~20]{radarHandbook}.
+The continuous wave transmission system, as the name indicates, has the transmitter functioning $100\%$ of the time, which implies that the receiver also functions $100 \&$ of the time. The continuous wave transmission system, as indicated above can only be used by the bistatic configuration as the receiver cannot be activated while the transmitter is active.
+A unique characteristic of the continuous wave system is that it is unable to determine the electromagnetic (EM) waves' round-trip time as there is no set begin and end time of transmission. This can be solved with the use of modulation on the wave, which requires the receiver to know all of the characteristics of the transmitters' waveforms ahead of time if it is to determine round trip times \cite[p.~20]{radarHandbook}.
 
 \subsubsection{Pulsed Waveform Transmission} \label{sec:PulsedWaveformTransmission}
 
-The second mehtod of EM wave transmission makes use of pulses, these occur periodically and their duration is commonly over a short period of time. This system is commonly used in tandem with a monostatic configuration and this provides the isolation between the transmitter and receiver circuitry, the circuitry to isolate these signals is still used.
-Following the EM wave pulse, the receiver is set to record the resulting EM waves that are returned in the form of echoes after it has reflected from the objects in question. The determination of the pulse length and the period between pulses (the interpulse period (IPP))is discussed further in the report ***. The pulse repitition is also highly pertinent to the observable time window of debris, this will be discussed in section ***.
+The second method of EM wave transmission makes use of pulses, these occur periodically and their duration is commonly over a short period of time. This system is commonly used in tandem with a monostatic configuration and this provides the ability for components to provide isolation between the transmitter and receiver circuitry.
+Following the EM wave pulse, the receiver is set to record the resulting EM waves that are returned in the form of echoes after it has reflected from the objects in question. The determination of the pulse length and the period between pulses (the interpulse period (IPP)) is discussed in section~\ref{sec:SNRRRE} *** as this value is dependent on a number of other characteristics of the system. The pulse repitition is also linked to the observable time window of debris, discussed in section \ref{sec:SpaceDebrisTrajectoryCharacteristics}.
 
-Need image here which describes how the pulses are placed with respect to time.
-
-The pulse repetition frequency is related to the maximum distance that the system is able to detect objects, this is related to the observable area of the system and the furthest distance that the system can detect an object. This is discussed in section *** and section ***.
-
-The following image represents a case where a pulse is sent outwards and is then followed by, a period of time later, a corresponding echo pulse.
-The period between the pulse and the echo can be used to determine the altitude that the object has.
-In order to detect the pulse, the time between each sample should be no less than the pulse width of the transmitter (this should be elaborated on... get the info from: \cite[p.~21]{radarHandbook})
-
-Think about echoes that come back after the next pulse is fired, this can be from targets that are past the 2000 km range. These need to be dealt with. One way is to define a SNR that will rule out these cases. Another case is to throw out any echoes that happen before one is expected to have returned (based on the minimum altitude required to be detected). 
-This issue is known as a range ambituite (\cite[p~.22]{radarHandbook})
-
-*** Include calculation of the pulse width and the corresponding bandwidth if requires. Stuffies for this can be found on page 65
 
 \subsection{Threshold Detection} \label{sec:ThresholdDetection}
-
+Once the system has transmitted an EM wave and the echo has been received, this energy recieved is then analysed to determine if an object was detected, and what its characteristics are.
 In order to detect a signal, the received signals' power is required to be above a specific threshold. This threshold is defined as the level at which all sources of noise are incorporated. When an object is detected, the signal level is required to rise above this threshold and this is then considered a successful detection.
 
 There are cases, based on the fact that noise is inherently a random variable, that the noise level can exceed the threshold set by the system. This is observed as a false alarm.
@@ -503,34 +472,6 @@ There is one way in which to increase the probability of detection while lowerin
 
 The importance of Doppler should not be underestimated. Doppler shift is important as it can be used to reduce the effects of clutter in the viewing area, it is also able to perform measurements to detect if there is more than one object in the viewing area (in the same range). The removal of clutter from view of the system is achieved with Doppler by the fact that clutter is not moving and thus will have a no frequency shift.
 
-\subsection{Resolution} \label{sec:Resolution}
-
-The resolution of the system has three components: the ability to distinguish between objects that are different distances away from the system, have differing angles with respecto the the system, and have differing Doppler frequencies.
-
-The first of these, the range resolution, determines if you are able to discren two objects that are in eachothers vacinity.
-The range resolution is defined by:
-$\delta R = \frac{c \tau}{2}$
-
-This implies that if the pulse width of the signal is 1us, then the range resolution of the system is $150 m$. This implies that if the pulse width is decreased, then the range resolution increases.
-It must be noted that, if the pulse width is decreased, then the energy that is transmitted will decrease, and therefore it becomes increasingly difficult to detect an object.
-
-% The doppler resolution is determined by: 3 dB width = \frac{0.89}{dwell time}
-
-\subsection{Radar Functions} \label{sec:RadarFunctions}
-
-\subsubsection{Search/Detect} \label{sec:SearchDetect}
-
-\subsubsection{Track} \label{sec:Track}
-
-\subsubsection{Image} \label{sec:Image}
-
-\subsection{SNR} \label{sec:SNR}
-
-The resulting SNR of the calculation performed is the targets signal power divided by the sum of the noises in the system, this includes the receiver thermal noise and jammer noise.
-
-The set of equations that are used to determine a number of these parameters are known as the radar range equations (RRE), these equations allow for the determination of the received power from the systems EM waves' reflections and also to determine the levels of the interfering power within the system, this allows for the calculation of the SNR.
-
-This section begins with introducing the RRE and how it is applied to the system and how to determine the simplistic performance of the system. This first step estimates the performance of the systems power density at a distance R away. This is followed by estimating the thermal noise present in the receiver of the system, this then allows for the first estimate of the SNR. 
 
 \subsection{Power Density} \label{sec:PowerDensity}
 
@@ -584,6 +525,41 @@ Where:
 In the case of the monostatic antenna array, the transmitting and receiving gain are the same as it is the same array. This implies that for bistatic systems, it is possible to have two different ranges for receiving and transmitting.
 
 
+\section{Antenna}
+
+\section{Antenna Array}
+
+
+\subsection{Resolution} \label{sec:Resolution}
+
+The resolution of the system has three components: the ability to distinguish between objects that are different distances away from the system, have differing angles with respecto the the system, and have differing Doppler frequencies.
+
+The first of these, the range resolution, determines if you are able to discren two objects that are in eachothers vacinity.
+The range resolution is defined by:
+$\delta R = \frac{c \tau}{2}$
+
+This implies that if the pulse width of the signal is 1us, then the range resolution of the system is $150 m$. This implies that if the pulse width is decreased, then the range resolution increases.
+It must be noted that, if the pulse width is decreased, then the energy that is transmitted will decrease, and therefore it becomes increasingly difficult to detect an object.
+
+% The doppler resolution is determined by: 3 dB width = \frac{0.89}{dwell time}
+
+\subsection{Radar Functions} \label{sec:RadarFunctions}
+
+\subsubsection{Search/Detect} \label{sec:SearchDetect}
+
+\subsubsection{Track} \label{sec:Track}
+
+\subsubsection{Image} \label{sec:Image}
+
+\subsection{SNR} \label{sec:SNR}
+
+The resulting SNR of the calculation performed is the targets signal power divided by the sum of the noises in the system, this includes the receiver thermal noise and jammer noise.
+
+The set of equations that are used to determine a number of these parameters are known as the radar range equations (RRE), these equations allow for the determination of the received power from the systems EM waves' reflections and also to determine the levels of the interfering power within the system, this allows for the calculation of the SNR.
+
+This section begins with introducing the RRE and how it is applied to the system and how to determine the simplistic performance of the system. This first step estimates the performance of the systems power density at a distance R away. This is followed by estimating the thermal noise present in the receiver of the system, this then allows for the first estimate of the SNR. 
+
+
 \subsubsection{Receiver Noise} \label{sec:ReceiverNoise}
 
 \subsubsection{Thermal Noise} \label{sec:ThermalNoise}
@@ -620,6 +596,23 @@ $SNR = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi)^3 R^4 k T_0 F B}$
 
 This equation applies to discreet targets, which applies to this circumstance.
 
+Need image here which describes how the pulses are placed with respect to time, interpulse period
+
+Go into detail on the inter pulse period, the pulse repetition frequency, and how it is related to the min and max distances of objects.
+
+The following image represents a case where a pulse is sent outwards and is then followed by, a period of time later, a corresponding echo pulse.
+The period between the pulse and the echo can be used to determine the altitude that the object has.
+In order to detect the pulse, the time between each sample should be no less than the pulse width of the transmitter (this should be elaborated on... get the info from: \cite[p.~21]{radarHandbook})
+
+
+Think about echoes that come back after the next pulse is fired, this can be from targets that are past the 2000 km range. These need to be dealt with. One way is to define a SNR that will rule out these cases. Another case is to throw out any echoes that happen before one is expected to have returned (based on the minimum altitude required to be detected). 
+This issue is known as a range ambituite (\cite[p~.22]{radarHandbook})
+
+*** Include calculation of the pulse width and the corresponding bandwidth if requires. Stuffies for this can be found on page 65
+
+
+
+
 \subsubsection{Multi-Pulsing} \label{sec:MultiPulsing}
 
 Need to talk about how the SNR can be improved with the use of multiple pulses.
@@ -633,6 +626,27 @@ Discuss how the system cannot determine the direction of the object, it can only
 \subsection{Field of View} \label{sec:FieldOfView}
 
 \subsection{Polarization} \label{sec:Polarization}
+The radar equation forms the initial stage for the design process.
+
+Primary functions:
+
+    * Impedance transformation (free-space fields to guided waves)
+    * Propagation-mode adapter (free-space to guided waves)
+    * Spatial filter (radiation pattern - direction-dependent sensitivity)
+    * Polariation filter (polarization-dependent sensitivity)
+
+The antenna is used to fix the mismatch between free-space and the rest of the system.
+Intrinsic impedance of free-space: $n_0 = E/H$
+$n_0 = sqrt(u_0 / e_0) = 120 * pi ~= 376.7 \Omega$
+
+Characteristic impedance of tx line, $Z_0 = V/I$ (typically $50 \Omega$)
+
+
+
+Make use of [this](https://etd.ohiolink.edu/!etd.send\_file?accession=ohiou1345227397\&disposition=inline) to speak about the axial ratio and how polarization is done.
+
+
+\section{Feeding Networks} \label{sec:FeedingNetworks}
 
 
 \section{Environmental Considerations} \label{sec:EnvironmentalConsiderations}
