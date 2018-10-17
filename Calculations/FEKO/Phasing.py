@@ -13,6 +13,8 @@ gravitationalConstant = 6.67408 * 10 ** -11
 earthMass = 5.972 * 10 ** 24
 boltzmannsConstant = 1.38064852e-23
 
+numRows = 64
+numColumns = 64
 # Lambda
 Lambda = speedOfLight / centerFrequency
 
@@ -28,14 +30,14 @@ psi = 10
 maxAmplitude = 1
 minAmplitude = 0.5
 
-w,h = 32,32
+w,h = numRows,numColumns
 phaseMatrix = [[0 for x in range(w)] for y in range(h)]
 
 f = open("phase.txt", "w+")
 newline = ""
-for x in range(0,32):
+for x in range(0,numRows):
     thetaSteer = x * (360 * dx * math.sin(math.radians(theta)))/(Lambda)
-    for y in range(0,32):
+    for y in range(0,numColumns):
         psiSteer = y * (360 * dy * math.sin(math.radians(psi)))/(Lambda)
         totalSteer = thetaSteer + psiSteer
         phaseMatrix[x][y] = totalSteer
@@ -60,17 +62,17 @@ plt.show()
 
 
 #Amplitude
-w,h = 32,32
+w,h = numRows,numColumns
 amplitudeMatrix = [[0 for x in range(w)] for y in range(h)]
 
-delta = numpy.linspace(0.5, 1.0, 16)
-deltaReverse = numpy.linspace(1.0, 0.5, 16)
+delta = numpy.linspace(0.5, 1.0, numRows)
+deltaReverse = numpy.linspace(1.0, 0.5, numRows)
 comb = numpy.concatenate((delta,deltaReverse))
 
 
-for x in range(0,32):
+for x in range(0,numRows):
     first = comb[x]
-    for y in range(0,32):
+    for y in range(0,numColumns):
         second = comb[y]
         amplitudeMatrix[x][y] = (first + second)/2
 
@@ -103,14 +105,14 @@ for x in amplitudeMatrix:
 
 newline = ""
 f = open("Amplitude.txt", "w+")
-for x in range(0,1024):
+for x in range(0,numRows**2):
     outLine = newline + str(flattenedAmplitude[x])  + ",0.0"
     newline = "\n"
     f.write(outLine)
 
 newline = ""
 f = open("AmplitudePhase.txt", "w+")
-for x in range(0,1024):
+for x in range(0,numRows**2):
     outLine = newline + str(flattenedAmplitude[x]) + "," + str(flattenedPhase[x])
     newline = "\n"
     f.write(outLine)

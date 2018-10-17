@@ -323,10 +323,10 @@ A number of constraints exist for the frequency of operation of the system, thes
 
 The first limitation of the system is the fact that the ionosphere attenuates frequencies from specific frequency range. This is important as it is known that there are two frequency windows at which EM waves penetrate the ionosphere without excessive attenuation \cite{ObjectInformation}.
 These frequency windows have a high transmission coefficient for frequencies within the $1 cm$ through to the $1 m$ wavelength range, this implies that these frequency bands are highly useful for transmitting EM waves through the Earths atmosphere as the attenuation is low \cite{frequencyAttenuation}. Frequencies outside of this window (with a few exceptions to some of the visible light spectrum), are closed due to ionospheric attenuations and reflections (at larger wavelengths) and also attenuate due to resonances created by molecules in the atmosphere (at lower wavelengths) \cite{frequencyAttenuation}.  
-If the wavelength of the EM wave is within the bands above, then the attenuation can be considered neglible \cite{ionosphereAttenuationStandard}, \cite[p~.15,124]{radarHandbook}. It is apparent that frequencies within this range provide an attenuation of less than $10^{-2} db/km$ which is negligible.
+If the wavelength of the EM wave is within the bands above, then the attenuation can be considered neglible \cite{ionosphereAttenuationStandard}, \cite[p.~15,124]{radarHandbook}. It is apparent that frequencies within this range provide an attenuation of less than $10^{-2} db/km$ which is negligible.
 Based on these assumptions, the frequency band of interest lies within the $200 MHz$ up to $1 GHz$, after $1 GHz$, the atmospheric losses increase accordingly.
 
-The elevation angle of the system is also a contributing factor to the loss of the system as this determines the \textit{volume} of atmosphere that the EM waves travel through to rech the target. An increasing elevation angle results in a lower two-way loss, this implies that in the case that the system directs its beam directly upwards (towards the zenith), this is the direction with the least loss per unit distance \cite[p~.70]{elevationLoss}. This is highly beneficial for the system as it is normally directed upwards and has a FOV that does not greatly increase the \textit{volume} of atmosphere the EM wave has to encounter.
+The elevation angle of the system is also a contributing factor to the loss of the system as this determines the \textit{volume} of atmosphere that the EM waves travel through to rech the target. An increasing elevation angle results in a lower two-way loss, this implies that in the case that the system directs its beam directly upwards (towards the zenith), this is the direction with the least loss per unit distance \cite[p.~70]{elevationLoss}. This is highly beneficial for the system as it is normally directed upwards and has a FOV that does not greatly increase the \textit{volume} of atmosphere the EM wave has to encounter.
 
 Included in this technical choice is that of currently implemented systems. Many of these operate within the $400 MHz$ to $500 MHz$ frequency bands.
 The amount of electrical power required for these systems can often be in the megawatt range and components capable of supplying this power in the $GHz$ range become prohibitively expensive, this further backs up the choice for a lower frequency.
@@ -370,7 +370,7 @@ As discussed in the previous section, interference is a massive concern for the 
 
 The choice of location of the system is highly relevant as the interference from external sources can severely affect the ability of the system to function. The first major way in which to avoid these possible interferences is to locate the system in a low density area. An area with a low population density implies that there will be a lower saturation of power over the frequencies of interest. 
 
-The first part is to determine the area of South Africa with the largest area and the lowest population density. The province which satisfies this criteria is the Northern Cape \cite[p~.18]{statsSASurvey1}, as it has the lowest population of any province, it also has the largest land area \cite[p~.9,15]{statsSASurvey2}. This allows for an efficient placement of the system with regard to the frequency of interest.
+The first part is to determine the area of South Africa with the largest area and the lowest population density. The province which satisfies this criteria is the Northern Cape \cite[p.~18]{statsSASurvey1}, as it has the lowest population of any province, it also has the largest land area \cite[p.~9,15]{statsSASurvey2}. This allows for an efficient placement of the system with regard to the frequency of interest.
 
 In addition to the fact that placement in the Northern Cape is beneficial, the Square Kilometer Array (SKA) is also currently located in this province. The development of the SKA has required the implementation of a set of special by-laws which apply to the areas within the province. These by-laws are discussed below.
 
@@ -419,7 +419,7 @@ There are two major radar configurations that are currently used, the two are di
 
 \subsubsection{Bistatic} \label{sec:Bistatic}
 
-The bistatic configuration makes use of a separate transmitter and receiver in order to implement the system. The two components are placed at differing locations and the separation between the components is required to be sufficiently large in terms of the angles or ranges that they present \cite{OrbitDetermination}, \cite[p~.5]{technicalReportSpaceDebris}, \cite[p~.3]{elevationLoss}. The separation between the transmit and receive systems allows for minimal interference between the two, while allowing for the use of more than one receiver.
+The bistatic configuration makes use of a separate transmitter and receiver in order to implement the system. The two components are placed at differing locations and the separation between the components is required to be sufficiently large in terms of the angles or ranges that they present \cite{OrbitDetermination}, \cite[p.~5]{technicalReportSpaceDebris}, \cite[p.~3]{elevationLoss}. The separation between the transmit and receive systems allows for minimal interference between the two, while allowing for the use of more than one receiver.
 This implies that the two systems, in the case of Earth-to-Space transmission, are required to be geographically (in the order of kilometers) far apart \cite{bistaticNato}.
 The transmitters in these systems generally transmit power in the range of kilowatts to megawatts, this is in order to increase the signal-to-noise (SNR) of the system as there is a significant amount of energy lost in the energy transfer process. The receiver on the other hand, works with milliwatts to nanowatts as it receives this greatly reduced power that is reflected from the objects in question. The bistatic system provides a convenient method of separating out the two systems such that it becomes increasingly difficult to damage the receivers' equipment from the high power generated by the transmitter.
 This mode of operation allows for the calculation of the distance of the target to the receiving antenna, however, the calculations involved for this are more complex than for the monostatic case, the same applies to the doppler shift measurable by the system.
@@ -503,7 +503,7 @@ The next step in the evaluation of the power that is required to be transmitted 
 The first equation defines the power that is incident on the target, this is given by equation \ref{eqn:IncidentPower}. This power is generated with the use of the antenna array, the details of this array are discussed in section~\ref{sec:AntennaArray}, and the creation of the array requires the use of this equation. 
 
 \begin{equation} \label{eqn:IncidentPower}
-$P_{inc} = P_t * \frac{G_{t}}{4 * pi * R^2} [W/m^2]$
+P_{inc} = P_t * \frac{G_{t}}{4 * pi * R^2} [W/m^2]
 \end{equation}
 
 Where:
@@ -516,11 +516,13 @@ Where:
 
 This equation assumes the use of a directional antenna (not isotropic) which has a corresponding gain. This allows for the concentration of the beam in a specific direction.
 
-The next stage is to determine the magnitude of energy that is reflected by the target, as assumed in section ***, the radar cross section of the target is defined and known. 
-In depth analysis of the targets is provided in section ***.
-Equation *** indicates the magnitude of power reflected by this object.
+The next stage is to determine the magnitude of energy that is reflected by the target, as assumed in section~\ref{sec:SpaceDebrisPhysicalCharacteristics}, the radar cross section of the target is defined and known. 
 
-$P_{refl} = \frac{P_{t} G_{t} \sigma}{4 pi R^2}$
+Equation~\ref{eqn:ReflectedPower} indicates the magnitude of power reflected by this object.
+
+\begin{equation} \label{eqn:ReflectedPower}
+P_{refl} = \frac{P_{t} G_{t} \sigma}{4 pi R^2}
+\end{equation}
 
 Where:
 \begin{itemize}
@@ -528,9 +530,11 @@ Where:
     \item $\sigma$ is the radar cross section (RCS) of the target measured in square meters ($m^2$)
 \end{itemize}
 
-This reflected power from the target is then received by the system and this is defined by equation ***
+This reflected power from the target is then received by the system and this is defined by equation \ref{eqn:ReceivedPower}.
 
-$P_{r} = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi )^3 R^4}$
+\begin{equation} \label{eqn:ReceivedPower}
+P_{r} = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi )^3 R^4}
+\end{equation}
 
 Where:
 \begin{itemize}
@@ -540,9 +544,11 @@ Where:
     \item $G_{r}$ is the gain of the receive antenna
 \end{itemize}
 
-It is assumed that the gain is determined with equation ***.
+It is assumed that the gain is determined with equation \ref{eqn:Gain}.
 
-$G = \frac{4 pi n_{a} A}{\lambda^2} = \frac{4 pi A_{e}}{\lambda^2}$
+\begin{equation} \label{eqn:Gain}
+G = \frac{4 pi n_{a} A}{\lambda^2} = \frac{4 pi A_{e}}{\lambda^2}
+\end{equation}
 
 Where:
 \begin{itemize}
@@ -633,7 +639,7 @@ In order to detect the pulse, the time between each sample should be no less tha
 
 
 Think about echoes that come back after the next pulse is fired, this can be from targets that are past the 2000 km range. These need to be dealt with. One way is to define a SNR that will rule out these cases. Another case is to throw out any echoes that happen before one is expected to have returned (based on the minimum altitude required to be detected). 
-This issue is known as a range ambituite (\cite[p~.22]{radarHandbook})
+This issue is known as a range ambituite (\cite[p.~22]{radarHandbook})
 
 *** Include calculation of the pulse width and the corresponding bandwidth if requires. Stuffies for this can be found on page 65
 
