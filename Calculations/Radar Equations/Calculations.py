@@ -7,9 +7,10 @@ minDistance = 160 * 10**3
 maxDistance = 2000 * 10**3
 earthRadius = 6378 * 10**3
 centerFrequency = 610*10**6
-gravitationalConstant = 6.67408 * 10 ** -11
-earthMass = 5.972 * 10 ** 24
-boltzmannsConstant = 1.38064852e-23
+gravitationalConstant = 6.67408 * 10 ** (-11)
+earthMass = 5.972 * 10 ** (24)
+boltzmannsConstant = 1.38064852*10**-(23)
+standardTemp = 290
 
 # Lambda
 Lambda = speedOfLight / centerFrequency
@@ -58,14 +59,14 @@ dopplerFrequencyShift = 2*((maxLinearVelocity)/(speedOfLight))*centerFrequency
 
 
 # Minimum radar cross section of object (min diameter of 10 cm)
-minObjectRadius = 10 * 10**-2
-minRCS = math.pi * minObjectRadius**2
+minObjectRadius = 5 * 10**(-2)
+minRCS = math.pi * minObjectRadius**(2)
 
 # Signal Round trip times
 minRoundTripTime = 2 * (minDistance/speedOfLight)
 maxRoundTripTime = 2 * (maxSlantDistance/speedOfLight)
 test = 2 * (maxDistance/speedOfLight)
-print(maxRoundTripTime*1000)
+
 
 # Pulse Width and Range Resolution Limits
 maxBandwidth = 8 * 10**6
@@ -73,6 +74,8 @@ pulseWidthMin = 1/maxBandwidth
 pulseWidthMax = minRoundTripTime
 rangeResolutionMin = (speedOfLight * pulseWidthMin)/(2)
 
+#Bandwidth max with minimum pulse width
+bandwidthMax = 1/pulseWidthMin
 
 
 # rangeResolution = 1
@@ -81,12 +84,23 @@ rangeResolutionMin = (speedOfLight * pulseWidthMin)/(2)
 
 
 # Thermal Noise
-noiseFigure = 7.94 # This should be calculated
-bandwidth = 1/pulseWidthMin
-thermalNoise = boltzmannsConstant * 290 * noiseFigure * bandwidth
+noiseFiguredB = 2.5 # Measured in dB
+noiseFigure = 10**(noiseFiguredB/10)
 
-# print(bandwidth/(1000000))
+pulseWidth = 1 * 10**(-6)
+bandwidth = 1 / pulseWidth
+SNRmindB = 10 #Measured in dB
+SNRmin = 10**(SNRmindB/10)
+
+gainPowerProduct = (SNRmin * (4 * (math.pi))**3 * maxSlantDistance**4 * boltzmannsConstant * standardTemp * noiseFigure * bandwidth)/(Lambda**2 * minRCS)
+
+arrayGain = 12656.7
+
+maxPowerRequired = gainPowerProduct / ((arrayGain)**2)
+print(str(maxPowerRequired/1000000) + " MW")
 
 
-
+dutyCycle = pulseWidth * maxRoundTripTime
+averagePower = dutyCycle * maxPowerRequired
+print(str(averagePower) + " MW")
 

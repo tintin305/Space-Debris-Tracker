@@ -236,12 +236,14 @@ Where:
 \begin{itemize}
     \item $\rho$ is the slant distance from the system to the object
 \end{itemize}
-This equation is important as it provides another criteria for the system, that of the maximum range that is required to be detected by the system. These become important for the Radar Range Equations (RRE) in section \ref{sec:SNRRRE}.
+This equation is important as it provides another criteria for the system, that of the maximum range that is required to be detected by the system. These become important for the Radar Range Equations (RRE) in section \ref{sec:PulsingCharacteristics}.
 
 
 \begin{table}
+    \caption{Object Parameters}
+    \label{tab:ObjectParameters}
     \begin{center}
-        \begin{tabular}{ c c }
+        \begin{tabular}{p{70mm}cp{70mm}}
             \hline 
             Minimum Object Altitude & $160 km$ \\
             Maximum Object Altitude & $2000 km$ \\
@@ -258,8 +260,7 @@ This equation is important as it provides another criteria for the system, that 
             Minimum Linear Velocity & $518.14 m/s$ \\
             Maximum Linear Velocity & $6476.8 m/s$ \\
         \end{tabular}
-        \caption{Object Parameters}
-        \label{tab:ObjectParameters}
+
     \end{center}
 \end{table}
 
@@ -293,7 +294,7 @@ The information provided in the sections above create a baseline with which to d
 
 
 \subsection{Current Implementations}
-The baseline for this project is built upon the system created by Leo Labs \cite{LEOLABS}. The Leo Labs system makes use of two systems that are currently installed. The first of these is the Advanced Modular Incoherent Scatter Radar (AMISR), this is locaed in Resolute Bay, Canade, it makes use of an array of crossed-dipole antennas that are electrically phased. This implies that the system is electronically steerable. It operates in the frequency range of $430 MHz$ to $450 MHz$ and has a pulse width of approximately $2 \nu s$ \cite{AMISR}. A number of important parameters can be found in \cite{AMISR}, this is a system which closely resembles the major requirements for this system.
+The baseline for this project is built upon the system created by Leo Labs \cite{LEOLABS}. The Leo Labs system makes use of two systems that are currently installed. The first of these is the Advanced Modular Incoherent Scatter Radar (AMISR), this is locaed in Resolute Bay, Canade, it makes use of an array of crossed-dipole antennas that are electrically phased. This implies that the system is electronically steerable. It operates in the frequency range of $430 MHz$ to $450 MHz$ and has a pulse width of approximately $2 \mu s$ \cite{AMISR}. A number of important parameters can be found in \cite{AMISR}, this is a system which closely resembles the major requirements for this system.
 The second system in use by LEOLABS is the Midland Space Radar (MSR), this system is located in Texas and is commissioned by LeoLabs, this system is capable of detecting objects as small as $10 cm$ in diameter. It is not specified whether this value is a Radar Cross Section  (RCS) or the physical size of the object.
 A number of other implementations have been used (not through Leo Labs) which make use of other technologies and are capable of detecting smaller objects \cite{EISCAT, SIMO, telescope, BeamForming, OrbitDetermination, PlanarArray}. A number of these papers are made use of to design the system in this report.
 
@@ -312,7 +313,7 @@ The system, as an overview is made up of the following components illustrated in
         \label{fig:SystemOverview}    
     \end{figure}
 \end{center}
-These components perform the major tasks of the system, they are each discussed in detail in their own sections, however, before that can take place, these components are used to perform a specific action in order to detect the space debris, sections~\ref{sec:OptimalFrequency}, \ref{sec:ArrayStructure}, \ref{sec:ContinuousWaveandPulsedWave}, \ref{sec:RadarFunctions}, and \ref{sec:SNRRRE} introduce the theory behind the operation of this system. The choices for these sections are directly linked to the type of devices and components seen in figure~\ref{fig:SystemOverview}.
+These components perform the major tasks of the system, they are each discussed in detail in their own sections, however, before that can take place, these components are used to perform a specific action in order to detect the space debris, sections~\ref{sec:OptimalFrequency}, \ref{sec:ArrayStructure}, \ref{sec:ContinuousWaveandPulsedWave}, \ref{sec:RadarFunctions}, and \ref{sec:PulsingCharacteristics} introduce the theory behind the operation of this system. The choices for these sections are directly linked to the type of devices and components seen in figure~\ref{fig:SystemOverview}.
 The first highly important parameter of the system is the frequency at which it will operate as this is dependent on a number of factors. This is discussed in section~\ref{sec:OptimalFrequency}.
 
 
@@ -390,8 +391,10 @@ This location of the system is discussed further in section~\ref{sec:Environment
 Based on the frequency choice discussed above, a number of parameters can now be calculated, these are illustrated in table~\ref{tab:FrequencyDetails}
 
 \begin{table}
+    \caption{Frequency Details}
+    \label{tab:FrequencyDetails}
     \begin{center}
-        \begin{tabular}{ c c }
+        \begin{tabular}{p{70mm}cp{70mm}}
             \hline 
             Parameter & Value \\
             Frequency Band & $606 - 614 MHz$ \\
@@ -401,8 +404,7 @@ Based on the frequency choice discussed above, a number of parameters can now be
             $\lambda /2$ wavelength & $0.2459 m$ \\
             $3 \lambda /4$ wavelength & $0.3689 m$ \\                
         \end{tabular}
-        \caption{Frequency Details}
-        \label{tab:FrequencyDetails}
+
     \end{center}
 \end{table}
 The wavelengths generated within this table are based on the centre frequency of the frequency band. This becomes the primary operating frequency of the system.
@@ -447,7 +449,7 @@ A unique characteristic of the continuous wave system is that it is unable to de
 \subsubsection{Pulsed Waveform Transmission} \label{sec:PulsedWaveformTransmission}
 
 The second method of EM wave transmission makes use of pulses, these occur periodically and their duration is commonly over a short period of time. This system is commonly used in tandem with a monostatic configuration and this provides the ability for components to provide isolation between the transmitter and receiver circuitry.
-Following the EM wave pulse, the receiver is set to record the resulting EM waves that are returned in the form of echoes after it has reflected from the objects in question. The determination of the pulse length and the period between pulses (the interpulse period (IPP)) is discussed in section~\ref{sec:SNRRRE} *** as this value is dependent on a number of other characteristics of the system. The pulse repitition is also linked to the observable time window of debris, discussed in section \ref{sec:SpaceDebrisTrajectoryCharacteristics}.
+Following the EM wave pulse, the receiver is set to record the resulting EM waves that are returned in the form of echoes after it has reflected from the objects in question. The determination of the pulse length and the period between pulses (the interpulse period (IPP)) is discussed in section~\ref{sec:PulsingCharacteristics} *** as this value is dependent on a number of other characteristics of the system. The pulse repitition is also linked to the observable time window of debris, discussed in section \ref{sec:SpaceDebrisTrajectoryCharacteristics}.
 
 
 \subsection{Threshold Detection} \label{sec:ThresholdDetection}
@@ -467,10 +469,10 @@ $P_{D} = 1$ and $P_{FA} = 0$
 These values are idealistic and so the correct threshold value is required to be set such that the system can operate as close to these values as possible.
 When the threshold is increased the probability of false alarm will decrease, however, so will the probability of detection. When the threshold is decreased, the probabilities of both variables increase. A trade-off is required here to determine the optimum threshold level.
 
-There is one way in which to increase the probability of detection while lowering the probability of false alarm, this is achieved by increasing the targets signal power (it should be noted that the signal power should be increased relative to the noise power). The method in which this can be accomplished is to increase the overall Signal-to-Noise-Ratio (SNR) of the system, if the overall SNR is increased above a specified level, then the probabilities discussed above, reach levels that sufficiently adequately satisfy the criteria of the system. the SNR and how it is attained is discussed in section~\ref{sec:SNRRRE}. 
+There is one way in which to increase the probability of detection while lowering the probability of false alarm, this is achieved by increasing the targets signal power (it should be noted that the signal power should be increased relative to the noise power). The method in which this can be accomplished is to increase the overall Signal-to-Noise-Ratio (SNR) of the system, if the overall SNR is increased above a specified level, then the probabilities discussed above, reach levels that sufficiently adequately satisfy the criteria of the system. the SNR and how it is attained is discussed in section~\ref{sec:SNR}. 
 
 
-\subsection{Basic Operation} \label{sec:BasicOperation}
+\section{Basic Operation} \label{sec:BasicOperation}
 The first important characteristic of a radar system is the ability to measure the distance of a target from the observation point. This is udertaken with the simple calculation of the amount of time that it takes a signal to travel from the transmitter to the target and back again, this is evaluated with the use of equation~\ref{eqn:RadarRangeEquation}. This equation evaluates the distance of the target ($R$) by making use of the speed of light (the speed that the EM wave travels, $c$), and the amount of time that it took the signal to travel to the target and back again ($\Delta$).
 
 \begin{equation} \label{eqn:RadarRangeEquation}
@@ -478,17 +480,19 @@ The first important characteristic of a radar system is the ability to measure t
 \end{equation}
 This allows for the calculation for the maximum and minimum round trip times for specific placements of objects from the observer. Table~\ref{tab:RadarRangeValues} illustrates the important round trip times which pertain to this system.
 
-\begin{table}
+\begin{table}[htb]
+    \caption{Radar Range Round Trip Times}
+    \label{tab:RadarRangeValues}
     \begin{center}
-        \begin{tabular}{ c c }
+        \begin{tabular}{p{70mm}cp{70mm}}
             \hline 
             Round Trip Time Parameter & Time (ms) \\
+            \hline
             Minimum Distance (Zenith direction) & $1.067$ \\
             Maximum Distance  (Zenith direction & $13.34$ \\
             Maximum Slant Distance & $14.83$ \\
+            \hline
         \end{tabular}
-        \caption{Radar Range Round Trip Times}
-        \label{tab:RadarRangeValues}
     \end{center}
 \end{table}
 These values take the assumption that the system is capable of steering up to $30^{\circ}$ from the zenith direction. If the system were to steer further, then the maximum slant distance would increase accordingly. The maximum steering ability of the system designed is capable of reaching approximately $50^{\circ}$, however, the maximum slant allowed is reduced in order to increase the reliability of the system. This is discussed in more detail in section~\ref{sec:ArrayStructure}***.
@@ -547,34 +551,204 @@ Where:
 It is assumed that the gain is determined with equation \ref{eqn:Gain}.
 
 \begin{equation} \label{eqn:Gain}
-G = \frac{4 pi n_{a} A}{\lambda^2} = \frac{4 pi A_{e}}{\lambda^2}
+G = \frac{4 pi \eta_{a} A}{\lambda^2} = \frac{4 pi A_{e}}{\lambda^2}
+\end{equation}
+
+Where $\eta_{a}$ is the efficiency of the antenna created which is commonly between 0.5 and 0.8 \cite[p.~64]{radarHandbook}.
+
+In the case of the monostatic antenna array, the transmitting and receiving gain are the same as it is the same array. This implies that for bistatic systems, it is possible to have two different ranges for receiving and transmitting \cite[p.~64]{radarHandbook}.
+
+
+At this point it is pertinent to provide an analysis into the losses that can possibly appear throughout the system, these losses are required before the antenna and antenna array can be simulated. These losses are discussed in section~\ref{sec:SNR}.
+
+
+
+\subsection{Pulsing Characteristics} \label{sec:PulsingCharacteristics}
+In order to calculate a number of characteristics on the SNR of the system, the pulsing characteristics are required. Figure~\ref{fig:Pulsing} illustrates the method in which the EM waves are sent out with respect to time. 
+
+\begin{center}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{Pulsing.pdf}
+        \caption{Radar EM Wave Pulse}
+        \label{fig:Pulsing}    
+    \end{figure}
+\end{center}
+
+This image illustrates a number of important parameters than can be applied to the system at this point in time. These parameters are related to section~\ref{sec:BasicOperation} and more importantly, table~\ref{tab:RadarRangeValues}. This implies that the maximum pulse width must be less than $1.067 ms$, the actual pulse width is likely to take a value far less than this. 
+The next parameter is the pulse repetition interval, this is related to the maximum round trip time that a signal can take, which implies that the minimum pulse repetition interval should be greater than $14.83 ms$. This limits the pulse repetition frequency of the system which is defined as $PRF = 1/PRI$, which limits the pulse repetition frequency to $67 Hz$. This is the maximum frequency the system can sustain without limiting the radar range abilities.
+
+** Image of pulse and return pulse
+The following image represents a case where a pulse is sent outwards and is then followed by, a period of time later, a corresponding echo pulse.
+The period between the pulse and the echo can be used to determine the altitude that the object has. This illustrates a circumstance of the system detecting an object. 
+
+\begin{center}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{ObjectDetection.pdf}
+        \caption{Object Detection}
+        \label{fig:ObjectDetection}    
+    \end{figure}
+\end{center}
+In order to detect the pulse, the time between each sample (sampling by the ADC) should be no less than the pulse width of the transmitter, this is a minimum requirement for the sampling frequency of the receiver subsystem.
+
+There are cases where large objects, further out than the maximum slant distance will return a signal (the large RCS results in a larger reflection of EM energy), this signal will be returned after the next pulse has occurred and depending on how far the away the object is, the system can read this as an object that appears to be closer than the actual object. This results in an incorrect reading. These cases should be accounted for within the system such that they are kept to a minimum. In most cases this is not an issue as the object is required to be much larger in RCS for it to be detected. More cases are ruled out as these echoes will appear at the antenna while the second pulse is still being transmitted, which implies that the receiver is still deactivated. ***
+This phenomenon is known as range ambiguity \cite[p.~22]{radarHandbook}
+The parameters defined in this section are evaluated and analysed in section~\ref{sec:Resolution}.
+
+\subsection{Resolution} \label{sec:Resolution}
+The resolution of the system is made up of three major parameters: range, angle, or/and Doppler frequency. These three parameters highlight the ability for the system to make a distinction between two objects with differing parameters.
+
+The first of these, the range resolution, is the parameter which defines the ability of the system to make an  effective distinction between two targets that are placed differing distances away from the observation point. It is related to the pulse width of the system as illustrated via equation~\ref{eqn:RangeResolution}. In order to decide on the pulse width required for the system to function, the criteria for the resolution of the range is required.
+
+\begin{equation} \label{eqn:RangeResolution}
+\Delta R = \frac{c \tau}{2}
+\end{equation}
+
+The limits on the range resolution are coupled with the limits of the bandwidth allowed by the frequency band. The pulse width is related to the bandwidth by the equation $\tau = 1/ B$.
+The bandwidth allocated to the frequency band is set at $8 MHz$, which results in a minimum pulse width of approximately $0.125 \mu s$, which is relatively small when compared to alternative systems \cite{AMISR, EISCAT, SIMO, telescope, BeamForming, OrbitDetermination, PlanarArray}. The bandwidth required by the maximum Doppler frequency shift of $50 kHz$, which results in a pulse width of $20 \mu s$.
+Lastly, the next parameter which determines the magnitude of the pulse width is the fact that the pulse width cannot be larger than the minimum round trip time (as discussed above) of $1.067 ms$. 
+This means that the pulse width can be sized with the $0.125 \mu s - 1.067 ms$ time span.
+These limits provide a range resolution of $18.75 m$ and $160.1 km$. Increasing the pulse length will result in a higherer SNR, however, then the range resolution suffers.
+Based on this evidence, and current implementations of the system, the pulse width of the system is chosen to be $1 \mu s$. This provides enough time for the transmitter to deactivate, and the receiver to activate to listen to the targets echoes, this switching time is required for the sytem to perform safely, and to avoid the receiver becoming damaged by the transmitter.
+This pulse width results in a range resolution of $150 m$, which is sufficient considering the number of objects in LEO and the volume that those objects are within. The probability of the system detecting two objects within this ambiguous range are unlikely and therefore this is a sufficient assumption.
+
+This pulse width results in a duty cycle which is evaluated with the use of $Duty Cycle = \tau \cdot PRF$, which provides a duty cycle of $67.4 \cdot 10^{6}$, this is a relatively small duty cycle, implying that the system is using a small amount of energy with respect to its maximum power requirements.
+The system constructed should be capable of varying its bandwidth on demand, this provides the ability for the system to scale to meet specific demands. The limits on the pulse width are still present for the detection of space debris, however, this technique can be used to detect smaller debris at the farther distances.
+
+The pulse width is also linked to the SNR of the system through equation~\ref{eqn:SNRPulseWidth}.
+
+\begin{equation} \label{eqn:SNRPulseWidth}
+SNR = \frac{P_{t} G_t G_r {\lambda^2} \sigma}{((4 \pi )^3 R^4 k T_s L_s}
+\end{equation}
+
+This implies that an increase in pulse width results in an increase in SNR. This is the case based on the fact that the receiver bandwidth is linked to the waveforms bandwidth, this implies that the receivers bandwidth can be substituded for the pulse width in the standard radar range equation \cite[p.~776]{radarHandbook}.
+This is a simple method in which to increase the SNR without increasing the cost of the overall system.
+
+
+
+\section{SNR} \label{sec:SNR}
+The SNR required for this system is highly dependent on the requirements for the probabilities of detection and false alarm. The first simplifying assumption of this section is to assume that the signal received by the object is non-fluctuating, this results in the ability to determine an operational SNR for successful detection \cite[p.~102-103]{radarHandbook}.
+The first part of this is to make use of equation~\ref{eqn:SNRProbability} in order to map a selected set of probabilities to a required SNR value \cite[p.~107]{radarHandbook}.
+
+\begin{equation} \label{eqn:SNRProbability}
+SNR (dB) = -5 log_{10}N + \Bigg(6.2 + \frac{4.54}{\sqrt{N + 0.44}}\Bigg) log_{10}(A + 0.12 A B + 1.7 B)
+\end{equation}
+
+Where 
+\begin{equation} \label{eqn:A}
+A = ln(\frac{0.62}{P_{FA}})
+\end{equation}
+and 
+
+\begin{equation} \label{eqn:B}
+B = ln \Bigg( \frac{P_D}{1 - P_D} \Bigg)
+\end{equation}
+
+This set of equations is used to generate figure~\ref{fig:SNRRequired} (in this case $N$ is the number of pulses, which is assumed to be 1).
+
+\begin{center}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{ProbabilityDetection.eps}
+        \caption{SNR Required for Detection}
+        \label{fig:SNRRequired}    
+    \end{figure}
+\end{center}
+
+This implies that in the case that for realistic values for the two probabilities, the SNR required reaches a value of approximately $10 dB$.
+This is therefore defined as the minimum SNR ($SNR_{min}$) required for the system to function.
+Based on this equation, it can be seen that if the number of pulses is increased, then the SNR required will become lower. This current approximation makes use of a single pulse on a target.
+
+There are a number of alternative methods in which to specify criteria of the system, these are discussed in section~\ref{sec:ParameterEstimation} \cite[p.~72]{radarHandbook}
+
+This first estimate for the minimum SNR required is linked to the noise present in the system, the noise of the system is evaluated in sections~\ref{sec:ReceiverNoise} and \ref{sec:ThermalNoise}.
+
+
+\subsection{Receiver Noise} \label{sec:ReceiverNoise}
+The three major losses within any system is made up of the transmitter, receiver, and signal-processing losses.
+Of these, the receivers noise is mostly made up of the noise generated by the primary Low Noise Amplifier (LNA) or mixer (if present) \cite[p.~405]{radarHandbook}.
+This receiver noise is generated by the phenomenon known as thermal noise, this is discussed in section~\ref{sec:ThermalNoise}.
+
+\subsection{Thermal Noise} \label{sec:ThermalNoise}
+The noise from the environment is mostly made up by solar effects. This case deals specifically with the noise generated by the sun. This can contribute to large amounts of noise within the signal if the antenna array is pointed in the direction of the sun, however, great care should be taken to avoid pointing the antenna array directly at the sun. There will still be a small contribution of the suns noise from the sidelobes of the antenna array, however, this power is greatly reduced.
+
+The second source of noise, the largest component within the system, is that generated by the receiver electronics.
+Thermal noise power, being uniform over the frequency spectrum contributes to the noise power over the bandwidth of the system. This implies that the thermal noise power is directly proportional to the receivers bandwidth. This power is determined with the use of equation~\ref{eqn:ThermalNoise}.
+
+\begin{equation} \label{eqn:ThermalNoise}
+P_{n} = k T_{s} B = k T_{0} F B
 \end{equation}
 
 Where:
 \begin{itemize}
-    \item $n_{a}$ is the efficiency of the antenna created (this is commonly between 0.5 and 0.8 \cite[p.~64]{radarHandbook})
+    \item $k$ is Boltzmann's constant ($1.38 \cdot 10^{-23} Watt-sec/K$)
+    \item $T_{0}$ is the standard temperature (normally $290 K$)
+    \item $T_{s}$ is the system noise temperature ($T_{s} = T_{0} F$)
+    \item $B$ is the receivers bandwidth ($Hz$)
+    \item $F$ is the noise figure of the receiver subsystem.
 \end{itemize}
 
-In the case of the monostatic antenna array, the transmitting and receiving gain are the same as it is the same array. This implies that for bistatic systems, it is possible to have two different ranges for receiving and transmitting.
+The noise figure defined here should be given in real amplitude (convert from $dB$ as this is what it is defined as). The bandwidth defined here is a calculated value and is dependent on two factors of the system. Typical noise figures for LNA's range from $2.5 - 5 dB$, the value used for this calculation is taken to be $2.5 dB$.
+% The first of these can be defined with the use of the largest doppler frequency shift detectable by the system. This is defined in \ref{sec:TechnicalandPhysicalLimitations} with the introduction of the debris characteristics.
+
+% The second of these is defined by the minimum pulse width of the signal. This is calculated in section~\ref{sec:Resolution}. 
+% This second case is highly important because if the bandwidth of the receiver is made smaller than the bandwidth required for the pulse width, then the power on the target will be reduced and this will cause inconsistencies and will reduce the range resolution of the system \cite[p.~65]{radarHandbook}. If the bandwidth of the receiver is created to be larger than the reciprocal of the pulse width, then the SNR of the system will decrease. This implies that the bandwidth of the receiver can occupy a small frequency band which is set by the pulse width. This implies that if the pulse width of the system is set to 1us, then the bandwidth of the system is 1 MHz.
+% The approximation of using $1/\tau$ is often used in monostatic systems \cite[p.~65]{radarHandbook}.
 
 
-\section{Antenna}
+At this point it is possible to evaluate the required parameters of the system with the use of the noise figure that is estimated above.
+The SNR is defined by equation~\ref{eqn:SNR}.
+
+\begin{equation} \label{eqn:SNR}
+SNR = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi)^3 R^4 k T_0 F B}
+\end{equation}
+
+
+Rearranging this equation and placing the known value on the right hand side results in equation~\ref{eqn:RequiredParameters}.
+
+\begin{equation} \label{eqn:RequiredParameters}
+P_{t} G_{t} G_{r} = \frac{SNR_{min} (4 \pi )^3 R^4 k T_{0} F B}{{\lambda}^2 \sigma} = 
+\end{equation}
+Where the values on the right hand side of the equation are listed in table~\ref{tab:DesignValues}.
+This implies that the product of the variables on the left hand side of the equation are required to be equal to the value on the right hand side for the system to function as designed.
+
+\begin{table}[htb]
+    \caption{Major Design Features}
+    \label{tab:DesignValues}
+    \begin{center}
+        \begin{tabular}{p{70mm}cp{70mm}}
+            \hline 
+            Parameter & Value \\
+            \hline
+            $SNR_{min}$ & $10 dB$ \\
+            $R$ & $2223.8 km$ \\
+            $k$ & $1.38064852 \cdot 10^{-23} m^2 kg s^{-2} K^{-1}$ \\
+            $T_{0}$ & $K$ \\
+            $F$ & $val$ \\
+            $B$ & $val$ \\
+            $\lambda$ & $val$ \\
+            $\sigma$ & $val$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+
+
+This provides a starting point for the design of the antenna and antenna array such that it can be built to satisfy the requirements thus far.
+
+\section{Antenna} \label{sec:Antenna}
+The antenna forms the most basic unit of the system. It is responsible for transforming an electrical signal into an EM wave and directing that EM energy into a specific direction. It is also important as it makes use of its reciprocity such that it can receive and transmit with the same characteristics. This makes it ideally suited to this application as it can be used to transmit the EM wave and receive the wave, thus reducing the cost and complexity of the system.
+The antenna, and corresponding array is designed here to satisfy the requirements in equation~\ref{eqn:RequiredParameters}, these parameters are the systems gain and the power that the system is required to sustain.
+
+The most important design requirement of the antenna is that is should have sufficient gain, it should be able to direct its energy in a specific direction. The second component of the antenna is that it should be capable of sending out this EM wave and receiving the echo with minimal losses throughout the process. This implies that it is designed to be as efficient as possible.
+The array, discussed in section~\ref{sec:ArrayStructure} discusses the design of multiple antennas and their interconnectedness such that the system can benefic from multiple antennas working together.
+
+The first design decision is that of the type of antenna to make use of. The design methodology for this has the following criteria: cost, construction, bandwidth, sidelobes, gain, efficiency, power capabilities, durability, etc. 
+These parameters of the antenna are discussed below and the design is drawn up based on these criteria. 
+
+
 
 \section{Antenna Array} \label{sec:AntennaArray}
 
 
-\subsection{Resolution} \label{sec:Resolution}
-
-The resolution of the system has three components: the ability to distinguish between objects that are different distances away from the system, have differing angles with respecto the the system, and have differing Doppler frequencies.
-
-The first of these, the range resolution, determines if you are able to discren two objects that are in eachothers vacinity.
-The range resolution is defined by:
-$\delta R = \frac{c \tau}{2}$
-
-This implies that if the pulse width of the signal is 1us, then the range resolution of the system is $150 m$. This implies that if the pulse width is decreased, then the range resolution increases.
-It must be noted that, if the pulse width is decreased, then the energy that is transmitted will decrease, and therefore it becomes increasingly difficult to detect an object.
-
-% The doppler resolution is determined by: 3 dB width = \frac{0.89}{dwell time}
 
 \subsection{Radar Functions} \label{sec:RadarFunctions}
 
@@ -583,68 +757,6 @@ It must be noted that, if the pulse width is decreased, then the energy that is 
 \subsubsection{Track} \label{sec:Track}
 
 \subsubsection{Image} \label{sec:Image}
-
-\subsection{SNR} \label{sec:SNR}
-
-The resulting SNR of the calculation performed is the targets signal power divided by the sum of the noises in the system, this includes the receiver thermal noise and jammer noise.
-
-The set of equations that are used to determine a number of these parameters are known as the radar range equations (RRE), these equations allow for the determination of the received power from the systems EM waves' reflections and also to determine the levels of the interfering power within the system, this allows for the calculation of the SNR.
-
-This section begins with introducing the RRE and how it is applied to the system and how to determine the simplistic performance of the system. This first step estimates the performance of the systems power density at a distance R away. This is followed by estimating the thermal noise present in the receiver of the system, this then allows for the first estimate of the SNR. 
-
-
-\subsubsection{Receiver Noise} \label{sec:ReceiverNoise}
-
-\subsubsection{Thermal Noise} \label{sec:ThermalNoise}
-
-The noise from the environment is mostly made up by solar effects. This case deals specifically with the noise generated by the sun. This can contribute to large amounts of noise within the signal if the antenna array is pointed in the direction of the sun, however, great care should be taken to avoid pointing the antenna array directly at the sun. There will still be a small contribution of the suns noise from the sidelobes of the antenna array, however, this is greatly reduced.
-
-The second source of noise, the largest component within the system, is that generated by the receiver electronics.
-Thermal noise power, being uniform over the frequency spectrum contributes to the noise power over the bandwidth of the system. This implies that the thermal noise power is directly proportional to the receivers bandwidth. This power is determined with the use of equation ***.
-
-$P_{n} = k T_{s} B = k T_{0} F B$
-
-Where:
-\begin{itemize}
-    \item $k$ is Boltzmann's constant ($1.38 \cdot 10^{-23} Watt-sec/K$)
-    \item $T_{0}$ is the standard temperature (normally $290 K$)
-    \item $T_{s}$ is the system noise temperature ($T_{s} = T{0} F$)
-    \item $B$ is the receivers bandwidth ($Hz$)
-    \item $F$ is the noise figure of the receiver subsystem.
-\end{itemize}
-
-The noise figure defined here should be given in real amplitude (convert from $dB$ as this is what it is usually specified in).
-The bandwidth defined here is a calculated value and is dependent on two factors of the system.
-The first of these can be defined with the use of the largest doppler frequency shift detectable by the system. This is defined in *** with the introduction of the debris' characteristics.
-The second of these is defined by the minimum pulse width of the signal. This is calculated in section ***. 
-This second case is highly important because if the bandwidth of the receiver is made smaller than the bandwidth required for the pulse width, then the power on the target will be reduced and this will cause inconsistencies and will reduce the range resolution of the system \cite[p.~65]{radarHandbook}. If the bandwidth of the receiver is created to be larger than the reciprocal of the pulse width, then the SNR of the system will decrease. This implies that the bandwidth of the receiver can occupy a small frequency band which is set by the pulse width. This implies that if the pulse width of the system is set to 1us, then the bandwidth of the system is 1 MHz.
-The approximation of using $1/\tau$ is often used in monostatic systems \cite[p.~65]{radarHandbook}.
-
-\subsection{SNR and the RRE} \label{sec:SNRRRE}
-
-At this point it is possible to evaluate the SNR of the system with the use of the noise figure that is attained above.
-The SNR is defined by equation ***.
-
-$SNR = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi)^3 R^4 k T_0 F B}$
-
-This equation applies to discreet targets, which applies to this circumstance.
-
-Need image here which describes how the pulses are placed with respect to time, interpulse period
-
-Go into detail on the inter pulse period, the pulse repetition frequency, and how it is related to the min and max distances of objects.
-
-The following image represents a case where a pulse is sent outwards and is then followed by, a period of time later, a corresponding echo pulse.
-The period between the pulse and the echo can be used to determine the altitude that the object has.
-In order to detect the pulse, the time between each sample should be no less than the pulse width of the transmitter (this should be elaborated on... get the info from: \cite[p.~21]{radarHandbook})
-
-
-Think about echoes that come back after the next pulse is fired, this can be from targets that are past the 2000 km range. These need to be dealt with. One way is to define a SNR that will rule out these cases. Another case is to throw out any echoes that happen before one is expected to have returned (based on the minimum altitude required to be detected). 
-This issue is known as a range ambituite (\cite[p.~22]{radarHandbook})
-
-*** Include calculation of the pulse width and the corresponding bandwidth if requires. Stuffies for this can be found on page 65
-
-
-
 
 \subsubsection{Multi-Pulsing} \label{sec:MultiPulsing}
 
@@ -682,6 +794,7 @@ Make use of [this](https://etd.ohiolink.edu/!etd.send\_file?accession=ohiou13452
 \section{Feeding Networks} \label{sec:FeedingNetworks}
 
 
+\subsection{Mixer} \label{sec:Mixer}
 \section{Environmental Considerations} \label{sec:EnvironmentalConsiderations}
 
 \subsection{Weather Dependence} \label{sec:Weatherdependence}
@@ -837,6 +950,11 @@ It may make sense to apply a modulation to the signal as this can tell you if it
 \bibliography{references}
 
 
+
+\appendix
+
+
+\section{Parameter Estimation} \label{sec:ParameterEstimation}
 %{\tiny \vfill \hfill \today \hspace{5mm} witseie-paper-2003.\TeX}
 
 \end{document}
