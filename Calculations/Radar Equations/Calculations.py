@@ -95,6 +95,7 @@ SNRmin = 10**(SNRmindB/10)
 gainPowerProduct = (SNRmin * (4 * (math.pi))**3 * maxSlantDistance**4 * boltzmannsConstant * standardTemp * noiseFigure * bandwidth)/(Lambda**2 * minRCS)
 
 arrayGain = 12656.7
+# arrayGain = 15430
 
 maxPowerRequired = gainPowerProduct / ((arrayGain)**2)
 print(str(maxPowerRequired/1000000) + " MW")
