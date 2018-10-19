@@ -24,8 +24,8 @@ beta = (2 * math.pi)/(Lambda)
 dx = Lambda/2
 dy = Lambda/2
 
-theta = 10
-psi = 10
+theta = 0
+psi = 0
 
 maxAmplitude = 1
 minAmplitude = 0.5
@@ -33,12 +33,18 @@ minAmplitude = 0.5
 w,h = numRows,numColumns
 phaseMatrix = [[0 for x in range(w)] for y in range(h)]
 
+d = Lambda/4
+k = (2 * math.pi)/Lambda
+
+
 f = open("phase.txt", "w+")
 newline = ""
 for x in range(0,numRows):
+#     thetaSteer = x * ((math.pi)/4096 + k * d * math.cos(0)) * (-1)
     thetaSteer = x * (360 * dx * math.sin(math.radians(theta)))/(Lambda)
     for y in range(0,numColumns):
         psiSteer = y * (360 * dy * math.sin(math.radians(psi)))/(Lambda)
+        # psiSteer = y * ((math.pi)/4096 - k * d * math.cos(0)) * (-1)
         totalSteer = thetaSteer + psiSteer
         phaseMatrix[x][y] = totalSteer
         outLine = newline + "1.0," + str(totalSteer)

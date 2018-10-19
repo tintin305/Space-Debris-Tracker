@@ -20,6 +20,8 @@
 \usepackage{caption}
 \usepackage{siunitx}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
 \graphicspath{{Images/}}
 %
 % PDF Info
@@ -97,6 +99,77 @@ The idea behind radars is such that an electromagnetic (EM) pulse is created and
 The system is then used to receive these scattered EM waves and an assumption is created in order to detect and then analyse the signals to identify the object and determine its parameters.
 It is the design of this system that is undertaken throughout this report. 
 
+\subsection{Coordinate System} \label{sec:CoordinateSystem}
+The coordinate system used throughout this design report the coordinate system used is illustrated in figure~\ref{fig:CoordinateSystem}, this is the spherical coordinate system.
+\begin{figure}
+%Angle Definitions
+%-----------------
+
+%set the plot display orientation
+%synatax: \tdplotsetdisplay{\theta_d}{\phi_d}
+\tdplotsetmaincoords{60}{110}
+
+%define polar coordinates for some vector
+%TODO: look into using 3d spherical coordinate system
+\pgfmathsetmacro{\rvec}{.8}
+\pgfmathsetmacro{\thetavec}{30}
+\pgfmathsetmacro{\phivec}{60}
+
+%start tikz picture, and use the tdplot_main_coords style to implement the display 
+%coordinate transformation provided by 3dplot
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+
+%set up some coordinates 
+%-----------------------
+\coordinate (O) at (0,0,0);
+
+%determine a coordinate (P) using (r,\theta,\phi) coordinates.  This command
+%also determines (Pxy), (Pxz), and (Pyz): the xy-, xz-, and yz-projections
+%of the point (P).
+%syntax: \tdplotsetcoord{Coordinate name without parentheses}{r}{\theta}{\phi}
+\tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
+
+%draw figure contents
+%--------------------
+
+%draw the main coordinate system axes
+\draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+\draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
+\draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+
+%draw a vector from origin to point (P) 
+\draw[-stealth,color=black] (O) -- (P);
+
+%draw projection on xy plane, and a connecting line
+\draw[dashed, color=black] (O) -- (Pxy);
+\draw[dashed, color=black] (P) -- (Pxy);
+
+%draw the angle \phi, and label it
+%syntax: \tdplotdrawarc[coordinate frame, draw options]{center point}{r}{angle}{label options}{label}
+\tdplotdrawarc{(O)}{0.2}{0}{\phivec}{anchor=north}{$\phi$}
+
+
+%set the rotated coordinate system so the x'-y' plane lies within the
+%"theta plane" of the main coordinate system
+%syntax: \tdplotsetthetaplanecoords{\phi}
+\tdplotsetthetaplanecoords{\phivec}
+
+%draw theta arc and label, using rotated coordinate system
+\tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.5}{0}{\thetavec}{anchor=south west}{$\theta$}
+
+%draw some dashed arcs, demonstrating direct arc drawing
+\draw[dashed,tdplot_rotated_coords] (\rvec,0,0) arc (0:90:\rvec);
+\draw[dashed] (\rvec,0,0) arc (0:90:\rvec);
+
+%set the rotated coordinate definition within display using a translation
+%coordinate and Euler angles in the "z(\alpha)y(\beta)z(\gamma)" euler rotation convention
+%syntax: \tdplotsetrotatedcoords{\alpha}{\beta}{\gamma}
+\tdplotsetrotatedcoords{\phivec}{\thetavec}{0}
+
+\end{tikzpicture}
+\caption{Coordinate System}
+\label{fig:CoordinateSystem}
+\end{figure}
 
 \subsection{Space Debris} \label{sec:SpaceDebris}
 As discussed in section~\ref{sec:INTRODUCTION}, space debris in Earths orbit has been increasing for many decades, this is mainly due to space missions with poor regulations on the material that is allowed to stay in Earths orbit.
@@ -749,7 +822,7 @@ The first important characteristic of the system to consider is to analyse the p
 
 The choice of antenna is a crossed-dipole antenna, the following sections are used to illustrate the process used to determine the correct antenna and how its characteristics were designed and calculated.
 
-\subsection{sec:Polarization}
+\subsection{Polarization} \label{sec:Polarization}
 There are four commonly used polarizations that are used in antennas: vertical, horizontal, right hand circular, and left hand circular, these are created based on the geometry of the antenna and how it is fed.
 EM waves entering the ionosphere experience Faraday Rotation, this implies that in the case that a linearly polarized wave passes through the ionosphere, its polarization is rotated from the interaction with the Earth's magnetic field. This interaction is highly dependent on the frequency of the signal and a number of other factors \cite[p.~24]{faradayRotationSlides}, which implies that the rotation of this linear EM wave can rotate through an arbitrary amount of degrees based on the environmental conditions at the time of transmission. This rotation implies that if a linear antenna were to be used, the receiving antenna would be unable to determine how much the reflected wave had rotated and if it cannot match the exact roatation, then this will result in a significant loss of signal (often up to $20 dB$), which can severely impair the system functionality.
 
@@ -791,13 +864,177 @@ The important procedure to note here is that the polarization is created with th
 The physical construction of the antenna is created such that it consists of two half-wavelength dipoles that are aligned at right angles with respect to each other. The currents within these two dipoles have equal magnitude and they are phased $90^{\circ}$ apart. 
 Commonly, these crossed-dipole antennas are set up with a reflector such that half of the radiation pattern is reflected in order to double the gain of the antenna \cite[p.~108]{IEEECrossedDipole}. 
 
-Figure~\ref{fig:Crossed-Dipole} illustrates the simple geometry of a crossed dipole antenna.
+Figure~\ref{fig:Crossed-DipoleGeometry} illustrates the simple geometry of a crossed dipole antenna.
+
+\begin{center}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{Crossed-Dipole.pdf}
+        \caption{Crossed-Dipole Geometry}
+        \label{fig:Crossed-DipoleGeometry}    
+    \end{figure}
+\end{center}
+
+The arms of the antenna illustrated here are positioned parallel to the ground. This is done because, in general, it is used to create circularly polarized EM waves in the $\pm z$ directions.
+
+Clearly, based on the requirements of this antenna, the radiation in the $-z$ direction is not required. The implementation of a perfect electrical conductor placed below the antenna will redirect this part of the radiation pattern upwards where it constructively interferes with the radiation patter in the $+z$ direction \cite[p.~110-111]{IEEECrossedDipole}. This ground plane is required to be placed a quarter wavelength above the ground for this mechanism to work. This mechanism is based on image theory such that the system gains a doubling in gain \cite[p.~111]{IEEECrossedDipole}. This structure is created in FEKO and simulated for the selected frequency. The polar plot and cartesian plots for the radiation patterns are illustrated in figure~\ref{fig:Crossed-Dipole-Radiation-Patterns}. It is important to note from these plots that the antenna which makes use of the ground plane has a $3 dB$ than the antenna in free space. This implies that the use of a ground plane will increase the performance of each individual antenna without any loss to the ability of the system. The left and right hand circular polarization are not affected by the use of the ground plane either. Based on these simulations a number of characteristics of the two antenna configurations can be compared. This is illustrated in table~\ref{tab:AntennaConfigurations}.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+            \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Polar-Plot.pdf}
+            \caption{Crossed Dipole Polar Plot}
+            \label{fig:ganttplanned}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Cartesian-Plot.pdf}
+            \caption{Crossed Dipole Cartesian Plot}
+                \label{fig:ganttreality}
+            \end{subfigure}
+\caption{Crossed Dipole Radiation Patterns}
+\label{fig:Crossed-Dipole-Radiation-Patterns}
+\end{figure}
 
 
+\begin{table}[htb]
+    \caption{Crossed Dipole Comparison}
+    \label{tab:AntennaConfigurations}
+    \begin{center}
+        \begin{tabular}{p{60mm}cp{40mm}cp{40mm}}
+            \hline 
+            Parameter & Crossed Dipole (free space) & Crossed Dipole (ground plane) \\
+            \hline
+            Maximum Gain ($dBi$) & $2.175$ & $7.340$ \\
+            Maximum Gain Direction (degrees) & $0$ & $0$ \\
+            Minimum Gain ($dBi$) & $-0.835$ & $null$ \\
+            Minimum Gain Direction (degrees) & $\pm 90$ & $\pm 90$ \\
+            Half Power Beam Width ($-3 dB$) & N/A & $100.401$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
+Based on the features in table~\ref{tab:AntennaConfigurations}, it is clear that this gain should be multiplied by a large factor in order to meet the requirements stated in section~\ref{sec:ThermalNoise}. This is accomplished with the use of an antenna array, this is discussed in section~\ref{sec:AntennaArray}.
+The antenna geometry is highly important as it should be able to withstand a range of environmental conditions that range from extreme temperatures to humidity variations, to high wind speeds.
+The ideal material for construction of the antenna is copper as this has the lowest resistivity while having a low cost.
+The first important parameter of each of the dipoles is to determine the current density throughout the conductor and therefore to optimize the sizing of the wire such that it takes into account the skin effect.
+This is calculated with the use of equation~\ref{eqn:SkinDepth}.
+
+\begin{equation} \label{eqn:SkinDepth}
+\delta = \sqrt{\frac{\rho}{\pi \cdot f \cdot \mu}} = 2.6397 \cdot 10^{-6} m
+\end{equation}
+Where $\rho$ is the resistivity of copper ($1.678 \cdot 10^{-8} \Omega m$) and $\mu$ is the absolute magnetic permeability of the material ($4 \pi \cdot 10^{-7} H/m \cdot 0.999991$).
+This value for the skin depth implies that the conductor used should, ideally, be a hollow tube which has a wall thickness that should be larger than the size calculated in equation~\ref{eqn:SkinDepth}. This reduces the cost of each conductor while reducing the weight and therefore the strength of the connectors required.
+The added benefit of the hollow conductor tube is that it can be expanded to increase the bandwidth of the antenna. 
+The second factor to consider for the thickness of this conductor is related to the power requirements. In order to determine the thickness of this tube, it should be sufficient to dissipate the required amount of power under the maximum temperatures possible in the area. The power that is required to be dissipated by the antenna can be minimized by matching the system, this reduces the losses and hence the power required to be dissipated.
+
+
+The size of this tube is sized such that it matches up with the maximum required bandwidth of the system as a whole. The larger the radius of this tube the greater bandwidth the antenna can achieve.
 
 
 
 \section{Antenna Array} \label{sec:AntennaArray}
+The antenna array, constructed with multiple individual antennas work collectively in order to augment the radiation pattern. These antennas, in coordination, create a highly directed radiation pattern with higher gain than the individual antennas. The antennas are dynamically phased and excited such that the radiation pattern changes to match the required pattern to detect the debris.
+
+The criteria of the array can be satisfied with the correct choice of array factor, element separation, phasing, and the excitation of the individual elements.
+
+These are discussed in the following sections.
+
+\subsection{Field of View and Beam Direction} \label{sec:FieldofViewandBeamDirection}
+The radiation pattern required, based on the system designed, should be capable of directing the EM wave in the direction of the zenith and be capable of steering $30^{\circ}$ away in all directions.
+
+The radiation pattern required from this array should have a large maximum gain with a small beam width. This is required for the system such that the system can detect objects in the desired range, and to increase the cross-range resolution (the ability to make a distinction between two objects within an angle range).
+
+This requirement is uniquely suited to the use of a broadside array, in which the maximum radiation is directed in the broadside: $\Theta = 0$.
+In order to accomplish this, the individual antennas maxima are also required to be directed in this direction. This justifies the implementation of the crossed dipole.
+The design of the antenna in the previous section is duplicated for this array, this implies that the sizing of the dipoles are kept the same, the height above the ground plane is kept the same ($\Lambda /4$), and the phase between each dipole keeps the $90^{\circ}$ to create the circular polarization.
+
+
+In order to accomplish this, the antennas are placed in a grid arrangement such that the array forms an $n \times m$ matrix shape.
+The array is then excited such that the main bean is directed towards the zenith. This is accomplished by determining the point at which equation~\ref{eqn:FirstMaximum}
+is equal to zero \cite[p.~296]{Balanis}. Where $\Psi$ represents the steering angle of the array, $k = \frac{2 \pi}{\Lambda}$ and $\beta$ represents the progressive phase delay required between each of the elements.
+
+\begin{equation} \label{eqn:FirstMaximum}
+\Psi = k d cos \theta + \beta = 0
+\end{equation}
+This is accomplished by creating a zero phase delay between the elements. This applies to the case of the uniformally excited array, which implies that all elements in the array have the same amplitude excitation.
+This achieves the zenith direction gain of the array. The next stage is to determine the optimal spacing between each element.
+
+
+\subsection{Element Spacing} \label{sec:ElementSpacing}
+The second requirement of this broadside radiation is that there should be no other maxima in the radiation pattern, this phenomenon is known as grating lobes.
+The presence of side lobes within the radiation pattern is unwanted as this can result in large amounts of radiated energy in unwanted directions. These sidelobes also result in a misuse of the energy that is used in the system.
+The reduction of side lobe level is discussed in more detail in section~\ref{sec:ElementExcitation}.
+
+
+In order to avoid the grating lobes, the separation between each consecutive element in the array should not be multiplies of the wavelength of the antenna \cite[p.~297]{Balanis}.
+In order to eliminate this probability, the spacing between elements should be less than one wavelength.
+
+
+The spacing between each element in the array is set at $\Lambda/2$ which satisfies this criteria.
+In order to achieve this spacing, the antennas are rotated by $45^{\circ}$, this allows for tighter packing of the antennas. This configuration is illustrated in figure~\ref{fig:ArrayGeometry}, this is for a $2 \times 2$ array, the illustration is from above the array.
+
+\begin{center}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{ArrayGeometry.pdf}
+        \caption{Array Geometry}
+        \label{fig:ArrayGeometry}    
+    \end{figure}
+\end{center}
+
+This creates a manageable spacing between the elements such that they can be easily installed and will not interfere with adjacent antennas (mechanically). This is also important for cases where antennas need replacing, this makes this process easier.
+
+The elements spaced the same distance above the ground plane as the case for the single antenna. The ground plane is created with a conducting mesh. The mesh is created such that the spacing between each consecutive line is less than $\Lambda/10$ apart. This spacing reduces the cost of the ground mesh as this ground mesh acts as a solid surface in reference to the frequency that is incident upon it.
+
+\subsection{Main Beam Gain} \label{sec:MainBeamGain}
+The gain of the main beam is highly important to the functionality of the system. This part of the design is created such that the antenna array is sized such that the gain is maximized while maintaining a practical number of elements.
+The design procedure for sizing the array is based on a number of factors. The first of these is based on previous implementations of antenna arrays to detect space debris \cite{AMISR}, this made use of an array of $64 \times 64$ elements which creates a total of $4096$ elements.
+The second design choice is the fact that this sizing results in the ability to create a modular design with the elements. The sizing of this array is structured such that it is a square shape, this makes the phasing ability the same for both steering directions and creates a relatively uniform steering FOV.
+During simulations, the increase in gain between a $64 \times 64$ matrix and a $70 \times 70$ array resulted in an increase of $0.775 dB$, which does not warrant the extra cost for the extra $804$ antennas.
+Increasing the number of antennas reduces the power requirement for each antenna as this splits the total power requirement between each antenna.
+The next stage is to attempt to steer this main beam in the required directions in order to track the debris. The steering of the system is discussed in section~\ref{sec:ElementPhasing}.
+
+
+The drawback of increasing the number of elements in the array (even though the main beam gain has increased), is that the side lobe level decreases. This implies that these side lobes may be capable of creating false detections. If the side lobe levels are high enough, they may be capable of sending out an EM wave with enough energy such that the returned pulse is detected as an object. Depending on the direction of these side lobes, it may be low flying aircraft, birds, objects in the low range of LEO, etc. Consequently, these side lobes should be reduced such that they do not affect the system.
+Side lobes can create unwanted interference between neighbouring systems which is disadvantageous for both systems. In the case that the beam is steered in its maximum angle, this side lobe is steered as well. 
+A number of methods exist in which to reduce this effect, the first is to attempt to reduce the side lobes.
+The reduction of these side lobes is discussed further in section~\ref{sec:ElementExcitation}.
+
+
+
+
+\subsection{Element Phasing} \label{sec:ElementPhasing}
+In order to achieve steering of the array, progressive phase delay is required for each element. This phase delay amount is determined with the use of equation~\ref{eqn:PhaseDelay} \cite[p.~301]{Balanis}.
+
+\begin{equation} \label{eqn:PhaseDelay}
+\Psi = k d cos \theta + \beta
+\end{equation}
+In this case $\Psi$ represents the angle to which the array should direct its main lobe, $\theta$ is taken to be $0^{\circ}$ (to create the broadside effect) and $\beta$ the progressive phase delay for each element.
+This principle is used to illustrate the scanning feature represented in figure~\ref{fig:ArraySteering}.
+This principle can be applied continuously which means that the beam can be dynamically steered in the required direction.
+% The change in direction that the beam is steered is dependent on the external 
+In order to apply this principle to the 2D array used in this design, the steering is implemented in the $x$ direction, and then the $y$ direction, such that the beam is steered in the $\theta$ and then the $\phi$ direction in order to be directed at the required coordinates.
+This system is analysed with the use of FEKO in order to test the steerability of the system. The Python code used to generate the phasing can be found in section *** python code.
+
+
+
+
+\subsection{Element Excitation} \label{sec:ElementExcitation}
+
+
+
+
+The antenna array is constructed in such a way that it acts as an equally spaced linear array
+
+The introduction of more antenna elements results in a decreasing main lobe width, this is wanted as it reduces the angle ambiguity when detecting objects. ***
+
+
+
+Grating lobes appear when the beam is steered too far away from the zenith and the main beam disappears and reappears on the wrong side.
+
+
+
+
 
 
 
