@@ -25,7 +25,7 @@ dx = Lambda/2
 dy = Lambda/2
 
 theta = 0
-psi = 0
+psi = 30
 
 maxAmplitude = 1
 minAmplitude = 0.5
@@ -54,8 +54,8 @@ for x in range(0,numRows):
 fig = plt.figure(figsize=(6, 3.2))
 
 ax = fig.add_subplot(111)
-ax.set_title('colorMap')
-plt.imshow(phaseMatrix)
+ax.set_title('Heat Map Representing Phase Delay of Elements')
+plt.imshow(phaseMatrix, cmap="Greys")
 ax.set_aspect('equal')
 
 cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
@@ -63,7 +63,7 @@ cax.get_xaxis().set_visible(False)
 cax.get_yaxis().set_visible(False)
 cax.patch.set_alpha(0)
 cax.set_frame_on(False)
-plt.colorbar(orientation='vertical')
+plt.colorbar(orientation='vertical', label="Phase Delay (degrees)")
 plt.show()
 
 
@@ -87,8 +87,8 @@ print(amplitudeMatrix)
 fig = plt.figure(figsize=(6, 3.2))
 
 ax = fig.add_subplot(111)
-ax.set_title('colorMap')
-plt.imshow(amplitudeMatrix)
+ax.set_title('Heat Map Representing Amplitude Excitation of Elements')
+plt.imshow(amplitudeMatrix, cmap="Greys")
 ax.set_aspect('equal')
 
 cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
@@ -96,7 +96,7 @@ cax.get_xaxis().set_visible(False)
 cax.get_yaxis().set_visible(False)
 cax.patch.set_alpha(0)
 cax.set_frame_on(False)
-plt.colorbar(orientation='vertical')
+plt.colorbar(orientation='vertical', label="Percentage of Total Power")
 plt.show()
 
 flattenedPhase = []

@@ -876,7 +876,7 @@ Figure~\ref{fig:Crossed-DipoleGeometry} illustrates the simple geometry of a cro
 
 The arms of the antenna illustrated here are positioned parallel to the ground. This is done because, in general, it is used to create circularly polarized EM waves in the $\pm z$ directions.
 
-Clearly, based on the requirements of this antenna, the radiation in the $-z$ direction is not required. The implementation of a perfect electrical conductor placed below the antenna will redirect this part of the radiation pattern upwards where it constructively interferes with the radiation patter in the $+z$ direction \cite[p.~110-111]{IEEECrossedDipole}. This ground plane is required to be placed a quarter wavelength above the ground for this mechanism to work. This mechanism is based on image theory such that the system gains a doubling in gain \cite[p.~111]{IEEECrossedDipole}. This structure is created in FEKO and simulated for the selected frequency. The polar plot and cartesian plots for the radiation patterns are illustrated in figure~\ref{fig:Crossed-Dipole-Radiation-Patterns}. It is important to note from these plots that the antenna which makes use of the ground plane has a $3 dB$ than the antenna in free space. This implies that the use of a ground plane will increase the performance of each individual antenna without any loss to the ability of the system. The left and right hand circular polarization are not affected by the use of the ground plane either. Based on these simulations a number of characteristics of the two antenna configurations can be compared. This is illustrated in table~\ref{tab:AntennaConfigurations}.
+Clearly, based on the requirements of this antenna, the radiation in the $-z$ direction is not required. The implementation of a perfect electrical conductor placed below the antenna will redirect this part of the radiation pattern upwards where it constructively interferes with the radiation patter in the $+z$ direction \cite[p.~110-111]{IEEECrossedDipole}. This ground plane is required to be placed a quarter wavelength above the ground for this mechanism to work. This mechanism is based on image theory such that the system gains a doubling in gain \cite[p.~111]{IEEECrossedDipole}. This structure is created in FEKO and simulated for the selected frequency. The polar plot and cartesian plots for the radiation patterns are illustrated in figure~\ref{fig:Crossed-Dipole-Radiation-Patterns}. It is important to note from these plots that the antenna which makes use of the ground plane has a $3~dB$ than the antenna in free space. This implies that the use of a ground plane will increase the performance of each individual antenna without any loss to the ability of the system. The left and right hand circular polarization are not affected by the use of the ground plane either. Based on these simulations a number of characteristics of the two antenna configurations can be compared. This is illustrated in table~\ref{tab:AntennaConfigurations}.
 
 \begin{figure}[htb]
     \centering
@@ -884,13 +884,13 @@ Clearly, based on the requirements of this antenna, the radiation in the $-z$ di
         \centering
             \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Polar-Plot.pdf}
             \caption{Crossed Dipole Polar Plot}
-            \label{fig:ganttplanned}
+            \label{fig:Crossed-Dipole-Radiation-Patterns-Polar}
         \end{subfigure}%
         \begin{subfigure}{.5\textwidth}
             \centering
             \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Cartesian-Plot.pdf}
             \caption{Crossed Dipole Cartesian Plot}
-                \label{fig:ganttreality}
+                \label{fig:Crossed-Dipole-Radiation-Patterns-Cartesian}
             \end{subfigure}
 \caption{Crossed Dipole Radiation Patterns}
 \label{fig:Crossed-Dipole-Radiation-Patterns}
@@ -993,12 +993,63 @@ The second design choice is the fact that this sizing results in the ability to 
 During simulations, the increase in gain between a $64 \times 64$ matrix and a $70 \times 70$ array resulted in an increase of $0.775 dB$, which does not warrant the extra cost for the extra $804$ antennas.
 Increasing the number of antennas reduces the power requirement for each antenna as this splits the total power requirement between each antenna.
 The next stage is to attempt to steer this main beam in the required directions in order to track the debris. The steering of the system is discussed in section~\ref{sec:ElementPhasing}.
+To illustrate this feature of the system, figure~\ref{fig:MainBeamGain} shows the differences between a $32 \times 32$, $64 \times 64$, and a $70 \times 70$ array and the different gains they each produce.
+
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+            \includegraphics[width=0.9\linewidth]{BigArrayGain-Polar.pdf}
+            \caption{Main Beam Gain for Different Array Sizes - Polar Plot}
+            \label{fig:MainBeamGain-Polar}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{BigArrayGain-Cartesian.pdf}
+            \caption{Main Beam Gain for Different Array Sizes - Cartesian Plot}
+                \label{fig:MainBeamGain-Cartesian}
+            \end{subfigure}
+\caption{Main Beam Gain for Different Array Sizes}
+\label{fig:MainBeamGain}
+\end{figure}
+
+
 
 
 The drawback of increasing the number of elements in the array (even though the main beam gain has increased), is that the side lobe level decreases. This implies that these side lobes may be capable of creating false detections. If the side lobe levels are high enough, they may be capable of sending out an EM wave with enough energy such that the returned pulse is detected as an object. Depending on the direction of these side lobes, it may be low flying aircraft, birds, objects in the low range of LEO, etc. Consequently, these side lobes should be reduced such that they do not affect the system.
 Side lobes can create unwanted interference between neighbouring systems which is disadvantageous for both systems. In the case that the beam is steered in its maximum angle, this side lobe is steered as well. 
 A number of methods exist in which to reduce this effect, the first is to attempt to reduce the side lobes.
 The reduction of these side lobes is discussed further in section~\ref{sec:ElementExcitation}.
+
+In this section, it is pertinent to note the difference between the use of a ground plane and the absence of a ground plane, figure~\ref{fig:GroundPlane} illustrates this difference in the case of a $32 \times 32$ antenna array.
+
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+            \includegraphics[width=0.9\linewidth]{GroundPlane-Polar.pdf}
+            \caption{Ground Plane vs No Ground Plane - Polar Plot}
+            \label{fig:GroundPlane-Polar}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{GroundPlane-Cartesian.pdf}
+            \caption{Ground Plane vs No Ground Plane - Cartesian Plot}
+                \label{fig:GroundPlane-Cartesian}
+            \end{subfigure}
+\caption{Ground Plane vs No Ground Plane}
+\label{fig:GroundPlane}
+\end{figure}
+
+Figures~\ref{fig:MainBeamGain} and \ref{fig:GroundPlane} illustrate the different gains acquirable based on the sizing of the array and how the ground plane affects the system.
+Table~\ref{tab:AmplitudeTapering} lists the important parameters from the three different arrays in figure~\ref{fig:MainBeamGain} as these parameters are pertinent to the functioning of the system.
+
+
+
+
+
 
 
 
@@ -1010,124 +1061,249 @@ In order to achieve steering of the array, progressive phase delay is required f
 \Psi = k d cos \theta + \beta
 \end{equation}
 In this case $\Psi$ represents the angle to which the array should direct its main lobe, $\theta$ is taken to be $0^{\circ}$ (to create the broadside effect) and $\beta$ the progressive phase delay for each element.
-This principle is used to illustrate the scanning feature represented in figure~\ref{fig:ArraySteering}.
+This principle is used to illustrate the scanning feature represented in figure~\ref{fig:ArraySteering} where different scanning angles are illustrated by the differing curves. This scenario makes use of a $32 \times 32$ array where the steering is increased by $10^{\circ}$ increments.
+
 This principle can be applied continuously which means that the beam can be dynamically steered in the required direction.
 % The change in direction that the beam is steered is dependent on the external 
 In order to apply this principle to the 2D array used in this design, the steering is implemented in the $x$ direction, and then the $y$ direction, such that the beam is steered in the $\theta$ and then the $\phi$ direction in order to be directed at the required coordinates.
 This system is analysed with the use of FEKO in order to test the steerability of the system. The Python code used to generate the phasing can be found in section *** python code.
 
 
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+            \includegraphics[width=0.9\linewidth]{SteeringSmall-Polar.pdf}
+            \caption{$32 \times 32$ Array Beam Steering Ability - Polar Plot}
+            \label{fig:SteeringSmall-Polar}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{SteeringSmall-Cartesian.pdf}
+            \caption{$32 \times 32$ Array Beam Steering Ability- Cartesian Plot}
+                \label{fig:SteeringSmall-Cartesian}
+            \end{subfigure}
+\caption{$32 \times 32$ Array Beam Steering Ability}
+\label{fig:SteeringSmall}
+\end{figure}
 
+
+
+
+Following the steerability of a smaller array in figure~\ref{fig:SteeringSmall}, it is scaled up to the full sized array, in this case, the curves represent a $0^{\circ}$, $10^{\circ}$, and a $20^{\circ}$ shift this is illustrated in figure~ref{fig:SteeringBig}.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+            \includegraphics[width=0.9\linewidth]{SteeringBig-Polar.pdf}
+            \caption{$64 \times 64$ Array Beam Steering Ability - Polar Plot}
+            \label{fig:SteeringSmall-Polar}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{SteeringBig-Cartesian.pdf}
+            \caption{$64 \times 64$ Array Beam Steering Ability- Cartesian Plot}
+                \label{fig:SteeringSmall-Cartesian}
+            \end{subfigure}
+\caption{$64 \times 64$ Array Beam Steering Ability}
+\label{fig:SteeringSmall}
+\end{figure}
+
+
+The introduction of more antenna elements results in a decreasing main lobe width, this is wanted as it reduces the cross-range resolution when detecting objects\cite[p.~14,28,469]{radarHandbook}.
+The phasing is achieved with the feeding network which is designed in section~\ref{sec:FeedingNetworks}.
 
 \subsection{Element Excitation} \label{sec:ElementExcitation}
+Side lobe level of an array is always present in cases where a uniform excitation of the array is used. These side lobes can become dangerous when the size and power level of the array becomes large.
+There are a number of ways in which to reduce the side lobes: Uniform, Binomial, and Tschebyscheff \cite[p.~324-325]{Balanis}. Uniform is the standard case which has been used up to this point, and the Tschebyscheff is not implemented in this system. The uniform distribution does not attempt to reduce the side lobes, however, it is simple to implement in many situations as this reduces the cost and complexity of the system.
+The second makes use of the Binomial distribution in order to weight the power which excites each antenna element.
+This method however, implies that in the case that the array becomes large, the outside elements contribute miniscule amounts of power to the system.
+Consequently, a compromise between the binomial and the uniform amplitude is created.
+This is done such that, the power is tapered from the center of the array, and the power is tapered down to a set point at the edges of the array. This tapering is set to be a $50 \%$ value such that the middle elements transmit $100~\%$ of the power, and the outside transmit $50~\%$ of the power. This results in a pyramidal distribution on the array as it tapers off to the edges.
+This power taper in the elements is illustrated in figure~\ref{fig:PowerTapering} where the darker colour represents a higher power.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+            \includegraphics[width=0.9\linewidth]{PowerTapering.pdf}
+            \caption{Power Tapering}
+            \label{fig:PowerTapering}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{PhasingHeatMap.pdf}
+            \caption{Heat Map Representing the Phase Delay of Each Element}
+                \label{fig:PhasingHeatMap}
+            \end{subfigure}
+\caption{Heat Maps Representing Power Tapering and Phase Delays}
+\label{fig:HeatMaps}
+\end{figure}
+
+The result of this amplitude excitation is illustrated in figure~\ref{fig:AmplitudeTapering} where a uniform $64 \times 64$ array is compared with the tapered $64 \times 64$ array. It is clear from this illustration that there is an increase in side lobe level which results in a more efficient and accurate system. This now reduces the chances of the system detecting objects from the side lobes. 
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+            \includegraphics[width=0.9\linewidth]{AmplitudeTapering-Polar.pdf}
+            \caption{Uniform vs Tapering - Polar}
+            \label{fig:PowerTapering-Polar}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{AmplitudeTapering-Cartesian.pdf}
+            \caption{Uniform vs Tapering - Cartesian}
+                \label{fig:PowerTapering-Cartesian}
+            \end{subfigure}
+\caption{Amplitude Excitation with Uniform compared to Tapering}
+\label{fig:PowerTapering}
+\end{figure}
+
+The result of this tapering is measured and is quantified in table~\ref{tab:AmplitudeTapering}.
+
+\begin{table}[htb]
+    \caption{Amplitude Tapering Details}
+    \label{tab:AmplitudeTapering}
+    \begin{center}
+        \begin{tabular}{p{60mm}cp{40mm}cp{40mm}}
+            \hline 
+            Parameter & Uniform Array & Tapered Array \\
+            \hline
+            Maximum Gain ($dBi$) & $41.1059$ & $41.0232$ \\
+            Maximum Gain Direction (degrees) & $0$ & $0$ \\
+            Side Lobe Level ($dB$) & $32.5337$ & $32.2414$ \\
+            Half Power Beam Width ($-3 dB$) (degrees) & $1.28995$ & $1.30417$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{table}
 
 
+% \subsection{Radar Functions} \label{sec:RadarFunctions}
+
+% \subsubsection{Search/Detect} \label{sec:SearchDetect}
+
+% \subsubsection{Track} \label{sec:Track}
+
+% \subsubsection{Image} \label{sec:Image}
+
+% \subsubsection{Multi-Pulsing} \label{sec:MultiPulsing}
+
+% Need to talk about how the SNR can be improved with the use of multiple pulses.
 
 
-The antenna array is constructed in such a way that it acts as an equally spaced linear array
+% \subsection{Directions} \label{sec:Directions}
 
-The introduction of more antenna elements results in a decreasing main lobe width, this is wanted as it reduces the angle ambiguity when detecting objects. ***
-
-
-
-Grating lobes appear when the beam is steered too far away from the zenith and the main beam disappears and reappears on the wrong side.
-
-
-
-
-
-
-
-\subsection{Radar Functions} \label{sec:RadarFunctions}
-
-\subsubsection{Search/Detect} \label{sec:SearchDetect}
-
-\subsubsection{Track} \label{sec:Track}
-
-\subsubsection{Image} \label{sec:Image}
-
-\subsubsection{Multi-Pulsing} \label{sec:MultiPulsing}
-
-Need to talk about how the SNR can be improved with the use of multiple pulses.
-
-\subsection{Directions} \label{sec:Directions}
-
-Discuss how the system cannot determine the direction of the object, it can only determine if the object is moving towards the antenna's boresight or away (with an increased doppler freq or a decreased doppler freq)
-
-\section{INDIVIDUAL AND ARRAY SIMULATIONS} \label{sec:INDIVIDUALANDARRAYSIMULATIONS}
-
-\subsection{Field of View} \label{sec:FieldOfView}
-
+% Discuss how the system cannot determine the direction of the object, it can only determine if the object is moving towards the antenna's boresight or away (with an increased doppler freq or a decreased doppler freq)
 
 
 \section{Feeding Networks} \label{sec:FeedingNetworks}
 
+Speak about how the signals are put together further down the line (with the use of maximum ratio combining)
+
+Wilkinson splitter
+
+Circulator
+Corporate feed
 
 \subsection{Mixer} \label{sec:Mixer}
+
+
 \section{Environmental Considerations} \label{sec:EnvironmentalConsiderations}
+The design of this system has considered the technical details of tracking space debris. In order to implement this in a real world situation the environmental factors are analysed in this section.
+% Based on the choice of the frequency and how it is used, the location of the system is based in the Northern Cape where there is a low population density and a large area. This is highly important such that the system has as little radio interference as possible.
 
-\subsection{Weather Dependence} \label{sec:Weatherdependence}
+\subsection{Location} \label{sec:Location}
+Subject to the choice of the frequency and how it it licensed, the array is situated within the Northern Cape (refer to section~\ref{sec:OptimalFrequency}). This is based on the fact that the SKA has the ability to provide a number of laws which allow for the selected frequency to be utilised within this province.
+The Northern Cape is a largely unpopulated area when compared to the rest of the country, implying that it has a low population density (as it has the largest area). This is convenient as it lowers the cost per area of land. 
+Based on the spacing of the array, the size of land required should be at least $247~m^2$ (based on the $\Lambda/2$ spacing and the $64 \times 64$ array sizing), this is the minimum area required for the placement of the antennas. The system is equipped with a number of additional components which all take up space.
+This implies that the system is required to be able to be housed with at least a $2000~m^2$ plot of land, this implies that, based on the average cost of units of land of this size, the price will be approximately $R~800~000$ to $R~1~200~000$ \cite{LocationPrice1, LocationPrice2, LocationPrice3}.
+The price of the plot of land varies based on its location, previous owners, and proximity to towns. A pragmatic approach to estimating the cost of the required land is to take the maximum value stated here and add on an additional $20~\%$. The cost of the area of land is then approximated to $R~1~440~000$.
 
-Maximum and minimum temperatures. Average temperatures, temperature swings and their gradients.
-Wind.
-Fog
-Sun angles
+The ideal location for the land would be within a short distance from the SKA operations, this results in the added benefit of the lowered radio interference from external sources while being able to cooperate with their operations. 
+The SKA has currently build their own infrastructure for data management. Tying in with their system implies a lower cost for both parties as it can benefit both. The cost incurred for this communication platform can become expensive, an indepth analysis should be undertaken as to how the data transmission mechanism should work.
+The first method is to make use of on-site servers which take all of the information directly from the array and apply analysis on this data, package the data, and send out the important characteristics that it has analysed. The second method is to automatically send out all of the data that is retrieved from the system, this data is then sent directly to an external server (a cloud provider such as Google, Amazon, etc.) and then the analysis is then carried out from this service.
+The cost of these two systems are required to be analysed as they both have benefits and drawbacks.
+The first method will require a large up front investment for the isntallation of the servers, then an recurring cost for the energy that is consumed for the analysis, this greatly reduces the costs of data transmission.
+The second method will have minimal up front costs, other than the recurring cost of the maintenance and rental of the data line, as well as the costs to analyse this data when it is stored on the cloud.
+The SKA ran a feasibility study to determine which of these methods is more cost efficient, their decision was to install an on-site data center as the costs of installing a fibre line to transport the data far exceeded the installation costs of the data center \cite[p.~17-18]{SKAFibre}.
+This data center will require the installation of an RFI shielded building such that the components inside do not interfere with the array \cite[p.~18]{SKAFibre}.
 
-Light intensities
-
-Air quality
-Humidity
-Icing of instruments
-Snow
-
-
-Light polution
+The power requirements for the installation of this sytem can become complex, in addition to this, the power transmission system should comply with the SKA's regulations. The SKA undertook an investigation to the installation for power \cite{SKAFibre}, this document highlight the requirements for the installation of power and how it is required to be routed.  
 
 
+The plot of land is required to be relatively low gradient for the installation of the physical array as this is required to be mounted flush against the surface of the Earth and directed upwards.
+In order to install the system, an in depth analysis is required to be carried on the land, this analysis includes has been undertaken by the SKA in the local area ($180~km$ radius)\cite[p.~95,98]{SKAFibre}, which concludes that the minimum depth at which the structure can be fixed is $3.5~m$ below the surface. The nature of the ground under the array can prove to be difficult to lay foundations for construction.
 
-\subsection{Land} \label{sec:Land}
+Due to the placement of the SKA, placing the system in close proximity implies that low flying aircraft are prohibited within the local airspace as this can affect the system.
+Local authorities should be notified of the implementation of this system such that regulations are put in place for flight paths that may be affected.
 
-[This](https://www.icasa.org.za/legislation-and-regulations/protection-of-karoo-central-astronomy-advantage-areas-regulations-2017) will be useful for talking about how the area will be protected.
-Land can be given by the [SKA](https://www.ska.ac.za/about/astronomy-geographic-advantage-act/). One can argue that the system will not be used all the time, as such, the SKA may be able to make use of the system for research purposes.
-The lay of the land
-Mountains?
-Flat land?
-How difficult will it be to lay foundations
-Shipping material
-Construction side of things
-Altitude? Height above sea level?
-Nearby roads?
-Quality of these roads? Will they need upgrading? 
-Power distribution? 
-Communications?
-Water?
-Sewage?
-Disturbances of power lines and transformers to the system?
-Frequency of the power?
+Depending on the site chosen, roads and standard infrastructure (water, electricity, etc.) may be required for the construction of the system, this increases the overall cost.
 
-Lightning?
+This system should be capable of functioning for a minimum of $20$ years, this is a standard requirement for large operations, as such it should be capable of withstanding the environment for this period of time. Section~\ref{sec:WeatherDependence} analyses a number of concerns for the area of installation.
 
-Nearby electromagnetic interference?
-Can this interference be removed? Must it be quantified and then subtracted from the overall signal? Is this sufficient?
+\subsection{Weather Dependence} \label{sec:WeatherDependence}
+The Northern Cape (specifically near Carvernon, where the SKA is situated) is at a relatively high altitude, it is also a semi-arid area with little rainfall throughout the year \cite{Rainfall}.
+This is highly beneficial for the system as rainfall can severely affect the functioning of the system (due to the loss of EM wave energy by the water).
+The low humitidy and rainfall is convenient for this system as this area is located above the rust belt (the border where corrosion from the sea air is reduced to negligible levels) of South Africa which. This implies that the system will require little to no maintenance from corrosion over time.
 
-Possible impact from telecommunication in the area. Do radio links exist? 
-One must look at the sidelobes and the distribution of power in the various harmonics
+The temperatures experienced during the Summer season in this area of the country often range between $34$ to $40^{\circ} C$. Frost and dew often occur during the winter months, this implies that the conponents should be designed such that they can handle extreme temperature swings.
 
-Air traffic interference?
-Airports? planes overhead?
-Mostly planes? Helicopters? They pose different interferences as they fly at different altitudes and use different communication systems.
 
-In the design paper, they say that helicopters frequent the area, however, on days of good visibility they fly low and follow the valleys where they will be shielded against the radar beam.
+% Maximum and minimum temperatures. Average temperatures, temperature swings and their gradients.
+% Wind.
+% Fog
+% Sun angles
 
-It may be worth installing a separate small surveillance radar that is capable of detecting aircraft and then switch off the main radar (depending on the situation)
+% Light intensities
 
-Is it worth contacting the air ports and the control towers for some of this? Get real time tracking of planes?
+% Air quality
+% Humidity
+% Icing of instruments
+% Snow
+% Light polution
 
-Beacons in the area?
+% The lay of the land
+% Mountains?
+% Flat land?
+% How difficult will it be to lay foundations
+% Shipping material
+% Construction side of things
+% Altitude? Height above sea level?
+% Nearby roads?
+% Quality of these roads? Will they need upgrading? 
+% Power distribution? 
+% Communications?
+% Water?
+% Sewage?
+% Disturbances of power lines and transformers to the system?
+% Frequency of the power?
 
-Displacement of plants and animals?
+% Lightning?
 
-Elevation of the horizon? Does it change in different directions? Does this affect the system?
+% Nearby electromagnetic interference?
+% Can this interference be removed? Must it be quantified and then subtracted from the overall signal? Is this sufficient?
+
+% Possible impact from telecommunication in the area. Do radio links exist? 
+% One must look at the sidelobes and the distribution of power in the various harmonics
+
+% Air traffic interference?
+% Airports? planes overhead?
+% Mostly planes? Helicopters? They pose different interferences as they fly at different altitudes and use different communication systems.
+
+% In the design paper, they say that helicopters frequent the area, however, on days of good visibility they fly low and follow the valleys where they will be shielded against the radar beam.
+
+% It may be worth installing a separate small surveillance radar that is capable of detecting aircraft and then switch off the main radar (depending on the situation)
+
+% Is it worth contacting the air ports and the control towers for some of this? Get real time tracking of planes?
+
+% Beacons in the area?
+
+% Displacement of plants and animals?
+
+% Elevation of the horizon? Does it change in different directions? Does this affect the system?
 
 
 \section{Construction} \label{sec:Construction}
@@ -1140,74 +1316,72 @@ What communications medium is used between modules
 
 \section{COST OPTIMISATION} \label{sec:COSTOPTIMISATION}
 
-\section{LOCATION} \label{sec:LOCATION}
 
 
-\section{SENSITIVITY ANALYSIS} \label{sec:SENSITIVITYANALYSIS}
 
 \section*{ACKNOWLEDGEMENT} \label{sec:ACKNOWLEDGEMENT}
 
 
-\section{DEREK}
+% \section{DEREK}
 
-Radiation after the big bang (4 Kelvin). 
-Noise floor. 
+% Radiation after the big bang (4 Kelvin). 
+% Noise floor. 
 
-Specify a minimum size of objects: approx 10 cm (RCS (radio cross section))
+% Specify a minimum size of objects: approx 10 cm (RCS (radio cross section))
 
-Choose a receiver sensitivity: randomly: -120 dBm
+% Choose a receiver sensitivity: randomly: -120 dBm
 
-The gain of the system needs to be determined as well as the transmitting power as you are required to receive at least -120 dBm of power back from an object of 10 cm
+% The gain of the system needs to be determined as well as the transmitting power as you are required to receive at least -120 dBm of power back from an object of 10 cm
 
-How narrow must your beam be in order to pick out individual elements floating around (this is a resolution issue)
+% How narrow must your beam be in order to pick out individual elements floating around (this is a resolution issue)
 
-Trade off between power and gain
+% Trade off between power and gain
 
-Specify a frequency this can be because of monetary reasons as well as physical reasons.
+% Specify a frequency this can be because of monetary reasons as well as physical reasons.
 
-Building an amp is a big mission. Lower frequency amps are easier to design/purchase.
+% Building an amp is a big mission. Lower frequency amps are easier to design/purchase.
 
-Broadcast dipoles and how to make low VSWR versions
+% Broadcast dipoles and how to make low VSWR versions
 
-Degradation in the gain as you swing your major direction
+% Degradation in the gain as you swing your major direction
 
-Where will all of the side lobes go!?!?!? Will they affect other systems? Will they affect the readings and pick up objects that you dnot want?
+% Where will all of the side lobes go!?!?!? Will they affect other systems? Will they affect the readings and pick up objects that you dnot want?
 
-Using the binomial you will reduce your sidelobes however you will reduce your overall gain.
+% Using the binomial you will reduce your sidelobes however you will reduce your overall gain.
 
-What kind of beam sweep will you be looking for?
+% What kind of beam sweep will you be looking for?
 
-When it hits the object it will change polarization. We must check how many times if flips polarization and how it does this.
+% When it hits the object it will change polarization. We must check how many times if flips polarization and how it does this.
 
-Maximum ratio combining (to do with the polarization things) This must be thought of, in how you combine these signals together. 
+% Maximum ratio combining (to do with the polarization things) This must be thought of, in how you combine these signals together. 
 
-You need to provide time for "switches" to work, this is to give "dead time" for the system to set itself up.
+% You need to provide time for "switches" to work, this is to give "dead time" for the system to set itself up.
 
-How do you swap between the receiver and the transmitter.
-This may be a case where a "[circulator](https://en.wikipedia.org/wiki/Circulator)" can be used.
+% How do you swap between the receiver and the transmitter.
+% This may be a case where a "[circulator](https://en.wikipedia.org/wiki/Circulator)" can be used.
 
-Wilkinson splitter (for feeding the antenna)
+% Wilkinson splitter (for feeding the antenna)
 
-The feeding network is different to how the antenna is connected together (Wilkinson splitter)
+% The feeding network is different to how the antenna is connected together (Wilkinson splitter)
 
-Hartebeespoort visit.
+% Hartebeespoort visit.
 
-Where is the processing done? SHould the data be transmitted elsewhere and then processed? Then you won't need a server farm in the karoo and you can use the cloud.
+% Where is the processing done? SHould the data be transmitted elsewhere and then processed? Then you won't need a server farm in the karoo and you can use the cloud.
 
 
-Corporate feed
+% Corporate feed
 
-Determine the power that is present in the side lobes. 
-I do not believe that it is worth using a binomial array, even though it reduces the side lobes, you still have to consider how the power system is structured. How do you distribute the amplifiers? Do you then have a case where you have a multitude of differently sized amplifiers in order to reduce the cost? 
+% Determine the power that is present in the side lobes. 
+% I do not believe that it is worth using a binomial array, even though it reduces the side lobes, you still have to consider how the power system is structured. How do you distribute the amplifiers? Do you then have a case where you have a multitude of differently sized amplifiers in order to reduce the cost? 
 
-Apply some form of taper for the amplitude over the area of the array.
-In order to reduce the sidelobes, you must find a happy medium between gaussian distribution and a standard distribution.
+% Apply some form of taper for the amplitude over the area of the array.
+% In order to reduce the sidelobes, you must find a happy medium between gaussian distribution and a standard distribution.
 
-Determine an acceptable dB level for the biggest sidelobes. Check for the power in the lobes and their direction (if they are pointing in dangerous areas or not). Another way to specify the first sidelobe level is to assume a maximum object size at the lowest altitude and then determine the gain for this sidelobe at which the signal is below acceptable levels.
+% Determine an acceptable dB level for the biggest sidelobes. Check for the power in the lobes and their direction (if they are pointing in dangerous areas or not). Another way to specify the first sidelobe level is to assume a maximum object size at the lowest altitude and then determine the gain for this sidelobe at which the signal is below acceptable levels.
 
-Think about build up of static electricity within the system and consider how to protect circuitry from this (the receiver is commonly the most sensitive device)
+% Think about build up of static electricity within the system and consider how to protect circuitry from this (the receiver is commonly the most sensitive device)
 
-It may make sense to apply a modulation to the signal as this can tell you if it is indeed your signal which you are detecting.
+% It may make sense to apply a modulation to the signal as this can tell you if it is indeed your signal which you are detecting.
 
 
 
