@@ -1,6 +1,7 @@
 # Observable time or Dwell Time
 
 import math
+import numpy
 
 speedOfLight = 3*10**8
 minDistance = 160 * 10**3
@@ -11,6 +12,7 @@ gravitationalConstant = 6.67408 * 10 ** (-11)
 earthMass = 5.972 * 10 ** (24)
 boltzmannsConstant = 1.38064852*10**-(23)
 standardTemp = 290
+numElements = 4096
 
 # Lambda
 Lambda = speedOfLight / centerFrequency
@@ -81,7 +83,13 @@ bandwidthMax = 1/pulseWidthMin
 # rangeResolution = 1
 # pulseWidth = (2*rangeResolution)/(speedOfLight)
 
-
+# Minimum Number of Pulses (based on HPBW of simulation)
+HPBW = 1.30417 * (math.pi / 180)
+elevationStationary = math.pi/2 - HPBW
+maxObservableTimeStationary = (((earthRadius + minDistance)**(3.0/2.0))/(math.sqrt(gravitationalConstant * earthMass)))*(math.pi - 2 * elevationStationary - 2 * math.asin((earthRadius)/(earthRadius + minDistance) * math.cos(elevationStationary)))
+maxNumPulses = maxObservableTimeStationary/maxRoundTripTime
+# Safe estimate pulse number
+numPulses = 50
 
 # Thermal Noise
 noiseFiguredB = 2.5 # Measured in dB
@@ -92,16 +100,26 @@ bandwidth = 1 / pulseWidth
 SNRmindB = 10 #Measured in dB
 SNRmin = 10**(SNRmindB/10)
 
-gainPowerProduct = (SNRmin * (4 * (math.pi))**3 * maxSlantDistance**4 * boltzmannsConstant * standardTemp * noiseFigure * bandwidth)/(Lambda**2 * minRCS)
+gainPowerProduct = (SNRmin * (4 * (math.pi))**3 * maxSlantDistance**4 * boltzmannsConstant * standardTemp * noiseFigure * bandwidth)/(Lambda**2 * minRCS * numPulses)
 
 arrayGain = 12656.7
 # arrayGain = 15430
 
 maxPowerRequired = gainPowerProduct / ((arrayGain)**2)
-print(str(maxPowerRequired/1000000) + " MW")
+print("Maximum Power Requires: " + str(maxPowerRequired/1000000) + " MW")
 
 
 dutyCycle = pulseWidth * maxRoundTripTime
 averagePower = dutyCycle * maxPowerRequired
-print(str(averagePower) + " MW")
+print("Average Power Required: " + str(averagePower) + " MW")
 
+averagePowerPerElement = averagePower/numElements
+maxPowerPerElement = maxPowerRequired/numElements
+
+print("Average Power Per Element: " + str(averagePowerPerElement) + "W")
+print("Maximum Power Per Element: " + str(maxPowerPerElement) + "W")
+
+
+# Element Separation without Grating Lobes (assuming 30 degrees steering)
+maxElementSpacing = (Lambda)/(1 + numpy.absolute(math.sin(maxAngle)))
+print(maxElementSpacing)

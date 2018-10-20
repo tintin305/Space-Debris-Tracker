@@ -734,6 +734,16 @@ There are a number of alternative methods in which to specify criteria of the sy
 
 This first estimate for the minimum SNR required is linked to the noise present in the system, the noise of the system is evaluated in sections~\ref{sec:ReceiverNoise} and \ref{sec:ThermalNoise}.
 
+\subsection{Multiple Pulses} \label{sec:MultiplePulses}
+The SNR of the system can be improved with the utilization of multiple pulses while the beam is in a certain position. This implies that, if an object enters the field of view of the main beam, based on the HPBW of the system, it will be within the view of the pulse without steering required.
+These multiple pulses can be averaged in order to increase the performance of the detection \cite[p.~66]{radarHandbook}. This implies that the system can emit multiple pulses, where each pulse increases the SNR achieved for a fixed angular position.
+The increase in SNR is illustrated in the implementation into the RRE as it has a direct affect on the SNR, this is shown in equation~\ref{eqn:MultiplePulses}.
+
+\begin{equation} \label{eqn:MultiplePulses}
+SNR_c (N) = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma n_p}{(4 pi)^3 R^4 k T_0 F B}  
+\end{equation}
+The value of $n_p$ represents the number of pulses. The minimum number of pulses possible by this system can be determined with the use of equation~\ref{eqn:ObservableTime} by using the minimum distance an object can be detected (as this is the minimum amount of time an object will be within the HPBW). This estimate results in a time of $0.933~s$. This implies that, based on the PRI of $14.83~ms$, the maximum number of pulses that can be used will be less than $62$ pulses.
+In order to account for \textit{dead time} a pragmatic value for this can be estimated to be $50$ pulses. This effect is incorporated in section~\ref{eqn:SNR} and \ref{eqn:RequiredParameters}.
 
 \subsection{Receiver Noise} \label{sec:ReceiverNoise}
 The three major losses within any system is made up of the transmitter, receiver, and signal-processing losses.
@@ -771,14 +781,14 @@ At this point it is possible to evaluate the required parameters of the system w
 The SNR is defined by equation~\ref{eqn:SNR}.
 
 \begin{equation} \label{eqn:SNR}
-SNR = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi)^3 R^4 k T_0 F B}
+SNR = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma n_p}{(4 pi)^3 R^4 k T_0 F B}
 \end{equation}
 
 
 Rearranging this equation and placing the known value on the right hand side results in equation~\ref{eqn:RequiredParameters}.
 
 \begin{equation} \label{eqn:RequiredParameters}
-P_{t} G_{t} G_{r} = \frac{SNR_{min} (4 \pi )^3 R^4 k T_{0} F B}{{\lambda}^2 \sigma} = 
+P_{t} G_{t} G_{r} = \frac{SNR_{min} (4 \pi )^3 R^4 k T_{0} F B}{{\lambda}^2 \sigma n_p} = 
 \end{equation}
 Where the values on the right hand side of the equation are listed in table~\ref{tab:DesignValues}.
 This implies that the product of the variables on the left hand side of the equation are required to be equal to the value on the right hand side for the system to function as designed.
@@ -799,6 +809,7 @@ This implies that the product of the variables on the left hand side of the equa
             $B$ & $val$ \\
             $\lambda$ & $val$ \\
             $\sigma$ & $val$ \\
+            $n_p$ & $50$ \\
             \hline
         \end{tabular}
     \end{center}
@@ -806,6 +817,7 @@ This implies that the product of the variables on the left hand side of the equa
 
 
 This provides a starting point for the design of the antenna and antenna array such that it can be built to satisfy the requirements thus far.
+***
 
 \section{Antenna} \label{sec:Antenna}
 The antenna forms the most basic unit of the system. It is responsible for transforming an electrical signal into an EM wave and directing that EM energy into a specific direction. It is also important as it makes use of its reciprocity such that it can receive and transmit with the same characteristics. This makes it ideally suited to this application as it can be used to transmit the EM wave and receive the wave, thus reducing the cost and complexity of the system.
@@ -971,6 +983,7 @@ In order to avoid the grating lobes, the separation between each consecutive ele
 In order to eliminate this probability, the spacing between elements should be less than one wavelength.
 
 
+
 The spacing between each element in the array is set at $\Lambda/2$ which satisfies this criteria.
 In order to achieve this spacing, the antennas are rotated by $45^{\circ}$, this allows for tighter packing of the antennas. This configuration is illustrated in figure~\ref{fig:ArrayGeometry}, this is for a $2 \times 2$ array, the illustration is from above the array.
 
@@ -985,6 +998,15 @@ In order to achieve this spacing, the antennas are rotated by $45^{\circ}$, this
 This creates a manageable spacing between the elements such that they can be easily installed and will not interfere with adjacent antennas (mechanically). This is also important for cases where antennas need replacing, this makes this process easier.
 
 The elements spaced the same distance above the ground plane as the case for the single antenna. The ground plane is created with a conducting mesh. The mesh is created such that the spacing between each consecutive line is less than $\Lambda/10$ apart. This spacing reduces the cost of the ground mesh as this ground mesh acts as a solid surface in reference to the frequency that is incident upon it.
+
+A secondary method to prevent grating lobes is by specifying the element spacing (not implemented in this solution) where equation equation~\ref{eqn:ElementSpacing} provides the spacing \cite[p.~331]{radarHandbook}. In this case, the maximum steering angle required is the parameter, $\theta$, this results in a spacing that can be approximated by $0.75 \Lambda$. 
+This method of spacing the elements can reduce the cost of the overall array as it can result in the reduction of required antennna elements \cite[p.~331]{radarHandbook}.
+The reason that this was not used is based on the fact that a large amount of power is input to the system so increasing the number of elements reduces the power experienced by each antenna.
+
+\begin{equation} \label{eqn:ElementSpacing}
+d = \leq \frac{\Lambda}{(1 + | sin \theta |)}
+\end{equation}
+
 
 \subsection{Main Beam Gain} \label{sec:MainBeamGain}
 The gain of the main beam is highly important to the functionality of the system. This part of the design is created such that the antenna array is sized such that the gain is maximized while maintaining a practical number of elements.
@@ -1199,7 +1221,38 @@ The result of this tapering is measured and is quantified in table~\ref{tab:Ampl
 % Discuss how the system cannot determine the direction of the object, it can only determine if the object is moving towards the antenna's boresight or away (with an increased doppler freq or a decreased doppler freq)
 
 
-\section{Feeding Networks} \label{sec:FeedingNetworks}
+\subsection{Feeding Networks} \label{sec:FeedingNetworks}
+In order to reduce the cost of the overall system, each antenna is designed such that it has its own feeding network. This implies that if a part of a feeding network is damaged, then the only repacement will be for that individual antenna. This makes the system highly modular. 
+The feeding network is designed such that each antenna element communicates with a central command module (CMM). This CMM is responsible for the phasing and amplitude selection for each individual antenna element.
+The communication between each antenna element is by means of a fibre optic cable. This communications medium reduces the noise on the system as it is not making use of electrical currents which can interfere with the operation of the system. 
+This modular system takes is created to be similar to the AMISR \cite{AMISR}, which makes use of modular panels such that there are multiple antennas per module, each module has its own controlling unit, and these controlling units communicate with the CMM.
+This implementation is improved in this design based on the newer technology available which allows for higher modularity of the components and higher data communication throughput.
+This modular design means that multiple antenna elements can fail with the overall system still functioning sufficiently.
+
+This implementation also results in a simplified feeding mechanism as matching between multiple antennas is no longer required.
+The implementation of solid state amplifiers is used here as they are highly reliable, easily maintainable, and are modular in nature. The down side of solid state amplifiers is that they are not able to generate large amounts of power \cite[p.~364]{radarHandbook}, however, due to the fact that the power is split between each element in the array, they are ideally suited to this application. The implementation of solid state technology results in the use of DC voltages throughout the system, this is an important factor for this implementation as DC creates minimal interference to the antennas.
+The implementation of modular components means that the only cabling required throughout the array will be the DC power cables for the element modules and communication lines. These two lines do not interfer with eachother as the communication lines are fibre optic and so are unaffected.
+Consequently, the radiating elements are located within the element module and the connector cables from the module to the antenna.
+The interference from the electronics within the module can be reduced with the use of shielding the walls of the module. The connector cables make use of sleeve baluns which reduce the radiating components commonly seen on coaxial cables.
+
+\subsubsection{Transmitter} \label{sec:Transmitter}
+
+\subsubsection{Receiver} \label{sec:Receiver}
+The frequency utilised within this system is relatively large when considering the Analog-to-Digital-Converters (ADC's) currently available. The cost of ADC's which are capable of sampling this frequency are prohibitively expensive.
+This calls for the use of a frequency mixer (downconverter) such that the EM waves received by the amplifier are shifted down in frequency and are then sampled at that point. Once this sampling has taken place, processing of the data takes place to determine if detection has occurred.
+This implementation reduces the cost of each receiver system. The overall diagram of this is illustrated in figure~\ref{fig:ReceiverDiagram}. The transmitter part of the system is illustrated here as a block as it interacts with the system through the circulator. The local oscillators frequency is required to be relatively close to that of the system as the intermediate frequency (IF) output from the mixer \cite[p.~397-398]{radarHandbook}. 
+The implementation of a second mixing stage decreases the mixers intermodulation components which allows for easy filtering (removal) to get the final signal \cite[p.~398]{radarHandbook}.
+The lower frequency signal created from this process is then easily sampled with a lower cost, high quality, ADC such that characterisation of the signals is possible. The detail of the mixing process is out of the scope of this design as the final IF frequency for sampling requires further calculation.
+
+\begin{center}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{ReceiverDiagram.pdf}
+        \caption{Receiver Diagram}
+        \label{fig:ReceiverDiagram}    
+    \end{figure}
+\end{center}
+The LNA is placed close to the physical antenna as this lowers the noise introduced via the transmission medium. Efficient placement of these components components is required for this 
+
 
 Speak about how the signals are put together further down the line (with the use of maximum ratio combining)
 
