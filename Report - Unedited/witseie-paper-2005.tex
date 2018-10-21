@@ -86,9 +86,10 @@ The second implementation makes use of radar techniques. This is the method whic
 This report begins with explaining the background to the task given, this includes an explanation of how the radar system works (in principle).
 This is then followed up with a description of the space debris as well as a number of calculations on the characteristics of this debris.
 
-Once the debris has been characterised, current implementations used for this application are analysed and compared.  
+% Once the debris has been characterised, current implementations used for this application are analysed and compared. 
+% The technology of the current systems is introduced and compared. The frequency of the system is chosen in section~\ref{sec:OptimalFrequency}. The general theory of operation is discussed in section~\ref{sec:RadarTheoryOfOperation} and the different im 
 
-*** Need more here on the structure of the report.
+% *** Need more here on the structure of the report.
 % in the document: a-technical-assessment there is an image which breaks down all of the types of space debris
 
 \subsection{Background} \label{sec:Background}
@@ -419,10 +420,10 @@ Where:
 \end{itemize}
 
 This assumed Doppler shift implies that the frequency bandwidth should accomodate at least $100 kHz$ on either side of the centre frequency.
-The Doppler frequency shift of the designed system is discussed in more detail in section~\ref{sec:RadarFunctions} where further analysis on the required bandwidth is also required: the bandwidth of the system is dependent on a number of components.
+The Doppler frequency shift of the designed system is discussed in more detail in section~\ref{sec:SNR} where further analysis on the required bandwidth is also required: the bandwidth of the system is dependent on a number of components.
 
 
-The frequency choice is highly dependent on the locality of the system and the current frequency usage by other parties. ***
+The frequency choice is highly dependent on the locality of the system and the current frequency usage by other parties. This is discussed in section~\ref{sec:PoliticalandEconomicalLimitations}.
 
 
 \subsection{Political and Economical Limitations} \label{PoliticalandEconomicalLimitations}
@@ -483,7 +484,7 @@ Based on the frequency choice discussed above, a number of parameters can now be
 The wavelengths generated within this table are based on the centre frequency of the frequency band. This becomes the primary operating frequency of the system.
 
 
-\section{Radar Theory of Operation} \label{sec:ArrayStructure}
+\section{Radar Theory of Operation} \label{sec:RadarTheoryOfOperation}
 This section details the different implementations of radars that are capable of detecting objects and the characteristics of those objects when detected (speed, direction, distance, etc.).
 
 Sections \ref{sec:MonostaticvsBistatic}, \ref{sec:ContinuousWaveandPulsedWave}, \ref{sec:ThresholdDetection} discuss the theory of operation of the system.
@@ -522,7 +523,7 @@ A unique characteristic of the continuous wave system is that it is unable to de
 \subsubsection{Pulsed Waveform Transmission} \label{sec:PulsedWaveformTransmission}
 
 The second method of EM wave transmission makes use of pulses, these occur periodically and their duration is commonly over a short period of time. This system is commonly used in tandem with a monostatic configuration and this provides the ability for components to provide isolation between the transmitter and receiver circuitry.
-Following the EM wave pulse, the receiver is set to record the resulting EM waves that are returned in the form of echoes after it has reflected from the objects in question. The determination of the pulse length and the period between pulses (the interpulse period (IPP)) is discussed in section~\ref{sec:PulsingCharacteristics} *** as this value is dependent on a number of other characteristics of the system. The pulse repitition is also linked to the observable time window of debris, discussed in section \ref{sec:SpaceDebrisTrajectoryCharacteristics}.
+Following the EM wave pulse, the receiver is set to record the resulting EM waves that are returned in the form of echoes after it has reflected from the objects in question. The determination of the pulse length and the period between pulses (the interpulse period (IPP)) is discussed in section~\ref{sec:PulsingCharacteristics} as this value is dependent on a number of other characteristics of the system. The pulse repitition is also linked to the observable time window of debris, discussed in section \ref{sec:SpaceDebrisTrajectoryCharacteristics}.
 
 
 \subsection{Threshold Detection} \label{sec:ThresholdDetection}
@@ -568,9 +569,10 @@ This allows for the calculation for the maximum and minimum round trip times for
         \end{tabular}
     \end{center}
 \end{table}
-These values take the assumption that the system is capable of steering up to $30^{\circ}$ from the zenith direction. If the system were to steer further, then the maximum slant distance would increase accordingly. The maximum steering ability of the system designed is capable of reaching approximately $50^{\circ}$, however, the maximum slant allowed is reduced in order to increase the reliability of the system. This is discussed in more detail in section~\ref{sec:ArrayStructure}***.
+These values take the assumption that the system is capable of steering up to $30^{\circ}$ from the zenith direction. If the system were to steer further, then the maximum slant distance would increase accordingly. The maximum steering ability of the system designed is capable of reaching approximately $50^{\circ}$, however, the maximum slant allowed is reduced in order to increase the reliability of the system. This is discussed in more detail in section~\ref{sec:ArrayStructure} as grating lobes can appear when steered past designed levels.
 
-Based on the maximum slant distance round trip time ($14.83 ms$), this places a number of limitations on the system which relate to the pulse repetition frequency, the minimum distance round trip time ($1.067 ms$), limits the pulse width that the system can transmit over. This also creates a limit on the bandwidth of the system, however the bandwidth of the system is related to a number of characteristics which are discussed in section~\ref{sec:SNR}***.
+Based on the maximum slant distance round trip time ($14.83 ms$), this places a number of limitations on the system which relate to the pulse repetition frequency, the minimum distance round trip time ($1.067 ms$), limits the pulse width that the system can transmit over. This also creates a limit on the bandwidth of the system as the bandwidth is related to this parameter by $B = 1/ \tau$.
+% , however the bandwidth of the system is related to a number of characteristics which are discussed in section~\ref{sec:SNR}***.
 
 
 The next step in the evaluation of the power that is required to be transmitted onto the object in order to reliably detect it. This begins with the radar range equation.
@@ -650,8 +652,7 @@ In order to calculate a number of characteristics on the SNR of the system, the 
 This image illustrates a number of important parameters than can be applied to the system at this point in time. These parameters are related to section~\ref{sec:BasicOperation} and more importantly, table~\ref{tab:RadarRangeValues}. This implies that the maximum pulse width must be less than $1.067 ms$, the actual pulse width is likely to take a value far less than this. 
 The next parameter is the pulse repetition interval, this is related to the maximum round trip time that a signal can take, which implies that the minimum pulse repetition interval should be greater than $14.83 ms$. This limits the pulse repetition frequency of the system which is defined as $PRF = 1/PRI$, which limits the pulse repetition frequency to $67 Hz$. This is the maximum frequency the system can sustain without limiting the radar range abilities.
 
-** Image of pulse and return pulse
-The following image represents a case where a pulse is sent outwards and is then followed by, a period of time later, a corresponding echo pulse.
+Figure~\ref{fig:ObjectDetection} represents a case where a pulse is sent outwards and is then followed by, a period of time later, a corresponding echo pulse.
 The period between the pulse and the echo can be used to determine the altitude that the object has. This illustrates a circumstance of the system detecting an object. 
 
 \begin{center}
