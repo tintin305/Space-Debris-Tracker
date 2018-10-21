@@ -106,18 +106,18 @@ arrayGain = 12656.7
 # arrayGain = 15430
 
 maxPowerRequired = gainPowerProduct / ((arrayGain)**2)
-print("Maximum Power Requires: " + str(maxPowerRequired/1000000) + " MW")
+print("Maximum Power Requires: " + str(round((maxPowerRequired/1000000),4)) + " MW")
 
 
 dutyCycle = pulseWidth * maxRoundTripTime
 averagePower = dutyCycle * maxPowerRequired
-print("Average Power Required: " + str(averagePower) + " MW")
+print("Average Power Required: " + str(round(averagePower,2)) + " MW")
 
 averagePowerPerElement = averagePower/numElements
 maxPowerPerElement = maxPowerRequired/numElements
 
-print("Average Power Per Element: " + str(averagePowerPerElement) + "W")
-print("Maximum Power Per Element: " + str(maxPowerPerElement) + "W")
+print("Average Power Per Element: " + str(round(averagePowerPerElement,4)) + "W")
+print("Maximum Power Per Element: " + str(round(maxPowerPerElement,4)) + "W")
 
 
 # Element Separation without Grating Lobes (assuming 30 degrees steering)
