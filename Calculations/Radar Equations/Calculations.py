@@ -41,18 +41,16 @@ print("Maximum Slant Distance: " + str(round(maxSlantDistance/1000,4)) + " km")
 maxSlantDistanceFOV = earthRadius * (math.sqrt((((earthRadius + maxDistance)**2)/(earthRadius**2)) \
  - (math.cos((math.pi/2 )-(math.pi/3))**2 )) - math.sin((math.pi/2 )-(math.pi/3))) 
 
-# Path Loss of signal (one direction)
-pathLoss = (Lambda/(4 * math.pi * maxSlantDistance))
+# Path Loss of signal (return trip)
+pathLoss = 2 * (Lambda/(4 * math.pi * maxSlantDistance))
 
 # Observable Time of object within the FOV
 maxObservableTime = (((earthRadius + maxDistance)**(3.0/2.0))/(math.sqrt(gravitationalConstant * earthMass))) \
 *(math.pi - 2 * elevation - 2 * math.asin((earthRadius)/(earthRadius + maxDistance) * math.cos(elevation)))
 
-
 # Angular Velocity
 maxAngularVelocity = (maxObjectSpeed)/(minDistance)
 minAngularVelocity = (minObjectSpeed)/(maxDistance)
-
 
 # Apparent Angular Velocity
 apparentAngularVelocity = (2 * maxAngle)/(maxObservableTime)
@@ -83,18 +81,18 @@ pulseWidthMax = minRoundTripTime
 rangeResolutionMin = (speedOfLight * pulseWidthMin)/(2)
 
 # Minimum Number of Pulses (based on HPBW of simulation)
-HPBW = 1.30417 * (math.pi / 180)
+HPBW = 0.785884 * (math.pi / 180)
 elevationStationary = math.pi/2 - HPBW
 
 maxObservableTimeStationary = (((earthRadius + minDistance)**(3.0/2.0)) \
 /(math.sqrt(gravitationalConstant * earthMass))) \
 *(math.pi - 2 * elevationStationary - 2 * math.asin((earthRadius) \
 /(earthRadius + minDistance) * math.cos(elevationStationary)))
-
+print("Maximum amount of time object is in view (stationary beam): " + str(round(maxObservableTimeStationary,4)) + " s")
 maxNumPulses = maxObservableTimeStationary/maxRoundTripTime
 print("Maximum Number of Pulses with beam stationary: " + str(round(maxNumPulses,4)))
 # Safe estimate pulse number
-numPulses = 50
+numPulses = 30
 
 # Thermal Noise
 noiseFiguredB = 2.5 # Measured in dB
@@ -109,7 +107,8 @@ SNRmin = 10**(SNRmindB/10)
 gainPowerProduct = (SNRmin * (4 * (math.pi))**3 * maxSlantDistance**4 * boltzmannsConstant * standardTemp * noiseFigure * bandwidth) \
 /(Lambda**2 * minRCS * numPulses)
 
-arrayGain = 12656.7
+arrayGaindB = 41.0244
+arrayGain = 10**(arrayGaindB/10)
 
 maxPowerRequired = gainPowerProduct / ((arrayGain)**(2))
 print("Maximum Power Required: " + str(round((maxPowerRequired/1000000),4)) + " MW")

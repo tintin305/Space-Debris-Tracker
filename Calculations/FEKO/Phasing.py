@@ -3,6 +3,10 @@ import numpy
 import matplotlib.pyplot as plt
 import itertools
 
+font = {'family' : 'normal',
+        'size'   : 18}
+
+
 
 speedOfLight = 3*10**8
 minDistance = 160 * 10**3
@@ -52,7 +56,7 @@ for x in range(0,numRows):
         f.write(outLine)
 
 fig = plt.figure(figsize=(6, 3.2))
-
+plt.rc('font', **font)
 ax = fig.add_subplot(111)
 ax.set_title('Heat Map Representing Phase Delay of Elements')
 plt.imshow(phaseMatrix, cmap="Greys")
@@ -71,8 +75,8 @@ plt.show()
 w,h = numRows,numColumns
 amplitudeMatrix = [[0 for x in range(w)] for y in range(h)]
 
-delta = numpy.linspace(0.5, 1.0, numRows)
-deltaReverse = numpy.linspace(1.0, 0.5, numRows)
+delta = numpy.linspace(0.5, 1.0, numRows/2)
+deltaReverse = numpy.linspace(1.0, 0.5, numRows/2)
 comb = numpy.concatenate((delta,deltaReverse))
 
 
