@@ -203,8 +203,8 @@ The Doppler frequency shift of the designed system is discussed in more detail i
 The frequency choice is highly dependent on the locality of the system and the current frequency usage by other parties as well as population density and frequency usage, which leads to the analysis in section~\ref{sec:PoliticalandEconomicalLimitations}.
 
 
-\subsection{Characteristics of Frequency}
-Based on the frequency choice discussed in section~\ref{sec:PoloticalandEconomicalLimitations} it is clear that the optimal frequency band is the $606~-~614~MHz$ band; a number of parameters are estimated and illustrated in table~\ref{tab:FrequencyDetails}.
+\subsection{Characteristics of Frequency} \label{CharacteristicsOfFrequency}
+Based on the frequency choice discussed in section~\ref{sec:PoliticalandEconomicalLimitations} it is clear that the optimal frequency band is the $606~-~614~MHz$ band; a number of parameters are estimated and illustrated in table~\ref{tab:FrequencyDetails}.
 
 \begin{table}
     \caption{Frequency Details}
@@ -221,7 +221,6 @@ Based on the frequency choice discussed in section~\ref{sec:PoloticalandEconomic
             $\lambda /2$ wavelength & $0.2459~m$ \\
             $3 \lambda /4$ wavelength & $0.3689~m$ \\                
         \end{tabular}
-
     \end{center}
 \end{table}
 The wavelengths generated within this table are based on the centre frequency of the frequency band. This becomes the primary operating frequency of the system.
@@ -251,52 +250,18 @@ This allows for the calculation for the maximum and minimum round trip times for
         \end{tabular}
     \end{center}
 \end{table}
-These values take the assumption that the system is capable of steering up to $30^{\circ}$ from the zenith direction. If the system were to steer further, then the maximum slant distance would increase accordingly. The maximum steering ability of the system designed is capable of reaching approximately $50^{\circ}$, however, the maximum slant allowed is reduced in order to increase the reliability of the system. This is discussed in more detail in section~\ref{sec:AntennaArray} as grating lobes can appear when steered past designed levels.
+These values take the assumption that the system is capable of steering up to $30^{\circ}$ from the zenith direction. If the system were to steer further, then the maximum slant distance would increase accordingly. The maximum steering ability of the system designed is capable of reaching approximately $50^{\circ}$, however, the maximum slant allowed is reduced in order to increase the reliability of the system. This is discussed in more detail in section~\ref{sec:AntennaArray}. % as grating lobes can appear when steered past designed levels.
 
 Based on the maximum slant distance round trip time ($14.83 ms$), this places a number of limitations on the system which relate to the pulse repetition frequency, the minimum distance round trip time ($1.067 ms$), limits the pulse width that the system can transmit over. This also creates a limit on the bandwidth of the system as the bandwidth is related to this parameter by $B = 1/ \tau$.
 % , however the bandwidth of the system is related to a number of characteristics which are discussed in section~\ref{sec:SNR}***.
-
-
 The next step in the evaluation of the power that is required to be transmitted onto the object in order to reliably detect it. This begins with the radar range equation.
 
 \subsection{Power Density} \label{sec:PowerDensity}
-
-The first equation defines the power that is incident on the target, this is given by equation \ref{eqn:IncidentPower}. This power is generated with the use of the antenna array, the details of this array are discussed in section~\ref{sec:AntennaArray}, and the creation of the array requires the use of this equation. 
-
-\begin{equation} \label{eqn:IncidentPower}
-P_{inc} = P_t * \frac{G_{t}}{4 * pi * R^2} [W/m^2]
-\end{equation}
-
-Where:
-\begin{itemize}
-    \item $P_{inc}$ is the power incident on the target
-    \item $P_t$ is the power transmitted from the system
-    \item $G_t$ is the gain of the system
-    \item $R$ is the distance from the system to the target
-\end{itemize}
-
-This equation assumes the use of a directional antenna (not isotropic) which has a corresponding gain. This allows for the concentration of the beam in a specific direction.
-
-The next stage is to determine the magnitude of energy that is reflected by the target, as assumed in section~\ref{sec:SpaceDebrisPhysicalCharacteristics}, the radar cross section of the target is defined and known. 
-
-Equation~\ref{eqn:ReflectedPower} indicates the magnitude of power reflected by this object.
-
-\begin{equation} \label{eqn:ReflectedPower}
-P_{refl} = \frac{P_{t} G_{t} \sigma}{4 pi R^2}
-\end{equation}
-
-Where:
-\begin{itemize}
-    \item $P_{refl}$ is the reflected power from the target
-    \item $\sigma$ is the radar cross section (RCS) of the target measured in square meters ($m^2$)
-\end{itemize}
-
-This reflected power from the target is then received by the system and this is defined by equation \ref{eqn:ReceivedPower}.
+The power density defines the magnitude of the EM wave as it is returned from the target and is detailed with equation~\ref{eqn:ReceivedPower}, the derivation of this can be found in section~\ref{sec:PowerDensityDerivations}. 
 
 \begin{equation} \label{eqn:ReceivedPower}
-P_{r} = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 pi )^3 R^4}
+    P_{r} = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 \pi )^3 R^4}
 \end{equation}
-
 Where:
 \begin{itemize}
     \item $P_{r}$ is the received power at the system
@@ -304,37 +269,22 @@ Where:
     \item $\lambda$ is the wavelength of the system
     \item $G_{r}$ is the gain of the receive antenna
 \end{itemize}
-
-It is assumed that the gain is determined with equation \ref{eqn:Gain}.
-
-\begin{equation} \label{eqn:Gain}
-G = \frac{4 pi \eta_{a} A}{\lambda^2} = \frac{4 pi A_{e}}{\lambda^2}
-\end{equation}
-
-Where $\eta_{a}$ is the efficiency of the antenna created which is commonly between 0.5 and 0.8 \cite[p.~64]{radarHandbook}.
-
-In the case of the monostatic antenna array, the transmitting and receiving gain are the same as it is the same array. This implies that for bistatic systems, it is possible to have two different ranges for receiving and transmitting \cite[p.~64]{radarHandbook}.
-
-
-At this point it is pertinent to provide an analysis into the losses that can possibly appear throughout the system, these losses are required before the antenna and antenna array can be simulated. These losses are discussed in section~\ref{sec:SNR}.
-
-
+% At this point it is pertinent to provide an analysis into the losses that can possibly appear throughout the system, these losses are required before the antenna and antenna array can be simulated. These losses are discussed in section~\ref{sec:SNR}.
 
 \subsection{Pulsing Characteristics} \label{sec:PulsingCharacteristics}
-In order to calculate a number of characteristics on the SNR of the system, the pulsing characteristics are required. Fig.~\ref{fig:Pulsing} illustrates the method in which the EM waves are sent out with respect to time. 
-
+In order to calculate a number of characteristics on the Signal-to-Noise ratio (SNR) of the system, the pulsing characteristics are required. Fig.~\ref{fig:Pulsing} illustrates the method in which the EM waves are sent out with respect to time. 
 
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{.5\textwidth}
         \centering
-            \includegraphics[width=0.9\linewidth]{Pulsing.pdf}
+            \includegraphics[width=0.7\linewidth]{Pulsing.pdf}
             \caption{Radar EM Wave Pulse}
             \label{fig:Pulsing}
         \end{subfigure}%
         \begin{subfigure}{.5\textwidth}
             \centering
-            \includegraphics[width=0.9\linewidth]{ObjectDetection.pdf}
+            \includegraphics[width=0.7\linewidth]{ObjectDetection.pdf}
             \caption{Object Detection}
                 \label{fig:ObjectDetection}
             \end{subfigure}
@@ -342,87 +292,46 @@ In order to calculate a number of characteristics on the SNR of the system, the 
 \label{fig:RadarFunctions}
 \end{figure}
 
-
-
-This image illustrates a number of important parameters than can be applied to the system at this point in time. These parameters are related to section~\ref{sec:BasicOperation} and more importantly, table~\ref{tab:RadarRangeValues}. This implies that the maximum pulse width must be less than $1.067 ms$, the actual pulse width is likely to take a value far less than this. 
-The next parameter is the pulse repetition interval, this is related to the maximum round trip time that a signal can take, which implies that the minimum pulse repetition interval should be greater than $14.83 ms$. This limits the pulse repetition frequency of the system which is defined as $PRF = 1/PRI$, which limits the pulse repetition frequency to $67 Hz$. This is the maximum frequency the system can sustain without limiting the radar range abilities.
+The characteristics illustrated in Fig.~\ref{fig:Pulsing} can be found in table~\ref{tab:RadarRangeValues} (the explanations are in section~\ref{sec:BasicOperation}). This implies that the maximum pulse width must be less than $1.067 ms$, a pragmatic approach would take a value less than this to increase the resolution of the system.
+The next parameter is the pulse repetition interval, this is related to the maximum round trip time that a signal can take, which implies that the minimum pulse repetition interval should be greater than $14.83 ms$. This limits the pulse repetition frequency of the system which is defined as $PRF = 1/PRI = 67~Hz$. This is the maximum frequency the system can sustain without limiting the radar range abilities.
 
 Fig.~\ref{fig:ObjectDetection} represents a case where a pulse is sent outwards and is then followed by, a period of time later, a corresponding echo pulse.
-The period between the pulse and the echo can be used to determine the altitude that the object has. This illustrates a circumstance of the system detecting an object. 
-
-
+The period between the pulse and the echo can be used to determine the altitude that the object has. This illustrates a circumstance of the system detecting an object.
 In order to detect the pulse, the time between each sample (sampling by the ADC) should be no less than the pulse width of the transmitter, this is a minimum requirement for the sampling frequency of the receiver subsystem.
 
-There are cases where large objects, further out than the maximum slant distance will return a signal (the large RCS results in a larger reflection of EM energy), this signal will be returned after the next pulse has occurred and depending on how far the away the object is, the system can read this as an object that appears to be closer than the actual object. This results in an incorrect reading. These cases should be accounted for within the system such that they are kept to a minimum. In most cases this is not an issue as the object is required to be much larger in RCS for it to be detected. More cases are ruled out as these echoes will appear at the antenna while the second pulse is still being transmitted, which implies that the receiver is still deactivated. ***
+There are cases where large objects, further out than the maximum slant distance will return a signal (the large RCS results in a larger reflection of EM energy), this signal will be returned after the next pulse has occurred and depending on how far the away the object is, the system can read this as an object that appears to be closer than the actual object. This results in an incorrect reading. These cases should be accounted for within the system such that they are kept to a minimum. In most cases this is not an issue as the object is required to be much larger in RCS for it to be detected. More cases are ruled out as these echoes will appear at the antenna while the second pulse is still being transmitted, which implies that the receiver is still disconnected.
 This phenomenon is known as range ambiguity \cite[p.~22]{radarHandbook}
-The parameters defined in this section are evaluated and analysed in section~\ref{sec:Resolution}.
+% The parameters defined in this section are evaluated and analysed in section~\ref{sec:Resolution}.
 
 \subsection{Resolution} \label{sec:Resolution}
 The resolution of the system is made up of three major parameters: range, angle, or/and Doppler frequency. These three parameters highlight the ability for the system to make a distinction between two objects with differing parameters.
-
 The first of these, the range resolution, is the parameter which defines the ability of the system to make an  effective distinction between two targets that are placed differing distances away from the observation point. It is related to the pulse width of the system as illustrated via equation~\ref{eqn:RangeResolution}. In order to decide on the pulse width required for the system to function, the criteria for the resolution of the range is required.
-
 \begin{equation} \label{eqn:RangeResolution}
 \Delta R = \frac{c \tau}{2}
 \end{equation}
+The limits on the range resolution are coupled with the limits of the bandwidth allowed by the frequency band. 
+% The pulse width is related to the bandwidth by the equation $\tau = 1/ B$.
+The bandwidth allocated to the frequency band is set at $8~MHz$, which results in a minimum pulse width of approximately $0.125 \mu~s$, which is relatively small when compared to alternative systems \cite{AMISR, EISCAT, SIMO, telescope, BeamForming, OrbitDetermination, PlanarArray}. The bandwidth required by the maximum Doppler frequency shift of $50 kHz$, results in a pulse width of $20\mu~s$.
+Lastly, the next parameter which determines the magnitude of the pulse width is the fact that the pulse width cannot be larger than the minimum round trip time (as discussed above) of $1.067~ms$. 
+This means that the pulse width can be within a $0.125 \mu~s~-~1.067~ms$ time span.
+These limits provide a range resolution of $18.75~m$ and $160.1~km$. Increasing the pulse length will result in a higher SNR, however, then the range resolution suffers.
+Based on this evidence, and current implementations of the system, the pulse width of the system is chosen to be $10\mu~s$. This provides enough time for the transmitter to deactivate, and the receiver to activate to listen to the targets echoes, this switching time is required for the system to perform safely, and to avoid the receiver becoming damaged by the transmitters high power.
+This pulse width results in a range resolution of $1.5~km$, which is sufficient considering the number of objects in LEO and the volume that those objects are within. This distance is $0.075~\%$ of the maximum range of the system. The probability of the system detecting two objects within this ambiguous range are unlikely and therefore this is a sufficient assumption.% Considering the fact that the system makes use of multiple pulses which further decreases the probability of the system detecting multiple objects and reading it as one object.
 
-The limits on the range resolution are coupled with the limits of the bandwidth allowed by the frequency band. The pulse width is related to the bandwidth by the equation $\tau = 1/ B$.
-The bandwidth allocated to the frequency band is set at $8 MHz$, which results in a minimum pulse width of approximately $0.125 \mu s$, which is relatively small when compared to alternative systems \cite{AMISR, EISCAT, SIMO, telescope, BeamForming, OrbitDetermination, PlanarArray}. The bandwidth required by the maximum Doppler frequency shift of $50 kHz$, which results in a pulse width of $20 \mu s$.
-Lastly, the next parameter which determines the magnitude of the pulse width is the fact that the pulse width cannot be larger than the minimum round trip time (as discussed above) of $1.067 ms$. 
-This means that the pulse width can be sized with the $0.125 \mu s - 1.067 ms$ time span.
-These limits provide a range resolution of $18.75 m$ and $160.1 km$. Increasing the pulse length will result in a higher SNR, however, then the range resolution suffers.
-Based on this evidence, and current implementations of the system, the pulse width of the system is chosen to be $10\mu~s$. This provides enough time for the transmitter to deactivate, and the receiver to activate to listen to the targets echoes, this switching time is required for the system to perform safely, and to avoid the receiver becoming damaged by the transmitter.
-This pulse width results in a range resolution of $1.5~km$, which is sufficient considering the number of objects in LEO and the volume that those objects are within. This distance is $0.075~\%$ of the maximum range of the system. The probability of the system detecting two objects within this ambiguous range are unlikely and therefore this is a sufficient assumption.
-
-This pulse width results in a duty cycle which is evaluated with the use of $Duty Cycle = \tau \cdot PRF$, which provides a duty cycle of $675 \cdot 10^{6}$, this is a relatively small duty cycle, implying that the system is using a small amount of energy with respect to its maximum power requirements.
-The system constructed should be capable of varying its bandwidth on demand, this provides the ability for the system to scale to meet specific demands. The limits on the pulse width are still present for the detection of space debris, however, this technique can be used to detect smaller debris at the farther distances.
-
-The pulse width is also linked to the SNR of the system through equation~\ref{eqn:SNRPulseWidth}.
+This pulse width results in a duty cycle which is evaluated with the use of $Duty Cycle = \tau \cdot PRF$, which provides a duty cycle of $675 \cdot 10^{-6}$, this is a relatively small duty cycle, implying that the system is using a small amount of energy with respect to its maximum power requirements.
+The system constructed should be capable of varying its bandwidth on demand, this provides the ability for the system to scale. The limits on the pulse width are still present for the detection of space debris, however, this technique can be used to detect smaller debris at farther distances.
+The pulse width is linked to the SNR of the system through equation~\ref{eqn:SNRPulseWidth}.
 
 \begin{equation} \label{eqn:SNRPulseWidth}
-SNR = \frac{P_{t} G_t G_r {\lambda^2} \sigma}{((4 \pi )^3 R^4 k T_s L_s}
+SNR = \frac{P_{t} G_t G_r {\lambda^2} \sigma}{(4 \pi )^3 R^4 k T_s L_s}
 \end{equation}
 
 This implies that an increase in pulse width results in an increase in SNR. This is the case based on the fact that the receiver bandwidth is linked to the waveforms bandwidth, this implies that the receivers bandwidth can be substituted for the pulse width in the standard radar range equation \cite[p.~776]{radarHandbook}.
 This is a simple method in which to increase the SNR without increasing the cost of the overall system.
 
-
-
 \section{SNR} \label{sec:SNR}
 The SNR required for this system is highly dependent on the requirements for the probabilities of detection and false alarm. The first simplifying assumption of this section is to assume that the signal received by the object is non-fluctuating, this results in the ability to determine an operational SNR for successful detection \cite[p.~102-103]{radarHandbook}.
-The first part of this is to make use of equation~\ref{eqn:SNRProbability} in order to map a selected set of probabilities to a required SNR value \cite[p.~107]{radarHandbook}.
-
-\begin{equation} \label{eqn:SNRProbability}
-SNR (dB) = -5 log_{10}N + \Bigg(6.2 + \frac{4.54}{\sqrt{N + 0.44}}\Bigg) log_{10}(A + 0.12 A B + 1.7 B)
-\end{equation}
-
-Where 
-\begin{equation} \label{eqn:A}
-A = ln(\frac{0.62}{P_{FA}})
-\end{equation}
-and 
-
-\begin{equation} \label{eqn:B}
-B = ln \Bigg( \frac{P_D}{1 - P_D} \Bigg)
-\end{equation}
-
-This set of equations is used to generate Fig.~\ref{fig:SNRRequired} (in this case $N$ is the number of pulses, which is assumed to be 1).
-
-\begin{center}
-    \begin{figure}
-        \includegraphics[width=\textwidth]{ProbabilityDetection.eps}
-        \caption{SNR Required for Detection}
-        \label{fig:SNRRequired}    
-    \end{figure}
-\end{center}
-
-This implies that in the case that for realistic values for the two probabilities, the SNR required reaches a value of approximately $10 dB$.
-This is therefore defined as the minimum SNR ($SNR_{min}$) required for the system to function.
-Based on this equation, it can be seen that if the number of pulses is increased, then the SNR required will become lower. This current approximation makes use of a single pulse on a target.
-
-% There are a number of alternative methods in which to specify criteria of the system where the system is designed from th in section~\ref{sec:ParameterEstimation} \cite[p.~72]{radarHandbook}
-
-This first estimate for the minimum SNR required is linked to the noise present in the system, the noise of the system is evaluated in sections~\ref{sec:ReceiverNoise} and \ref{sec:ThermalNoise}.
+The derivation for this is found in section~\ref{sec:SNRProbability} which illustrates the process to define a minimum SNR for successful detection. Based on these calculations, the minimum SNR required is $10~dB$.
 
 \subsection{Multiple Pulses} \label{sec:MultiplePulses}
 The SNR of the system can be improved with the utilization of multiple pulses while the beam is in a certain position. This implies that, if an object enters the field of view of the main beam, based on the HPBW of the system, it will be within the view of the pulse without steering required.
@@ -433,23 +342,20 @@ The increase in SNR is illustrated in the implementation into the RRE as it has 
 SNR_c (N) = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma n_p}{(4 pi)^3 R^4 k T_0 F B}  
 \end{equation}
 The value of $n_p$ represents the number of pulses. The minimum number of pulses possible by this system can be determined with the use of equation~\ref{eqn:ObservableTime} by using the minimum distance an object can be detected (as this is the minimum amount of time an object will be within the HPBW). This estimate results in a time of $0.933~s$. This implies that, based on the PRI of $14.83~ms$, the maximum number of pulses that can be used will be less than $62$ pulses.
-In order to account for \textit{dead time} a pragmatic value for this can be estimated to be $50$ pulses. This effect is incorporated in section~\ref{eqn:SNR} and \ref{eqn:RequiredParameters}.
+In order to account for \textit{dead time} a pragmatic value for this can be estimated to be $50$ pulses. This effect is incorporated in equations~\ref{eqn:SNR} and~\ref{eqn:RequiredParameters}.
 
 \subsection{Receiver Noise} \label{sec:ReceiverNoise}
 The three major losses within any system is made up of the transmitter, receiver, and signal-processing losses.
-Of these, the receivers noise is mostly made up of the noise generated by the primary Low Noise Amplifier (LNA) or mixer (if present) \cite[p.~405]{radarHandbook}.
+Of these, the receivers' noise is mostly made up of the noise generated by the primary Low Noise Amplifier (LNA) or mixer (if present) \cite[p.~405]{radarHandbook}.
 This receiver noise is generated by the phenomenon known as thermal noise, this is discussed in section~\ref{sec:ThermalNoise}.
 
 \subsection{Thermal Noise} \label{sec:ThermalNoise}
 The noise from the environment is mostly made up by solar effects. This case deals specifically with the noise generated by the sun. This can contribute to large amounts of noise within the signal if the antenna array is pointed in the direction of the sun, however, great care should be taken to avoid pointing the antenna array directly at the sun. There will still be a small contribution of the suns noise from the sidelobes of the antenna array, however, this power is greatly reduced.
-
 The second source of noise, the largest component within the system, is that generated by the receiver electronics.
 Thermal noise power, being uniform over the frequency spectrum contributes to the noise power over the bandwidth of the system. This implies that the thermal noise power is directly proportional to the receivers bandwidth. This power is determined with the use of equation~\ref{eqn:ThermalNoise}.
-
 \begin{equation} \label{eqn:ThermalNoise}
 P_{n} = k T_{s} B = k T_{0} F B
 \end{equation}
-
 Where:
 \begin{itemize}
     \item $k$ is Boltzmann's constant ($1.38 \cdot 10^{-23} Watt-sec/K$)
@@ -458,27 +364,21 @@ Where:
     \item $B$ is the receivers bandwidth ($Hz$)
     \item $F$ is the noise figure of the receiver subsystem.
 \end{itemize}
-
-The noise figure defined here should be given in real amplitude (convert from $dB$ as this is what it is defined as). The bandwidth defined here is a calculated value and is dependent on two factors of the system. Typical noise figures for LNA's range from $2.5 - 5 dB$, the value used for this calculation is taken to be $2.5 dB$.
+The noise figure defined here should be given in real amplitude (convert from $dB$ as this is what it is defined as). The bandwidth defined here is a calculated value and is dependent on two factors of the system. Typical noise figures for LNA's range from $2.5~-~5~dB$, the value used for this calculation is taken to be $2.5~dB$.
 % The first of these can be defined with the use of the largest doppler frequency shift detectable by the system. This is defined in \ref{sec:TechnicalandPhysicalLimitations} with the introduction of the debris characteristics.
 
 % The second of these is defined by the minimum pulse width of the signal. This is calculated in section~\ref{sec:Resolution}. 
 % This second case is highly important because if the bandwidth of the receiver is made smaller than the bandwidth required for the pulse width, then the power on the target will be reduced and this will cause inconsistencies and will reduce the range resolution of the system \cite[p.~65]{radarHandbook}. If the bandwidth of the receiver is created to be larger than the reciprocal of the pulse width, then the SNR of the system will decrease. This implies that the bandwidth of the receiver can occupy a small frequency band which is set by the pulse width. This implies that if the pulse width of the system is set to 1us, then the bandwidth of the system is 1 MHz.
 % The approximation of using $1/\tau$ is often used in monostatic systems \cite[p.~65]{radarHandbook}.
-
-
-At this point it is possible to evaluate the required parameters of the system with the use of the noise figure that is estimated above.
-The SNR is defined by equation~\ref{eqn:SNR}.
-
+% At this point it is possible to evaluate the required parameters of the system with the use of the noise figure that is estimated above.
+% The SNR is defined by equation~\ref{eqn:SNR}.
+Equation~\ref{eqn:ThermalNoise} is incorporated into the RRE and is illustrated in equation~\ref{eqn:SNR}.
 \begin{equation} \label{eqn:SNR}
 SNR = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma n_p}{(4 pi)^3 R^4 k T_0 F B}
 \end{equation}
-
-
 Rearranging this equation and placing the known value on the right hand side results in equation~\ref{eqn:RequiredParameters}.
-
 \begin{equation} \label{eqn:RequiredParameters}
-P_{t} G_{t} G_{r} = \frac{SNR_{min} (4 \pi )^3 R^4 k T_{0} F B}{{\lambda}^2 \sigma n_p} = 
+P_{t} G_{t} G_{r} = \frac{SNR_{min} (4 \pi )^3 R^4 k T_{0} F B}{{\lambda}^2 \sigma n_p}
 \end{equation}
 Where the values on the right hand side of the equation are listed in table~\ref{tab:DesignValues}.
 This implies that the product of the variables on the left hand side of the equation are required to be equal to the value on the right hand side for the system to function as designed.
@@ -491,83 +391,64 @@ This implies that the product of the variables on the left hand side of the equa
             \hline 
             Parameter & Value \\
             \hline
-            $SNR_{min}$ & $10 dB$ \\
-            $R$ & $2223.8 km$ \\
+            $SNR_{min}$ & $10~dB$ \\
+            $R$ & $2223.8~km$ \\
             $k$ & $1.38064852 \cdot 10^{-23} m^2 kg s^{-2} K^{-1}$ \\
-            $T_{0}$ & $K$ \\
-            $F$ & $val$ \\
-            $B$ & $val$ \\
-            $\lambda$ & $val$ \\
-            $\sigma$ & $val$ \\
+            $T_{0}$ & $290~K$ \\
+            $F$ & $2.5~dB$ \\
+            $B$ & $100~kHz$ \\
+            $\lambda$ & $0.4918$ \\
+            $\sigma$ & $val0.0079~m^2$ \\
             $n_p$ & $50$ \\
+            Maximum Doppler Shift & $26.338~kHz$ \\
+            Maximum Power & $22.71~MW$ \\
+            Average Power & $15.3~kW$ \\
+            Duty Cycle & $0.00067~\%$ \\
+            Maximum Power Per Element & $5.54~kW$ \\
+            Average Power Per Element & $3.74~W$ \\
+            Range Resolution & $1.5~km$ \\
             \hline
         \end{tabular}
     \end{center}
 \end{table}
-
-
-This provides a starting point for the design of the antenna and antenna array such that it can be built to satisfy the requirements thus far.
-***
-
+The values illustrated in table~\ref{tab:DesignValues} imply that the entire system is currently designed, the values for the array gain and power are given here in order to illustrate the general operating of the system as the array gains have been calculated in section~\ref{sec:AntennaArray}
+% This provides a starting point for the design of the antenna and antenna array such that it can be built to satisfy the requirements thus far.
+% ***
 \section{Antenna} \label{sec:Antenna}
 The antenna forms the most basic unit of the system. It is responsible for transforming an electrical signal into an EM wave and directing that EM energy into a specific direction. It is also important as it makes use of its reciprocity such that it can receive and transmit with the same characteristics. This makes it ideally suited to this application as it can be used to transmit the EM wave and receive the wave, thus reducing the cost and complexity of the system.
 The antenna, and corresponding array is designed here to satisfy the requirements in equation~\ref{eqn:RequiredParameters}, these parameters are the systems gain and the power that the system is required to sustain.
 
-The most important design requirement of the antenna is that is should have sufficient gain, it should be able to direct its energy in a specific direction. The second component of the antenna is that it should be capable of sending out this EM wave and receiving the echo with minimal losses throughout the process. This implies that it is designed to be as efficient as possible.
+The most important design requirement of the antenna is that is should have sufficient gain, it should be able to direct its energy in a specific direction. The second component of the antenna is that it should be capable of sending out this EM wave and receive the echo with minimal losses throughout. %This implies that it is designed to be as efficient as possible.
 The array, discussed in section~\ref{sec:AntennaArray} discusses the design of multiple antennas and their interconnectedness such that the system can benefit from multiple antennas working together.
-
 The first design decision is that of the type of antenna to make use of. The design methodology for this has the following criteria: cost, construction, bandwidth, sidelobes, gain, efficiency, power capabilities, durability, polarization (and the Axial Ratio), VSWR, etc. 
 These parameters of the antenna are discussed below and the design is drawn up based on these criteria.
 
-The first part of the design process for the antenna is to determine a simplistic antenna that allows for easy construction while also providing the required EM wave characteristics.
-The first important characteristic of the system to consider is to analyse the polarization of EM waves as they enter progress through the ionosphere and how they are affected by the reflection off of the target.
-
+An important consideration for the design process for the antenna is to determine a simplistic antenna that allows for easy construction while also providing the required EM wave characteristics.
+An important characteristic of the system to consider is to analyse the polarization of EM waves as they progress through the ionosphere and how they are affected by the reflection off of the target.
 The choice of antenna is a crossed-dipole antenna, the following sections are used to illustrate the process used to determine the correct antenna and how its characteristics were designed and calculated.
 
 \subsection{Polarization} \label{sec:Polarization}
 There are four commonly used polarizations that are used in antennas: vertical, horizontal, right hand circular, and left hand circular, these are created based on the geometry of the antenna and how it is fed.
-EM waves entering the ionosphere experience Faraday Rotation, this implies that in the case that a linearly polarized wave passes through the ionosphere, its polarization is rotated from the interaction with the Earth's magnetic field. This interaction is highly dependent on the frequency of the signal and a number of other factors \cite[p.~24]{faradayRotationSlides}, which implies that the rotation of this linear EM wave can rotate through an arbitrary amount of degrees based on the environmental conditions at the time of transmission. This rotation implies that if a linear antenna were to be used, the receiving antenna would be unable to determine how much the reflected wave had rotated and if it cannot match the exact rotation, then this will result in a significant loss of signal (often up to $20 dB$), which can severely impair the system functionality.
-
+EM waves entering the ionosphere experience Faraday Rotation, this implies that in the case that a linearly polarized wave passes through the ionosphere, its polarization is rotated from the interaction with the Earth's magnetic field. This interaction is highly dependent on the frequency of the signal and a number of other factors \cite[p.~24]{faradayRotationSlides}, which implies that the rotation of this linear EM wave can rotate through an arbitrary amount of degrees based on the environmental conditions at the time of transmission. This rotation implies that if a linearly polarized antenna was used, the receiving antenna would be unable to determine how much the reflected wave had rotated and if it cannot match the exact rotation, then this will result in a significant loss of signal (often up to $20 dB$), which can severely impair the system functionality.
 In order to overcome this, circular/elliptical polarization can be employed as this is not affected in the same way.
 When using circular polarization, the handedness of the polarization swaps. This implies that if left hand polarization is used on the transmitting antenna, when the EM wave reflects off of the target, the polarization swaps to right hand circular.
-This results in the requirement for the antenna to be circularly/elliptically polarized, and to have the ability to detect both left and right handed polarization with equation gain magnitudes.
+This results in the requirement for the antenna to be circularly/elliptically polarized, and to have the ability to detect both left and right handed polarization with equal gain magnitudes.
 Circularly polarized antennas are used for Earth-to-Space and Space-to-Earth communication because of these effects on the polarization. On top of the circularly polarized EM wave, RHCP is commonly used for transmission \cite[p.~31]{crossedDipoleDesign}.
 
-
 \subsection{Resonant Frequency and Bandwidth} \label{sec:ResonantFrequencyandBandwidth}
-The antenna is designed such that it resonates at the desired frequency ($610 MHz$), which results in the capacitive and inductive effects cancelling each other out, this makes the antenna efficient. During construction of the antenna, there may be inconsistencies with some of the lengths, so tuning of individual antennas may be required such that they function optimally. In order to counteract this, the antenna is constructed such that it is capable of operating over a bandwidth. This bandwidth is specified in section~\ref{sec:SNR}.
+The antenna is designed such that it resonates at the desired frequency ($610~MHz$), which results in the capacitive and inductive effects cancelling each other out, this makes the antenna efficient. During construction of the antenna, there may be inconsistencies with some of the lengths, so tuning of individual antennas may be required such that they function optimally. In order to counteract this, the antenna is constructed such that it is capable of operating over a relatively wide bandwidth. This bandwidth is specified in section~\ref{sec:SNR}.
 
-
-\subsection{VSWR and Return Loss} \label{sec:VSRWandReturnLoss}
-The Voltage Standing Wave Ratio (VSWR) is an important parameter for any antenna, this is the characteristic which determines the ratio of the input signal which is reflected to what is transmitted. This value should be as low as possible, it ranges from 1 (complete signal transmission) to infinite (complete signal reflection). These correspond to a perfect match and a perfect mismatch respectively.
-A VSWR value of lower than $1.3:1$ is sufficient for this application as this represents a return loss of $-17.7 dB$ \cite{AntennaPrice1,AntennaPrice2,AntennaPrice3,AntennaPrice4}. This value is a compromise between cost and antenna performance. Lower VSWR values become difficult to achieve as the price becomes prohibitive. This value is attained based on current implementations of these types of antennas and their specifications.
-This VSWR results in a low reflection back into the amplifier (and consequently reflection that doesn't enter the antenna when in receiving mode).
-
-The parameters illustrated above are calculated with the use of equations~\ref{eqn:VSWR}, and \ref{eqn:ReturnLoss}.
-
-
-\begin{equation} \label{eqn:VSWR}
-VSWR = \frac{1 - |\Gamma|}{1 + |\Gamma|}
-\end{equation}
-
-\begin{equation} \label{eqn:ReturnLoss}
-Return Loss (dB) = -10 log_{10} \Bigg[ \Big(\frac{VSWR - 1}{VSWR + 1} \Big)^2 \Bigg]
-\end{equation}
-Where the reflection coefficient, $\Gamma = \frac{Z_L - Z_0}{Z_L + Z_0}$ and $Z_L$ is the load impedance and $Z_0$ is the characteristic impedance.
-
-This VSWR value defined here is linked to the bandwidth of the antenna, as this VSWR will not be maintained over a large frequency range. In this case it is useful to define a maximum VSWR over the frequency range of the antenna. The design for this is such that the VSWR is less than $2:1$ for the bandwidth of the antenna (and system as a whole).
+\subsection{VSWR and Return Loss} \label{sec:VSWRandReturnLoss}
+The antenna is designed to have a maximum VSWR of $1.3:1$ which is sufficient for this application as this represents a return loss of $-17.7 dB$ and lines up with commonly available antennas of similar characteristics \cite{AntennaPrice1,AntennaPrice2,AntennaPrice3,AntennaPrice4}. The explanation and derivation for these values and decisions can be found in section~\ref{sec:VSWRandReturnLossDerivations}
 
 \subsection{Axial Ratio} \label{sec:AxialRatio}
 The axial ratio defines the shape of the ellipse of the EM wave, the aim is to generate an axial ratio which approaches $0 dB$, and this value should be chosen such that its magnitude is greater than one to create the RHCP \cite[p.~32]{crossedDipoleDesign}.
-The important procedure to note here is that the polarization is created with the use of creating a phase delay between the two dipoles of the antenna, this delay is set to $90^{\circ}$. 
-
+The important procedure to note here is that the polarization is created with the use of creating a phase delay between the two dipoles of the antenna, this delay is set to $90^{\circ}$, this phase shift creates the required polarization and axial ratio. 
 
 \subsection{Antenna Construction} \label{sec:AntennaConstruction}
-The physical construction of the antenna is created such that it consists of two half-wavelength dipoles that are aligned at right angles with respect to each other. The currents within these two dipoles have equal magnitude and they are phased $90^{\circ}$ apart. 
-Commonly, these crossed-dipole antennas are set up with a reflector such that half of the radiation pattern is reflected in order to double the gain of the antenna \cite[p.~108]{IEEECrossedDipole}. 
-
-Fig.~\ref{fig:Crossed-DipoleGeometry} illustrates the simple geometry of a crossed dipole antenna.
-
+The physical construction of the antenna is created such that it consists of two half-wavelength dipoles that are aligned at right angles with respect to each other. The currents within these two dipoles have equal magnitude and they are phased $90^{\circ}$ apart.
+Commonly, these crossed-dipole antennas are set up with a reflector such that half of the radiation pattern is reflected in order to double the gain of the antenna \cite[p.~108]{IEEECrossedDipole}.
+Fig.~\ref{fig:Crossed-DipoleGeometry} illustrates the geometry of a crossed dipole antenna.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{.3\textwidth}
@@ -585,29 +466,25 @@ Fig.~\ref{fig:Crossed-DipoleGeometry} illustrates the simple geometry of a cross
 \caption{Antenna Construction and Array Layout}
 \label{fig:AntennaConstructionArrayLayout}
 \end{figure}
-
-The arms of the antenna illustrated here are positioned parallel to the ground. This is done because, in general, it is used to create circularly polarized EM waves in the $\pm z$ directions.
-
-Clearly, based on the requirements of this antenna, the radiation in the $-z$ direction is not required. The implementation of a perfect electrical conductor placed below the antenna will redirect this part of the radiation pattern upwards where it constructively interferes with the radiation patter in the $+z$ direction \cite[p.~110-111]{IEEECrossedDipole}. This ground plane is required to be placed a quarter wavelength above the ground for this mechanism to work. This mechanism is based on image theory such that the system gains a doubling in gain \cite[p.~111]{IEEECrossedDipole}. This structure is created in FEKO and simulated for the selected frequency. The polar plot and cartesian plots for the radiation patterns are illustrated in Fig.~\ref{fig:Crossed-Dipole-Radiation-Patterns}. It is important to note from these plots that the antenna which makes use of the ground plane has a $3~dB$ than the antenna in free space. This implies that the use of a ground plane will increase the performance of each individual antenna without any loss to the ability of the system. The left and right hand circular polarization are not affected by the use of the ground plane either. Based on these simulations a number of characteristics of the two antenna configurations can be compared. This is illustrated in table~\ref{tab:AntennaConfigurations}.
-
+The arms of the antenna illustrated here are positioned parallel to the ground. This is done to create circularly polarized EM waves in the $\pm z$ directions.
+Clearly, based on the requirements of this antenna, the radiation in the $-z$ direction is not required. The implementation of a perfect electrical conductor placed below the antenna will redirect this part of the radiation pattern upwards where it constructively interferes with the radiation pattern in the $+z$ direction \cite[p.~110-111]{IEEECrossedDipole}. This ground plane is required to be placed a quarter wavelength above the ground for this mechanism to work. This mechanism is based on image theory such that the system experiences a doubling in gain \cite[p.~111]{IEEECrossedDipole}. This structure is created in FEKO \cite{FEKO} and simulated for the selected frequency. The polar plot and cartesian plots for the radiation patterns are illustrated in Fig.~\ref{fig:Crossed-Dipole-Radiation-Patterns}. It is important to note from these plots that the antenna which makes use of the ground plane has $3~dB$ more than the antenna in free space. This implies that the use of a ground plane will increase the performance of each individual antenna without any loss to the ability of the system. The left and right hand circular polarization are not affected by the use of the ground plane either. Based on these simulations a number of characteristics of the two antenna configurations can be compared. This is illustrated in table~\ref{tab:AntennaConfigurations}.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{.5\textwidth}
         \centering
-            \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Polar-Plot.pdf}
+            \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Polar.pdf}
             \caption{Crossed Dipole Polar Plot}
             \label{fig:Crossed-Dipole-Radiation-Patterns-Polar}
         \end{subfigure}%
         \begin{subfigure}{.5\textwidth}
             \centering
-            \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Cartesian-Plot.pdf}
+            \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Cartesian.pdf}
             \caption{Crossed Dipole Cartesian Plot}
                 \label{fig:Crossed-Dipole-Radiation-Patterns-Cartesian}
             \end{subfigure}
 \caption{Crossed Dipole Radiation Patterns}
 \label{fig:Crossed-Dipole-Radiation-Patterns}
 \end{figure}
-
 
 \begin{table}[htb]
     \caption{Crossed Dipole Comparison}
@@ -628,89 +505,46 @@ Clearly, based on the requirements of this antenna, the radiation in the $-z$ di
 \end{table}
 Based on the features in table~\ref{tab:AntennaConfigurations}, it is clear that this gain should be multiplied by a large factor in order to meet the requirements stated in section~\ref{sec:ThermalNoise}. This is accomplished with the use of an antenna array, this is discussed in section~\ref{sec:AntennaArray}.
 The antenna geometry is highly important as it should be able to withstand a range of environmental conditions that range from extreme temperatures to humidity variations, to high wind speeds.
-The ideal material for construction of the antenna is copper as this has the lowest resistivity while having a low cost.
-The first important parameter of each of the dipoles is to determine the current density throughout the conductor and therefore to optimize the sizing of the wire such that it takes into account the skin effect.
-This is calculated with the use of equation~\ref{eqn:SkinDepth}.
-
+The ideal material for construction of the antenna is copper as this has the lowest resistivity while having a low cost. The first important parameter of each of the dipoles is to determine the current density throughout the conductor and therefore to optimize the sizing of the wire such that it takes into account the skin effect. This is calculated with the use of equation~\ref{eqn:SkinDepth}.
 \begin{equation} \label{eqn:SkinDepth}
 \delta = \sqrt{\frac{\rho}{\pi \cdot f \cdot \mu}} = 2.6397 \cdot 10^{-6} m
 \end{equation}
 Where $\rho$ is the resistivity of copper ($1.678 \cdot 10^{-8} \Omega m$) and $\mu$ is the absolute magnetic permeability of the material ($4 \pi \cdot 10^{-7} H/m \cdot 0.999991$).
 This value for the skin depth implies that the conductor used should, ideally, be a hollow tube which has a wall thickness that should be larger than the size calculated in equation~\ref{eqn:SkinDepth}. This reduces the cost of each conductor while reducing the weight and therefore the strength of the connectors required.
-The added benefit of the hollow conductor tube is that it can be expanded to increase the bandwidth of the antenna. 
+The added benefit of the hollow conductor tube is that it can be expanded to increase the bandwidth of the antenna \cite{BroadbandAntenna}. 
 The second factor to consider for the thickness of this conductor is related to the power requirements. In order to determine the thickness of this tube, it should be sufficient to dissipate the required amount of power under the maximum temperatures possible in the area. The power that is required to be dissipated by the antenna can be minimized by matching the system, this reduces the losses and hence the power required to be dissipated.
-
-
-The size of this tube is sized such that it matches up with the maximum required bandwidth of the system as a whole. The larger the radius of this tube the greater bandwidth the antenna can achieve.
-
-
+The size of this tube should be such that it matches up with the maximum required bandwidth of the system as a whole. The larger the radius of this tube the greater bandwidth the antenna can achieve. The derivation of this sizing is not covered in this report.
 
 \section{Antenna Array} \label{sec:AntennaArray}
 The antenna array, constructed with multiple individual antennas work collectively in order to augment the radiation pattern. These antennas, in coordination, create a highly directed radiation pattern with higher gain than the individual antennas. The antennas are dynamically phased and excited such that the radiation pattern changes to match the required pattern to detect the debris.
-
 The criteria of the array can be satisfied with the correct choice of array factor, element separation, phasing, and the excitation of the individual elements.
-
-These are discussed in the following sections.
-
 \subsection{Field of View and Beam Direction} \label{sec:FieldofViewandBeamDirection}
 The radiation pattern required, based on the system designed, should be capable of directing the EM wave in the direction of the zenith and be capable of steering $30^{\circ}$ away in all directions.
 
-The radiation pattern required from this array should have a large maximum gain with a small beam width. This is required for the system such that the system can detect objects in the desired range, and to increase the cross-range resolution (the ability to make a distinction between two objects within an angle range).
+The radiation pattern required from this array should have a large maximum gain with a small beam width. This is required for the system such that it can detect objects in the desired range, while maintaining the cross-range resolution (the ability to make a distinction between two objects within an angle range).
+This requirement is uniquely suited to the use of a broadside array, in which the maximum radiation is directed in the broadside: $\Theta = 0$. In order to accomplish this, the individual antennas maxima should also be in this direction. This justifies the implementation of the crossed dipole. The design of the antenna in the previous section is duplicated for this array, this implies that the sizing of the dipoles, and the height above the ground plane is kept the same ($\lambda /4$). The phase between each dipole keeps the $90^{\circ}$ to create the circular polarization.
 
-This requirement is uniquely suited to the use of a broadside array, in which the maximum radiation is directed in the broadside: $\Theta = 0$.
-In order to accomplish this, the individual antennas maxima are also required to be directed in this direction. This justifies the implementation of the crossed dipole.
-The design of the antenna in the previous section is duplicated for this array, this implies that the sizing of the dipoles are kept the same, the height above the ground plane is kept the same ($\Lambda /4$), and the phase between each dipole keeps the $90^{\circ}$ to create the circular polarization.
-
-
-In order to accomplish this, the antennas are placed in a grid arrangement such that the array forms an $n \times m$ matrix shape.
-The array is then excited such that the main bean is directed towards the zenith. This is accomplished by determining the point at which equation~\ref{eqn:FirstMaximum}
-is equal to zero \cite[p.~296]{Balanis}. Where $\Psi$ represents the steering angle of the array, $k = \frac{2 \pi}{\Lambda}$ and $\beta$ represents the progressive phase delay required between each of the elements.
-
+In order to accomplish this, the antennas are placed in a grid arrangement such that the array forms an $n \times m$ matrix-like shape.
+The array is then excited such that the main bean is directed towards the zenith. This is accomplished by determining the point at which equation~\ref{eqn:FirstMaximum} is equal to zero \cite[p.~296]{Balanis}. Where $\Psi$ represents the steering angle of the array, $k = \frac{2 \pi}{\lambda}$ and $\beta$ represents the progressive phase delay required between each of the elements.
 \begin{equation} \label{eqn:FirstMaximum}
 \Psi = k d cos \theta + \beta = 0
 \end{equation}
 This is accomplished by creating a zero phase delay between the elements. This applies to the case of the uniformly excited array, which implies that all elements in the array have the same amplitude excitation.
 This achieves the zenith direction gain of the array. The next stage is to determine the optimal spacing between each element.
 
-
 \subsection{Element Spacing} \label{sec:ElementSpacing}
-The second requirement of this broadside radiation is that there should be no other maxima in the radiation pattern, this phenomenon is known as grating lobes.
-The presence of side lobes within the radiation pattern is unwanted as this can result in large amounts of radiated energy in unwanted directions. These sidelobes also result in a misuse of the energy that is used in the system.
-The reduction of side lobe level is discussed in more detail in section~\ref{sec:ElementExcitation}.
+The second requirement of this broadside radiation is that there should be no other maxima in the radiation pattern, this phenomenon is known as grating lobes. The presence of side lobes within the radiation pattern is unwanted as this can result in large amounts of radiated energy in unwanted directions. These sidelobes also result in a misuse of the energy for the system. The reduction of side lobe level is discussed in more detail in section~\ref{sec:ElementExcitation}.
 
-
-In order to avoid the grating lobes, the separation between each consecutive element in the array should not be multiplies of the wavelength of the antenna \cite[p.~297]{Balanis}.
-In order to eliminate this probability, the spacing between elements should be less than one wavelength.
-
-
-
-The spacing between each element in the array is set at $\Lambda/2$ which satisfies this criteria.
-In order to achieve this spacing, the antennas are rotated by $45^{\circ}$, this allows for tighter packing of the antennas. This configuration is illustrated in Fig.~\ref{fig:ArrayGeometry}, this is for a $2 \times 2$ array, the illustration is from above the array.
-
-
-
-This creates a manageable spacing between the elements such that they can be easily installed and will not interfere with adjacent antennas (mechanically). This is also important for cases where antennas need replacing, this makes this process easier.
-
-The elements spaced the same distance above the ground plane as the case for the single antenna. The ground plane is created with a conducting mesh. The mesh is created such that the spacing between each consecutive line is less than $\Lambda/10$ apart. This spacing reduces the cost of the ground mesh as this ground mesh acts as a solid surface in reference to the frequency that is incident upon it.
-
-A secondary method to prevent grating lobes is by specifying the element spacing (not implemented in this solution) where equation equation~\ref{eqn:ElementSpacing} provides the spacing \cite[p.~331]{radarHandbook}. In this case, the maximum steering angle required is the parameter, $\theta$, this results in a spacing that can be approximated by $0.75 \Lambda$. 
-This method of spacing the elements can reduce the cost of the overall array as it can result in the reduction of required antenna elements \cite[p.~331]{radarHandbook}.
-The reason that this was not used is based on the fact that a large amount of power is input to the system so increasing the number of elements reduces the power experienced by each antenna.
-
-\begin{equation} \label{eqn:ElementSpacing}
-d = \leq \frac{\Lambda}{(1 + | sin \theta |)}
-\end{equation}
-
+The spacing between each element in the array is set at $\lambda/2$ which satisfies this criteria for the technical and practical limitations, and the derivations for this specification can be found in section~\ref{sec:ElementSpacingDerivation}.
 
 \subsection{Main Beam Gain} \label{sec:MainBeamGain}
-The gain of the main beam is highly important to the functionality of the system. This part of the design is created such that the antenna array is sized such that the gain is maximized while maintaining a practical number of elements.
+The gain of the main beam is highly important to the functionality of the system. This part of the design is created such that the antenna array is sized so that gain is maximized while maintaining a practical number of elements.
 The design procedure for sizing the array is based on a number of factors. The first of these is based on previous implementations of antenna arrays to detect space debris \cite{AMISR}, this made use of an array of $64 \times 64$ elements which creates a total of $4096$ elements.
-The second design choice is the fact that this sizing results in the ability to create a modular design with the elements. The sizing of this array is structured such that it is a square shape, this makes the phasing ability the same for both steering directions and creates a relatively uniform steering FOV.
-During simulations, the increase in gain between a $64 \times 64$ matrix and a $70 \times 70$ array resulted in an increase of $0.775 dB$, which does not warrant the extra cost for the extra $804$ antennas.
-Increasing the number of antennas reduces the power requirement for each antenna as this splits the total power requirement between each antenna.
-The next stage is to attempt to steer this main beam in the required directions in order to track the debris. The steering of the system is discussed in section~\ref{sec:ElementPhasing}.
+The second design choice is the fact that this sizing results in the ability to create a modular design with the elements. The sizing of this array is structured such that it is a matrix-like shape, making phasing ability the same for both steering directions and creates a relatively linear steering FOV.
+During simulations, the increase in gain between a $64 \times 64$ matrix and a $70 \times 70$ array resulted in an increase of $0.775~dB$, which does not warrant the extra cost for the extra $804$ antennas.
+Increasing the number of antennas reduces the power requirement for each antenna as this splits the total power requirement between each antenna, however, the additional cost incurred for each element unit is not feasible.
+The next stage is to attempt to steer this main beam in the required directions to track the debris. The steering of the system is discussed in section~\ref{sec:ElementPhasing}.
 To illustrate this feature of the system, Fig.~\ref{fig:MainBeamGain} shows the differences between a $32 \times 32$, $64 \times 64$, and a $70 \times 70$ array and the different gains they each produce.
-
 
 \begin{figure}[htb]
     \centering
@@ -730,75 +564,26 @@ To illustrate this feature of the system, Fig.~\ref{fig:MainBeamGain} shows the 
 \label{fig:MainBeamGain}
 \end{figure}
 
-
-
-
 The drawback of increasing the number of elements in the array (even though the main beam gain has increased), is that the side lobe level decreases. This implies that these side lobes may be capable of creating false detections. If the side lobe levels are high enough, they may be capable of sending out an EM wave with enough energy such that the returned pulse is detected as an object. Depending on the direction of these side lobes, it may be low flying aircraft, birds, objects in the low range of LEO, etc. Consequently, these side lobes should be reduced such that they do not affect the system.
-Side lobes can create unwanted interference between neighbouring systems which is disadvantageous for both systems. In the case that the beam is steered in its maximum angle, this side lobe is steered as well. 
+Side lobes can create unwanted interference between neighbouring systems which is unfavourable for both systems. In the case that the beam is steered in its maximum angle, this side lobe is steered as well. 
 A number of methods exist in which to reduce this effect, the first is to attempt to reduce the side lobes.
 The reduction of these side lobes is discussed further in section~\ref{sec:ElementExcitation}.
 
-In this section, it is pertinent to note the difference between the use of a ground plane and the absence of a ground plane, Fig.~\ref{fig:GroundPlane} illustrates this difference in the case of a $32 \times 32$ antenna array.
-
-
-\begin{figure}[htb]
-    \centering
-    \begin{subfigure}{.5\textwidth}
-        \centering
-            \includegraphics[width=0.9\linewidth]{GroundPlane-Polar.pdf}
-            \caption{Ground Plane vs No Ground Plane - Polar Plot}
-            \label{fig:GroundPlane-Polar}
-        \end{subfigure}%
-        \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=0.9\linewidth]{GroundPlane-Cartesian.pdf}
-            \caption{Ground Plane vs No Ground Plane - Cartesian Plot}
-                \label{fig:GroundPlane-Cartesian}
-            \end{subfigure}
-\caption{Ground Plane vs No Ground Plane}
-\label{fig:GroundPlane}
-\end{figure}
-
-Fig.~\ref{fig:MainBeamGain} and \ref{fig:GroundPlane} illustrate the different gains acquirable based on the sizing of the array and how the ground plane affects the system.
+The ground plane is highly important to the array, just as it was important for the gain in the individual element. The ground plane creates the $3~dB$ increase when it is present. The simulated illustration can be found in section~ref{sec:GroundPlaneCharacteristics}.
 Table~\ref{tab:AmplitudeTapering} lists the important parameters from the three different arrays in Fig.~\ref{fig:MainBeamGain} as these parameters are pertinent to the functioning of the system.
 
-
 \subsection{Element Phasing} \label{sec:ElementPhasing}
-In order to achieve steering of the array, progressive phase delay is required for each element. This phase delay amount is determined with the use of equation~\ref{eqn:PhaseDelay} \cite[p.~301]{Balanis}.
-
+In order to achieve steering of the array, progressive phase delay is used for consecutive elements. This phase delay amount is determined with the use of equation~\ref{eqn:PhaseDelay} \cite[p.~301]{Balanis}.
 \begin{equation} \label{eqn:PhaseDelay}
 \Psi = k d cos \theta + \beta
 \end{equation}
 In this case $\Psi$ represents the angle to which the array should direct its main lobe, $\theta$ is taken to be $0^{\circ}$ (to create the broadside effect) and $\beta$ the progressive phase delay for each element.
-This principle is used to illustrate the scanning feature represented in Fig.~\ref{fig:SteeringSmall} where different scanning angles are illustrated by the differing curves. This scenario makes use of a $32 \times 32$ array where the steering is increased by $10^{\circ}$ increments.
+This principle is used to illustrate the scanning feature represented in Fig.~\ref{fig:SteeringSmall} where different scanning angles are illustrated by the differing curves. This scenario makes use of a $32 \times 32$ array where the steering is increased by $10^{\circ}$ increments. This is then scaled up to the standard sized array used for the system, this is illustrated in Fig.~\ref{fig:SteeringBig}.
 
 This principle can be applied continuously which means that the beam can be dynamically steered in the required direction.
-% The change in direction that the beam is steered is dependent on the external 
 In order to apply this principle to the 2D array used in this design, the steering is implemented in the $x$ direction, and then the $y$ direction, such that the beam is steered in the $\theta$ and then the $\phi$ direction in order to be directed at the required coordinates.
-This system is analysed with the use of FEKO in order to test the steering ability of the system \cite{FEKO}. The Python code used to generate the phasing can be found in section *** python code.
-
-
-\begin{figure}[htb]
-    \centering
-    \begin{subfigure}{.5\textwidth}
-        \centering
-            \includegraphics[width=0.9\linewidth]{SteeringSmall-Polar.pdf}
-            \caption{$32 \times 32$ Array Beam Steering Ability - Polar Plot}
-            \label{fig:SteeringSmall-Polar}
-        \end{subfigure}%
-        \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=0.9\linewidth]{SteeringSmall-Cartesian.pdf}
-            \caption{$32 \times 32$ Array Beam Steering Ability- Cartesian Plot}
-                \label{fig:SteeringSmall-Cartesian}
-            \end{subfigure}
-\caption{$32 \times 32$ Array Beam Steering Ability}
-\label{fig:SteeringSmall}
-\end{figure}
-
-
-Following the steering ability of a smaller array in Fig.~\ref{fig:SteeringSmall}, it is scaled up to the full sized array, in this case, the curves represent a $0^{\circ}$, $10^{\circ}$, and a $20^{\circ}$ shift this is illustrated in Fig.~ref{fig:SteeringBig}.
-
+This system is analysed with the use of FEKO in order to test the steering ability of the system \cite{FEKO}. The Python code used to generate the phasing can be found in section~\ref{sec:CodeListings}.
+% Following the steering ability of a smaller array in Fig.~\ref{fig:SteeringSmall}, it is scaled up to the full sized array, in this case, the curves represent a $0^{\circ}$, $10^{\circ}$, and a $20^{\circ}$ shift this is illustrated in Fig.~ref{fig:SteeringBig}.
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -816,20 +601,16 @@ Following the steering ability of a smaller array in Fig.~\ref{fig:SteeringSmall
 \caption{$64 \times 64$ Array Beam Steering Ability}
 \label{fig:SteeringBig}
 \end{figure}
-
-
-The introduction of more antenna elements results in a decreasing main lobe width, this is wanted as it reduces the cross-range resolution when detecting objects\cite[p.~14,28,469]{radarHandbook}.
+The introduction of more antenna elements results in a decreasing main beam width, which increases the cross-range resolution when detecting objects\cite[p.~14,28,469]{radarHandbook}.
 The phasing is achieved with the feeding network which is designed in section~\ref{sec:FeedingNetworks}.
 
 \subsection{Element Excitation} \label{sec:ElementExcitation}
 Side lobe level of an array is always present in cases where a uniform excitation of the array is used. These side lobes can become dangerous when the size and power level of the array becomes large.
-There are a number of ways in which to reduce the side lobes: Uniform, Binomial, and Tschebyscheff \cite[p.~324-325]{Balanis}. Uniform is the standard case which has been used up to this point, and the Tschebyscheff is not implemented in this system. The uniform distribution does not attempt to reduce the side lobes, however, it is simple to implement in many situations as this reduces the cost and complexity of the system.
-The second makes use of the Binomial distribution in order to weight the power which excites each antenna element.
+There are a number of ways in which to reduce the side lobes: Uniform, Binomial, and Tschebyscheff \cite[p.~324-325]{Balanis}. Uniform is the standard case which has been used up to this point, and the Tschebyscheff is not implemented in this system. The uniform distribution does not attempt to reduce the side lobes, however, it is simple to implement in many situations as this reduces the cost and complexity of the system. The second makes use of the Binomial distribution in order to weight the power which excites each antenna element.
 This method however, implies that in the case that the array becomes large, the outside elements contribute minuscule amounts of power to the system.
 Consequently, a compromise between the binomial and the uniform amplitude is created.
 This is done such that, the power is tapered from the center of the array, and the power is tapered down to a set point at the edges of the array. This tapering is set to be a $50 \%$ value such that the middle elements transmit $100~\%$ of the power, and the outside transmit $50~\%$ of the power. This results in a pyramidal distribution on the array as it tapers off to the edges.
 This power taper in the elements is illustrated in Fig.~\ref{fig:PowerTaperingHeatMap} where the darker colour represents a higher power.
-
 \begin{figure}[htb]
     \centering
     \begin{subfigure}{.5\textwidth}
@@ -847,8 +628,7 @@ This power taper in the elements is illustrated in Fig.~\ref{fig:PowerTaperingHe
 \caption{Heat Maps Representing Power Tapering and Phase Delays}
 \label{fig:HeatMaps}
 \end{figure}
-
-The result of this amplitude excitation is illustrated in Fig.~\ref{fig:PowerTapering} where a uniform $64 \times 64$ array is compared with the tapered $64 \times 64$ array. It is clear from this illustration that there is an increase in side lobe level which results in a more efficient and accurate system. This now reduces the chances of the system detecting objects from the side lobes. 
+The result of this amplitude excitation is illustrated in Fig.~\ref{fig:PowerTapering} where a uniform $64 \times 64$ array is compared with the tapered $64 \times 64$ array. It is clear from this illustration that there is an increase in side lobe level which results in a more efficient and accurate system. This now reduces the chances of the system detecting objects from the side lobes.
 
 \begin{figure}[htb]
     \centering
@@ -868,7 +648,7 @@ The result of this amplitude excitation is illustrated in Fig.~\ref{fig:PowerTap
 \label{fig:PowerTapering}
 \end{figure}
 
-The result of this tapering is measured and is quantified in table~\ref{tab:AmplitudeTapering}.
+The result of this tapering is measured and quantified in table~\ref{tab:AmplitudeTapering}.
 
 \begin{table}[htb]
     \caption{Amplitude Tapering Details}
@@ -909,106 +689,45 @@ The result of this tapering is measured and is quantified in table~\ref{tab:Ampl
 \subsection{Feeding Networks} \label{sec:FeedingNetworks}
 In order to reduce the cost of the overall system, each antenna is designed such that it has its own feeding network. This implies that if a part of a feeding network is damaged, then the only replacement will be for that individual antenna. This makes the system highly modular. 
 The feeding network is designed such that each antenna element communicates with a central command module (CMM). This CMM is responsible for the phasing and amplitude selection for each individual antenna element.
-The communication between each antenna element is by means of a fibre optic cable. This communications medium reduces the noise on the system as it is not making use of electrical currents which can interfere with the operation of the system. 
-This modular system takes is created to be similar to the AMISR \cite{AMISR}, which makes use of modular panels such that there are multiple antennas per module, each module has its own controlling unit, and these controlling units communicate with the CMM.
+The communication between each antenna element is by means of a fibre optic cable. This communications medium reduces the noise on the system as it is not making use of electrical currents which can interfere with the operation of the system.
+This modular system is created to be similar to the AMISR's implementation \cite{AMISR}, which makes use of modular panels such that there are multiple antennas per module, each module has its own controlling unit, and these controlling units communicate with the CMM.
 This implementation is improved in this design based on the newer technology available which allows for higher modularity of the components and higher data communication throughput.
 This modular design means that multiple antenna elements can fail with the overall system still functioning sufficiently.
 
 This implementation also results in a simplified feeding mechanism as matching between multiple antennas is no longer required.
 The implementation of solid state amplifiers is used here as they are highly reliable, easily maintainable, and are modular in nature. The down side of solid state amplifiers is that they are not able to generate large amounts of power \cite[p.~364]{radarHandbook}, however, due to the fact that the power is split between each element in the array, they are ideally suited to this application. The implementation of solid state technology results in the use of DC voltages throughout the system, this is an important factor for this implementation as DC creates minimal interference to the antennas.
-The implementation of modular components means that the only cabling required throughout the array will be the DC power cables for the element modules and communication lines. These two lines do not interfere with each other as the communication lines are fibre optic and so are unaffected.
+% The implementation of modular components means that the only cabling required throughout the array will be the DC power cables for the element modules and communication lines. These two lines do not interfere with each other as the communication lines are fibre optic and so are unaffected.
 Consequently, the radiating elements are located within the element module and the connector cables from the module to the antenna.
 The interference from the electronics within the module can be reduced with the use of shielding the walls of the module. The connector cables make use of sleeve baluns which reduce the radiating components commonly seen on coaxial cables.
 
 \subsubsection{Transmitter} \label{sec:Transmitter}
+The radar exciter is a simplistic system whereby a waveform is generated with the use of an oscillator, this signal is then amplified with the use of a high power RF amplifier. This is fed directly into the circulator.
 
 \subsubsection{Receiver} \label{sec:Receiver}
 The frequency utilised within this system is relatively large when considering the Analogue-to-Digital-Converters (ADC) currently available. The cost of ADC components which are capable of sampling this frequency are prohibitively expensive.
 This calls for the use of a frequency mixer (down-converter) such that the EM waves received by the amplifier are shifted down in frequency and are then sampled at that point. Once this sampling has taken place, processing of the data takes place to determine if detection has occurred.
-This implementation reduces the cost of each receiver system. The overall diagram of this is illustrated in Fig.~\ref{fig:ReceiverDiagram}. The transmitter part of the system is illustrated here as a block as it interacts with the system through the circulator. The local oscillators frequency is required to be relatively close to that of the system as the intermediate frequency (IF) output from the mixer \cite[p.~397-398]{radarHandbook}. 
+This implementation reduces the cost of each receiver system. The overall diagram of this is illustrated in Fig.~\ref{fig:ReceiverDiagram}. The transmitter part of the system is illustrated here as a block as it interacts with the system through the circulator. The local oscillators frequency is required to be relatively close to that of the system as the intermediate frequency (IF) output from the mixer \cite[p.~397-398]{radarHandbook}.
 The implementation of a second mixing stage decreases the mixers intermodulation components which allows for easy filtering (removal) to get the final signal \cite[p.~398]{radarHandbook}.
 The lower frequency signal created from this process is then easily sampled with a lower cost, high quality, ADC such that characterisation of the signals is possible. The detail of the mixing process is out of the scope of this design as the final IF frequency for sampling requires further calculation.
-
+The LNA is placed close to the physical antenna as this lowers the noise introduced via the transmission medium.% Efficient placement of these components components is required for this reduction of interference.
 \begin{center}
     \begin{figure}
-        \includegraphics[width=\textwidth]{ReceiverDiagram.pdf}
+        \centering
+        \includegraphics[width=0.5\textwidth]{ReceiverDiagram.pdf}
         \caption{Receiver Diagram}
         \label{fig:ReceiverDiagram}    
     \end{figure}
 \end{center}
-The LNA is placed close to the physical antenna as this lowers the noise introduced via the transmission medium. Efficient placement of these components components is required for this 
-
-
-***
-
-Speak about how the signals are put together further down the line (with the use of maximum ratio combining)
-
-Wilkinson splitter
-
-Circulator
-Corporate feed
-
-\subsection{Mixer} \label{sec:Mixer}
-
-
-\section{Environmental Considerations} \label{sec:EnvironmentalConsiderations}
-The design of this system has considered the technical details of tracking space debris. In order to implement this in a real world situation the environmental factors are analysed in this section.
-% Based on the choice of the frequency and how it is used, the location of the system is based in the Northern Cape where there is a low population density and a large area. This is highly important such that the system has as little radio interference as possible.
-
-\subsection{Location} \label{sec:Location}
-Subject to the choice of the frequency and how it it licensed, the array is situated within the Northern Cape (refer to section~\ref{sec:OptimalFrequency}). This is based on the fact that the SKA has the ability to provide a number of laws which allow for the selected frequency to be utilised within this province.
-The Northern Cape is a largely unpopulated area when compared to the rest of the country, implying that it has a low population density (as it has the largest area). This is convenient as it lowers the cost per area of land. 
-Based on the spacing of the array, the size of land required should be at least $247~m^2$ (based on the $\Lambda/2$ spacing and the $64 \times 64$ array sizing), this is the minimum area required for the placement of the antennas. The system is equipped with a number of additional components which all take up space.
-This implies that the system is required to be able to be housed with at least a $2000~m^2$ plot of land, this implies that, based on the average cost of units of land of this size, the price will be approximately $R~800~000$ to $R~1~200~000$ \cite{LocationPrice1, LocationPrice2, LocationPrice3}.
-The price of the plot of land varies based on its location, previous owners, and proximity to towns. A pragmatic approach to estimating the cost of the required land is to take the maximum value stated here and add on an additional $20~\%$. The cost of the area of land is then approximated to $R~1~440~000$.
-
-The ideal location for the land would be within a short distance from the SKA operations, this results in the added benefit of the lowered radio interference from external sources while being able to cooperate with their operations. 
-The SKA has currently build their own infrastructure for data management. Tying in with their system implies a lower cost for both parties as it can benefit both. The cost incurred for this communication platform can become expensive, an in-depth analysis should be undertaken as to how the data transmission mechanism should work.
-The first method is to make use of on-site servers which take all of the information directly from the array and apply analysis on this data, package the data, and send out the important characteristics that it has analysed. The second method is to automatically send out all of the data that is retrieved from the system, this data is then sent directly to an external server (a cloud provider such as Google, Amazon, etc.) and then the analysis is then carried out from this service.
-The cost of these two systems are required to be analysed as they both have benefits and drawbacks.
-The first method will require a large up front investment for the installation of the servers, then an recurring cost for the energy that is consumed for the analysis, this greatly reduces the costs of data transmission.
-The second method will have minimal up front costs, other than the recurring cost of the maintenance and rental of the data line, as well as the costs to analyse this data when it is stored on the cloud.
-The SKA ran a feasibility study to determine which of these methods is more cost efficient, their decision was to install an on-site data center as the costs of installing a fibre line to transport the data far exceeded the installation costs of the data center \cite[p.~17-18]{SKAFibre}.
-This data center will require the installation of an RFI shielded building such that the components inside do not interfere with the array \cite[p.~18]{SKAFibre}.
-
-The power requirements for the installation of this system can become complex, in addition to this, the power transmission system should comply with the regulations of the SKA. The SKA undertook an investigation to the installation for power \cite{SKAFibre}, this document highlight the requirements for the installation of power and how it is required to be routed.
-
-
-The plot of land is required to be relatively low gradient for the installation of the physical array as this is required to be mounted flush against the surface of the Earth and directed upwards.
-In order to install the system, an in depth analysis is required to be carried on the land, this analysis includes has been undertaken by the SKA in the local area ($180~km$ radius)\cite[p.~95,98]{SKAFibre}, which concludes that the minimum depth at which the structure can be fixed is $3.5~m$ below the surface. The nature of the ground under the array can prove to be difficult to lay foundations for construction.
-
-Due to the placement of the SKA, placing the system in close proximity implies that low flying aircraft are prohibited within the local airspace as this can affect the system.
-Local authorities should be notified of the implementation of this system such that regulations are put in place for flight paths that may be affected.
-
-Depending on the site chosen, roads and standard infrastructure (water, electricity, etc.) may be required for the construction of the system, this increases the overall cost.
-
-This system should be capable of functioning for a minimum of $40$ years \cite[p.~336]{AMISRCosting}, this is a standard requirement for large operations, as such it should be capable of withstanding the environment for this period of time. Section~\ref{sec:WeatherDependence} analyses a number of concerns for the area of installation.
-
-\subsection{Weather Dependence} \label{sec:WeatherDependence}
-The Northern Cape (specifically near Carvernon, where the SKA is situated) is at a relatively high altitude, it is also a semi-arid area with little rainfall throughout the year \cite{Rainfall}.
-This is highly beneficial for the system as rainfall can severely affect the functioning of the system (due to the loss of EM wave energy by the water).
-The low humidity and rainfall is convenient for this system as this area is located above the rust belt (the border where corrosion from the sea air is reduced to negligible levels) of South Africa which. This implies that the system will require little to no maintenance from corrosion over time.
-
-The temperatures experienced during the Summer season in this area of the country often range between $34$ to $40^{\circ} C$. Frost and dew often occur during the winter months, this implies that the components should be designed such that they can handle extreme temperature swings.
-
-\section{Construction} \label{sec:Construction}
-
-How things fit together, how the cables are placed
-What kind of cables
-What communications medium is used between modules
-
-
 
 \section{Costing Analysis} \label{sec:CostingAnalysis}
-
-In order to estimate the total cost of the system, previously implemented systems that have a similar functionality can be compared. The first of these is the EISCAT Svalbard Radar Project \cite[p.~670]{EISCATPrice} which estimated the cost of the project to have cost approximately $R~432~000~000$ in $1995$, and the yearly operating costs approximated $R~40~000~000$. This cost is indicative of the technology at the time and these costs will be greatly reduced with the use of newer efficient technology.
+In order to estimate the total cost of the system, previously implemented systems that have a similar functionality can be compared. The first of these is the EISCAT Svalbard Radar Project \cite[p.~670]{EISCATPrice} which estimated the cost of the array was approximately $R~432~000~000$ in $1990$, and the yearly operating costs approximated $R~40~000~000$. This cost is indicative of the technology at the time and these costs will be greatly reduced with the use of newer efficient technology.
 The estimate for the entire solid-state amplifier implementation was estimated to be $R~300~000~000$, this includes the cooling, control systems, and transmitter modules. This is a high estimate as the cost of this will have been reduced over time.
 
 The second comparable system is that of the AMISR (used by Leo Labs), which is estimated, once construction was completed to cost approximately $\$52$ million ($R~750$ million) for the concept development and implementation \cite[p.~333-337]{AMISRCosting}. The yearly operational cost for the system is estimated to be approximately $\$3$ million ($~R43$ million). This estimate is closer to the cost requirements for this design as the systems are constructed with a number of similarities for the components.
-The use of solid state amplifiers appears to be the best choice as the price of these components have decreased over the past two decades and their efficiency has increased while increasing the average output power.
-The Design document has a number of costing estimates for solid state amplifier implementation, however, this estimate was in 1990 \cite[p.~37]{DesignDraft}.
+The use of solid state amplifiers appears to be the best choice as the price of these components have decreased over the past two decades and their efficiency has increased.
+The Design document has a number of costing estimates for a solid-state amplifier implementation, however, this estimate was in $1990$ \cite[p.~37]{DesignDraft}.
 Table~\ref{tab:CostingUnit} illustrates the costing for an individual unit, this includes the antenna, transmitter and receiver components. The exchange rate is taken as $R~14.40/\$$.
-Based on average prices of antennas which have similar characteristics \cite{AntennaPrice1,AntennaPrice2,AntennaPrice3,AntennaPrice4,AntennaPrice5}, the cost estimate for the antenna is chosen to be approximately $R~10~000$, which is a high estimate, however, this takes into consideration the requirements for the antenna to have a high tolerance, high power capability, low VSWR, and high efficiency. The communications unit is required to communicate with the CMM such that the antenna that it is connected to is operated in the required way. This system is housed within the antenna module as it should be shielded from the antenna and surrounding equipment. The estimate for the component is set at $R~20~000$. The control unit is responsible for communicating the information between the communication module and the electronics within the system, this system is costed at $R~15~000$.
+Based on average prices of antennas with similar characteristics \cite{AntennaPrice1,AntennaPrice2,AntennaPrice3,AntennaPrice4,AntennaPrice5}, the cost estimate for the antenna is chosen to be approximately $R~10~000$, which is a high estimate, however, this takes into consideration the requirements for the antenna to have a high tolerance, high power capability, low VSWR, and high efficiency. The communications unit is required to communicate with the CMM such that the antenna that it is connected to is operated in the required way. This system is housed within the antenna module as it should be shielded from the antenna and surrounding equipment. The estimate for the component is set at $R~20~000$. The control unit is responsible for communicating the information between the communication module and the electronics within the system, this system is costed at $R~15~000$.
 
 \begin{table}[htb]
     \caption{Antenna Module Costing}
@@ -1040,12 +759,7 @@ This implies that the cost of the array, purely from the antenna element units i
 This costing does not take into consideration the price of the installation of the data center, roads, water supply, electricity supply, control rooms, land, etc. It is assumed that the cost of these contribute to twice the value of the array.
 This means that the total cost of the system can be estimated to approach $R~775~950~000$.
 
-
 \section*{ACKNOWLEDGEMENT} \label{sec:ACKNOWLEDGEMENT}
-
-
-
-
 
 \bibliographystyle{witseie}
 \bibliography{references}
@@ -1393,7 +1107,7 @@ There are two major radar configurations that are currently used, the two are di
 
 The bistatic configuration makes use of a separate transmitter and receiver in order to implement the system. The two components are placed at differing locations and the separation between the components is required to be sufficiently large in terms of the angles or ranges that they present \cite{OrbitDetermination}, \cite[p.~5]{technicalReportSpaceDebris}, \cite[p.~3]{elevationLoss}. The separation between the transmit and receive systems allows for minimal interference between the two, while allowing for the use of more than one receiver.
 This implies that the two systems, in the case of Earth-to-Space transmission, are required to be geographically (in the order of kilometres) far apart \cite{bistaticNato}.
-The transmitters in these systems generally transmit power in the range of kilowatts to megawatts, this is in order to increase the signal-to-noise (SNR) of the system as there is a significant amount of energy lost in the energy transfer process. The receiver on the other hand, works with milliwatts to nano Watts as it receives this greatly reduced power that is reflected from the objects in question. The bistatic system provides a convenient method of separating out the two systems such that it becomes increasingly difficult to damage the receivers' equipment from the high power generated by the transmitter.
+The transmitters in these systems generally transmit power in the range of kilowatts to megawatts, this is in order to increase the SNR of the system as there is a significant amount of energy lost in the energy transfer process. The receiver on the other hand, works with milliwatts to nano Watts as it receives this greatly reduced power that is reflected from the objects in question. The bistatic system provides a convenient method of separating out the two systems such that it becomes increasingly difficult to damage the receivers' equipment from the high power generated by the transmitter.
 This mode of operation allows for the calculation of the distance of the target to the receiving antenna, however, the calculations involved for this are more complex than for the monostatic case, the same applies to the doppler shift measurable by the system.
 
 \subsubsection{Monostatic} \label{sec:Monostatic}
@@ -1472,6 +1186,243 @@ The act allows for the allocation of required frequencies (regardless of the fre
 
 This location of the system is discussed further in section~\ref{sec:EnvironmentalConsiderations} where a number of environmental factors are discussed.
 
+\section{Power Density Derivations} \label{sec:PowerDensityDerivations}
+The first equation defines the power that is incident on the target, this is given by equation \ref{eqn:IncidentPower}. This power is generated with the use of the antenna array, the details of this array are discussed in section~\ref{sec:AntennaArray}, and the creation of the array requires the use of this equation. 
+
+\begin{equation} \label{eqn:IncidentPower}
+P_{inc} = P_t * \frac{G_{t}}{4 * \pi * R^2} [W/m^2]
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item $P_{inc}$ is the power incident on the target
+    \item $P_t$ is the power transmitted from the system
+    \item $G_t$ is the gain of the system
+    \item $R$ is the distance from the system to the target
+\end{itemize}
+
+This equation assumes the use of a directional antenna (not isotropic) which has a corresponding gain. This allows for the concentration of the beam in a specific direction.
+
+The next stage is to determine the magnitude of energy that is reflected by the target, as assumed in section~\ref{sec:SpaceDebrisPhysicalCharacteristics}, the radar cross section of the target is defined and known. 
+
+Equation~\ref{eqn:ReflectedPower} indicates the magnitude of power reflected by this object.
+
+\begin{equation} \label{eqn:ReflectedPower}
+P_{refl} = \frac{P_{t} G_{t} \sigma}{4 \pi R^2}
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item $P_{refl}$ is the reflected power from the target
+    \item $\sigma$ is the radar cross section (RCS) of the target measured in square meters ($m^2$)
+\end{itemize}
+
+This reflected power from the target is then received by the system and this is defined by equation \ref{eqn:ReceivedPowerDerived}.
+
+\begin{equation} \label{eqn:ReceivedPowerDerived}
+P_{r} = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 \pi )^3 R^4}
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item $P_{r}$ is the received power at the system
+    \item $A_{e}$ is the effective aperture of the system
+    \item $\lambda$ is the wavelength of the system
+    \item $G_{r}$ is the gain of the receive antenna
+\end{itemize}
+
+It is assumed that the gain is determined with equation \ref{eqn:Gain}.
+
+\begin{equation} \label{eqn:Gain}
+G = \frac{4 pi \eta_{a} A}{\lambda^2} = \frac{4 pi A_{e}}{\lambda^2}
+\end{equation}
+
+Where $\eta_{a}$ is the efficiency of the antenna created which is commonly between 0.5 and 0.8 \cite[p.~64]{radarHandbook}.
+
+In the case of the monostatic antenna array, the transmitting and receiving gain are the same as it is the same array. This implies that for bistatic systems, it is possible to have two different ranges for receiving and transmitting \cite[p.~64]{radarHandbook}.
+
+
+\section{Probability of Detection} \label{sec:SNRProbability}
+The first part of this is to make use of equation~\ref{eqn:SNRProbability} in order to map a selected set of probabilities to a required SNR value \cite[p.~107]{radarHandbook}.
+
+\begin{equation} \label{eqn:SNRProbability}
+SNR (dB) = -5 log_{10}N + \Bigg(6.2 + \frac{4.54}{\sqrt{N + 0.44}}\Bigg) log_{10}(A + 0.12 A B + 1.7 B)
+\end{equation}
+
+Where 
+\begin{equation} \label{eqn:A}
+A = ln(\frac{0.62}{P_{FA}})
+\end{equation}
+and 
+
+\begin{equation} \label{eqn:B}
+B = ln \Bigg( \frac{P_D}{1 - P_D} \Bigg)
+\end{equation}
+
+This set of equations is used to generate Fig.~\ref{fig:SNRRequired} (in this case $N$ is the number of pulses, which is assumed to be 1).
+
+\begin{center}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{ProbabilityDetection.eps}
+        \caption{SNR Required for Detection}
+        \label{fig:SNRRequired}    
+    \end{figure}
+\end{center}
+
+This implies that in the case that for realistic values for the two probabilities, the SNR required reaches a value of approximately $10~dB$.
+This is therefore defined as the minimum SNR ($SNR_{min}$) required for the system to function.
+Based on this equation, it can be seen that if the number of pulses is increased, then the SNR required will become lower. This current approximation makes use of a single pulse on a target.
+
+% There are a number of alternative methods in which to specify criteria of the system where the system is designed from th in section~\ref{sec:ParameterEstimation} \cite[p.~72]{radarHandbook}
+
+This first estimate for the minimum SNR required is linked to the noise present in the system, the noise of the system is evaluated in sections~\ref{sec:ReceiverNoise} and \ref{sec:ThermalNoise}.
+
+
+\section{VSWR and Return Loss Derivations} \label{sec:VSWRandReturnLossDerivations}
+The Voltage Standing Wave Ratio (VSWR) is an important parameter for any antenna, this is the characteristic which determines the ratio of the input signal which is reflected to what is transmitted. This value should be as low as possible, it ranges from 1 (complete signal transmission) to infinite (complete signal reflection). These correspond to a perfect match and a perfect mismatch respectively.
+A VSWR value of lower than $1.3:1$ is sufficient for this application as this represents a return loss of $-17.7 dB$ \cite{AntennaPrice1,AntennaPrice2,AntennaPrice3,AntennaPrice4}. This value is a compromise between cost and antenna performance. Lower VSWR values become difficult to achieve as the price becomes prohibitive. This value is attained based on current implementations of these types of antennas and their specifications.
+This VSWR results in a low reflection back into the amplifier (and consequently reflection that doesn't enter the antenna when in receiving mode).
+
+The parameters illustrated above are calculated with the use of equations~\ref{eqn:VSWR}, and \ref{eqn:ReturnLoss}.
+
+
+\begin{equation} \label{eqn:VSWR}
+VSWR = \frac{1 - |\Gamma|}{1 + |\Gamma|}
+\end{equation}
+
+\begin{equation} \label{eqn:ReturnLoss}
+Return Loss (dB) = -10 log_{10} \Bigg[ \Big(\frac{VSWR - 1}{VSWR + 1} \Big)^2 \Bigg]
+\end{equation}
+Where the reflection coefficient, $\Gamma = \frac{Z_L - Z_0}{Z_L + Z_0}$ and $Z_L$ is the load impedance and $Z_0$ is the characteristic impedance.
+
+This VSWR value defined here is linked to the bandwidth of the antenna, as this VSWR will not be maintained over a large frequency range. In this case it is useful to define a maximum VSWR over the frequency range of the antenna. The design for this is such that the VSWR is less than $2:1$ for the bandwidth of the antenna (and system as a whole).
+
+
+
+\section{Element Spacing Derivation} \label{sec:ElementSpacingDerivation}
+In order to avoid the grating lobes, the separation between each consecutive element in the array should not be multiplies of the wavelength of the antenna \cite[p.~297]{Balanis}.
+In order to eliminate this probability, the spacing between elements should be less than one wavelength.
+
+
+
+
+In order to achieve this spacing, the antennas are rotated by $45^{\circ}$, this allows for tighter packing of the antennas. This configuration is illustrated in Fig.~\ref{fig:ArrayGeometry}, this is for a $2 \times 2$ array, the illustration is from above the array.
+
+
+
+This creates a manageable spacing between the elements such that they can be easily installed and will not interfere with adjacent antennas (mechanically). This is also important for cases where antennas need replacing, this makes this process easier.
+
+The elements spaced the same distance above the ground plane as the case for the single antenna. The ground plane is created with a conducting mesh. The mesh is created such that the spacing between each consecutive line is less than $\lambda/10$ apart. This spacing reduces the cost of the ground mesh as this ground mesh acts as a solid surface in reference to the frequency that is incident upon it.
+
+A secondary method to prevent grating lobes is by specifying the element spacing (not implemented in this solution) where equation equation~\ref{eqn:ElementSpacing} provides the spacing \cite[p.~331]{radarHandbook}. In this case, the maximum steering angle required is the parameter, $\theta$, this results in a spacing that can be approximated by $0.75 \lambda$. 
+This method of spacing the elements can reduce the cost of the overall array as it can result in the reduction of required antenna elements \cite[p.~331]{radarHandbook}.
+The reason that this was not used is based on the fact that a large amount of power is input to the system so increasing the number of elements reduces the power experienced by each antenna.
+
+\begin{equation} \label{eqn:ElementSpacing}
+d \leq \frac{\lambda}{(1 + | sin \theta |)}
+\end{equation}
+
+
+\section{Ground Plane Characteristics} \label{sec:GroundPlaneCharacteristics}
+In this section, it is pertinent to note the difference between the use of a ground plane and the absence of a ground plane, Fig.~\ref{fig:GroundPlane} illustrates this difference in the case of a $32 \times 32$ antenna array.
+
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+            \includegraphics[width=0.9\linewidth]{GroundPlane-Polar.pdf}
+            \caption{Ground Plane vs No Ground Plane - Polar Plot}
+            \label{fig:GroundPlane-Polar}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{GroundPlane-Cartesian.pdf}
+            \caption{Ground Plane vs No Ground Plane - Cartesian Plot}
+                \label{fig:GroundPlane-Cartesian}
+            \end{subfigure}
+\caption{Ground Plane vs No Ground Plane}
+\label{fig:GroundPlane}
+\end{figure}
+
+Fig.~\ref{fig:MainBeamGain} and \ref{fig:GroundPlane} illustrate the different gains acquirable based on the sizing of the array and how the ground plane affects the system.
+
+\section{Steering Ability of $32 \times 32$ Array} \label{sec:SteeringAbility}
+Fig.~\ref{fig:SteeringSmall-Polar} and \ref{fig:SteeringSmall-Cartesian} illustrate the steering capabilities of the system for a $32 \times 32$ sized antenna array.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{.5\textwidth}
+        \centering
+            \includegraphics[width=0.9\linewidth]{SteeringSmall-Polar.pdf}
+            \caption{$32 \times 32$ Array Beam Steering Ability - Polar Plot}
+            \label{fig:SteeringSmall-Polar}
+        \end{subfigure}%
+        \begin{subfigure}{.5\textwidth}
+            \centering
+            \includegraphics[width=0.9\linewidth]{SteeringSmall-Cartesian.pdf}
+            \caption{$32 \times 32$ Array Beam Steering Ability- Cartesian Plot}
+                \label{fig:SteeringSmall-Cartesian}
+            \end{subfigure}
+\caption{$32 \times 32$ Array Beam Steering Ability}
+\label{fig:SteeringSmall}
+\end{figure}
+
+
+
+
+
+\section{Environmental Considerations} \label{sec:EnvironmentalConsiderations}
+The design of this system has considered the technical details of tracking space debris. In order to implement this in a real world situation the environmental factors are analysed in this section.
+% Based on the choice of the frequency and how it is used, the location of the system is based in the Northern Cape where there is a low population density and a large area. This is highly important such that the system has as little radio interference as possible.
+
+\subsection{Location} \label{sec:Location}
+Subject to the choice of the frequency and how it it licensed, the array is situated within the Northern Cape (refer to section~\ref{sec:OptimalFrequency}). This is based on the fact that the SKA has the ability to provide a number of laws which allow for the selected frequency to be utilised within this province.
+The Northern Cape is a largely unpopulated area when compared to the rest of the country, implying that it has a low population density (as it has the largest area). This is convenient as it lowers the cost per area of land. 
+Based on the spacing of the array, the size of land required should be at least $247~m^2$ (based on the $\lambda/2$ spacing and the $64 \times 64$ array sizing), this is the minimum area required for the placement of the antennas. The system is equipped with a number of additional components which all take up space.
+This implies that the system is required to be able to be housed with at least a $2000~m^2$ plot of land, this implies that, based on the average cost of units of land of this size, the price will be approximately $R~800~000$ to $R~1~200~000$ \cite{LocationPrice1, LocationPrice2, LocationPrice3}.
+The price of the plot of land varies based on its location, previous owners, and proximity to towns. A pragmatic approach to estimating the cost of the required land is to take the maximum value stated here and add on an additional $20~\%$. The cost of the area of land is then approximated to $R~1~440~000$.
+
+The ideal location for the land would be within a short distance from the SKA operations, this results in the added benefit of the lowered radio interference from external sources while being able to cooperate with their operations. 
+The SKA has currently build their own infrastructure for data management. Tying in with their system implies a lower cost for both parties as it can benefit both. The cost incurred for this communication platform can become expensive, an in-depth analysis should be undertaken as to how the data transmission mechanism should work.
+The first method is to make use of on-site servers which take all of the information directly from the array and apply analysis on this data, package the data, and send out the important characteristics that it has analysed. The second method is to automatically send out all of the data that is retrieved from the system, this data is then sent directly to an external server (a cloud provider such as Google, Amazon, etc.) and then the analysis is then carried out from this service.
+The cost of these two systems are required to be analysed as they both have benefits and drawbacks.
+The first method will require a large up front investment for the installation of the servers, then an recurring cost for the energy that is consumed for the analysis, this greatly reduces the costs of data transmission.
+The second method will have minimal up front costs, other than the recurring cost of the maintenance and rental of the data line, as well as the costs to analyse this data when it is stored on the cloud.
+The SKA ran a feasibility study to determine which of these methods is more cost efficient, their decision was to install an on-site data center as the costs of installing a fibre line to transport the data far exceeded the installation costs of the data center \cite[p.~17-18]{SKAFibre}.
+This data center will require the installation of an RFI shielded building such that the components inside do not interfere with the array \cite[p.~18]{SKAFibre}.
+
+The power requirements for the installation of this system can become complex, in addition to this, the power transmission system should comply with the regulations of the SKA. The SKA undertook an investigation to the installation for power \cite{SKAFibre}, this document highlight the requirements for the installation of power and how it is required to be routed.
+
+
+The plot of land is required to be relatively low gradient for the installation of the physical array as this is required to be mounted flush against the surface of the Earth and directed upwards.
+In order to install the system, an in depth analysis is required to be carried on the land, this analysis includes has been undertaken by the SKA in the local area ($180~km$ radius)\cite[p.~95,98]{SKAFibre}, which concludes that the minimum depth at which the structure can be fixed is $3.5~m$ below the surface. The nature of the ground under the array can prove to be difficult to lay foundations for construction.
+
+Due to the placement of the SKA, placing the system in close proximity implies that low flying aircraft are prohibited within the local airspace as this can affect the system.
+Local authorities should be notified of the implementation of this system such that regulations are put in place for flight paths that may be affected.
+
+Depending on the site chosen, roads and standard infrastructure (water, electricity, etc.) may be required for the construction of the system, this increases the overall cost.
+
+This system should be capable of functioning for a minimum of $40$ years \cite[p.~336]{AMISRCosting}, this is a standard requirement for large operations, as such it should be capable of withstanding the environment for this period of time. Section~\ref{sec:WeatherDependence} analyses a number of concerns for the area of installation.
+
+\subsection{Weather Dependence} \label{sec:WeatherDependence}
+The Northern Cape (specifically near Carvernon, where the SKA is situated) is at a relatively high altitude, it is also a semi-arid area with little rainfall throughout the year \cite{Rainfall}.
+This is highly beneficial for the system as rainfall can severely affect the functioning of the system (due to the loss of EM wave energy by the water).
+The low humidity and rainfall is convenient for this system as this area is located above the rust belt (the border where corrosion from the sea air is reduced to negligible levels) of South Africa which. This implies that the system will require little to no maintenance from corrosion over time.
+
+The temperatures experienced during the Summer season in this area of the country often range between $34$ to $40^{\circ} C$. Frost and dew often occur during the winter months, this implies that the components should be designed such that they can handle extreme temperature swings.
+
+% \section{Construction} \label{sec:Construction}
+
+% How things fit together, how the cables are placed
+% What kind of cables
+% What communications medium is used between modules
+
+
+
+
+
+\section{Code Listings} \label{sec:CodeListings}
 
 
 \end{document}

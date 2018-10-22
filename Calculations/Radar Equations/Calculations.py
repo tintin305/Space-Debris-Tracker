@@ -16,7 +16,7 @@ numElements = 4096
 
 # Lambda
 Lambda = speedOfLight / centerFrequency
-
+print("Lambda: " + str(round(Lambda,4)) + " m")
 # Tangential velocity
 minObjectPeriod = 5280 # Seconds
 maxObjectPeriod = 7620 # Seconds
@@ -35,6 +35,7 @@ maxSlantDistance = earthRadius * (math.sqrt((((earthRadius + maxDistance)**2)/(e
  - (math.cos(elevation)**2 )) - math.sin(elevation)) # Taking in the max angle (from zenith) and max distance
 minSlantDistance = earthRadius * (math.sqrt((((earthRadius + minDistance)**2)/(earthRadius**2))  \
  - (math.cos(elevation)**2 )) - math.sin(elevation)) # Taking in the max angle (from zenith) and min distance
+print("Maximum Slant Distance: " + str(round(maxSlantDistance/1000,4)) + " km")
 
 # Assuming a 120 degrees maximum field of view (60 degrees max angle)
 maxSlantDistanceFOV = earthRadius * (math.sqrt((((earthRadius + maxDistance)**2)/(earthRadius**2)) \
@@ -67,6 +68,7 @@ print("Maximum Doppler Shift: " + str(round(dopplerFrequencyShift,4)) + " Hz")
 # Minimum radar cross section of object (min diameter of 10 cm)
 minObjectRadius = 5 * 10**(-2)
 minRCS = math.pi * minObjectRadius**(2)
+print("Radar Cross Section: " + str(round(minRCS,4)) + " m2")
 
 # Signal Round trip times
 minRoundTripTime = 2 * (minDistance/speedOfLight)
@@ -100,6 +102,7 @@ noiseFigure = 10**(noiseFiguredB/10)
 
 pulseWidth = 10 * 10**(-6)
 bandwidth = 1 / pulseWidth
+print("Bandwidth of the system: " + str(round(bandwidth/1000,4)) + " kHz")
 SNRmindB = 10 #Measured in dB
 SNRmin = 10**(SNRmindB/10)
 
