@@ -26,6 +26,7 @@
 \usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
+\usepackage{bibunits}
 \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
 \definecolor{mylilas}{RGB}{170,55,241}
 \graphicspath{{Images/}}
@@ -38,7 +39,9 @@
 
 
 \begin{document}
-	
+\begin{bibunit}[witseie]
+
+
 \thispagestyle{empty}
 \pagestyle{plain}
 \onecolumn
@@ -162,14 +165,15 @@ The system, as an overview is made up of the following components illustrated in
 
 \begin{center}
     \begin{figure}
-        \includegraphics[width=\textwidth]{SystemOverview.pdf}
+        \centering
+        \includegraphics[width=0.7\textwidth]{SystemOverview.pdf}
         \caption{System Overview}
         \label{fig:SystemOverview}    
     \end{figure}
 \end{center}
 
 These components perform the major tasks of the system, they are each discussed in detail in their own sections, however, before that can take place, these components are used to perform a specific action in order to detect the space debris, sections~\ref{sec:OptimalFrequency}, \ref{sec:AntennaArray}, \ref{sec:ContinuousWaveandPulsedWave}, \ref{sec:RadarTheoryOfOperation}, and \ref{sec:PulsingCharacteristics} introduce the theory behind the operation of this system. The choices for these sections are directly linked to the type of devices and components seen in Fig.~\ref{fig:SystemOverview}.
-The first highly important parameter of the system is the frequency at which it will operate as this is dependent on a number of factors. This is discussed in section~\ref{sec:OptimalFrequency}.
+The first highly important parameter of the system is the frequency at which it will operate as this is dependent on a number of factors. This is discussed in section~\ref{sec:OptimalFrequency}
 
 
 \section{Optimal Frequency} \label{sec:OptimalFrequency}
@@ -200,11 +204,11 @@ Where:
 This assumed Doppler shift implies that the frequency bandwidth should accommodate at least $100~kHz$ on either side of the centre frequency.
 The Doppler frequency shift of the designed system is discussed in more detail in section~\ref{sec:SNR} where further analysis on the required bandwidth is also analysed as it is dependent on a number of factors.
 
-The frequency choice is highly dependent on the locality of the system and the current frequency usage by other parties as well as population density and frequency usage, which leads to the analysis in section~\ref{sec:PoliticalandEconomicalLimitations}.
+The frequency choice is highly dependent on the locality of the system and the current frequency usage by other parties as well as population density and frequency usage, which leads to the analysis in section~\ref{sec:FrequencyAllocation}.
 
 
 \subsection{Characteristics of Frequency} \label{CharacteristicsOfFrequency}
-Based on the frequency choice discussed in section~\ref{sec:PoliticalandEconomicalLimitations} it is clear that the optimal frequency band is the $606~-~614~MHz$ band; a number of parameters are estimated and illustrated in table~\ref{tab:FrequencyDetails}.
+Based on the frequency choice discussed in section~\ref{sec:FrequencyAllocation} it is clear that the optimal frequency band is the $606~-~614~MHz$ band; a number of parameters are estimated and illustrated in table~\ref{tab:FrequencyDetails}.
 
 \begin{table}
     \caption{Frequency Details}
@@ -228,7 +232,7 @@ The wavelengths generated within this table are based on the centre frequency of
 
 
 \section{Basic Operation} \label{sec:BasicOperation}
-The first important characteristic of a radar system is the ability to measure the distance of a target from the observation point. This is undertaken with the simple calculation of the amount of time that it takes a signal to travel from the transmitter to the target and back again, this is evaluated with the use of equation~\ref{eqn:RadarRangeEquation}. This equation evaluates the distance of the target ($R$) by making use of the speed of light (the speed that the EM wave travels, $c$), and the amount of time that it took the signal to travel to the target and back again ($\Delta$).
+The first important characteristic of a radar system is the ability to measure the distance of a target from the observation point. This is undertaken with the simple calculation of the amount of time that it takes a signal to travel from the transmitter to the target and back again, this is evaluated with the use of equation~\ref{eqn:RadarRangeEquation}. This equation evaluates the distance of the target ($R$) by making use of the speed of light (the speed that the EM wave travels, $c$), and the amount of time that it took the signal to travel to the target and back again ($\Delta T$).
 
 \begin{equation} \label{eqn:RadarRangeEquation}
     R = \frac{c \Delta T}{2}
@@ -250,7 +254,7 @@ This allows for the calculation for the maximum and minimum round trip times for
         \end{tabular}
     \end{center}
 \end{table}
-These values take the assumption that the system is capable of steering up to $30^{\circ}$ from the zenith direction. If the system were to steer further, then the maximum slant distance would increase accordingly. The maximum steering ability of the system designed is capable of reaching approximately $50^{\circ}$, however, the maximum slant allowed is reduced in order to increase the reliability of the system. This is discussed in more detail in section~\ref{sec:AntennaArray}. % as grating lobes can appear when steered past designed levels.
+These values take the assumption that the system is capable of steering up to $30^{\circ}$ from the zenith direction. If the system were to steer further, then the maximum slant distance would increase accordingly. The maximum steering ability of the system designed is capable of reaching approximately $50^{\circ}$, however, the maximum slant allowed is reduced in order to increase the reliability of the system. This is discussed in more detail in section~\ref{sec:AntennaArray} % as grating lobes can appear when steered past designed levels.
 
 Based on the maximum slant distance round trip time ($14.83 ms$), this places a number of limitations on the system which relate to the pulse repetition frequency, the minimum distance round trip time ($1.067 ms$), limits the pulse width that the system can transmit over. This also creates a limit on the bandwidth of the system as the bandwidth is related to this parameter by $B = 1/ \tau$.
 % , however the bandwidth of the system is related to a number of characteristics which are discussed in section~\ref{sec:SNR}***.
@@ -436,7 +440,7 @@ This results in the requirement for the antenna to be circularly/elliptically po
 Circularly polarized antennas are used for Earth-to-Space and Space-to-Earth communication because of these effects on the polarization. On top of the circularly polarized EM wave, RHCP is commonly used for transmission \cite[p.~31]{crossedDipoleDesign}.
 
 \subsection{Resonant Frequency and Bandwidth} \label{sec:ResonantFrequencyandBandwidth}
-The antenna is designed such that it resonates at the desired frequency ($610~MHz$), which results in the capacitive and inductive effects cancelling each other out, this makes the antenna efficient. During construction of the antenna, there may be inconsistencies with some of the lengths, so tuning of individual antennas may be required such that they function optimally. In order to counteract this, the antenna is constructed such that it is capable of operating over a relatively wide bandwidth. This bandwidth is specified in section~\ref{sec:SNR}.
+The antenna is designed such that it resonates at the desired frequency ($610~MHz$), which results in the capacitive and inductive effects cancelling each other out, this makes the antenna efficient. During construction of the antenna, there may be inconsistencies with some of the lengths, so tuning of individual antennas may be required such that they function optimally. In order to counteract this, the antenna is constructed such that it is capable of operating over a relatively wide bandwidth. This bandwidth is specified in section~\ref{sec:SNR}
 
 \subsection{VSWR and Return Loss} \label{sec:VSWRandReturnLoss}
 The antenna is designed to have a maximum VSWR of $1.3:1$ which is sufficient for this application as this represents a return loss of $-17.7 dB$ and lines up with commonly available antennas of similar characteristics \cite{AntennaPrice1,AntennaPrice2,AntennaPrice3,AntennaPrice4}. The explanation and derivation for these values and decisions can be found in section~\ref{sec:VSWRandReturnLossDerivations}
@@ -503,7 +507,7 @@ Clearly, based on the requirements of this antenna, the radiation in the $-z$ di
         \end{tabular}
     \end{center}
 \end{table}
-Based on the features in table~\ref{tab:AntennaConfigurations}, it is clear that this gain should be multiplied by a large factor in order to meet the requirements stated in section~\ref{sec:ThermalNoise}. This is accomplished with the use of an antenna array, this is discussed in section~\ref{sec:AntennaArray}.
+Based on the features in table~\ref{tab:AntennaConfigurations}, it is clear that this gain should be multiplied by a large factor in order to meet the requirements stated in section~\ref{sec:ThermalNoise}. This is accomplished with the use of an antenna array, this is discussed in section~\ref{sec:AntennaArray}
 The antenna geometry is highly important as it should be able to withstand a range of environmental conditions that range from extreme temperatures to humidity variations, to high wind speeds.
 The ideal material for construction of the antenna is copper as this has the lowest resistivity while having a low cost. The first important parameter of each of the dipoles is to determine the current density throughout the conductor and therefore to optimize the sizing of the wire such that it takes into account the skin effect. This is calculated with the use of equation~\ref{eqn:SkinDepth}.
 \begin{equation} \label{eqn:SkinDepth}
@@ -578,7 +582,7 @@ In order to achieve steering of the array, progressive phase delay is used for c
 \Psi = k d cos \theta + \beta
 \end{equation}
 In this case $\Psi$ represents the angle to which the array should direct its main lobe, $\theta$ is taken to be $0^{\circ}$ (to create the broadside effect) and $\beta$ the progressive phase delay for each element.
-This principle is used to illustrate the scanning feature represented in Fig.~\ref{fig:SteeringSmall} where different scanning angles are illustrated by the differing curves. This scenario makes use of a $32 \times 32$ array where the steering is increased by $10^{\circ}$ increments. This is then scaled up to the standard sized array used for the system, this is illustrated in Fig.~\ref{fig:SteeringBig}.
+This principle is used to illustrate the scanning feature represented in Fig.~\ref{fig:SteeringSmall-Polar} and \ref{fig:SteeringSmall-Cartesian} where different scanning angles are illustrated by the differing curves. This scenario makes use of a $32 \times 32$ array where the steering is increased by $10^{\circ}$ increments. This is then scaled up to the standard sized array used for the system, this is illustrated in Fig.~\ref{fig:SteeringBig}.
 
 This principle can be applied continuously which means that the beam can be dynamically steered in the required direction.
 In order to apply this principle to the 2D array used in this design, the steering is implemented in the $x$ direction, and then the $y$ direction, such that the beam is steered in the $\theta$ and then the $\phi$ direction in order to be directed at the required coordinates.
@@ -761,8 +765,11 @@ This means that the total cost of the system can be estimated to approach $R~775
 
 \section*{ACKNOWLEDGEMENT} \label{sec:ACKNOWLEDGEMENT}
 
-\bibliographystyle{witseie}
-\bibliography{references}
+% \bibliographystyle{witseie}
+% \bibliography{references}
+
+\putbib[references]
+\end{bibunit}
 
 \newpage
 \onecolumn
@@ -774,7 +781,10 @@ This means that the total cost of the system can be estimated to approach $R~775
 
 % APPENDICES
 \onecolumn
+\begin{bibunit}[witseie]
 \appendix
+
+
 
 \section{Social, Economic, and Environmental Implications}
 
@@ -801,12 +811,13 @@ Lead free stuffies
 
 
 \section{Background to Space Debris} \label{sec:BackgroundToSpaceDebris}
-This was not thought to be an issue to the world at large as the belief was that space is immense and so there were no issues with using it as a dumping ground. It was not until the realisation by Kessler that the world began to worry \cite{Kessler}. This theory predicted that as the number of man made satellites (and other objects) in Earth's orbit increases, so does the probability of collisions between them increase. When orbiting debris collide, the two objects can fragment (due to the excessive relative speeds with which the two objects travel at) and case multiple cascading collisions. This means that the debris orbiting the Earth would increase and result in greater difficulty for active space craft to undertake their missions.
-Protecting active missions from this space debris is highly difficult as it is difficult to predict the density of objects in the specific orbit that the missions' device should be in.
+
+This space debris was not thought to be an issue to the world at large as the belief was that space is immense and so there were no issues with using it as a dumping ground. It was not until the realisation by Kessler that the world began to worry \cite{Kessler}. This theory predicted that as the number of man made satellites (and other objects) in Earth's orbit increased, so did the probability of collisions between them. When orbiting debris collide, the two objects can fragment (due to the excessive relative speeds with which the two objects travel at) and cause multiple cascading collisions. This means that the debris orbiting the Earth would increase and result in greater difficulty for active space craft to undertake their missions.
+Protecting active missions from this space debris is highly difficult as it is challenging to predict the density of objects in the specific orbit that the missions' device should be in.
 
 Guidelines were developed by NASA in the late 70's, however, this simply slowed the rate of introduction of debris, this did nothing to reduce the currently orbiting debris \cite{spaceDebrisGuide}. Recently, the United Nations General Assembly managed to get agreement between a number of countries to reduce the introduction of this debris \cite{debrisGuidelinesAgreement}.
 
-There have been a number of methods in which to deal with this issue. The first is to protect the current missions from this debris, in this case, make use of a Whipple shield, this is simply an outer coating of space craft that is able to protect the craft against high velocity impacts of objects in outer space \cite{Whipple}. This shield is built to protect the craft from impacts from micrometeoroids in space.
+There have been a number of methods created to deal with this issue. The first is to protect the current missions from this debris, in this case, make use of a Whipple shield, this is simply an outer coating of space craft that is able to protect the craft against high velocity impacts of objects in outer space \cite{Whipple}. This shield is built to protect the space craft from impacts from micrometeoroids in space.
 This method falls short when the debris becomes large enough to penetrate the craft (and the Whipple shield), resulting in the destruction/damage of the craft.
 
 A recent system is capable of removing debris from the Earth's orbit, however, this is still in its early stages and has yet to prove highly effective \cite{removalSpaceDebris}.
@@ -830,7 +841,7 @@ The coordinate system used throughout this design report the coordinate system u
 
 %start tikz picture, and use the tdplot_main_coords style to implement the display 
 %coordinate transformation provided by 3dplot
-\begin{tikzpicture}[scale=3,tdplot_main_coords]
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
 
 %set up some coordinates 
 %-----------------------
@@ -885,9 +896,9 @@ The coordinate system used throughout this design report the coordinate system u
 \end{figure}
 
 
-\subsection{Space Debris Parameters} \label{sec:SpaceDebrisParameters}
+\section{Space Debris Parameters} \label{sec:SpaceDebrisParameters}
 As discussed in section~\ref{sec:INTRODUCTION}, space debris in Earth's orbit has been increasing for many decades, this is mainly due to space missions with poor regulations on the material that is allowed to stay in Earth's orbit.
-The majority of space debris currently is made up of man made air craft components, this includes objects such as: functioning space craft, non-functional spacecraft, rocket bodies, exhaust products, objects created through deployment operations, and products of deteriorated space craft \cite{OrbitalDebrisTechnicalAssessment}.
+The majority of space debris is currently made up of man made air craft components, this includes objects such as: functioning space craft, non-functional spacecraft, rocket bodies, exhaust products, objects created through deployment operations, and products of deteriorated space craft \cite{OrbitalDebrisTechnicalAssessment}.
 Consequently, a large amount of this debris is made up of metallic materials as these materials make up the majority of the space crafts' components.
 It has, in the past \cite{Spacex}, been difficult and costly to retrieve the components which were used to get the space craft into orbit, this is a major contributor to the material.
 This debris can occupy a number of regions within the Earth's orbits and this changes its characteristics.
@@ -895,9 +906,8 @@ This debris can occupy a number of regions within the Earth's orbits and this ch
 The current scope of the project is that it should be capable of tracking space debris that is within the Low Earth Orbit (LEO). This orbit is defined to be approximately $160 km$ to $2000 km$ altitude above the Earth's mean sea level.
 
 
-\subsubsection{Space Debris Trajectory Characteristics} \label{sec:SpaceDebrisTrajectoryCharacteristics}
-
-The second definition of these orbits is baed on orbital mechanics, this states that if an object is within an orbit, then it will have a corresponding velocity.
+\subsection{Space Debris Trajectory Characteristics} \label{sec:SpaceDebrisTrajectoryCharacteristics}
+The second definition of these orbits is based on orbital mechanics, this states that if an object is within an orbit, then it will have a corresponding velocity.
 This is illustrated by equation~\ref{eqn:OrbitalVelocity}. 
 
 \begin{equation} \label{eqn:OrbitalVelocity}
@@ -915,38 +925,59 @@ Where:
 This allows for the simple calculation of the minimum and maximum orbital speeds expected from the objects which correspond to the maximum altitude and minimum altitude respectively. These are illustrated in table~\ref{tab:ObjectParameters}. The velocity in the table is stated as a tangential velocity as it is assumed that the radial velocity of the object is zero. If an object has a radial velocity component, then this implies that it is changing orbits (an object in a specified orbit will have zero radial velocity) and this is either taking place due to a force acting on the object (man made) or it is experiencing a force due to the Earth's atmosphere. The vectors which explain this movement of an object is illustrated in Fig.~\ref{fig:ObjectVelocityVectors}.
 
 \begin{figure}[htb]
+\centering
+\includegraphics[width=0.5\linewidth]{Vectors.pdf}
+\caption{Object Velocity Vectors}
+\label{fig:ObjectVelocityVectors}
+\end{figure}
+
+% \begin{figure}[htb]
+%     \centering
+%     \begin{subfigure}{.5\textwidth}
+%         \centering
+%             \includegraphics[width=0.9\linewidth]{Vectors.pdf}
+%             \caption{Object Velocity Vectors}
+%             \label{fig:ObjectVelocityVectors}
+%         \end{subfigure}%
+%         \begin{subfigure}{.5\textwidth}
+%             \centering
+%             \includegraphics[width=0.9\linewidth]{ObservableCharacteristics.pdf}
+%             \caption{Observable Characteristics}
+%                 \label{fig:ObservableCharacteristics}
+%             \end{subfigure}
+% \caption{Object Characteristics}
+% \label{fig:ObjectCharacteristics}
+% \end{figure}
+
+
+
+The objects orbiting within these ranges have corresponding periods (amount of time it takes for an object to orbit around the Earth once), this means that an object in the lower orbit has a higher period than that of the higher orbits. The periods for the two limits of the LEO objects are listed in table~\ref{tab:ObjectParameters}.
+
+Based on a number of physical limitations, the system implemented is only capable of detecting the space debris once it appears within the field of view (FOV). The FOV is discussed in section~\ref{sec:FieldofViewandBeamDirection}. Fig.~\ref{fig:ObservableCharacteristics} illustrates the system and its relation to the Earth.
+
+
+\begin{figure}[htb]
     \centering
-    \begin{subfigure}{.5\textwidth}
-        \centering
-            \includegraphics[width=0.9\linewidth]{Vectors.pdf}
-            \caption{Object Velocity Vectors}
-            \label{fig:ObjectVelocityVectors}
-        \end{subfigure}%
-        \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=0.9\linewidth]{ObservableCharacteristics.pdf}
-            \caption{Observable Characteristics}
-                \label{fig:ObservableCharacteristics}
-            \end{subfigure}
-\caption{Object Characteristics}
-\label{fig:ObjectCharacteristics}
+    \includegraphics[width=0.5\linewidth]{ObservableCharacteristics.pdf}
+    \caption{Observable Characteristics}
+    \label{fig:ObservableCharacteristics}
 \end{figure}
 
 
-The objects orbiting within these ranges have corresponding periods (amount of time it takes for an object to orbit around the Earth once), this means that an object in the lower orbit has a higher period than that of the higher orbits. The periods for the two limits of the LEO objects are also found in table~\ref{tab:ObjectParameters}.
-
-Based on a number of physical limitations, the system implemented is only capable of detecting the space debris once it appears within the field of view (FOV). The FOV is discussed in section~\ref{sec:FieldofViewandBeamDirection}. Fig.~\ref{fig:ObservableCharacteristics} illustrates the system and its relation to the Earth.
 The inner circle represents the Earth's surface and point P represents the position of the system on the Earth's surface.  
 The outer circle represents the path of an object orbiting the Earth.
-The lengths in this image are not to scale and do not represent the real situation, however, this is used for illustrative purposes.
-It is highly important to determine the amount of time it takes from when the object first enters the systems FOV, until the point where it exits the systems point of view.
-In this case it is assumed that the object travels directly over the boresight of the system and so it will take the maximum amount of time to travel over the field of view. In most cases, the objects do not travel directly over the FOV, and will therefore not be within the FOV for a reduced amount of time.
+
+The lengths in this image are not to scale, however, this is used for illustrative purposes.
+
+It is highly important to determine the amount of time it takes from when the object first enters and then exits the systems FOV.
+In this case it is assumed that the object travels directly over the boresight of the system and so it takes take the maximum amount of time to travel over the field of view. In most cases, the objects do not travel directly over the FOV, and will therefore be within the FOV for a reduced amount of time. This has a number of consequences for the capability of the system to detect objects, most importantly, the number of pulses that the system can use on an object as it moves over the viewing area.
+
 This illustrates the system in order to create a few starting assumptions/criteria for the system.
-As can be seen in this image, the angle that is measured can be taken from two different reference points: the center of the Earth and the point P. Based on this, it can be seen that the angles that these two points create are different. This implies that if one were to calculate the maximum distance that an object can be detected (assuming a maximum FOV angle from point P), one cannot make use of the angle $\alpha$ and the distances of this arc as it would not represent the actual distances of the objects because the circle that the objects orbits around is different to the circle that is assumed the system makes use of.
-Numbers $1$ and $3$ represent the points at which the object enters and leaves the FOV, and point $2$ represents the position of the systems zenith.
+As can be seen in this image, the angle that is measured can be taken from two different reference points: the center of the Earth and the point P. Based on this, it can be seen that the angles that these two points create are different. This implies that if one were to calculate the maximum distance that an object can be detected (assuming a maximum FOV angle from point P), one cannot make use of the angle $\alpha$ and the distances of this arc as it would not represent the actual distances of the objects because the circle that the object orbits around is different to the circle that is assumed the system makes use of.
+Numbers $1$ and $3$ represent the points at which the object enters and leaves the FOV, and point $2$ represents the position of the systems zenith (boresight).
 
 
-The calculations in this section make use of a specified mean Earth radius, this implies that the observer is positioned at approximately sea level, this is unlikely to be the case for the placement of the system, however, the maximum altitude of feasible locations within South Africa are unlikely to exceed $\sim 1500 m$, this change in distance will provide a negligible difference to the calculated values.
+The calculations in this section make use of an average mean Earth radius, this implies that the observer is positioned at approximately sea level, this is unlikely to be the case for the placement of the system, however, the maximum altitude of feasible locations within South Africa are unlikely to exceed $\sim 1500~m$, this change in distance will provide a negligible difference to the calculated values and final design of the system.
 
 
 Based on the movement of objects in differing orbits, it can be seen that objects in higher orbits move slower than those in lower orbits.
@@ -961,7 +992,6 @@ Where:
     \item $v$ represents the linear velocity of the object
     \item $r$ represents the distance from the observer to the object
 \end{itemize}
-
 
 Once this has been estimated, it is important to evaluate the angle travelled by the object as seen from the observation point ($\alpha_{p}$). This is measured over a period of time ($\Delta T$) and the angular velocity calculated above ($\omega_{P}$) is used, this is found in equation~\ref{eqn:AngularVelocityP}
 
@@ -1004,7 +1034,7 @@ Where:
 
 The elevation of the system is important as it relates to the FOV of the system. The two are interrelated by the fact that the elevation angle is the complementary angle of the maximum FOV of the system. This implies that if the elevation of the system is known, then the FOV of the system can be calculated.
 
-In table~\ref{tab:ObjectParameters}, the elevation angle is assumed to be approximately $60^{\circ}$, this is a first estimate of the FOV of the system, further analysis of the system FOV of the system can be found in \ref{sec:FieldofViewandBeamDirection}. This elevation angle creates a maximum amount of time that the object is visible. This implies that the object travels directly over the boresight of the system. In most circumstances, the objects will not travel directly over the boresight and will therefore be within the FOV for less time than stated in this table.
+In table~\ref{tab:ObjectParameters}, the elevation angle is assumed to be approximately $60^{\circ}$, this is a first estimate of the FOV of the system, further analysis of the system FOV is discussed in~\ref{sec:FieldofViewandBeamDirection}. This elevation angle refers to the maximum amount of time that the object is visible. This implies that the object travels directly over the boresight of the system. In most circumstances, the objects will not travel directly over the boresight and will therefore be within the FOV for less time than stated in this table.
 
 This creates the ability to calculate the observed velocity of the object as it passes over the FOV of the system, this is illustrated in Fig.~\ref{eqn:ObjectVelocity}.
 
@@ -1013,9 +1043,9 @@ This creates the ability to calculate the observed velocity of the object as it 
 \end{equation}
 Where:
 \begin{itemize}
-    \item $v$ is the linear velocity of the object (m/s)
-    \item $\omega_{P}$ represents the apparent angular velocity of the satellite (Radians)
-    \item $h$ represents the altitude of the object
+    \item $v$ is the linear velocity of the object ($m/s$)
+    \item $\omega_{P}$ represents the apparent angular velocity of the satellite ($Radians$)
+    \item $h$ represents the altitude of the object ($m$)
 \end{itemize}
 
 
@@ -1023,14 +1053,13 @@ In addition to this, with an assumed elevation angle, the expected distances for
 
 
 \begin{equation} \label{eqn:ObjectDistances}
-    \rho = R (\sqrt{\frac{r^2}{R^2} - (cos(E))^2} - sin(E))
+    \rho = R \Bigg(\sqrt{\frac{r^2}{R^2} - (cos(E))^2} - sin(E) \Bigg)
     \end{equation}
 Where:
 \begin{itemize}
-    \item $\rho$ is the slant distance from the system to the object
+    \item $\rho$ is the slant distance from the system to the object ($m$)
 \end{itemize}
 This equation is important as it provides another criteria for the system, that of the maximum range that is required to be detected by the system. These become important for the Radar Range Equations (RRE) in section \ref{sec:PulsingCharacteristics}.
-
 
 \begin{table}
     \caption{Object Parameters}
@@ -1058,15 +1087,15 @@ This equation is important as it provides another criteria for the system, that 
     \end{center}
 \end{table}
 
-\subsubsection{Space Debris Physical Characteristics} \label{sec:SpaceDebrisPhysicalCharacteristics}
+\subsection{Space Debris Physical Characteristics} \label{sec:SpaceDebrisPhysicalCharacteristics}
 Now that a number of key characteristics of the movement of the objects have been calculated, it is important to detail the sizing and physical characteristics of the objects that are evaluated.
 
 There are multiple ways in which to model the space debris that is being tracked. This includes parameters such as: electron density, ion composition, electron drift velocity, etc. This in depth analysis of the debris is out of the scope of the project and a few simplifying assumptions are chosen for this section of the report.
 The first of these is to assume that the system is only required to detect \textit{hard} targets, this refers to the fact that the object is a solid and has a predictable characteristic when reflecting the EM waves incident on it. The \textit{soft} targets include ionospheric plasma present in the atmosphere, these targets are not important to this report \cite{softTarget}.  
 
 Based on current implementations of space debris trackers, an assumption is created here that the minimum RCS of an object is assumed to be that of $10 cm$ in diameter.
-As discussed in the above section, the objects in question are assumed to lie within the LEO, objects that are below this range experience force due to the atmosphere and therefore will slowly lose orbital velocity and will eventually fall into the Earth's atmosphere and (commonly) burn up in the process.
-The majority of the objects lie within the $500 km$ to $1000 km$ altitude band, after this point, the density of objects decreases \cite{ObjectInformation}. 
+As discussed in the above section, the objects in question are assumed to lie within the LEO; objects that are below this range experience force due to the atmosphere and therefore will slowly lose orbital velocity and will eventually fall into the Earth's atmosphere and (commonly) burn up in the process.
+The majority of the objects lie within the $500 km$ to $1000 km$ altitude band, after this point, the density of objects decreases \cite{ObjectInformation}.
 
 The information provided in the sections above create a baseline with which to design the system.
 
@@ -1086,12 +1115,10 @@ The information provided in the sections above create a baseline with which to d
 % The nature of an Incoherent Scatter Radar system is such that it directs electromagnetic energy into the Earth's "surrounding area"(ionosphere?); it highlights irregular characteristics present in this space. The energy that is transmitted is then reflected off of these irregularities and returns back in the direction of the system.
 % The system has the ability to create a narrow beam which transmits energy, this energy is then steered (electronically) within the bounds of the system. Steering can be done in azimuth, elevation, and intensity. 
 
-\subsection{Current Implementations} \label{sec:CurrentImplementations}
+\section{Current Implementations} \label{sec:CurrentImplementations}
  The first of these is the Advanced Modular Incoherent Scatter Radar (AMISR), this is located in Resolute Bay, Canada, it makes use of an array of crossed-dipole antennas that are electrically phased, the system is electronically steerable. It operates in the frequency range of $430 MHz$ to $450 MHz$ and has a pulse width of approximately $2 \mu s$ \cite{AMISR}. A number of important parameters can be found in \cite{AMISR}, this is a system which closely resembles the major requirements for this system.
 The second system in use by Leo Labs is the Midland Space Radar (MSR), this system is located in Texas and is commissioned by LeoLabs, this system is capable of detecting objects as small as $10 cm$ in diameter. It is not specified whether this value is a Radar Cross Section  (RCS) or the physical size of the object.
 A number of other implementations have been used (not through Leo Labs) which make use of other technologies and are capable of detecting smaller objects \cite{EISCAT, SIMO, telescope, BeamForming, OrbitDetermination, PlanarArray}. A number of these papers are made use of to design the system in this report.
-
-
 
 
 \section{Radar Theory of Operation} \label{sec:RadarTheoryOfOperation}
@@ -1100,11 +1127,9 @@ This section details the different implementations of radars that are capable of
 Sections \ref{sec:MonostaticvsBistatic}, \ref{sec:ContinuousWaveandPulsedWave}, \ref{sec:ThresholdDetection} discuss the theory of operation of the system.
 
 \subsection{Monostatic versus Bistatic} \label{sec:MonostaticvsBistatic}
-
-There are two major radar configurations that are currently used, the two are discussed below and then compared.
+There are two major radar configurations that are currently used, these two are discussed below and then compared.
 
 \subsubsection{Bistatic} \label{sec:Bistatic}
-
 The bistatic configuration makes use of a separate transmitter and receiver in order to implement the system. The two components are placed at differing locations and the separation between the components is required to be sufficiently large in terms of the angles or ranges that they present \cite{OrbitDetermination}, \cite[p.~5]{technicalReportSpaceDebris}, \cite[p.~3]{elevationLoss}. The separation between the transmit and receive systems allows for minimal interference between the two, while allowing for the use of more than one receiver.
 This implies that the two systems, in the case of Earth-to-Space transmission, are required to be geographically (in the order of kilometres) far apart \cite{bistaticNato}.
 The transmitters in these systems generally transmit power in the range of kilowatts to megawatts, this is in order to increase the SNR of the system as there is a significant amount of energy lost in the energy transfer process. The receiver on the other hand, works with milliwatts to nano Watts as it receives this greatly reduced power that is reflected from the objects in question. The bistatic system provides a convenient method of separating out the two systems such that it becomes increasingly difficult to damage the receivers' equipment from the high power generated by the transmitter.
@@ -1112,13 +1137,12 @@ This mode of operation allows for the calculation of the distance of the target 
 
 \subsubsection{Monostatic} \label{sec:Monostatic}
 
-The other, more commonly used system, is the monostatic configuration. This bundles the transmitter and receiver together on the same antenna/antenna array. The nature of this system is such that the transmitter and receiver are required to be isolated while the two transmitting and receiving are taking place. The isolation can be carried out in different ways, a circulator or a switch commonly achieves this. These components are discussed in section~\ref{sec:FeedingNetworks}. In the monostatic configuration, the transmitter and receiver do not operate at the same time which greatly simplifies the switching apparatus.
+The other, more commonly used system, is the monostatic configuration. This bundles the transmitter and receiver together on the same antenna/antenna array. The nature of this system is such that the transmitter and receiver are required to be isolated while the two transmitting and receiving actions are taking place. The isolation can be carried out in different ways, a circulator or a switch commonly achieves this. In many designs, there are multiple levels of protection for the receiver, as this component is commonly expensive and highly sensitive. These components are discussed in section~\ref{sec:FeedingNetworks}. In the monostatic configuration, the transmitter and receiver do not operate at the same time which greatly simplifies the switching apparatus.
 This mode of operation allows for direct measurement of distance of targets as well as the ability to measure the targets radial velocity (with respect to the observation point).
 
 \subsubsection{Comparison} \label{sec:Comparison}
-
-The configuration designed for this system is the monostatic as it provides a lower cost alternative to the bistatic configuration. It has the added benefit of only requiring one piece of land for the system. The system cost is lower than the bistatic case based on the fact that only one set of antennas are required. There are cases where the monostatic system can be set up with two sets of antennas (for transmitting and receiving), where the separation of the two installations creates a small angle.
-The bistatic configuration is easier to implement with regards to the protection systems for the receiver, however, this benefit does not out weigh the monostatic systems advantages. The bistatic systems also require a significant amount of communication between the two locations which increases the cost of implementation, most notably when the distance between the two systems is large and communication mediums can become prohibitively expensive.
+The configuration designed for this system is the monostatic as it provides a lower cost alternative to the bistatic configuration. It has the added benefit of only requiring one piece of land for the systems implementation. The system cost is lower than the bistatic case based on the fact that only one set of antennas are required. There are cases where the monostatic system can be set up with two sets of antennas (for transmitting and receiving), where the separation of the two installations creates a small angle.
+The bistatic configuration is easier to implement with regards to the protection systems for the receiver, however, this benefit does not out weigh the monostatic systems advantages. The bistatic systems also require a complex communication ability between the two locations which increases the cost of implementation, most notably when the distance between the two systems is large and communication mediums can become prohibitively expensive.
 
 \subsection{Continuous Wave and Pulsed Wave} \label{sec:ContinuousWaveandPulsedWave}
 
@@ -1132,7 +1156,7 @@ A unique characteristic of the continuous wave system is that it is unable to de
 
 \subsubsection{Pulsed Waveform Transmission} \label{sec:PulsedWaveformTransmission}
 
-The second method of EM wave transmission makes use of pulses, these occur periodically and their duration is commonly over a short period of time. This system is commonly used in tandem with a monostatic configuration and this provides the ability for components to provide isolation between the transmitter and receiver circuitry.
+The second method of EM wave transmission makes use of pulses, these occur periodically and their duration is commonly over a short period of time. This system is commonly used in tandem with a monostatic configuration and this provides the ability for components to afford isolation between the transmitter and receiver circuitry.
 Following the EM wave pulse, the receiver is set to record the resulting EM waves that are returned in the form of echoes after it has reflected from the objects in question. The determination of the pulse length and the period between pulses (the inter-pulse period (IPP)) is discussed in section~\ref{sec:PulsingCharacteristics} as this value is dependent on a number of other characteristics of the system. The pulse repetition is also linked to the observable time window of debris, discussed in section \ref{sec:SpaceDebrisTrajectoryCharacteristics}.
 
 
@@ -1147,16 +1171,25 @@ These two cases are highly unlikely, however, cannot be ignored as they are base
 These probabilities are given as two variables: the probability of detection ($P_{D}$), and the probability of false alarm ($P_{FA}$). The probability of detection is the probability that an object-plus-noise exceeds the threshold applied to the system. The probability of false alarm is the probability that the noise (from all components of the system) will exceed the threshold.
 The best case scenario for these two variables are: 
 
-
-$P_{D} = 1$ and $P_{FA} = 0$
+\begin{equation} \label{eqn:ProbabilityDetection}
+P_{D} = 1
+\end{equation} 
+and 
+\begin{equation} \label{eqn:ProbabilityFalseAlarm}
+P_{FA} = 0
+\end{equation}
 
 These values are idealistic and so the correct threshold value is required to be set such that the system can operate as close to these values as possible.
-When the threshold is increased the probability of false alarm will decrease, however, so will the probability of detection. When the threshold is decreased, the probabilities of both variables increase. A trade-off is required here to determine the optimum threshold level.
+When the threshold is increased, the probability of false alarm will decrease - however, so will the probability of detection. When the threshold is decreased, the probabilities of both variables increase. A trade-off is required here to determine the optimum threshold level.
 
-There is one way in which to increase the probability of detection while lowering the probability of false alarm, this is achieved by increasing the targets signal power (it should be noted that the signal power should be increased relative to the noise power). The method in which this can be accomplished is to increase the overall Signal-to-Noise-Ratio (SNR) of the system, if the overall SNR is increased above a specified level, then the probabilities discussed above, reach levels that sufficiently adequately satisfy the criteria of the system. the SNR and how it is attained is discussed in section~\ref{sec:SNR}. 
+There is one way in which to increase the probability of detection while lowering the probability of false alarm, this is achieved by increasing the targets signal power (it should be noted that the signal power should be increased relative to the noise power). The method in which this can be accomplished is to increase the overall Signal-to-Noise-Ratio (SNR) of the system, if the overall SNR is increased above a specified level, then the probabilities discussed above, reach levels that adequately satisfy the criteria of the system. The SNR and how it is attained is discussed in section~\ref{sec:SNR}
+
+
+\section{Frequency Allocation} \label{sec:FrequencyAllocation}
+The following sections detail a number of considerations while selecting a frequency, and how this process will be carried out.
 
 \subsection{Political and Economical Limitations} \label{sec:PoliticalandEconomicalLimitations}
-In addition to the reasons stated above, a further factor that affects the frequency band choice are those frequencies available by the systems regulator. The current communications authority of South Africa is run by ICASA \cite{ICASA}, who keep an updated list of the currently used frequency bands and the regulations that the operators should adhere to \cite{frequencyAllocation}, this document is used in order to determine the optimal frequency band.
+In addition to the reasons discussed in section~\ref{sec:OptimalFrequency}, a further factor that affects the frequency band choice are those frequencies available by the systems regulator. The current communications authority of South Africa is run by ICASA \cite{ICASA}, who keep an updated list of the currently used frequency bands and the regulations that the operators should adhere to \cite{frequencyAllocation}, this document is used in order to determine the optimal frequency band.
 The frequency allocation within a country is highly regulated, and as such it becomes costly to demarcate specified frequency bands for specific uses.
 The first criteria for the choice of a frequency band is the current usage of the frequency band, the request for in-use bands can expand the budget of the system greatly.
 
@@ -1176,18 +1209,18 @@ The first part is to determine the area of South Africa with the largest area an
 In addition to the fact that placement in the Northern Cape is beneficial, the Square Kilometre Array (SKA) is also currently located in this province. The development of the SKA has required the implementation of a set of special by-laws which apply to the areas within the province. These by-laws are discussed in the following sections.
 
 
-\subsubsection{Astronomy Geographic Advantage Act} \label{sec:AstronomyGeographicAdvantageAct}
+\subsection{Astronomy Geographic Advantage Act} \label{sec:AstronomyGeographicAdvantageAct}
 Due to the fact that the SKA requires an extremely low noise environment in order to undertake its scientific research, it has permission to demarcate specified areas of land for scientific research \cite{SKAActDescription}. 
 The minister has the ability to declare any area or part of an area in the Province of the Northern Cape as an astronomy advantage area. This implies that an area, which is technically advantageous to the functioning of the system can be demarcated by this act. This implies that, within demarcated areas, the SKA is able to allocate specific frequency bands to particular projects/entities. 
-The act enables the purchasing process of land to be facilitated by the National Research Foundation (NRF) which can greatly simplify the process of determining a location for the system. The act prohibits the use of specific frequencies within these area, this is highly beneficial for the system as it reduces the noise introduced from external factors.
+The act enables the purchasing process of land to be facilitated by the National Research Foundation (NRF) which can greatly simplify the process of determining a location for the system. The act prohibits the use of specific frequencies within these areas, this is highly beneficial for the system as it reduces the noise introduced from external factors.
 
-Collaboration between the SKA and this system can be highly beneficial, the scientific research community will be given access to the system on a periodic basis. In order for the SKA to allow this system to be used within the Northern Cape, it should be created such that it does not interfere with their systems, however, still be of benefit to them. In addition to the requirements of the SKA, a number of other considerations are required to take place: local affected businesses, affected agricultural tenants/owners, environmental impacts, nearby electrical and radio interference.
+Collaboration between the SKA and this system can be highly beneficial, the scientific research community will be given access to the system on a periodic basis. In order for the SKA to allow this system to be used within the Northern Cape, it should be created such that it does not interfere with their systems and still be of benefit to them. In addition to the requirements of the SKA, a number of other considerations are required to take place: local affected businesses, affected agricultural tenants/owners, environmental impacts, nearby electrical and radio interference. A number of these concerns are discussed in section~\ref{sec:EnvironmentalImplications}.
 The act allows for the allocation of required frequencies (regardless of the frequency allocation of ICASA) \cite{SKAAct}. The permits provided by the act create exemptions for the frequency spectrum that is permitted.
 
-This location of the system is discussed further in section~\ref{sec:EnvironmentalConsiderations} where a number of environmental factors are discussed.
+The location of the system is discussed further in section~\ref{sec:EnvironmentalConsiderations} where a number of environmental factors are discussed.
 
 \section{Power Density Derivations} \label{sec:PowerDensityDerivations}
-The first equation defines the power that is incident on the target, this is given by equation \ref{eqn:IncidentPower}. This power is generated with the use of the antenna array, the details of this array are discussed in section~\ref{sec:AntennaArray}, and the creation of the array requires the use of this equation. 
+The first equation which defines the power incident on a target, is given by equation \ref{eqn:IncidentPower}. This power is generated with the use of the antenna array, the details of this array are discussed in section~\ref{sec:AntennaArray}
 
 \begin{equation} \label{eqn:IncidentPower}
 P_{inc} = P_t * \frac{G_{t}}{4 * \pi * R^2} [W/m^2]
@@ -1195,13 +1228,13 @@ P_{inc} = P_t * \frac{G_{t}}{4 * \pi * R^2} [W/m^2]
 
 Where:
 \begin{itemize}
-    \item $P_{inc}$ is the power incident on the target
-    \item $P_t$ is the power transmitted from the system
-    \item $G_t$ is the gain of the system
-    \item $R$ is the distance from the system to the target
+    \item $P_{inc}$ is the power incident on the target ($W$)
+    \item $P_t$ is the power transmitted from the system ($W$)
+    \item $G_t$ is the gain of the system ($dB$)
+    \item $R$ is the distance from the system to the target ($m$)
 \end{itemize}
 
-This equation assumes the use of a directional antenna (not isotropic) which has a corresponding gain. This allows for the concentration of the beam in a specific direction.
+This equation assumes the use of a directional antenna (not isotropic) which has a corresponding gain which allows for the concentration of the beam in a specific direction.
 
 The next stage is to determine the magnitude of energy that is reflected by the target, as assumed in section~\ref{sec:SpaceDebrisPhysicalCharacteristics}, the radar cross section of the target is defined and known. 
 
@@ -1225,10 +1258,10 @@ P_{r} = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma}{(4 \pi )^3 R^4}
 
 Where:
 \begin{itemize}
-    \item $P_{r}$ is the received power at the system
-    \item $A_{e}$ is the effective aperture of the system
-    \item $\lambda$ is the wavelength of the system
-    \item $G_{r}$ is the gain of the receive antenna
+    \item $P_{r}$ is the received power at the system ($W$)
+    \item $A_{e}$ is the effective aperture of the system ($m^2$)
+    \item $\lambda$ is the wavelength of the system ($m$)
+    \item $G_{r}$ is the gain of the receive antenna ($dB$)
 \end{itemize}
 
 It is assumed that the gain is determined with equation \ref{eqn:Gain}.
@@ -1243,6 +1276,7 @@ In the case of the monostatic antenna array, the transmitting and receiving gain
 
 
 \section{Probability of Detection} \label{sec:SNRProbability}
+As discussed in section~\ref{sec:ThresholdDetection}, the act of detecting an object is probabilistic which means that the system should be designed in such a way as to increase the probabilities of detection. 
 The first part of this is to make use of equation~\ref{eqn:SNRProbability} in order to map a selected set of probabilities to a required SNR value \cite[p.~107]{radarHandbook}.
 
 \begin{equation} \label{eqn:SNRProbability}
@@ -1271,7 +1305,7 @@ This set of equations is used to generate Fig.~\ref{fig:SNRRequired} (in this ca
 
 This implies that in the case that for realistic values for the two probabilities, the SNR required reaches a value of approximately $10~dB$.
 This is therefore defined as the minimum SNR ($SNR_{min}$) required for the system to function.
-Based on this equation, it can be seen that if the number of pulses is increased, then the SNR required will become lower. This current approximation makes use of a single pulse on a target.
+Based on this equation, it can be seen that if the number of pulses is increased, then the SNR required will become lower. This current approximation makes use of a single pulse on a target. The affects of increasing the number of pulses here is not included within the calculations in order to simplify part of the design process. However, the effects of increasing the number of pulses should be included in in-depth calculations as it can affect a number of design decisions. Selecting the number of pulses has been undertaken in a simplified manner in section~\ref{sec:MultiplePulses} in order to attain a simplified analysis, however, this value is highly variable and is affected by a number of circumstances and conditions and also how the system is operated in reality.
 
 % There are a number of alternative methods in which to specify criteria of the system where the system is designed from th in section~\ref{sec:ParameterEstimation} \cite[p.~72]{radarHandbook}
 
@@ -1295,28 +1329,23 @@ Return Loss (dB) = -10 log_{10} \Bigg[ \Big(\frac{VSWR - 1}{VSWR + 1} \Big)^2 \B
 \end{equation}
 Where the reflection coefficient, $\Gamma = \frac{Z_L - Z_0}{Z_L + Z_0}$ and $Z_L$ is the load impedance and $Z_0$ is the characteristic impedance.
 
-This VSWR value defined here is linked to the bandwidth of the antenna, as this VSWR will not be maintained over a large frequency range. In this case it is useful to define a maximum VSWR over the frequency range of the antenna. The design for this is such that the VSWR is less than $2:1$ for the bandwidth of the antenna (and system as a whole).
+This VSWR value defined here is linked to the bandwidth of the antenna, as this VSWR will not be maintained over a large frequency range. In this case it is useful to define a maximum VSWR over the frequency range of the antenna. The design for this is such that the VSWR is less than $2:1$ for the bandwidth of the antenna (and the system as a whole).
 
 
 
 \section{Element Spacing Derivation} \label{sec:ElementSpacingDerivation}
-In order to avoid the grating lobes, the separation between each consecutive element in the array should not be multiplies of the wavelength of the antenna \cite[p.~297]{Balanis}.
+In order to avoid the grating lobes, the separation between each consecutive element in the array should not be multiples of the wavelength of the antenna \cite[p.~297]{Balanis}.
 In order to eliminate this probability, the spacing between elements should be less than one wavelength.
 
-
-
-
-In order to achieve this spacing, the antennas are rotated by $45^{\circ}$, this allows for tighter packing of the antennas. This configuration is illustrated in Fig.~\ref{fig:ArrayGeometry}, this is for a $2 \times 2$ array, the illustration is from above the array.
-
-
+In order to achieve this spacing, the antennas are rotated by $45^{\circ}$, this allows for tighter packing of the antennas. This configuration is illustrated in Fig.~\ref{fig:ArrayGeometry}, this is for a $2 \times 2$ array, the illustration is from above the array (birds eye view).
 
 This creates a manageable spacing between the elements such that they can be easily installed and will not interfere with adjacent antennas (mechanically). This is also important for cases where antennas need replacing, this makes this process easier.
 
-The elements spaced the same distance above the ground plane as the case for the single antenna. The ground plane is created with a conducting mesh. The mesh is created such that the spacing between each consecutive line is less than $\lambda/10$ apart. This spacing reduces the cost of the ground mesh as this ground mesh acts as a solid surface in reference to the frequency that is incident upon it.
+The elements are spaced the same distance above the ground plane as for the single antenna. The ground plane is created with a conducting mesh. The mesh is created such that the spacing between each consecutive line is less than $\lambda/10$ apart. This spacing reduces the cost of the ground mesh as this ground mesh acts as a solid surface in reference to the frequency that is incident upon it.
 
-A secondary method to prevent grating lobes is by specifying the element spacing (not implemented in this solution) where equation equation~\ref{eqn:ElementSpacing} provides the spacing \cite[p.~331]{radarHandbook}. In this case, the maximum steering angle required is the parameter, $\theta$, this results in a spacing that can be approximated by $0.75 \lambda$. 
+A secondary method to prevent grating lobes is by specifying the element spacing (not implemented in this solution) where equation~\ref{eqn:ElementSpacing} provides the spacing \cite[p.~331]{radarHandbook}. In this case, the maximum steering angle required is the parameter, $\theta$, this results in a spacing that can be approximated by $0.75 \lambda$. 
 This method of spacing the elements can reduce the cost of the overall array as it can result in the reduction of required antenna elements \cite[p.~331]{radarHandbook}.
-The reason that this was not used is based on the fact that a large amount of power is input to the system so increasing the number of elements reduces the power experienced by each antenna.
+The reason this was not used is based on the fact that a large amount of power is input to the system so increasing the number of elements increases the power experienced by each antenna which introduces more complexity to the design of the antenna as it then has to dissipate larger amounts of heat.
 
 \begin{equation} \label{eqn:ElementSpacing}
 d \leq \frac{\lambda}{(1 + | sin \theta |)}
@@ -1324,79 +1353,105 @@ d \leq \frac{\lambda}{(1 + | sin \theta |)}
 
 
 \section{Ground Plane Characteristics} \label{sec:GroundPlaneCharacteristics}
-In this section, it is pertinent to note the difference between the use of a ground plane and the absence of a ground plane, Fig.~\ref{fig:GroundPlane} illustrates this difference in the case of a $32 \times 32$ antenna array.
-
+In this section, it is pertinent to note the difference between the use of a ground plane and the absence of a ground plane, Fig.~\ref{fig:GroundPlane-Polar} and \ref{fig:GroundPlane-Cartesian}  illustrates this difference in the case of a $32 \times 32$ antenna array.
 
 \begin{figure}[htb]
     \centering
-    \begin{subfigure}{.5\textwidth}
-        \centering
-            \includegraphics[width=0.9\linewidth]{GroundPlane-Polar.pdf}
-            \caption{Ground Plane vs No Ground Plane - Polar Plot}
-            \label{fig:GroundPlane-Polar}
-        \end{subfigure}%
-        \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=0.9\linewidth]{GroundPlane-Cartesian.pdf}
-            \caption{Ground Plane vs No Ground Plane - Cartesian Plot}
-                \label{fig:GroundPlane-Cartesian}
-            \end{subfigure}
-\caption{Ground Plane vs No Ground Plane}
-\label{fig:GroundPlane}
+    \includegraphics[width=\linewidth]{GroundPlane-Polar.pdf}
+    \caption{Ground Plane vs No Ground Plane - Polar Plot}
+    \label{fig:GroundPlane-Polar}
 \end{figure}
 
-Fig.~\ref{fig:MainBeamGain} and \ref{fig:GroundPlane} illustrate the different gains acquirable based on the sizing of the array and how the ground plane affects the system.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{GroundPlane-Cartesian.pdf}
+    \caption{Ground Plane vs No Ground Plane - Cartesian Plot}
+    \label{fig:GroundPlane-Cartesian}
+\end{figure}
+
+
+
+% \begin{figure}[htb]
+%     \centering
+%     \begin{subfigure}{.5\textwidth}
+%         \centering
+%             \includegraphics[width=0.9\linewidth]{GroundPlane-Polar.pdf}
+%             \caption{Ground Plane vs No Ground Plane - Polar Plot}
+%             \label{fig:GroundPlane-Polar}
+%         \end{subfigure}%
+%         \begin{subfigure}{.5\textwidth}
+%             \centering
+%             \includegraphics[width=0.9\linewidth]{GroundPlane-Cartesian.pdf}
+%             \caption{Ground Plane vs No Ground Plane - Cartesian Plot}
+%                 \label{fig:GroundPlane-Cartesian}
+%             \end{subfigure}
+% \caption{Ground Plane vs No Ground Plane}
+% \label{fig:GroundPlane}
+% \end{figure}
+
+Fig.~\ref{fig:MainBeamGain}, \ref{fig:GroundPlane-Cartesian}, \ref{fig:GroundPlane-Polar}  illustrate the different gains acquirable based on the sizing of the array and how the ground plane affects the system.
 
 \section{Steering Ability of $32 \times 32$ Array} \label{sec:SteeringAbility}
 Fig.~\ref{fig:SteeringSmall-Polar} and \ref{fig:SteeringSmall-Cartesian} illustrate the steering capabilities of the system for a $32 \times 32$ sized antenna array.
 
 \begin{figure}[htb]
     \centering
-    \begin{subfigure}{.5\textwidth}
-        \centering
-            \includegraphics[width=0.9\linewidth]{SteeringSmall-Polar.pdf}
-            \caption{$32 \times 32$ Array Beam Steering Ability - Polar Plot}
-            \label{fig:SteeringSmall-Polar}
-        \end{subfigure}%
-        \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=0.9\linewidth]{SteeringSmall-Cartesian.pdf}
-            \caption{$32 \times 32$ Array Beam Steering Ability- Cartesian Plot}
-                \label{fig:SteeringSmall-Cartesian}
-            \end{subfigure}
-\caption{$32 \times 32$ Array Beam Steering Ability}
-\label{fig:SteeringSmall}
+    \includegraphics[width=0.9\linewidth]{SteeringSmall-Polar.pdf}
+    \caption{$32 \times 32$ Array Beam Steering Ability - Polar Plot}
+    \label{fig:SteeringSmall-Polar}
 \end{figure}
 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\linewidth]{SteeringSmall-Cartesian.pdf}
+    \caption{$32 \times 32$ Array Beam Steering Ability- Cartesian Plot}
+        \label{fig:SteeringSmall-Cartesian}
+\end{figure}
 
-
+% \begin{figure}[htb]
+%     \centering
+%     \begin{subfigure}{.5\textwidth}
+%         \centering
+%             \includegraphics[width=0.9\linewidth]{SteeringSmall-Polar.pdf}
+%             \caption{$32 \times 32$ Array Beam Steering Ability - Polar Plot}
+%             \label{fig:SteeringSmall-Polar}
+%         \end{subfigure}%
+%         \begin{subfigure}{.5\textwidth}
+%             \centering
+%             \includegraphics[width=0.9\linewidth]{SteeringSmall-Cartesian.pdf}
+%             \caption{$32 \times 32$ Array Beam Steering Ability- Cartesian Plot}
+%                 \label{fig:SteeringSmall-Cartesian}
+%             \end{subfigure}
+% \caption{$32 \times 32$ Array Beam Steering Ability}
+% \label{fig:SteeringSmall}
+% \end{figure}
 
 
 \section{Environmental Considerations} \label{sec:EnvironmentalConsiderations}
 The design of this system has considered the technical details of tracking space debris. In order to implement this in a real world situation the environmental factors are analysed in this section.
-% Based on the choice of the frequency and how it is used, the location of the system is based in the Northern Cape where there is a low population density and a large area. This is highly important such that the system has as little radio interference as possible.
+Based on the choice of the frequency and how it is used, the location of the system is based in the Northern Cape where there is a low population density and a large area. This is highly important such that the system has as little radio interference as possible.
 
 \subsection{Location} \label{sec:Location}
 Subject to the choice of the frequency and how it it licensed, the array is situated within the Northern Cape (refer to section~\ref{sec:OptimalFrequency}). This is based on the fact that the SKA has the ability to provide a number of laws which allow for the selected frequency to be utilised within this province.
 The Northern Cape is a largely unpopulated area when compared to the rest of the country, implying that it has a low population density (as it has the largest area). This is convenient as it lowers the cost per area of land. 
 Based on the spacing of the array, the size of land required should be at least $247~m^2$ (based on the $\lambda/2$ spacing and the $64 \times 64$ array sizing), this is the minimum area required for the placement of the antennas. The system is equipped with a number of additional components which all take up space.
-This implies that the system is required to be able to be housed with at least a $2000~m^2$ plot of land, this implies that, based on the average cost of units of land of this size, the price will be approximately $R~800~000$ to $R~1~200~000$ \cite{LocationPrice1, LocationPrice2, LocationPrice3}.
+This implies that the system is required to be housed with at least a $2000~m^2$ plot of land, this implies that, based on the average cost of units of land of this size, the price will be approximately $R~800~000$ to $R~1~200~000$ \cite{LocationPrice1, LocationPrice2, LocationPrice3}.
 The price of the plot of land varies based on its location, previous owners, and proximity to towns. A pragmatic approach to estimating the cost of the required land is to take the maximum value stated here and add on an additional $20~\%$. The cost of the area of land is then approximated to $R~1~440~000$.
 
 The ideal location for the land would be within a short distance from the SKA operations, this results in the added benefit of the lowered radio interference from external sources while being able to cooperate with their operations. 
 The SKA has currently build their own infrastructure for data management. Tying in with their system implies a lower cost for both parties as it can benefit both. The cost incurred for this communication platform can become expensive, an in-depth analysis should be undertaken as to how the data transmission mechanism should work.
 The first method is to make use of on-site servers which take all of the information directly from the array and apply analysis on this data, package the data, and send out the important characteristics that it has analysed. The second method is to automatically send out all of the data that is retrieved from the system, this data is then sent directly to an external server (a cloud provider such as Google, Amazon, etc.) and then the analysis is then carried out from this service.
 The cost of these two systems are required to be analysed as they both have benefits and drawbacks.
-The first method will require a large up front investment for the installation of the servers, then an recurring cost for the energy that is consumed for the analysis, this greatly reduces the costs of data transmission.
+The first method will require a large up front investment for the installation of the servers, then a recurring cost for the energy that is consumed for the analysis, this greatly reduces the costs of data transmission.
 The second method will have minimal up front costs, other than the recurring cost of the maintenance and rental of the data line, as well as the costs to analyse this data when it is stored on the cloud.
 The SKA ran a feasibility study to determine which of these methods is more cost efficient, their decision was to install an on-site data center as the costs of installing a fibre line to transport the data far exceeded the installation costs of the data center \cite[p.~17-18]{SKAFibre}.
 This data center will require the installation of an RFI shielded building such that the components inside do not interfere with the array \cite[p.~18]{SKAFibre}.
 
-The power requirements for the installation of this system can become complex, in addition to this, the power transmission system should comply with the regulations of the SKA. The SKA undertook an investigation to the installation for power \cite{SKAFibre}, this document highlight the requirements for the installation of power and how it is required to be routed.
+The power requirements for the installation of this system can become complex, in addition to this, the power transmission system should comply with the regulations of the SKA. The SKA undertook an investigation to the installation for power \cite{SKAFibre}, this document highlights the requirements for the installation of power and how it is required to be routed so as to reduce interference with the measurement apparatus.
 
 
 The plot of land is required to be relatively low gradient for the installation of the physical array as this is required to be mounted flush against the surface of the Earth and directed upwards.
-In order to install the system, an in depth analysis is required to be carried on the land, this analysis includes has been undertaken by the SKA in the local area ($180~km$ radius)\cite[p.~95,98]{SKAFibre}, which concludes that the minimum depth at which the structure can be fixed is $3.5~m$ below the surface. The nature of the ground under the array can prove to be difficult to lay foundations for construction.
+In order to install the system, an in depth analysis is required to be carried on the land, this analysis has been undertaken by the SKA in the local area ($180~km$ radius)\cite[p.~95,98]{SKAFibre}, which concludes that the minimum depth at which the structure can be fixed is $3.5~m$ below the surface. The nature of the ground under the array can prove to be difficult to lay foundations for construction.
 
 Due to the placement of the SKA, placing the system in close proximity implies that low flying aircraft are prohibited within the local airspace as this can affect the system.
 Local authorities should be notified of the implementation of this system such that regulations are put in place for flight paths that may be affected.
@@ -1408,9 +1463,9 @@ This system should be capable of functioning for a minimum of $40$ years \cite[p
 \subsection{Weather Dependence} \label{sec:WeatherDependence}
 The Northern Cape (specifically near Carvernon, where the SKA is situated) is at a relatively high altitude, it is also a semi-arid area with little rainfall throughout the year \cite{Rainfall}.
 This is highly beneficial for the system as rainfall can severely affect the functioning of the system (due to the loss of EM wave energy by the water).
-The low humidity and rainfall is convenient for this system as this area is located above the rust belt (the border where corrosion from the sea air is reduced to negligible levels) of South Africa which. This implies that the system will require little to no maintenance from corrosion over time.
+The low humidity and rainfall is convenient for this system as this area is located above the rust belt (the border where corrosion from the sea air is reduced to negligible levels) of South Africa. This implies that the system will require little to no maintenance from corrosion over time.
 
-The temperatures experienced during the Summer season in this area of the country often range between $34$ to $40^{\circ} C$. Frost and dew often occur during the winter months, this implies that the components should be designed such that they can handle extreme temperature swings.
+The temperatures experienced during the Summer season in this area of the country often range between $34^{\circ}~C$ to $40^{\circ}~C$. Frost and dew often occur during the winter months, this implies that the components should be designed such that they can handle extreme temperature swings.
 
 % \section{Construction} \label{sec:Construction}
 
@@ -1423,6 +1478,11 @@ The temperatures experienced during the Summer season in this area of the countr
 
 
 \section{Code Listings} \label{sec:CodeListings}
+
+
+
+\putbib[references]
+\end{bibunit}
 
 
 \end{document}
