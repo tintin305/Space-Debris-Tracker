@@ -27,6 +27,10 @@
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
 \usepackage{bibunits}
+
+
+
+
 \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
 \definecolor{mylilas}{RGB}{170,55,241}
 \graphicspath{{Images/}}
@@ -83,7 +87,7 @@ The system is made up of an array of $4096$ crossed dipole antennas that create 
 The system runs on an average of $25.5~kW$ for the array which equates to a maximum power requirement of $37.83~MW$. It operates at a frequency of $610~MHz$ and has a pulse width of $10~\mu s$ which creates a range resolution of $1.5~km$.
 The estimated cost for the system is $R~775~000~000$ which is within $20\%$ of similar systems elsewhere in the world. The system is designed to function in the Northern Cape.
 
-
+Keywords: Monostatic, Bistatic, Antenna, Antenna Array, VSWR, HPBW, Phasing, Space Debris, Crossed Dipole, Pulsed Wave, Continuous Wave, Radar, LEO, Beam Steering, Signal-to-Noise Ratio, Doppler Shift
 %% ABSTRACT
 \clearpage
 
@@ -104,7 +108,7 @@ The estimated cost for the system is $R~775~000~000$ which is within $20\%$ of s
 
 \section{INTRODUCTION} \label{sec:INTRODUCTION}
 
-Over the last six decades, the human race has continuously propelled man made objects into space \cite{sputnik}. These objects have been said to exceed speeds of $66 km/s$ \cite{fastestObject}, however, these extremely fast objects often leave the Earth's orbit and travel into outer space. Since the dawn of space exploration, many countries around the world have attempted, and in many cases, successfully deployed man made objects into the Earth's upper atmosphere and into orbits around the Earth.
+Over the last six decades, the human race has continuously propelled man made objects into space \cite{sputnik}. These objects have been said to exceed speeds of $66~km/s$ \cite{fastestObject}, however, these extremely fast objects often leave the Earth's orbit and travel into outer space. Since the dawn of space exploration, many countries around the world have attempted, and in many cases, successfully deployed man made objects into the Earth's upper atmosphere and into orbits around the Earth.
 
 The organizations running these missions, in the early years, didn't have guidelines on how the missions should be carried out. In addition to this, for many decades, during the Cold War era, countries and organizations took extreme measures to make these missions a success. Many of the missions involved leaving parts of the space craft in the Earth's orbit \cite{spaceDebrisGuide}. Consequently, the number of debris orbiting the Earth grew over the years.
 
@@ -188,7 +192,7 @@ A number of constraints exist for the frequency of operation of the system, thes
 
 \subsection{Technical and Physical Limitations} \label{sec:TechnicalandPhysicalLimitations}
 The first limitation of the system is the fact that the ionosphere attenuates frequencies from specific frequency ranges. There are two frequency windows at which EM waves penetrate the ionosphere without excessive attenuation \cite{ObjectInformation}.
-These frequency windows have a high transmission coefficient for frequencies from the $1~cm$ to $1~m$ wavelength range; these frequency bands are highly useful for transmitting EM waves through the Earths atmosphere as the attenuation is low \cite{frequencyAttenuation}. Frequencies outside of this window (with a few exceptions to the visible light spectrum), are closed due to ionospheric attenuations and reflections (at larger wavelengths) and also attenuate due to resonances created by molecules in the atmosphere (at lower wavelengths) \cite{frequencyAttenuation}.  
+These frequency windows have a high transmission coefficient for frequencies from the $1~cm$ to $1~m$ wavelength range; these frequency bands are highly useful for transmitting EM waves through the Earth's atmosphere as the attenuation is low \cite{frequencyAttenuation}. Frequencies outside of this window (with a few exceptions to the visible light spectrum), are closed due to ionospheric attenuations and reflections (at larger wavelengths) and also attenuate due to resonances created by molecules in the atmosphere (at lower wavelengths) \cite{frequencyAttenuation}.  
 If the wavelength of the EM wave is within the bands above, then the attenuation can be considered negligible \cite{ionosphereAttenuationStandard}, \cite[p.~15,124]{radarHandbook}. It is apparent that frequencies within this range provide a negligible attenuation of less than $10^{-3}~db/km$.
 Based on these assumptions, the optimal frequency band lies within the $200~MHz$ up to $1~GHz$. %; after $1~GHz$, the atmospheric losses increase accordingly.
 
@@ -226,7 +230,7 @@ Based on the frequency choice discussed in section~\ref{sec:FrequencyAllocation}
             Parameter & Value \\
             \hline
             Frequency Band & $606~-~614~MHz$ \\
-            Center Frequency & $610~MHz$ \\
+            Centre Frequency & $610~MHz$ \\
             Wavelength & $0.4918~m$ \\
             $\lambda /4$ wavelength & $0.12295~m$ \\
             $\lambda /2$ wavelength & $0.2459~m$ \\
@@ -263,7 +267,7 @@ This allows for the calculation for the maximum and minimum round trip times for
 \end{table}
 These values take the assumption that the system is capable of steering up to $30^{\circ}$ from the zenith direction. If the system were to steer further, then the maximum slant distance would increase accordingly. The maximum steering ability of the system designed is capable of reaching approximately $50^{\circ}$, however, the maximum slant allowed is reduced in order to increase the reliability of the system. This is discussed in more detail in section~\ref{sec:AntennaArray} % as grating lobes can appear when steered past designed levels.
 
-Based on the maximum slant distance round trip time ($14.83 ms$), this places a number of limitations on the system which relate to the pulse repetition frequency, the minimum distance round trip time ($1.067 ms$), limits the pulse width that the system can transmit over. This also creates a limit on the bandwidth of the system as the bandwidth is related to this parameter by $B = 1/ \tau$.
+Based on the maximum slant distance round trip time ($14.83~ms$), this places a number of limitations on the system which relate to the pulse repetition frequency, the minimum distance round trip time ($1.067~ms$), limits the pulse width that the system can transmit over. This also creates a limit on the bandwidth of the system as the bandwidth is related to this parameter by $B = 1/ \tau$.
 % , however the bandwidth of the system is related to a number of characteristics which are discussed in section~\ref{sec:SNR}.
 The next step in the evaluation of the power that is required to be transmitted onto the object in order to reliably detect it. This begins with the radar range equation.
 
@@ -303,8 +307,8 @@ In order to calculate a number of characteristics on the Signal-to-Noise ratio (
 \label{fig:RadarFunctions}
 \end{figure}
 
-The characteristics illustrated in Fig.~\ref{fig:Pulsing} can be found in table~\ref{tab:RadarRangeValues} (the explanations are in section~\ref{sec:BasicOperation}). This implies that the maximum pulse width must be less than $1.067 ms$, a pragmatic approach would take a value less than this to increase the resolution of the system.
-The next parameter is the pulse repetition interval, this is related to the maximum round trip time that a signal can take, which implies that the minimum pulse repetition interval should be greater than $14.83 ms$. This limits the pulse repetition frequency of the system which is defined as $PRF = 1/PRI = 67~Hz$. This is the maximum frequency the system can sustain without limiting the radar range abilities.
+The characteristics illustrated in Fig.~\ref{fig:Pulsing} can be found in table~\ref{tab:RadarRangeValues} (the explanations are in section~\ref{sec:BasicOperation}). This implies that the maximum pulse width must be less than $1.067~ms$, a pragmatic approach would take a value less than this to increase the resolution of the system.
+The next parameter is the pulse repetition interval, this is related to the maximum round trip time that a signal can take, which implies that the minimum pulse repetition interval should be greater than $14.83~ms$. This limits the pulse repetition frequency of the system which is defined as $PRF = 1/PRI = 67~Hz$. This is the maximum frequency the system can sustain without limiting the radar range abilities.
 
 Fig.~\ref{fig:ObjectDetection} represents a case where a pulse is sent outwards and is then followed by, a period of time later, a corresponding echo pulse.
 The period between the pulse and the echo can be used to determine the altitude that the object has. This illustrates a circumstance of the system detecting an object.
@@ -586,7 +590,7 @@ Side lobe level of an array is always present in cases where a uniform excitatio
 There are a number of ways in which to reduce the side lobes: Uniform, Binomial, and Tschebyscheff \cite[p.~324-325]{Balanis}. Uniform is the standard case which has been used up to this point, and the Tschebyscheff is not implemented in this system. The uniform distribution does not attempt to reduce the side lobes, however, it is simple to implement in many situations as this reduces the cost and complexity of the system. The second makes use of the Binomial distribution in order to weight the power which excites each antenna element.
 This method however, implies that in the case that the array becomes large, the outside elements contribute minuscule amounts of power to the system.
 Consequently, a compromise between the binomial and the uniform amplitude is created.
-This is done such that, the power is tapered from the center of the array, and the power is tapered down to a set point at the edges of the array. This tapering is set to be a $50~\%$ value such that the middle elements transmit $100~\%$ of the power, and the outside transmit $50~\%$ of the power. This results in a pyramidal distribution on the array as it tapers off to the edges.
+This is done such that, the power is tapered from the centre of the array, and the power is tapered down to a set point at the edges of the array. This tapering is set to be a $50~\%$ value such that the middle elements transmit $100~\%$ of the power, and the outside transmit $50~\%$ of the power. This results in a pyramidal distribution on the array as it tapers off to the edges.
 This power taper in the elements is illustrated in Fig.~\ref{fig:PowerTaperingHeatMap} where the darker colour represents a higher power.
 \begin{figure}[htb]
     \centering
@@ -674,7 +678,7 @@ This implementation also results in a simplified feeding mechanism as matching b
 The implementation of solid state amplifiers is used here as they are highly reliable, easily maintainable, and are modular in nature. The down side of solid state amplifiers is that they are not able to generate large amounts of power \cite[p.~364]{radarHandbook}, however, due to the fact that the power is split between each element in the array, they are ideally suited to this application. The implementation of solid state technology results in the use of DC voltages throughout the system, this is an important factor for this implementation as DC creates minimal interference to the antennas.
 Consequently, the radiating elements are located within the element module and the connector cables from the module to the antenna.
 The interference from the electronics within the module can be reduced with the use of shielding the walls of the module. The connector cables make use of sleeve baluns which reduce the radiating components commonly seen on coaxial cables.
-Throughout the system, RoHS parts are required, as well as lead free solder for a the construction and assembly of the array elements and control systems. 
+Throughout the system, RoHS parts are required \cite{RoHS}, as well as lead free solder for a the construction and assembly of the array elements and control systems. 
 The details for the transmitter and receiver are covered in section~\ref{sec:Transceiver} which illustrates the components required for their construction.
 
 % The implementation of modular components means that the only cabling required throughout the array will be the DC power cables for the element modules and communication lines. These two lines do not interfere with each other as the communication lines are fibre optic and so are unaffected.
@@ -692,7 +696,7 @@ The author would also like to thank Dr. Derek Nitch for the invaluable input for
 
 \section{CONCLUSION} \label{sec:CONCLUSION}
 The system designed makes use of standard radar techniques with the use of an antenna array in order to track space junk within the $160~km$ to $2000~km$ altitudes which make up the LEO, the system is capable of detecting space junk with a RCS of $10~cm$ in diameter in this range. The system is built to function with an average of $25.5~kW$ and a maximum power of $37.83~MW$ which lie within the ranges of similar systems. The system has the ability to detect and track this space debris any time of day. The system makes use of an array of $4096$ crossed dipole antennas in a matrix-like geometry and it is capable of steering its main beam by $30^{\circ}$ from the zenith.
-The cost of the system is estimated to be $R~775~000~000$ which is within $20\%$ of similar systems. The system is ideally located in close proximity to the SKA installation in the Northern Cape and will operate at a frequency of $610~MHz$.   
+The cost of the system is estimated to be $R~775~000~000$ which is within $20\%$ of similar systems. The system is ideally located in close proximity to the Square Kilometre Array (SKA) installation in the Northern Cape and will operate at a frequency of $610~MHz$.   
 % \bibliographystyle{witseie}
 % \bibliography{references}
 
@@ -761,7 +765,7 @@ The implementation will involve the installation of a water source such that tec
 The energy requirements of the system can become excessively large when compared to local energy requirements, as such it may be the case that additional electricity infrastructure should be installed. The effects of these power lines should be reduced as it may affect the operation of the system and the nearby SKA structures.
 
 
-The physical components used in the array and data center should all comply with local RoHS standards, this includes the use of lead free solder and all waste materials should be properly disposed of through the correct channels.
+The physical components used in the array and data centre should all comply with local RoHS standards \cite{RoHS}, this includes the use of lead free solder and all waste materials should be properly disposed of through the correct channels.
 
 The introduction of large (non-ionising) radiation into the atmosphere should be clearly defined as this amount of power can be harmful to living organisms if exposed.
 % Frequency introduction into atmosphere and surrounding areas
@@ -778,6 +782,12 @@ The introduction of large (non-ionising) radiation into the atmosphere should be
 There are a number of characteristics of this system which fall short of a sufficient design.
 The first of these is the simplifying assumptions that are used in order to estimate the ability of the system. The losses throughout the system are likely to be larger than those stated in this report. 
 
+Due to the fact that the system is likely to be installed near to the SKA installation, this will prove to be difficult to implement without affecting their systems, however, the benefits of linking up with the SKA (to acquire land and spectrum rights) far out weight the difficulties.
+
+The system has a small duty cycle, this implies that the instantaneous power required by each antenna will become large, this increases the cost of the system as each antenna is required to be built to a much larger specification than its average power consumption implies. This higher power requirement will consequently increase the costs of the transmitter.
+The pulse width is relatively small, which results in a range resolution of $1.5~km$ which appears to be relatively large. This implies that the system will fall short when multiple objects are in its view as it will not be able to distinguish between the two.
+
+The maximum steering ability of the system is set to $30^{\circ}$ which is a relatively low value when compared similar systems which often can steer up to $60^{\circ}$ without grating lobes being present \cite{maxAngle}. This low steering ability limits the capability of the system to detect space debris. The larger the angle of steering the higher percentage of total objects that the system is able to detect.
 
 \section{BACKGROUND TO SPACE DEBRIS} \label{sec:BackgroundToSpaceDebris}
 
@@ -942,7 +952,7 @@ It is highly important to determine the amount of time it takes from when the ob
 In this case it is assumed that the object travels directly over the boresight of the system and so it takes take the maximum amount of time to travel over the field of view. In most cases, the objects do not travel directly over the FOV, and will therefore be within the FOV for a reduced amount of time. This has a number of consequences for the capability of the system to detect objects, most importantly, the number of pulses that the system can use on an object as it moves over the viewing area.
 
 This illustrates the system in order to create a few starting assumptions/criteria for the system.
-As can be seen in this image, the angle that is measured can be taken from two different reference points: the center of the Earth and the point P. Based on this, it can be seen that the angles that these two points create are different. This implies that if one were to calculate the maximum distance that an object can be detected (assuming a maximum FOV angle from point P), one cannot make use of the angle $\alpha$ and the distances of this arc as it would not represent the actual distances of the objects because the circle that the object orbits around is different to the circle that is assumed the system makes use of.
+As can be seen in this image, the angle that is measured can be taken from two different reference points: the centre of the Earth and the point P. Based on this, it can be seen that the angles that these two points create are different. This implies that if one were to calculate the maximum distance that an object can be detected (assuming a maximum FOV angle from point P), one cannot make use of the angle $\alpha$ and the distances of this arc as it would not represent the actual distances of the objects because the circle that the object orbits around is different to the circle that is assumed the system makes use of.
 Numbers $1$ and $3$ represent the points at which the object enters and leaves the FOV, and point $2$ represents the position of the systems zenith (boresight).
 
 
@@ -974,7 +984,7 @@ Where:
     \item $\Delta T$ represents the amount of time that it takes the object to traverse the angle
 \end{itemize}
 
-This now allows for the calculation of the linear velocity of the object as seen from the observation point (it is the same if the center of the Earth is used as the reference point). This velocity is calculated with the use of equation~\ref{eqn:LinearVelocity}.
+This now allows for the calculation of the linear velocity of the object as seen from the observation point (it is the same if the centre of the Earth is used as the reference point). This velocity is calculated with the use of equation~\ref{eqn:LinearVelocity}.
 
 \begin{equation} \label{eqn:LinearVelocity}
     v = \omega_{P} h
@@ -1086,7 +1096,7 @@ The information provided in the sections above create a baseline with which to d
 
 \section{CURRENT IMPLEMENTATIONS} \label{sec:CurrentImplementations}
  The first of these is the Advanced Modular Incoherent Scatter Radar (AMISR), this is located in Resolute Bay, Canada, it makes use of an array of crossed-dipole antennas that are electrically phased, the system is electronically steerable. It operates in the frequency range of $430 MHz$ to $450 MHz$ and has a pulse width of approximately $2 \mu s$ \cite{AMISR}. A number of important parameters can be found in \cite{AMISR}, this is a system which closely resembles the major requirements for this system.
-The second system in use by Leo Labs is the Midland Space Radar (MSR), this system is located in Texas and is commissioned by LeoLabs, this system is capable of detecting objects as small as $10 cm$ in diameter. It is not specified whether this value is a Radar Cross Section  (RCS) or the physical size of the object.
+The second system in use by Leo Labs is the Midland Space Radar (MSR), this system is located in Texas and is commissioned by Leo Labs, this system is capable of detecting objects as small as $10 cm$ in diameter. It is not specified whether this value is a Radar Cross Section  (RCS) or the physical size of the object.
 A number of other implementations have been used (not through Leo Labs) which make use of other technologies and are capable of detecting smaller objects \cite{EISCAT, SIMO, telescope, BeamForming, OrbitDetermination, PlanarArray}. A number of these papers are made use of to design the system in this report.
 
 
@@ -1451,8 +1461,8 @@ The first method is to make use of on-site servers which take all of the informa
 The cost of these two systems are required to be analysed as they both have benefits and drawbacks.
 The first method will require a large up front investment for the installation of the servers, then a recurring cost for the energy that is consumed for the analysis, this greatly reduces the costs of data transmission.
 The second method will have minimal up front costs, other than the recurring cost of the maintenance and rental of the data line, as well as the costs to analyse this data when it is stored on the cloud.
-The SKA ran a feasibility study to determine which of these methods is more cost efficient, their decision was to install an on-site data center as the costs of installing a fibre line to transport the data far exceeded the installation costs of the data center \cite[p.~17-18]{SKAFibre}.
-This data center will require the installation of an RFI shielded building such that the components inside do not interfere with the array \cite[p.~18]{SKAFibre}.
+The SKA ran a feasibility study to determine which of these methods is more cost efficient, their decision was to install an on-site data centre as the costs of installing a fibre line to transport the data far exceeded the installation costs of the data centre \cite[p.~17-18]{SKAFibre}.
+This data centre will require the installation of an RFI shielded building such that the components inside do not interfere with the array \cite[p.~18]{SKAFibre}.
 
 The power requirements for the installation of this system can become complex, in addition to this, the power transmission system should comply with the regulations of the SKA. The SKA undertook an investigation to the installation for power \cite{SKAFibre}, this document highlights the requirements for the installation of power and how it is required to be routed so as to reduce interference with the measurement apparatus.
 
@@ -1549,6 +1559,9 @@ This means that the total cost of the system can be estimated to approach $R~775
 
 
 \section{CODE LISTINGS} \label{sec:CodeListings}
+
+\subsection{Radar Calculations} \label{sec:RadarCalculations}
+The following code illustrates a number of calculations that are required to determine the orbital parameters of space debris. It also details the calculation of the parameters that are used for the antenna array and how it is used.
 
 
 
