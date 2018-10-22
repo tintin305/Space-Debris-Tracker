@@ -1,7 +1,6 @@
 % !TeX encoding = UTF-8
 \documentclass[11pt]{witseiepaper}
 
-
 \usepackage{KJN}
 \usepackage{subcaption}
 \usepackage{listings}
@@ -27,7 +26,7 @@
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
 \usepackage{bibunits}
-
+\lstset{language=Python}
 
 
 
@@ -64,7 +63,8 @@
         	\centering
             \textcolor{white}{\textbf{\Large{ELEN4000: Design Project}}\\
                 \textbf{Antenna Array Design to map man made space “junk” in low earth orbit}\\
-                October 2018
+                October 2018 \\
+                Submission Date: 23rd October, 2018
             }
         \end{center}
     \end{minipage}
@@ -85,7 +85,7 @@ The task of this design report is to design and analyse a radar antenna array th
 The system implemented makes use of the monostatic radar configuration and a pulsed wave transmission method in order to detect the space debris and its orbital parameters.
 The system is made up of an array of $4096$ crossed dipole antennas that create a maximum gain of approximately 4$1.0244~dBi$ in the main beam which has a Half-Power-Beam-Width (HPBW) of $0.785884^{\circ}$ and a side lobe level of $59.639~dB$ while steering to a maximum of $30^{\circ}$ in any direction off of the zenith. This is accomplished with electronic steering by phasing the elements and tapering the power of each element in the array.
 The system runs on an average of $25.5~kW$ for the array which equates to a maximum power requirement of $37.83~MW$. It operates at a frequency of $610~MHz$ and has a pulse width of $10~\mu s$ which creates a range resolution of $1.5~km$.
-The estimated cost for the system is $R~775~000~000$ which is within $20\%$ of similar systems elsewhere in the world. The system is designed to function in the Northern Cape.
+The estimated cost for the system is $R~775$ million which is within $20~\%$ of similar systems elsewhere in the world. The system is designed to function in the Northern Cape.
 
 Keywords: Monostatic, Bistatic, Antenna, Antenna Array, VSWR, HPBW, Phasing, Space Debris, Crossed Dipole, Pulsed Wave, Continuous Wave, Radar, LEO, Beam Steering, Signal-to-Noise Ratio, Doppler Shift
 %% ABSTRACT
@@ -199,7 +199,7 @@ Based on these assumptions, the optimal frequency band lies within the $200~MHz$
 The elevation angle of the system is also a contributing factor to the loss of the system as this determines the \textit{volume} of atmosphere that the EM waves travel through to reach the target. Increasing elevation angles result in lower two-way losses, implying that if the system directs its beam directly upwards (towards the zenith), it will have the lowest loss per unit distance \cite[p.~70]{elevationLoss}. This is highly beneficial for the system as it is normally directed upwards and has a FOV that does not greatly increase the \textit{volume} of atmosphere the EM wave has to encounter.
 
 
-Included in this technical choice is that of currently implemented systems. Many of these operate within the $400 MHz$ to $500 MHz$ frequency bands.
+Included in this technical choice is that of currently implemented systems. Many of these operate within the $400~MHz$ to $500~MHz$ frequency bands.
 The amount of electrical power required for these systems can often be in the megawatt range and components capable of supplying this power in the $GHz$ range become prohibitively expensive, this further backs up the choice for a lower frequency.
 
 The frequency that is transmitted from the radar is likely to be different to the frequency that is returned by the object, this is in part due to the Doppler shift phenomenon. The maximum frequency shift created by the Doppler shift is evaluated with the use of equation~\ref{eqn:Doppler}. This implies that the maximum expected Doppler frequency shift is unlikely to exceed $\sim~50~kHz$ based on this equation and the estimates of the maximum linear velocity. This value is created on the assumption that the frequency is $1~GHz$ which is the upper bound of frequencies that can be selected from.
@@ -326,11 +326,11 @@ The first of these, the range resolution, is the parameter which defines the abi
 \end{equation}
 The limits on the range resolution are coupled with the limits of the bandwidth allowed by the frequency band. 
 % The pulse width is related to the bandwidth by the equation $\tau = 1/ B$.
-The bandwidth allocated to the frequency band is set at $8~MHz$, which results in a minimum pulse width of approximately $0.125 \mu~s$, which is relatively small when compared to alternative systems \cite{AMISR, EISCAT, SIMO, telescope, BeamForming, OrbitDetermination, PlanarArray}. The bandwidth required by the maximum Doppler frequency shift of $50 kHz$, results in a pulse width of $20\mu~s$.
+The bandwidth allocated to the frequency band is set at $8~MHz$, which results in a minimum pulse width of approximately $0.125~\mu s$, which is relatively small when compared to alternative systems \cite{AMISR, EISCAT, SIMO, telescope, BeamForming, OrbitDetermination, PlanarArray}. The bandwidth required by the maximum Doppler frequency shift of $50~kHz$, results in a pulse width of $2~\mu s$.
 Lastly, the next parameter which determines the magnitude of the pulse width is the fact that the pulse width cannot be larger than the minimum round trip time (as discussed above) of $1.067~ms$. 
-This means that the pulse width can be within a $0.125 \mu~s~-~1.067~ms$ time span.
+This means that the pulse width can be within a $0.125~\mu s~-~1.067~ms$ time span.
 These limits provide a range resolution of $18.75~m$ and $160.1~km$. Increasing the pulse length will result in a higher SNR, however, then the range resolution suffers.
-Based on this evidence, and current implementations of the system, the pulse width of the system is chosen to be $10\mu~s$. This provides enough time for the transmitter to deactivate, and the receiver to activate to listen to the targets echoes, this switching time is required for the system to perform safely, and to avoid the receiver becoming damaged by the transmitters high power.
+Based on this evidence, and current implementations of the system, the pulse width of the system is chosen to be $10~\mu s$. This provides enough time for the transmitter to deactivate, and the receiver to activate to listen to the targets echoes, this switching time is required for the system to perform safely, and to avoid the receiver becoming damaged by the transmitters high power.
 This pulse width results in a range resolution of $1.5~km$, which is sufficient considering the number of objects in LEO and the volume that those objects are within. This distance is $0.075~\%$ of the maximum range of the system. The probability of the system detecting two objects within this ambiguous range are unlikely and therefore this is a sufficient assumption.% Considering the fact that the system makes use of multiple pulses which further decreases the probability of the system detecting multiple objects and reading it as one object.
 
 This pulse width results in a duty cycle which is evaluated with the use of $Duty Cycle = \tau \cdot PRF$, which provides a duty cycle of $675 \cdot 10^{-6}$, this is a relatively small duty cycle, implying that the system is using a small amount of energy with respect to its maximum power requirements.
@@ -338,7 +338,7 @@ The system constructed should be capable of varying its bandwidth on demand, thi
 The pulse width is linked to the SNR of the system through equation~\ref{eqn:SNRPulseWidth}.
 
 \begin{equation} \label{eqn:SNRPulseWidth}
-SNR = \frac{P_{t} G_t G_r {\lambda^2} \sigma}{(4 \pi )^3 R^4 k T_s L_s}
+SNR = \frac{P_{t} G_t G_r {\lambda^2} \sigma}{(4 \pi )^3 R^4 k T_s}
 \end{equation}
 
 This implies that an increase in pulse width results in an increase in SNR. This is the case based on the fact that the receiver bandwidth is linked to the waveforms bandwidth, this implies that the receivers bandwidth can be substituted for the pulse width in the standard radar range equation \cite[p.~776]{radarHandbook}.
@@ -357,7 +357,7 @@ The increase in SNR is illustrated in the implementation into the RRE as it has 
 SNR_c (N) = \frac{P_{t} G_{t} G_{r} \lambda^2 \sigma n_p}{(4 pi)^3 R^4 k T_0 F B}  
 \end{equation}
 The value of $n_p$ represents the number of pulses. The minimum number of pulses possible by this system can be determined with the use of equation~\ref{eqn:ObservableTime} by using the minimum distance an object can be detected (as this is the minimum amount of time an object will be within the HPBW). This estimate results in a time of $0.5622~s$. This implies that, based on the PRI of $14.83~ms$, the maximum number of pulses that can be used will be less than $37$ pulses.
-In order to account for \textit{dead time} a pragmatic value for this can be estimated to be $30$ pulses. This effect is incorporated in equations~\ref{eqn:SNR} and~\ref{eqn:RequiredParameters}.
+In order to account for \textit{dead time}, a pragmatic value for this can be estimated to be $30$ pulses. This effect is incorporated in equations~\ref{eqn:SNR} and~\ref{eqn:RequiredParameters}.
 
 \subsection{Receiver Noise} \label{sec:ReceiverNoise}
 The three major losses within any system is made up of the transmitter, receiver, and signal-processing losses.
@@ -374,7 +374,7 @@ P_{n} = k T_{s} B = k T_{0} F B
 Where:
 \begin{itemize}
     \item $k$ is Boltzmann's constant ($1.38 \cdot 10^{-23} Watt-sec/K$)
-    \item $T_{0}$ is the standard temperature (normally $290 K$)
+    \item $T_{0}$ is the standard temperature (normally $290~K$)
     \item $T_{s}$ is the system noise temperature ($T_{s} = T_{0} F$)
     \item $B$ is the receivers bandwidth ($Hz$)
     \item $F$ is the noise figure of the receiver subsystem.
@@ -481,7 +481,7 @@ Fig.~\ref{fig:Crossed-DipoleGeometry} illustrates the geometry of a crossed dipo
 \label{fig:AntennaConstructionArrayLayout}
 \end{figure}
 The arms of the antenna illustrated here are positioned parallel to the ground. This is done to create circularly polarized EM waves in the $\pm z$ directions.
-Clearly, based on the requirements of this antenna, the radiation in the $-z$ direction is not required. The implementation of a perfect electrical conductor placed below the antenna will redirect this part of the radiation pattern upwards where it constructively interferes with the radiation pattern in the $+z$ direction \cite[p.~110-111]{IEEECrossedDipole}. This ground plane is required to be placed a quarter wavelength above the ground for this mechanism to work. This mechanism is based on image theory such that the system experiences a doubling in gain \cite[p.~111]{IEEECrossedDipole}. This structure is created in FEKO \cite{FEKO} and simulated for the selected frequency. The polar plot and cartesian plots for the radiation patterns are illustrated in Fig.~\ref{fig:Crossed-Dipole-Radiation-Patterns} which can be found in section~\ref{sec:Crossed-Dipole}. It is important to note from these plots that the antenna which makes use of the ground plane has $3~dB$ more than the antenna in free space. This implies that the use of a ground plane will increase the performance of each individual antenna without any loss to the ability of the system. The left and right hand circular polarization are not affected by the use of the ground plane either. Based on these simulations a number of characteristics of the two antenna configurations can be compared. This is illustrated in table~\ref{tab:AntennaConfigurations} which is found in section~\ref{sec:Crossed-Dipole}.
+Clearly, based on the requirements of this antenna, the radiation in the $-z$ direction is not required. The implementation of a perfect electrical conductor placed below the antenna will redirect this part of the radiation pattern upwards where it constructively interferes with the radiation pattern in the $+z$ direction \cite[p.~110-111]{IEEECrossedDipole}. This ground plane is required to be placed a quarter wavelength above the ground for this mechanism to work. This mechanism is based on image theory such that the system experiences a doubling in gain \cite[p.~111]{IEEECrossedDipole}. This structure is created in FEKO \cite{FEKO} and simulated for the selected frequency. The polar plot and cartesian plots for the radiation patterns are illustrated in Fig.~\ref{fig:Crossed-Dipole-Radiation-Patterns-Polar} and \ref{fig:Crossed-Dipole-Radiation-Patterns-Cartesian}  which can be found in section~\ref{sec:Crossed-Dipole}. It is important to note from these plots that the antenna which makes use of the ground plane has $3~dB$ more than the antenna in free space. This implies that the use of a ground plane will increase the performance of each individual antenna without any loss to the ability of the system. The left and right hand circular polarization are not affected by the use of the ground plane either. Based on these simulations a number of characteristics of the two antenna configurations can be compared. This is illustrated in table~\ref{tab:AntennaConfigurations} which is found in section~\ref{sec:Crossed-Dipole}.
 
 
 Based on the features in table~\ref{tab:AntennaConfigurations}, it is clear that this gain should be multiplied by a large factor in order to meet the requirements stated in section~\ref{sec:ThermalNoise}. This is accomplished with the use of an antenna array, this is discussed in section~\ref{sec:AntennaArray}
@@ -503,7 +503,7 @@ The criteria of the array can be satisfied with the correct choice of array fact
 The radiation pattern required, based on the system designed, should be capable of directing the EM wave in the direction of the zenith and be capable of steering $30^{\circ}$ away in all directions.
 
 The radiation pattern required from this array should have a large maximum gain with a small beam width. This is required for the system such that it can detect objects in the desired range, while maintaining the cross-range resolution (the ability to make a distinction between two objects within an angle range).
-This requirement is uniquely suited to the use of a broadside array, in which the maximum radiation is directed in the broadside: $\Theta = 0$. In order to accomplish this, the individual antennas maxima should also be in this direction. This justifies the implementation of the crossed dipole. The design of the antenna in the previous section is duplicated for this array, this implies that the sizing of the dipoles, and the height above the ground plane is kept the same ($\lambda /4$). The phase between each dipole keeps the $90^{\circ}$ to create the circular polarization.
+This requirement is uniquely suited to the use of a broadside array, in which the maximum radiation is directed in the broadside: $\theta = 0$. In order to accomplish this, the individual antennas maxima should also be in this direction. This justifies the implementation of the crossed dipole. The design of the antenna in the previous section is duplicated for this array, this implies that the sizing of the dipoles, and the height above the ground plane is kept the same ($\lambda /4$). The phase between each dipole keeps the $90^{\circ}$ to create the circular polarization.
 
 In order to accomplish this, the antennas are placed in a grid arrangement such that the array forms an $n \times m$ matrix-like shape.
 The array is then excited such that the main bean is directed towards the zenith. This is accomplished by determining the point at which equation~\ref{eqn:FirstMaximum} is equal to zero \cite[p.~296]{Balanis}. Where $\Psi$ represents the steering angle of the array, $k = \frac{2 \pi}{\lambda}$ and $\beta$ represents the progressive phase delay required between each of the elements.
@@ -641,7 +641,7 @@ The result of this amplitude excitation is illustrated in Fig.~\ref{fig:PowerTap
             \hline
             Maximum Gain ($dBi$) & $41.1059$ & $41.0244$ \\
             Side Lobe Level ($dB$) & $32.5337$ & $59.639$ \\
-            Half Power Beam Width ($-3 dB$) & $1.28995$ & $0.785884$ \\
+            Half Power Beam Width ($-3~dB$) & $1.28995$ & $0.785884$ \\
             \hline
         \end{tabular}
     \end{center}
@@ -685,7 +685,7 @@ The details for the transmitter and receiver are covered in section~\ref{sec:Tra
 
 \section{COSTING ANALYSIS} \label{sec:CostingAnalysis}
 The costing analysis for this design takes into consideration a number of similar systems and their implementations of the array. These costings are analysed for the use case in question.
-The systems designed cost is estimated to be $R~775~950~000$ which is within $20~\%$ of a comparable system.
+The systems designed cost is estimated to be $R~775.95$ million which is within $20~\%$ of a comparable system.
 The analysis, array and antenna costing can be found in section~\ref{sec:CostingAnalysisandResearch}
 
 
@@ -696,7 +696,7 @@ The author would also like to thank Dr. Derek Nitch for the invaluable input for
 
 \section{CONCLUSION} \label{sec:CONCLUSION}
 The system designed makes use of standard radar techniques with the use of an antenna array in order to track space junk within the $160~km$ to $2000~km$ altitudes which make up the LEO, the system is capable of detecting space junk with a RCS of $10~cm$ in diameter in this range. The system is built to function with an average of $25.5~kW$ and a maximum power of $37.83~MW$ which lie within the ranges of similar systems. The system has the ability to detect and track this space debris any time of day. The system makes use of an array of $4096$ crossed dipole antennas in a matrix-like geometry and it is capable of steering its main beam by $30^{\circ}$ from the zenith.
-The cost of the system is estimated to be $R~775~000~000$ which is within $20\%$ of similar systems. The system is ideally located in close proximity to the Square Kilometre Array (SKA) installation in the Northern Cape and will operate at a frequency of $610~MHz$.   
+The cost of the system is estimated to be $R~775$ million which is within $20~\%$ of similar systems. The system is ideally located in close proximity to the Square Kilometre Array (SKA) installation in the Northern Cape and will operate at a frequency of $610~MHz$.   
 % \bibliographystyle{witseie}
 % \bibliography{references}
 
@@ -718,7 +718,7 @@ The cost of the system is estimated to be $R~775~000~000$ which is within $20\%$
 
 
 
-\section{SOCIAL, ECONOMIC, AND ENVIRONMENTAL IMPLICATIONS} \label{sec:SOCIALECONOMICANDENVIRONMENTALIMPLICATIONS}
+\section{NON-TECHNICAL REPORT: SOCIAL, ECONOMIC, AND ENVIRONMENTAL IMPLICATIONS} \label{sec:SOCIALECONOMICANDENVIRONMENTALIMPLICATIONS}
 In any engineering design, there are a number of impacts that should be considered throughout the design process. The impacts of any project can be estimated and accounted for ahead of the implementation of the system. These impacts are both beneficial and harmful to the external parts of the system. These are discussed in the following sections.
 
 \subsection{Social Implications} \label{sec:SocialImplications}
@@ -743,7 +743,7 @@ A number of space debris currently in orbit is radioactive, this is the case as 
 
 
 \subsection{Economic Implications} \label{sec:EconomicImplications}
-The current system design is set to cost approximately $R~775~000~000$ and will continue to have ongoing costs for the daily operations and maintenance.
+The current system design is set to cost approximately $R~775$ million and will continue to have ongoing costs for the daily operations and maintenance.
 This system should therefore be beneficial to warrant its implementation. The major customers for this system are likely to be space agencies from first world countries and large commercial organisations which deal in the aerospace industry.
 Consequently, this system is required to have a strategy in which to recuperate its costs.
 The system is highly beneficial to the scientific community in addition to these corporate interests, and this addition is challenging to place a value to.
@@ -762,12 +762,14 @@ The installation will cover a large area of land, this installation will also re
 
 The implementation will involve the installation of a water source such that technicians and operators can work on-site. This water requirement will need to be investigated as the local areas do not receive a large amount of rainfall and placing such a burden on the local communities water supplies is not advised. Drilling for boreholes should be the first test, and in the case that the ground water level is too deep, or not present, then the costing of importing water should be undertaken.
 
-The energy requirements of the system can become excessively large when compared to local energy requirements, as such it may be the case that additional electricity infrastructure should be installed. The effects of these power lines should be reduced as it may affect the operation of the system and the nearby SKA structures.
+The energy requirements of the system can become excessively large when compared to local energy requirements, as such it may be the case that additional electricity infrastructure should be installed. The effects of these power lines should be reduced as it may affect the operation of the system and the nearby SKA structures. The energy requirements, keeping in mind the current energy capabilities of the local provider (Eskom) should be considered and an approach which utilizes and installs PV systems to reduce the load on the local power systems should be considered.
 
 
 The physical components used in the array and data centre should all comply with local RoHS standards \cite{RoHS}, this includes the use of lead free solder and all waste materials should be properly disposed of through the correct channels.
 
 The introduction of large (non-ionising) radiation into the atmosphere should be clearly defined as this amount of power can be harmful to living organisms if exposed.
+
+
 % Frequency introduction into atmosphere and surrounding areas
 % Destruction of desert slug populations
 % Destruction of arid zone bos
@@ -788,6 +790,13 @@ The system has a small duty cycle, this implies that the instantaneous power req
 The pulse width is relatively small, which results in a range resolution of $1.5~km$ which appears to be relatively large. This implies that the system will fall short when multiple objects are in its view as it will not be able to distinguish between the two.
 
 The maximum steering ability of the system is set to $30^{\circ}$ which is a relatively low value when compared similar systems which often can steer up to $60^{\circ}$ without grating lobes being present \cite{maxAngle}. This low steering ability limits the capability of the system to detect space debris. The larger the angle of steering the higher percentage of total objects that the system is able to detect.
+
+The downside of having a data centre on-site is that the majority of the data produced by the system is unlikely to be available to the public as the cost of transmission of this data can become highly costly. It may be feasible for systems to be designed such that physical shipping of data sets to be possible. 
+
+The current design does not go into much detail on the process of construction of such a design, as such some of these costs are estimated and may be different to an actual implementation. A further investigation into the physical construction and implementation in the real world should be carried out in order to gain a better estimate on the costing and feasibility of the system.
+
+The implementation of the amplitude tapering may become complex as it requires a large amount of control out of the transmit amplifiers, they should be capable of dynamically varying their output powers while keeping harmonic distortion low while operating efficiently.
+
 
 \section{BACKGROUND TO SPACE DEBRIS} \label{sec:BackgroundToSpaceDebris}
 
@@ -882,7 +891,7 @@ Consequently, a large amount of this debris is made up of metallic materials as 
 It has, in the past \cite{Spacex}, been difficult and costly to retrieve the components which were used to get the space craft into orbit, this is a major contributor to the material.
 This debris can occupy a number of regions within the Earth's orbits and this changes its characteristics.
 
-The current scope of the project is that it should be capable of tracking space debris that is within the Low Earth Orbit (LEO). This orbit is defined to be approximately $160 km$ to $2000 km$ altitude above the Earth's mean sea level.
+The current scope of the project is that it should be capable of tracking space debris that is within the Low Earth Orbit (LEO). This orbit is defined to be approximately $160~km$ to $2000~km$ altitude above the Earth's mean sea level.
 
 
 \subsection{Space Debris Trajectory Characteristics} \label{sec:SpaceDebrisTrajectoryCharacteristics}
@@ -895,8 +904,8 @@ This is illustrated by equation~\ref{eqn:OrbitalVelocity}.
 Where:
 \begin{itemize}
     \item $V_{Object}$ is the radial velocity of the object
-    \item $G$ is the gravitational constant ($6.67408 \cdot 10^{-11} m^3 kg^{-1} s^{-2}$)
-    \item $M_{earth}$ is the mass of the Earth ($5972 \cdot 10^{24} kg$)
+    \item $G$ is the gravitational constant ($6.67408 \cdot 10^{-11}~m^3 kg^{-1} s^{-2}$)
+    \item $M_{earth}$ is the mass of the Earth ($5972 \cdot 10^{24}~kg$)
     \item $r_{Earth}$ is the mean radius of the Earth
     \item $r_{Altitude}$ is the altitude of the object above the mean radius of the Earth
 \end{itemize}
@@ -1038,6 +1047,7 @@ Where:
 \begin{itemize}
     \item $\rho$ is the slant distance from the system to the object ($m$)
 \end{itemize}
+The other parameters are taken as used in equation~\ref{eqn:ObservableTime}.
 This equation is important as it provides another criteria for the system, that of the maximum range that is required to be detected by the system. These become important for the Radar Range Equations (RRE) in section \ref{sec:PulsingCharacteristics}.
 
 \begin{table}
@@ -1048,20 +1058,20 @@ This equation is important as it provides another criteria for the system, that 
             \hline 
             Parameter & Value \\
             \hline
-            Minimum Object Altitude & $160 km$ \\
-            Maximum Object Altitude & $2000 km$ \\
-            Minimum Object Slant Distance & $184 km$ \\
-            Maximum Object Slant Distance & $2223.8 km$ \\            
-            Minimum Object Tangential Velocity & $6897.4 m/s$ \\
-            Maximum Object Tangential Velocity & $7807.9 m/s$ \\
-            Minimum Angular Velocity & $0.0034 rad/sec$ \\
-            Maximum Angular Velocity & $0.0488 rad/sec$ \\
+            Minimum Object Altitude & $160~km$ \\
+            Maximum Object Altitude & $2000~km$ \\
+            Minimum Object Slant Distance & $184~km$ \\
+            Maximum Object Slant Distance & $2223.8~km$ \\            
+            Minimum Object Tangential Velocity & $6897.4~m/s$ \\
+            Maximum Object Tangential Velocity & $7807.9~m/s$ \\
+            Minimum Angular Velocity & $0.0034~rad/sec$ \\
+            Maximum Angular Velocity & $0.0488~rad/sec$ \\
             Elevation Angle (assumed for illustration) & $60^{\circ}$ \\
             Angle (Measured from Zenith) & $30^{\circ}$ \\
-            Maximum Observable Time & $323.37 s$ \\
-            Apparent Angular Velocity & $0.0032 rad/sec$ \\
-            Minimum Linear Velocity & $518.14 m/s$ \\
-            Maximum Linear Velocity & $6476.8 m/s$ \\
+            Maximum Observable Time & $323.37~s$ \\
+            Apparent Angular Velocity & $0.0032~rad/sec$ \\
+            Minimum Linear Velocity & $518.14~m/s$ \\
+            Maximum Linear Velocity & $6476.8~m/s$ \\
         \end{tabular}
     \end{center}
 \end{table}
@@ -1072,9 +1082,9 @@ Now that a number of key characteristics of the movement of the objects have bee
 There are multiple ways in which to model the space debris that is being tracked. This includes parameters such as: electron density, ion composition, electron drift velocity, etc. This in depth analysis of the debris is out of the scope of the project and a few simplifying assumptions are chosen for this section of the report.
 The first of these is to assume that the system is only required to detect \textit{hard} targets, this refers to the fact that the object is a solid and has a predictable characteristic when reflecting the EM waves incident on it. The \textit{soft} targets include ionospheric plasma present in the atmosphere, these targets are not important to this report \cite{softTarget}.  
 
-Based on current implementations of space debris trackers, an assumption is created here that the minimum RCS of an object is assumed to be that of $10 cm$ in diameter.
+Based on current implementations of space debris trackers, an assumption is created here that the minimum RCS of an object is assumed to be that of $10~cm$ in diameter.
 As discussed in the above section, the objects in question are assumed to lie within the LEO; objects that are below this range experience force due to the atmosphere and therefore will slowly lose orbital velocity and will eventually fall into the Earth's atmosphere and (commonly) burn up in the process.
-The majority of the objects lie within the $500 km$ to $1000 km$ altitude band, after this point, the density of objects decreases \cite{ObjectInformation}.
+The majority of the objects lie within the $500~km$ to $1000~km$ altitude band, after this point, the density of objects decreases \cite{ObjectInformation}.
 
 The information provided in the sections above create a baseline with which to design the system.
 
@@ -1095,8 +1105,8 @@ The information provided in the sections above create a baseline with which to d
 % The system has the ability to create a narrow beam which transmits energy, this energy is then steered (electronically) within the bounds of the system. Steering can be done in azimuth, elevation, and intensity. 
 
 \section{CURRENT IMPLEMENTATIONS} \label{sec:CurrentImplementations}
- The first of these is the Advanced Modular Incoherent Scatter Radar (AMISR), this is located in Resolute Bay, Canada, it makes use of an array of crossed-dipole antennas that are electrically phased, the system is electronically steerable. It operates in the frequency range of $430 MHz$ to $450 MHz$ and has a pulse width of approximately $2 \mu s$ \cite{AMISR}. A number of important parameters can be found in \cite{AMISR}, this is a system which closely resembles the major requirements for this system.
-The second system in use by Leo Labs is the Midland Space Radar (MSR), this system is located in Texas and is commissioned by Leo Labs, this system is capable of detecting objects as small as $10 cm$ in diameter. It is not specified whether this value is a Radar Cross Section  (RCS) or the physical size of the object.
+ The first of these is the Advanced Modular Incoherent Scatter Radar (AMISR), this is located in Resolute Bay, Canada, it makes use of an array of crossed-dipole antennas that are electrically phased, the system is electronically steerable. It operates in the frequency range of $430~MHz$ to $450~MHz$ and has a pulse width of approximately $2~\mu s$ \cite{AMISR}. A number of important parameters can be found in \cite{AMISR}, this is a system which closely resembles the major requirements for this system.
+The second system in use by Leo Labs is the Midland Space Radar (MSR), this system is located in Texas and is commissioned by Leo Labs, this system is capable of detecting objects as small as $10~cm$ in diameter. It is not specified whether this value is a Radar Cross Section  (RCS) or the physical size of the object.
 A number of other implementations have been used (not through Leo Labs) which make use of other technologies and are capable of detecting smaller objects \cite{EISCAT, SIMO, telescope, BeamForming, OrbitDetermination, PlanarArray}. A number of these papers are made use of to design the system in this report.
 
 
@@ -1130,7 +1140,7 @@ This implies that if the monostatic configuration is used, then the continuous w
 
 \subsubsection{Continuous Wave Transmission} \label{sec:ContinuousWaveTransmission}
 
-The continuous wave transmission system, as the name indicates, has the transmitter functioning $100\%$ of the time, which implies that the receiver also functions $100 \&$ of the time. The continuous wave transmission system, as indicated above can only be used by the bistatic configuration as the receiver cannot be activated while the transmitter is active.
+The continuous wave transmission system, as the name indicates, has the transmitter functioning $100~\%$ of the time, which implies that the receiver also functions $100~\%$ of the time. The continuous wave transmission system, as indicated above can only be used by the bistatic configuration as the receiver cannot be activated while the transmitter is active.
 A unique characteristic of the continuous wave system is that it is unable to determine the electromagnetic (EM) waves' round-trip time as there is no set begin and end time of transmission. This can be solved with the use of modulation on the wave, which requires the receiver to know all of the characteristics of the transmitters' waveforms ahead of time if it is to determine round trip times \cite[p.~20]{radarHandbook}.
 
 \subsubsection{Pulsed Waveform Transmission} \label{sec:PulsedWaveformTransmission}
@@ -1202,7 +1212,7 @@ The location of the system is discussed further in section~\ref{sec:Environmenta
 The first equation which defines the power incident on a target, is given by equation \ref{eqn:IncidentPower}. This power is generated with the use of the antenna array, the details of this array are discussed in section~\ref{sec:AntennaArray}
 
 \begin{equation} \label{eqn:IncidentPower}
-P_{inc} = P_t * \frac{G_{t}}{4 * \pi * R^2} [W/m^2]
+P_{inc} = P_t \cdot \frac{G_{t}}{4 \cdot \pi \cdot R^2} [W/m^2]
 \end{equation}
 
 Where:
@@ -1220,7 +1230,7 @@ The next stage is to determine the magnitude of energy that is reflected by the 
 Equation~\ref{eqn:ReflectedPower} indicates the magnitude of power reflected by this object.
 
 \begin{equation} \label{eqn:ReflectedPower}
-P_{refl} = \frac{P_{t} G_{t} \sigma}{4 \pi R^2}
+P_{refl} = \frac{P_{t} G_{t} \sigma}{(4 \pi) R^2}
 \end{equation}
 
 Where:
@@ -1246,7 +1256,7 @@ Where:
 It is assumed that the gain is determined with equation \ref{eqn:Gain}.
 
 \begin{equation} \label{eqn:Gain}
-G = \frac{4 pi \eta_{a} A}{\lambda^2} = \frac{4 pi A_{e}}{\lambda^2}
+G = \frac{4 \pi \eta_{a} A}{\lambda^2} = \frac{4 \pi A_{e}}{\lambda^2}
 \end{equation}
 
 Where $\eta_{a}$ is the efficiency of the antenna created which is commonly between 0.5 and 0.8 \cite[p.~64]{radarHandbook}.
@@ -1264,7 +1274,7 @@ SNR (dB) = -5 log_{10}N + \Bigg(6.2 + \frac{4.54}{\sqrt{N + 0.44}}\Bigg) log_{10
 
 Where 
 \begin{equation} \label{eqn:A}
-A = ln(\frac{0.62}{P_{FA}})
+A = ln \Bigg( \frac{0.62}{P_{FA}} \Bigg)
 \end{equation}
 and 
 
@@ -1293,7 +1303,7 @@ This first estimate for the minimum SNR required is linked to the noise present 
 
 \section{VSWR AND RETURN LOSS DERIVATIONS} \label{sec:VSWRandReturnLossDerivations}
 The Voltage Standing Wave Ratio (VSWR) is an important parameter for any antenna, this is the characteristic which determines the ratio of the input signal which is reflected to what is transmitted. This value should be as low as possible, it ranges from 1 (complete signal transmission) to infinite (complete signal reflection). These correspond to a perfect match and a perfect mismatch respectively.
-A VSWR value of lower than $1.3:1$ is sufficient for this application as this represents a return loss of $-17.7 dB$ \cite{AntennaPrice1,AntennaPrice2,AntennaPrice3,AntennaPrice4}. This value is a compromise between cost and antenna performance. Lower VSWR values become difficult to achieve as the price becomes prohibitive. This value is attained based on current implementations of these types of antennas and their specifications.
+A VSWR value of lower than $1.3:1$ is sufficient for this application as this represents a return loss of $-17.7~dB$ \cite{AntennaPrice1,AntennaPrice2,AntennaPrice3,AntennaPrice4}. This value is a compromise between cost and antenna performance. Lower VSWR values become difficult to achieve as the price becomes prohibitive. This value is attained based on current implementations of these types of antennas and their specifications.
 This VSWR results in a low reflection back into the amplifier (and consequently reflection that doesn't enter the antenna when in receiving mode).
 
 The parameters illustrated above are calculated with the use of equations~\ref{eqn:VSWR}, and \ref{eqn:ReturnLoss}.
@@ -1311,23 +1321,39 @@ Where the reflection coefficient, $\Gamma = \frac{Z_L - Z_0}{Z_L + Z_0}$ and $Z_
 This VSWR value defined here is linked to the bandwidth of the antenna, as this VSWR will not be maintained over a large frequency range. In this case it is useful to define a maximum VSWR over the frequency range of the antenna. The design for this is such that the VSWR is less than $2:1$ for the bandwidth of the antenna (and the system as a whole).
 
 \section{CROSSED DIPOLE} \label{sec:Crossed-Dipole}
+
 \begin{figure}[htb]
     \centering
-    \begin{subfigure}{.5\textwidth}
-        \centering
-            \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Polar.pdf}
-            \caption{Crossed Dipole Polar Plot}
-            \label{fig:Crossed-Dipole-Radiation-Patterns-Polar}
-        \end{subfigure}%
-        \begin{subfigure}{.5\textwidth}
-            \centering
-            \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Cartesian.pdf}
-            \caption{Crossed Dipole Cartesian Plot}
-                \label{fig:Crossed-Dipole-Radiation-Patterns-Cartesian}
-            \end{subfigure}
-\caption{Crossed Dipole Radiation Patterns}
-\label{fig:Crossed-Dipole-Radiation-Patterns}
+    \includegraphics[width=\linewidth]{Crossed-Dipole-Polar.pdf}
+    \caption{Crossed Dipole Polar Plot}
+    \label{fig:Crossed-Dipole-Radiation-Patterns-Polar}
 \end{figure}
+
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{Crossed-Dipole-Cartesian.pdf}
+    \caption{Crossed Dipole Cartesian Plot}
+    \label{fig:Crossed-Dipole-Radiation-Patterns-Cartesian}
+\end{figure}
+
+% \begin{figure}[htb]
+%     \centering
+%     \begin{subfigure}{.5\textwidth}
+%         \centering
+%             \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Polar.pdf}
+%             \caption{Crossed Dipole Polar Plot}
+%             \label{fig:Crossed-Dipole-Radiation-Patterns-Polar}
+%         \end{subfigure}%
+%         \begin{subfigure}{.5\textwidth}
+%             \centering
+%             \includegraphics[width=0.9\linewidth]{Crossed-Dipole-Cartesian.pdf}
+%             \caption{Crossed Dipole Cartesian Plot}
+%                 \label{fig:Crossed-Dipole-Radiation-Patterns-Cartesian}
+%             \end{subfigure}
+% \caption{Crossed Dipole Radiation Patterns}
+% \label{fig:Crossed-Dipole-Radiation-Patterns}
+% \end{figure}
 
 
 
@@ -1344,7 +1370,7 @@ This VSWR value defined here is linked to the bandwidth of the antenna, as this 
             Maximum Gain Direction (degrees) & $0$ & $0$ \\
             Minimum Gain ($dBi$) & $-0.835$ & $null$ \\
             Minimum Gain Direction (degrees) & $\pm 90$ & $\pm 90$ \\
-            Half Power Beam Width ($-3 dB$) & N/A & $100.401$ \\
+            Half Power Beam Width ($-3~dB$) & N/A & $100.401$ \\
             \hline
         \end{tabular}
     \end{center}
@@ -1452,8 +1478,8 @@ Based on the choice of the frequency and how it is used, the location of the sys
 Subject to the choice of the frequency and how it it licensed, the array is situated within the Northern Cape (refer to section~\ref{sec:OptimalFrequency}). This is based on the fact that the SKA has the ability to provide a number of laws which allow for the selected frequency to be utilised within this province.
 The Northern Cape is a largely unpopulated area when compared to the rest of the country, implying that it has a low population density (as it has the largest area). This is convenient as it lowers the cost per area of land. 
 Based on the spacing of the array, the size of land required should be at least $247~m^2$ (based on the $\lambda/2$ spacing and the $64 \times 64$ array sizing), this is the minimum area required for the placement of the antennas. The system is equipped with a number of additional components which all take up space.
-This implies that the system is required to be housed with at least a $2000~m^2$ plot of land, this implies that, based on the average cost of units of land of this size, the price will be approximately $R~800~000$ to $R~1~200~000$ \cite{LocationPrice1, LocationPrice2, LocationPrice3}.
-The price of the plot of land varies based on its location, previous owners, and proximity to towns. A pragmatic approach to estimating the cost of the required land is to take the maximum value stated here and add on an additional $20~\%$. The cost of the area of land is then approximated to $R~1~440~000$.
+This implies that the system is required to be housed with at least a $2000~m^2$ plot of land, this implies that, based on the average cost of units of land of this size, the price will be approximately $R~800~000$ to $R~1.2$ million \cite{LocationPrice1, LocationPrice2, LocationPrice3}.
+The price of the plot of land varies based on its location, previous owners, and proximity to towns. A pragmatic approach to estimating the cost of the required land is to take the maximum value stated here and add on an additional $20~\%$. The cost of the area of land is then approximated to $R~1.44$ million.
 
 The ideal location for the land would be within a short distance from the SKA operations, this results in the added benefit of the lowered radio interference from external sources while being able to cooperate with their operations. 
 The SKA has currently build their own infrastructure for data management. Tying in with their system implies a lower cost for both parties as it can benefit both. The cost incurred for this communication platform can become expensive, an in-depth analysis should be undertaken as to how the data transmission mechanism should work.
@@ -1515,10 +1541,10 @@ The LNA is placed close to the physical antenna as this lowers the noise introdu
 
 \section{COSTING ANALYSIS AND RESEARCH} \label{sec:CostingAnalysisandResearch}
 
-In order to estimate the total cost of the system, previously implemented systems that have a similar functionality can be compared. The first of these is the EISCAT Svalbard Radar Project \cite[p.~670]{EISCATPrice} which estimated the cost of the array was approximately $R~432~000~000$ in $1990$, and the yearly operating costs approximated $R~40~000~000$. This cost is indicative of the technology at the time and these costs will be greatly reduced with the use of newer efficient technology.
-The estimate for the entire solid-state amplifier implementation was estimated to be $R~300~000~000$, this includes the cooling, control systems, and transmitter modules. This is a high estimate as the cost of this will have been reduced over time.
+In order to estimate the total cost of the system, previously implemented systems that have a similar functionality can be compared. The first of these is the EISCAT Svalbard Radar Project \cite[p.~670]{EISCATPrice} which estimated the cost of the array was approximately $R~432$ million in $1990$, and the yearly operating costs approximated $R~40$ million. This cost is indicative of the technology at the time and these costs will be greatly reduced with the use of newer efficient technology.
+The estimate for the entire solid-state amplifier implementation was estimated to be $R~300$ million, this includes the cooling, control systems, and transmitter modules. This is a high estimate as the cost of this will have been reduced over time.
 
-The second comparable system is that of the AMISR (used by Leo Labs), which is estimated, once construction was completed to cost approximately $\$52$ million ($R~750$ million) for the concept development and implementation \cite[p.~333-337]{AMISRCosting}. The yearly operational cost for the system is estimated to be approximately $\$3$ million ($~R43$ million). This estimate is closer to the cost requirements for this design as the systems are constructed with a number of similarities for the components.
+The second comparable system is that of the AMISR (used by Leo Labs), which is estimated, once construction was completed to cost approximately $\$52$ million ($R~750$ million) for the concept development and implementation \cite[p.~333-337]{AMISRCosting}. The yearly operational cost for the system is estimated to be approximately $\$3$ million ($R~43$ million). This estimate is closer to the cost requirements for this design as the systems are constructed with a number of similarities for the components.
 The use of solid state amplifiers appears to be the best choice as the price of these components have decreased over the past two decades and their efficiency has increased.
 The Design document has a number of costing estimates for a solid-state amplifier implementation, however, this estimate was in $1990$ \cite[p.~37]{DesignDraft}.
 Table~\ref{tab:CostingUnit} illustrates the costing for an individual unit, this includes the antenna, transmitter and receiver components. The exchange rate is taken as $R~14.40/\$$.
@@ -1550,9 +1576,9 @@ Based on average prices of antennas with similar characteristics \cite{AntennaPr
         \end{tabular}
     \end{center}
 \end{table}
-This implies that the cost of the array, purely from the antenna element units is estimated to be approximately $R~258~650~000$. This estimate is close to that of the EISCAT implementation as it is within $20\%$ of their estimate for the antenna system.
+This implies that the cost of the array, purely from the antenna element units is estimated to be approximately $R~258.65$ million. This estimate is close to that of the EISCAT implementation as it is within $20~\%$ of their estimate for the antenna system.
 This costing does not take into consideration the price of the installation of the data center, roads, water supply, electricity supply, control rooms, land, etc. It is assumed that the cost of these contribute to twice the value of the array.
-This means that the total cost of the system can be estimated to approach $R~775~950~000$.
+This means that the total cost of the system can be estimated to approach $R~775.95$ million.
 
 
 
@@ -1564,9 +1590,329 @@ This means that the total cost of the system can be estimated to approach $R~775
 The following code illustrates a number of calculations that are required to determine the orbital parameters of space debris. It also details the calculation of the parameters that are used for the antenna array and how it is used.
 
 
+\begin{lstlisting}[breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}]
+    # Observable time or Dwell Time
+
+    import math
+    import numpy
+    
+    speedOfLight = 3*10**(8)
+    minDistance = 160 * 10**(3)
+    maxDistance = 2000 * 10**(3)
+    earthRadius = 6378 * 10**(3)
+    centerFrequency = 610*10**(6)
+    gravitationalConstant = 6.67408 * 10 ** (-11)
+    earthMass = 5.972 * 10 ** (24)
+    boltzmannsConstant = 1.38064852*10**-(23)
+    standardTemp = 290
+    numElements = 4096
+    
+    # Lambda
+    Lambda = speedOfLight / centerFrequency
+    print("Lambda: " + str(round(Lambda,4)) + " m")
+    # Tangential velocity
+    minObjectPeriod = 5280 # Seconds
+    maxObjectPeriod = 7620 # Seconds
+    # maxObjectSpeed = (2 * math.pi * (earthRadius+minDistance))/(minObjectPeriod)
+    maxObjectSpeed = math.sqrt((gravitationalConstant * earthMass)/(earthRadius+minDistance))
+    minObjectSpeed = math.sqrt((gravitationalConstant * earthMass)/(earthRadius+maxDistance))
+    
+    # Maximum Angle (from zenith) (Max steering ability designed)
+    maxAngle = 30 * (math.pi / 180)
+    
+    
+    
+    # Slant Distance
+    elevation = (math.pi)/2 - maxAngle
+    maxSlantDistance = earthRadius * (math.sqrt((((earthRadius + maxDistance)**2)/(earthRadius**2)) - (math.cos(elevation)**2 )) - math.sin(elevation)) # Taking in the max angle (from zenith) and max distance
+    minSlantDistance = earthRadius * (math.sqrt((((earthRadius + minDistance)**2)/(earthRadius**2)) - (math.cos(elevation)**2 )) - math.sin(elevation)) # Taking in the max angle (from zenith) and min distance
+    print("Maximum Slant Distance: " + str(round(maxSlantDistance/1000,4)) + " km")
+    
+    # Assuming a 120 degrees maximum field of view (60 degrees max angle)
+    maxSlantDistanceFOV = earthRadius * (math.sqrt((((earthRadius + maxDistance)**2)/(earthRadius**2)) - (math.cos((math.pi/2 )-(math.pi/3))**2 )) - math.sin((math.pi/2 )-(math.pi/3))) 
+    
+    # Path Loss of signal (return trip)
+    pathLoss = 2 * (Lambda/(4 * math.pi * maxSlantDistance))
+    
+    # Observable Time of object within the FOV
+    maxObservableTime = (((earthRadius + maxDistance)**(3.0/2.0))/(math.sqrt(gravitationalConstant * earthMass)))*(math.pi - 2 * elevation - 2 * math.asin((earthRadius)/(earthRadius + maxDistance) * math.cos(elevation)))
+    
+    # Angular Velocity
+    maxAngularVelocity = (maxObjectSpeed)/(minDistance)
+    minAngularVelocity = (minObjectSpeed)/(maxDistance)
+    
+    # Apparent Angular Velocity
+    apparentAngularVelocity = (2 * maxAngle)/(maxObservableTime)
+    
+    # Linear Velocity (measured from center of earth from system)
+    minLinearVelocity = apparentAngularVelocity * minDistance
+    maxLinearVelocity = apparentAngularVelocity * maxDistance
+    
+    # Max doppler shift
+    dopplerFrequencyShift = 2*((maxLinearVelocity)/(speedOfLight))*centerFrequency 
+    print("Maximum Doppler Shift: " + str(round(dopplerFrequencyShift,4)) + " Hz")
+    
+    # Minimum radar cross section of object (min diameter of 10 cm)
+    minObjectRadius = 5 * 10**(-2)
+    minRCS = math.pi * minObjectRadius**(2)
+    print("Radar Cross Section: " + str(round(minRCS,4)) + " m2")
+    
+    # Signal Round trip times
+    minRoundTripTime = 2 * (minDistance/speedOfLight)
+    maxRoundTripTime = 2 * (maxSlantDistance/speedOfLight)
+    print("Maximum Rount Trip Time: " + str(round(maxRoundTripTime,4)) + " s")
+    
+    
+    # Pulse Width and Range Resolution Limits
+    maxBandwidth = 8 * 10**6
+    pulseWidthMin = 1/maxBandwidth
+    pulseWidthMax = minRoundTripTime
+    rangeResolutionMin = (speedOfLight * pulseWidthMin)/(2)
+    
+    # Minimum Number of Pulses (based on HPBW of simulation)
+    HPBW = 0.785884 * (math.pi / 180)
+    elevationStationary = math.pi/2 - HPBW
+    
+    maxObservableTimeStationary = (((earthRadius + minDistance)**(3.0/2.0))/(math.sqrt(gravitationalConstant * earthMass)))*(math.pi - 2 * elevationStationary - 2 * math.asin((earthRadius)/(earthRadius + minDistance) * math.cos(elevationStationary)))
+    print("Maximum amount of time object is in view (stationary beam): " + str(round(maxObservableTimeStationary,4)) + " s")
+    maxNumPulses = maxObservableTimeStationary/maxRoundTripTime
+    print("Maximum Number of Pulses with beam stationary: " + str(round(maxNumPulses,4)))
+    # Safe estimate pulse number
+    numPulses = 30
+    
+    # Thermal Noise
+    noiseFiguredB = 2.5 # Measured in dB
+    noiseFigure = 10**(noiseFiguredB/10)
+    
+    pulseWidth = 10 * 10**(-6)
+    bandwidth = 1 / pulseWidth
+    print("Bandwidth of the system: " + str(round(bandwidth/1000,4)) + " kHz")
+    SNRmindB = 10 #Measured in dB
+    SNRmin = 10**(SNRmindB/10)
+    
+    gainPowerProduct = (SNRmin * (4 * (math.pi))**3 * maxSlantDistance**4 * boltzmannsConstant * standardTemp * noiseFigure * bandwidth)/(Lambda**2 * minRCS * numPulses)
+    
+    arrayGaindB = 41.0244
+    arrayGain = 10**(arrayGaindB/10)
+    
+    maxPowerRequired = gainPowerProduct / ((arrayGain)**(2))
+    print("Maximum Power Required: " + str(round((maxPowerRequired/1000000),4)) + " MW")
+    
+    
+    dutyCycle = pulseWidth * (1/maxRoundTripTime)
+    print("Duty Cycle: " + str(round(dutyCycle,5)) + "%")
+    # print(dutyCycle)
+    averagePower = dutyCycle * maxPowerRequired
+    print("Average Power Required: " + str(round(averagePower/1000000,4)) + " MW")
+    
+    averagePowerPerElement = averagePower/numElements
+    maxPowerPerElement = maxPowerRequired/numElements
+    
+    print("Average Power Per Element: " + str(round(averagePowerPerElement,4)) + " W")
+    print("Maximum Power Per Element: " + str(round(maxPowerPerElement/1000,4)) + " kW")
+    
+    
+    # Element Separation without Grating Lobes (assuming 30 degrees steering)
+    maxElementSpacing = (Lambda)/(1 + numpy.absolute(math.sin(maxAngle)))
+    print("Maximum Element Spacing: " + str(round(maxElementSpacing,4)) + " m")
+    
+    # Range Resolution
+    rangeResolution = (speedOfLight * pulseWidth)/ 2
+    print("Range Resolution: " + str(round(rangeResolution/1000,2)) + "km")
+\end{lstlisting}
+   
+
+\subsection{Amplitude Tapering and Phasing} \label{sec:AmplitudeTaperingandPhasing}
+This portion of code is used to create the amplitude and phasing files that are used within FEKO to simulate the required antenna array parameters. 
+
+\begin{lstlisting}[breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}]
+    import math
+    import numpy
+    import matplotlib.pyplot as plt
+    import itertools
+    
+    font = {'family' : 'normal',
+            'size'   : 18}
+    
+    
+    
+    speedOfLight = 3*10**8
+    minDistance = 160 * 10**3
+    maxDistance = 2000 * 10**3
+    earthRadius = 6378 * 10**3
+    centerFrequency = 610*10**6
+    gravitationalConstant = 6.67408 * 10 ** -11
+    earthMass = 5.972 * 10 ** 24
+    boltzmannsConstant = 1.38064852e-23
+    
+    numRows = 64
+    numColumns = 64
+    # Lambda
+    Lambda = speedOfLight / centerFrequency
+    
+    beta = (2 * math.pi)/(Lambda)
+    
+    
+    dx = Lambda/2
+    dy = Lambda/2
+    
+    theta = 0
+    psi = 30
+    
+    maxAmplitude = 1
+    minAmplitude = 0.5
+    
+    w,h = numRows,numColumns
+    phaseMatrix = [[0 for x in range(w)] for y in range(h)]
+    
+    d = Lambda/4
+    k = (2 * math.pi)/Lambda
+    
+    
+    f = open("phase.txt", "w+")
+    newline = ""
+    for x in range(0,numRows):
+    #     thetaSteer = x * ((math.pi)/4096 + k * d * math.cos(0)) * (-1)
+        thetaSteer = x * (360 * dx * math.sin(math.radians(theta)))/(Lambda)
+        for y in range(0,numColumns):
+            psiSteer = y * (360 * dy * math.sin(math.radians(psi)))/(Lambda)
+            # psiSteer = y * ((math.pi)/4096 - k * d * math.cos(0)) * (-1)
+            totalSteer = thetaSteer + psiSteer
+            phaseMatrix[x][y] = totalSteer
+            outLine = newline + "1.0," + str(totalSteer)
+            newline = "\n"
+            f.write(outLine)
+    
+    fig = plt.figure(figsize=(6, 3.2))
+    plt.rc('font', **font)
+    ax = fig.add_subplot(111)
+    ax.set_title('Heat Map Representing Phase Delay of Elements')
+    plt.imshow(phaseMatrix, cmap="Greys")
+    ax.set_aspect('equal')
+    
+    cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
+    cax.get_xaxis().set_visible(False)
+    cax.get_yaxis().set_visible(False)
+    cax.patch.set_alpha(0)
+    cax.set_frame_on(False)
+    plt.colorbar(orientation='vertical', label="Phase Delay (degrees)")
+    plt.show()
+    
+    
+    #Amplitude
+    w,h = numRows,numColumns
+    amplitudeMatrix = [[0 for x in range(w)] for y in range(h)]
+    
+    delta = numpy.linspace(0.5, 1.0, numRows/2)
+    deltaReverse = numpy.linspace(1.0, 0.5, numRows/2)
+    comb = numpy.concatenate((delta,deltaReverse))
+    
+    
+    for x in range(0,numRows):
+        first = comb[x]
+        for y in range(0,numColumns):
+            second = comb[y]
+            amplitudeMatrix[x][y] = (first + second)/2
+    
+    print(amplitudeMatrix)
+    
+    fig = plt.figure(figsize=(6, 3.2))
+    
+    ax = fig.add_subplot(111)
+    ax.set_title('Heat Map Representing Amplitude Excitation of Elements')
+    plt.imshow(amplitudeMatrix, cmap="Greys")
+    ax.set_aspect('equal')
+    
+    cax = fig.add_axes([0.12, 0.1, 0.78, 0.8])
+    cax.get_xaxis().set_visible(False)
+    cax.get_yaxis().set_visible(False)
+    cax.patch.set_alpha(0)
+    cax.set_frame_on(False)
+    plt.colorbar(orientation='vertical', label="Percentage of Total Power")
+    plt.show()
+    
+    flattenedPhase = []
+    for x in phaseMatrix:
+        for y in x:
+            flattenedPhase.append(y)
+    
+    flattenedAmplitude = []
+    for x in amplitudeMatrix:
+        for y in x:
+            flattenedAmplitude.append(y)
+    
+    newline = ""
+    f = open("Amplitude.txt", "w+")
+    for x in range(0,numRows**2):
+        outLine = newline + str(flattenedAmplitude[x])  + ",0.0"
+        newline = "\n"
+        f.write(outLine)
+    
+    newline = ""
+    f = open("AmplitudePhase.txt", "w+")
+    for x in range(0,numRows**2):
+        outLine = newline + str(flattenedAmplitude[x]) + "," + str(flattenedPhase[x])
+        newline = "\n"
+        f.write(outLine)
+\end{lstlisting}
+
+\subsection{Probability Analysis} \label{sec:ProbabilityAnalysis}
+This code listing provides the calculations that were used to generate the probability of detection and SNR while keeping the probability of false alarm at a specific set value. 
+\begin{lstlisting}[language=matlab, breaklines=true, postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}]
+
+    numPulses = 1;
+    probabilityDetection = 0.3:0.01:1;
+    probabilityFalseAlarm = 10^(-1);
+    %10^(-8):10^(-1):10^(-1);
+    
+    A = log(0.62/probabilityFalseAlarm);
+    B = log((probabilityDetection)./(1-probabilityDetection));
+    
+    SNR1 = -5 .* log10(numPulses) + (6.2 + (4.54)./(sqrt(numPulses + 0.44))) .* log10(A + 0.12 .* A .* B + 1.7 .* B);
+    
+    probabilityFalseAlarm = 10^(-2);
+    A = log(0.62/probabilityFalseAlarm);
+    SNR2 = -5 .* log10(numPulses) + (6.2 + (4.54)./(sqrt(numPulses + 0.44))) .* log10(A + 0.12 .* A .* B + 1.7 .* B);
+    
+    probabilityFalseAlarm = 10^(-3);
+    A = log(0.62/probabilityFalseAlarm);
+    SNR3 = -5 .* log10(numPulses) + (6.2 + (4.54)./(sqrt(numPulses + 0.44))) .* log10(A + 0.12 .* A .* B + 1.7 .* B);
+    
+    probabilityFalseAlarm = 10^(-4);
+    A = log(0.62/probabilityFalseAlarm);
+    SNR4 = -5 .* log10(numPulses) + (6.2 + (4.54)./(sqrt(numPulses + 0.44))) .* log10(A + 0.12 .* A .* B + 1.7 .* B);
+    
+    probabilityFalseAlarm = 10^(-4);
+    A = log(0.62/probabilityFalseAlarm);
+    SNR5 = -5 .* log10(numPulses) + (6.2 + (4.54)./(sqrt(numPulses + 0.44))) .* log10(A + 0.12 .* A .* B + 1.7 .* B);
+    
+    probabilityFalseAlarm = 10^(-5);
+    A = log(0.62/probabilityFalseAlarm);
+    SNR6 = -5 .* log10(numPulses) + (6.2 + (4.54)./(sqrt(numPulses + 0.44))) .* log10(A + 0.12 .* A .* B + 1.7 .* B);
+    
+    hold on;
+    plot(real(probabilityDetection),SNR1,'k')
+    plot(real(probabilityDetection),SNR2,'k')
+    plot(abs(probabilityDetection),SNR3,'k')
+    plot(abs(probabilityDetection),SNR4,'k')
+    plot(abs(probabilityDetection),SNR5,'k')
+    plot(abs(probabilityDetection),SNR6,'k')
+    hold off;
+
+    
+\end{lstlisting}
+
+
+\subsection{Simulation Documents} \label{sec:SimulationDocuments}
+The simulation package, FEKO, is used throughout this design such that the proposed design can be analysed.
+The simulation files can be found in the following folder: https://goo.gl/d6mSqp
+
+
 
 \putbib[references]
 \end{bibunit}
+
+
 
 
 \end{document}

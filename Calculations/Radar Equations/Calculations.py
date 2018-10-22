@@ -31,22 +31,18 @@ maxAngle = 30 * (math.pi / 180)
 
 # Slant Distance
 elevation = (math.pi)/2 - maxAngle
-maxSlantDistance = earthRadius * (math.sqrt((((earthRadius + maxDistance)**2)/(earthRadius**2)) \
- - (math.cos(elevation)**2 )) - math.sin(elevation)) # Taking in the max angle (from zenith) and max distance
-minSlantDistance = earthRadius * (math.sqrt((((earthRadius + minDistance)**2)/(earthRadius**2))  \
- - (math.cos(elevation)**2 )) - math.sin(elevation)) # Taking in the max angle (from zenith) and min distance
+maxSlantDistance = earthRadius * (math.sqrt((((earthRadius + maxDistance)**2)/(earthRadius**2)) - (math.cos(elevation)**2 )) - math.sin(elevation)) # Taking in the max angle (from zenith) and max distance
+minSlantDistance = earthRadius * (math.sqrt((((earthRadius + minDistance)**2)/(earthRadius**2)) - (math.cos(elevation)**2 )) - math.sin(elevation)) # Taking in the max angle (from zenith) and min distance
 print("Maximum Slant Distance: " + str(round(maxSlantDistance/1000,4)) + " km")
 
 # Assuming a 120 degrees maximum field of view (60 degrees max angle)
-maxSlantDistanceFOV = earthRadius * (math.sqrt((((earthRadius + maxDistance)**2)/(earthRadius**2)) \
- - (math.cos((math.pi/2 )-(math.pi/3))**2 )) - math.sin((math.pi/2 )-(math.pi/3))) 
+maxSlantDistanceFOV = earthRadius * (math.sqrt((((earthRadius + maxDistance)**2)/(earthRadius**2)) - (math.cos((math.pi/2 )-(math.pi/3))**2 )) - math.sin((math.pi/2 )-(math.pi/3))) 
 
 # Path Loss of signal (return trip)
 pathLoss = 2 * (Lambda/(4 * math.pi * maxSlantDistance))
 
 # Observable Time of object within the FOV
-maxObservableTime = (((earthRadius + maxDistance)**(3.0/2.0))/(math.sqrt(gravitationalConstant * earthMass))) \
-*(math.pi - 2 * elevation - 2 * math.asin((earthRadius)/(earthRadius + maxDistance) * math.cos(elevation)))
+maxObservableTime = (((earthRadius + maxDistance)**(3.0/2.0))/(math.sqrt(gravitationalConstant * earthMass)))*(math.pi - 2 * elevation - 2 * math.asin((earthRadius)/(earthRadius + maxDistance) * math.cos(elevation)))
 
 # Angular Velocity
 maxAngularVelocity = (maxObjectSpeed)/(minDistance)
@@ -84,10 +80,7 @@ rangeResolutionMin = (speedOfLight * pulseWidthMin)/(2)
 HPBW = 0.785884 * (math.pi / 180)
 elevationStationary = math.pi/2 - HPBW
 
-maxObservableTimeStationary = (((earthRadius + minDistance)**(3.0/2.0)) \
-/(math.sqrt(gravitationalConstant * earthMass))) \
-*(math.pi - 2 * elevationStationary - 2 * math.asin((earthRadius) \
-/(earthRadius + minDistance) * math.cos(elevationStationary)))
+maxObservableTimeStationary = (((earthRadius + minDistance)**(3.0/2.0))/(math.sqrt(gravitationalConstant * earthMass)))*(math.pi - 2 * elevationStationary - 2 * math.asin((earthRadius)/(earthRadius + minDistance) * math.cos(elevationStationary)))
 print("Maximum amount of time object is in view (stationary beam): " + str(round(maxObservableTimeStationary,4)) + " s")
 maxNumPulses = maxObservableTimeStationary/maxRoundTripTime
 print("Maximum Number of Pulses with beam stationary: " + str(round(maxNumPulses,4)))
@@ -104,8 +97,7 @@ print("Bandwidth of the system: " + str(round(bandwidth/1000,4)) + " kHz")
 SNRmindB = 10 #Measured in dB
 SNRmin = 10**(SNRmindB/10)
 
-gainPowerProduct = (SNRmin * (4 * (math.pi))**3 * maxSlantDistance**4 * boltzmannsConstant * standardTemp * noiseFigure * bandwidth) \
-/(Lambda**2 * minRCS * numPulses)
+gainPowerProduct = (SNRmin * (4 * (math.pi))**3 * maxSlantDistance**4 * boltzmannsConstant * standardTemp * noiseFigure * bandwidth)/(Lambda**2 * minRCS * numPulses)
 
 arrayGaindB = 41.0244
 arrayGain = 10**(arrayGaindB/10)
