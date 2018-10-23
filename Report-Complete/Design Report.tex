@@ -87,7 +87,7 @@ The system is made up of an array of $4096$ crossed dipole antennas that create 
 The system runs on an average of $25.5~kW$ for the array which equates to a maximum power requirement of $37.83~MW$. It operates at a frequency of $610~MHz$ and has a pulse width of $10~\mu s$ which creates a range resolution of $1.5~km$.
 The estimated cost for the system is $R~775$ million which is within $20~\%$ of similar systems elsewhere in the world. The system is designed to function in the Northern Cape.
 
-Keywords: Monostatic, Bistatic, Antenna, Antenna Array, VSWR, HPBW, Phasing, Space Debris, Crossed Dipole, Pulsed Wave, Continuous Wave, Radar, LEO, Beam Steering, Signal-to-Noise Ratio, Doppler Shift
+Keywords:  Antenna, Antenna Array, Beam Steering, Bistatic, Continuous Wave, Crossed Dipole, Doppler Shift, HPBW, LEO, LeoLabs, Monostatic, Phasing, Pulsed Wave, Radar, Signal-to-Noise Ratio, Space Debris, VSWR
 %% ABSTRACT
 \clearpage
 
@@ -164,7 +164,7 @@ The important parameters acquired from these calculations can be found in table~
 \end{table}
 
 \subsection{Current Systems} \label{sec:CurrentSystems}
-The baseline for this project is built upon the system created by Leo Labs \cite{LEOLABS}. The Leo Labs system makes use of two systems that are currently installed. These systems form the baseline from which to compare the design of this system. The details of these systems are discussed in section~\ref{sec:CurrentImplementations}.
+The baseline for this project is built upon the system created by LeoLabs \cite{LEOLABS}. The LeoLabs system makes use of two systems that are currently installed. These systems form the baseline from which to compare the design of this system. The details of these systems are discussed in section~\ref{sec:CurrentImplementations}.
 
 
 \section{TECHNOLOGY} \label{sec:TECHNOLOGY}
@@ -174,14 +174,14 @@ The basic functionality of the system is that of a radar antenna array where the
 The following sections detail the different implementations of this system and determine the advantages and disadvantages of each choice.
 The system, as an overview is made up of the following components illustrated in Fig.~\ref{fig:SystemOverview} \cite{radarHandbook}.
 
-\begin{center}
+% \begin{center}
     \begin{figure}
         \centering
-        \includegraphics[width=0.7\textwidth]{SystemOverview.pdf}
+        \includegraphics[width=0.6\textwidth]{SystemOverview.pdf}
         \caption{System Overview}
         \label{fig:SystemOverview}    
     \end{figure}
-\end{center}
+% \end{center}
 
 These components perform the major tasks of the system, they are each discussed in detail in their own sections, however, before that can take place, these components are used to perform a specific action in order to detect the space debris, sections~\ref{sec:OptimalFrequency}, \ref{sec:AntennaArray}, \ref{sec:ContinuousWaveandPulsedWave}, \ref{sec:RadarTheoryOfOperation}, and \ref{sec:PulsingCharacteristics} introduce the theory behind the operation of this system. The choices for these sections are directly linked to the type of devices and components seen in Fig.~\ref{fig:SystemOverview}.
 The first highly important parameter of the system is the frequency at which it will operate as this is dependent on a number of factors. This is discussed in section~\ref{sec:OptimalFrequency}
@@ -265,6 +265,7 @@ This allows for the calculation for the maximum and minimum round trip times for
         \end{tabular}
     \end{center}
 \end{table}
+The system designed makes use of a monostatic configuration and a pulsed waveform, the details of these implementations is discussed in section~\ref{sec:RadarTheoryOfOperation} where the different configurations and pulsing methods are compared and chosen.
 These values take the assumption that the system is capable of steering up to $30^{\circ}$ from the zenith direction. If the system were to steer further, then the maximum slant distance would increase accordingly. The maximum steering ability of the system designed is capable of reaching approximately $50^{\circ}$, however, the maximum slant allowed is reduced in order to increase the reliability of the system. This is discussed in more detail in section~\ref{sec:AntennaArray} % as grating lobes can appear when steered past designed levels.
 
 Based on the maximum slant distance round trip time ($14.83~ms$), this places a number of limitations on the system which relate to the pulse repetition frequency, the minimum distance round trip time ($1.067~ms$), limits the pulse width that the system can transmit over. This also creates a limit on the bandwidth of the system as the bandwidth is related to this parameter by $B = 1/ \tau$.
@@ -293,13 +294,13 @@ In order to calculate a number of characteristics on the Signal-to-Noise ratio (
     \centering
     \begin{subfigure}{.5\textwidth}
         \centering
-            \includegraphics[width=0.7\linewidth]{Pulsing.pdf}
+            \includegraphics[width=0.9\linewidth]{Pulsing.pdf}
             \caption{Radar EM Wave Pulse}
             \label{fig:Pulsing}
         \end{subfigure}%
         \begin{subfigure}{.5\textwidth}
             \centering
-            \includegraphics[width=0.7\linewidth]{ObjectDetection.pdf}
+            \includegraphics[width=0.9\linewidth]{ObjectDetection.pdf}
             \caption{Object Detection}
                 \label{fig:ObjectDetection}
             \end{subfigure}
@@ -343,6 +344,8 @@ SNR = \frac{P_{t} G_t G_r {\lambda^2} \sigma}{(4 \pi )^3 R^4 k T_s}
 
 This implies that an increase in pulse width results in an increase in SNR. This is the case based on the fact that the receiver bandwidth is linked to the waveforms bandwidth, this implies that the receivers bandwidth can be substituted for the pulse width in the standard radar range equation \cite[p.~776]{radarHandbook}.
 This is a simple method in which to increase the SNR without increasing the cost of the overall system.
+
+
 
 \section{SNR} \label{sec:SNR}
 The SNR required for this system is highly dependent on the requirements for the probabilities of detection and false alarm. The first simplifying assumption of this section is to assume that the signal received by the object is non-fluctuating, this results in the ability to determine an operational SNR for successful detection \cite[p.~102-103]{radarHandbook}.
@@ -674,6 +677,10 @@ This modular system is created to be similar to the AMISR's implementation \cite
 This implementation is improved in this design based on the newer technology available which allows for higher modularity of the components and higher data communication throughput.
 This modular design means that multiple antenna elements can fail with the overall system still functioning sufficiently.
 
+
+
+
+
 This implementation also results in a simplified feeding mechanism as matching between multiple antennas is no longer required.
 The implementation of solid state amplifiers is used here as they are highly reliable, easily maintainable, and are modular in nature. The down side of solid state amplifiers is that they are not able to generate large amounts of power \cite[p.~364]{radarHandbook}, however, due to the fact that the power is split between each element in the array, they are ideally suited to this application. The implementation of solid state technology results in the use of DC voltages throughout the system, this is an important factor for this implementation as DC creates minimal interference to the antennas.
 Consequently, the radiating elements are located within the element module and the connector cables from the module to the antenna.
@@ -914,7 +921,7 @@ This allows for the simple calculation of the minimum and maximum orbital speeds
 
 \begin{figure}[htb]
 \centering
-\includegraphics[width=0.5\linewidth]{Vectors.pdf}
+\includegraphics[width=\linewidth]{Vectors.pdf}
 \caption{Object Velocity Vectors}
 \label{fig:ObjectVelocityVectors}
 \end{figure}
@@ -946,7 +953,7 @@ Based on a number of physical limitations, the system implemented is only capabl
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.5\linewidth]{ObservableCharacteristics.pdf}
+    \includegraphics[width=0.85\linewidth]{ObservableCharacteristics.pdf}
     \caption{Observable Characteristics}
     \label{fig:ObservableCharacteristics}
 \end{figure}
@@ -1106,8 +1113,8 @@ The information provided in the sections above create a baseline with which to d
 
 \section{CURRENT IMPLEMENTATIONS} \label{sec:CurrentImplementations}
  The first of these is the Advanced Modular Incoherent Scatter Radar (AMISR), this is located in Resolute Bay, Canada, it makes use of an array of crossed-dipole antennas that are electrically phased, the system is electronically steerable. It operates in the frequency range of $430~MHz$ to $450~MHz$ and has a pulse width of approximately $2~\mu s$ \cite{AMISR}. A number of important parameters can be found in \cite{AMISR}, this is a system which closely resembles the major requirements for this system.
-The second system in use by Leo Labs is the Midland Space Radar (MSR), this system is located in Texas and is commissioned by Leo Labs, this system is capable of detecting objects as small as $10~cm$ in diameter. It is not specified whether this value is a Radar Cross Section  (RCS) or the physical size of the object.
-A number of other implementations have been used (not through Leo Labs) which make use of other technologies and are capable of detecting smaller objects \cite{EISCAT, SIMO, telescope, BeamForming, OrbitDetermination, PlanarArray}. A number of these papers are made use of to design the system in this report.
+The second system in use by LeoLabs is the Midland Space Radar (MSR), this system is located in Texas and is commissioned by LeoLabs, this system is capable of detecting objects as small as $10~cm$ in diameter. It is not specified whether this value is a Radar Cross Section  (RCS) or the physical size of the object.
+A number of other implementations have been used (not through LeoLabs) which make use of other technologies and are capable of detecting smaller objects \cite{EISCAT, SIMO, telescope, BeamForming, OrbitDetermination, PlanarArray}. A number of these papers are made use of to design the system in this report.
 
 
 \section{RADAR THEORY OF OPERATION} \label{sec:RadarTheoryOfOperation}
@@ -1116,7 +1123,7 @@ This section details the different implementations of radars that are capable of
 Sections \ref{sec:MonostaticvsBistatic}, \ref{sec:ContinuousWaveandPulsedWave}, \ref{sec:ThresholdDetection} discuss the theory of operation of the system.
 
 \subsection{Monostatic versus Bistatic} \label{sec:MonostaticvsBistatic}
-There are two major radar configurations that are currently used, these two are discussed below and then compared.
+There are two major radar configurations that are currently used, these two are discussed below and then compared. The first part to note about this section is that fact that an active system is preferred over the use of a passive radar as the passive systems rely on external radio sources to reflect off of the debris. This is highly unreliable and will produce a high error rate. The high variability of this type of system is difficult to predict how it will function at any point in time. The passive system also requires a large bandwidth which can become difficult to design for as well as acquiring high gains.
 
 \subsubsection{Bistatic} \label{sec:Bistatic}
 The bistatic configuration makes use of a separate transmitter and receiver in order to implement the system. The two components are placed at differing locations and the separation between the components is required to be sufficiently large in terms of the angles or ranges that they present \cite{OrbitDetermination}, \cite[p.~5]{technicalReportSpaceDebris}, \cite[p.~3]{elevationLoss}. The separation between the transmit and receive systems allows for minimal interference between the two, while allowing for the use of more than one receiver.
@@ -1172,6 +1179,24 @@ These values are idealistic and so the correct threshold value is required to be
 When the threshold is increased, the probability of false alarm will decrease - however, so will the probability of detection. When the threshold is decreased, the probabilities of both variables increase. A trade-off is required here to determine the optimum threshold level.
 
 There is one way in which to increase the probability of detection while lowering the probability of false alarm, this is achieved by increasing the targets signal power (it should be noted that the signal power should be increased relative to the noise power). The method in which this can be accomplished is to increase the overall Signal-to-Noise-Ratio (SNR) of the system, if the overall SNR is increased above a specified level, then the probabilities discussed above, reach levels that adequately satisfy the criteria of the system. The SNR and how it is attained is discussed in section~\ref{sec:SNR}
+
+\section{DOPPLER SHIFT PROCESSING} \label{sec:DopplerShiftProcessing}
+
+The Doppler shift contributes a large part of the tracking algorithms within the system. This implies that the system should be capable of measuring highly accurate changes in the frequencies that are received. The Doppler shift is highly important in making a distinction between two objects that are both within the main beam, but have different orbital parameters. In order for this to work, the systems sampling should be high enough so as to avoid unambiguous Doppler measurements \cite[p.~24]{radarHandbook}. This places a requirement on the receiver system such that it avoids invalidating Nyquist's sampling theorem. The use of oversampling in this case greatly reduces the probability of errors in the measurement.
+The system will have to make use of spectrum analysers such that it can measure these Doppler shifts. This is because, in order to measure these Doppler shifts, the power in specific frequencies is required to be measured.
+The successive measurements that are taken by the system will create a more in depth analysis of the measurement as each successive measurement will be averaged, and in this case, the noise levels will drop off, leaving a more distinct pattern to detect the debris.
+
+\section{TRACKING ABILITY} \label{sec:TrackingAbility}
+The tracking ability of the system is not covered in this report as the majority of the design of such a system requires a more in depth analysis and design of such a system. The tracking ability is done on the signal processing end of the system. Once the reflections have been sampled by each antenna, this data is then sent back to the CMM where the signals are processed and an analysis of the data is carried out. This implies that the system is capable of \textit{electronically steering} the system once the samples have already been saved. This is highly important to the functioning of the system as it makes use of multiple techniques to stitch the different antenna channels together to \textit{look} in a specific direction; this is done with the use of software phasing between the elements and making use of maximum ratio combining.
+This post-processing is where a large amount of analysis takes place and makes up a large portion of the capabilities of the system. The cost of implementing this system can become relatively costly, as such, collaboration between current systems should take place such that their knowledge can be utilized.
+This post-processing is a great benefit for the system which further backs up the decision to make use of an electronically steerable array. Mechanically steered arrays do not have this luxury of post-processing at such levels.
+
+The system should be set up in such a way so that it is able to change the beam steering angle dynamically such that the system is able to detect the object as it moves across the systems FOV. This tracking ability implies that the exact orbital parameters of the object can be refined as each successive measurement allows for greater analysis and therefore clarity on its movement.
+The use of currently catalogued objects can be included with this system such that the system can predict the exact position of a \textit{known} object and reaffirm the measurement accuracy.
+
+The fact that each element is independent implies that this system can be used in multiple ways, individual antennas can be deactivated such that the antenna pattern can be augmented to suit the requirement, all of this is undertaken with the use of the CMM. This allows for useful flexibility and dynamic ability of the system that is inherent in the design.
+The ability of the system to change it's steering within a small space of time as well as utilizing post processing implies that the system is capable of tracking multiple objects at the same time, this makes efficient use of the components already installed within the system.
+
 
 
 \section{FREQUENCY ALLOCATION} \label{sec:FrequencyAllocation}
@@ -1286,7 +1311,7 @@ This set of equations is used to generate Fig.~\ref{fig:SNRRequired} (in this ca
 
 \begin{center}
     \begin{figure}
-        \includegraphics[width=\textwidth]{ProbabilityDetection.eps}
+        \includegraphics[width=\textwidth]{ProbabilityDetection.pdf}
         \caption{SNR Required for Detection}
         \label{fig:SNRRequired}    
     \end{figure}
@@ -1300,6 +1325,7 @@ Based on this equation, it can be seen that if the number of pulses is increased
 
 This first estimate for the minimum SNR required is linked to the noise present in the system, the noise of the system is evaluated in sections~\ref{sec:ReceiverNoise} and \ref{sec:ThermalNoise}.
 
+Due to the manner in which the system operates, it is not always the case that the beam is directly over the target, this implies that the design cannot always make use of the maximum gain to specify the systems parameters. However, as discussed above, the system is capable of making use of multiple pulses such that the effective $SNR$ is increased. 
 
 \section{VSWR AND RETURN LOSS DERIVATIONS} \label{sec:VSWRandReturnLossDerivations}
 The Voltage Standing Wave Ratio (VSWR) is an important parameter for any antenna, this is the characteristic which determines the ratio of the input signal which is reflected to what is transmitted. This value should be as low as possible, it ranges from 1 (complete signal transmission) to infinite (complete signal reflection). These correspond to a perfect match and a perfect mismatch respectively.
@@ -1321,7 +1347,9 @@ Where the reflection coefficient, $\Gamma = \frac{Z_L - Z_0}{Z_L + Z_0}$ and $Z_
 This VSWR value defined here is linked to the bandwidth of the antenna, as this VSWR will not be maintained over a large frequency range. In this case it is useful to define a maximum VSWR over the frequency range of the antenna. The design for this is such that the VSWR is less than $2:1$ for the bandwidth of the antenna (and the system as a whole).
 
 \section{CROSSED DIPOLE} \label{sec:Crossed-Dipole}
+As discussed in section~\ref{sec:Antenna}, the crossed dipole is set up such that it transmits with RHCP polarization and then receives with LHCP, as the returned signal is expected to have changed polarization as it reflected off of the space debris.
 
+Fig.~\ref{fig:Crossed-Dipole-Radiation-Patterns-Cartesian} and \ref{fig:Crossed-Dipole-Radiation-Patterns-Polar} illustrate the capabilities of the antenna with and without a ground plane and how the radiation patterns are affected.
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\linewidth]{Crossed-Dipole-Polar.pdf}
@@ -1439,14 +1467,14 @@ Fig.~\ref{fig:SteeringSmall-Polar} and \ref{fig:SteeringSmall-Cartesian} illustr
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.9\linewidth]{SteeringSmall-Polar.pdf}
+    \includegraphics[width=\linewidth]{SteeringSmall-Polar.pdf}
     \caption{$32 \times 32$ Array Beam Steering Ability - Polar Plot}
     \label{fig:SteeringSmall-Polar}
 \end{figure}
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.9\linewidth]{SteeringSmall-Cartesian.pdf}
+    \includegraphics[width=\linewidth]{SteeringSmall-Cartesian.pdf}
     \caption{$32 \times 32$ Array Beam Steering Ability- Cartesian Plot}
         \label{fig:SteeringSmall-Cartesian}
 \end{figure}
@@ -1483,6 +1511,7 @@ The price of the plot of land varies based on its location, previous owners, and
 
 The ideal location for the land would be within a short distance from the SKA operations, this results in the added benefit of the lowered radio interference from external sources while being able to cooperate with their operations. 
 The SKA has currently build their own infrastructure for data management. Tying in with their system implies a lower cost for both parties as it can benefit both. The cost incurred for this communication platform can become expensive, an in-depth analysis should be undertaken as to how the data transmission mechanism should work.
+
 The first method is to make use of on-site servers which take all of the information directly from the array and apply analysis on this data, package the data, and send out the important characteristics that it has analysed. The second method is to automatically send out all of the data that is retrieved from the system, this data is then sent directly to an external server (a cloud provider such as Google, Amazon, etc.) and then the analysis is then carried out from this service.
 The cost of these two systems are required to be analysed as they both have benefits and drawbacks.
 The first method will require a large up front investment for the installation of the servers, then a recurring cost for the energy that is consumed for the analysis, this greatly reduces the costs of data transmission.
@@ -1518,8 +1547,21 @@ The temperatures experienced during the Summer season in this area of the countr
 
 \section{TRANSCEIVER} \label{sec:Transceiver}
 The transceiver of the system is made up of the components of the transmitter and receiver, these two components are often separated in illustrations, and are discussed in the following two sections.
+
+
+Fig.~\ref{fig:FeedSystem} illustrates a simple diagram of the feeding system and its structure; it is clear that each antenna is connected to its own individual Transmit/Receive (T/R) module as this is a requirement of a monostatic radar configuration.
+
+\begin{center}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{FeedSystem.pdf}
+        \caption{Feeding System}
+        \label{fig:FeedSystem}    
+    \end{figure}
+\end{center}
+
 \subsubsection{Transmitter} \label{sec:Transmitter}
-The radar exciter is a simplistic system whereby a waveform is generated with the use of an oscillator, this signal is then amplified with the use of a high power RF amplifier. This is fed directly into the circulator.
+The radar exciter is a simplistic system whereby a waveform is generated with the use of an oscillator, this signal is then amplified with the use of a high power RF amplifier. This is fed directly into the circulator. This high power amplifier will need to be uniquely designed such that it can operate in the required manner for this system. The high power, coupled with low noise and VHF frequencies imply that it is not a commonly available device. This will add to the cost of the system, however, this is still much more cost effective than the much more expensive and complicated methods that older systems make use of (travelling-wave-tubes (TWT), Klystrons, Magnetrons)\cite[Ch.~10]{radarHandbook}.
 
 \subsubsection{Receiver} \label{sec:Receiver}
 The frequency utilised within this system is relatively large when considering the Analogue-to-Digital-Converters (ADC) currently available. The cost of ADC components which are capable of sampling this frequency are prohibitively expensive.
@@ -1544,7 +1586,7 @@ The LNA is placed close to the physical antenna as this lowers the noise introdu
 In order to estimate the total cost of the system, previously implemented systems that have a similar functionality can be compared. The first of these is the EISCAT Svalbard Radar Project \cite[p.~670]{EISCATPrice} which estimated the cost of the array was approximately $R~432$ million in $1990$, and the yearly operating costs approximated $R~40$ million. This cost is indicative of the technology at the time and these costs will be greatly reduced with the use of newer efficient technology.
 The estimate for the entire solid-state amplifier implementation was estimated to be $R~300$ million, this includes the cooling, control systems, and transmitter modules. This is a high estimate as the cost of this will have been reduced over time.
 
-The second comparable system is that of the AMISR (used by Leo Labs), which is estimated, once construction was completed to cost approximately $\$52$ million ($R~750$ million) for the concept development and implementation \cite[p.~333-337]{AMISRCosting}. The yearly operational cost for the system is estimated to be approximately $\$3$ million ($R~43$ million). This estimate is closer to the cost requirements for this design as the systems are constructed with a number of similarities for the components.
+The second comparable system is that of the AMISR (used by LeoLabs), which is estimated, once construction was completed to cost approximately $\$52$ million ($R~750$ million) for the concept development and implementation \cite[p.~333-337]{AMISRCosting}. The yearly operational cost for the system is estimated to be approximately $\$3$ million ($R~43$ million). This estimate is closer to the cost requirements for this design as the systems are constructed with a number of similarities for the components.
 The use of solid state amplifiers appears to be the best choice as the price of these components have decreased over the past two decades and their efficiency has increased.
 The Design document has a number of costing estimates for a solid-state amplifier implementation, however, this estimate was in $1990$ \cite[p.~37]{DesignDraft}.
 Table~\ref{tab:CostingUnit} illustrates the costing for an individual unit, this includes the antenna, transmitter and receiver components. The exchange rate is taken as $R~14.40/\$$.
